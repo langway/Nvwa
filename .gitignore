@@ -1,0 +1,5 @@
+.svn/
+*.svn-base
+*.mp4
+*.pdf
+*.whl

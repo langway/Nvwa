@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% block titleBlock %}龙搜_用户注册{% endblock %}
+{% block metaBlock %}
+<meta name="keywords" content="搜索,龙搜, 新用户注册" />
+<meta name="description" content="龙搜，搜索, 用户注册" />
+{% endblock %}
+{% block styleBlock %}{% endblock %}
+{% block scriptBlock %}
+<script type="text/javascript">
+$(function(){
+    $('body').attr('class', 'zc-bg');
+
+    /*ajax 获取城市地区数据*/
+    $.get('/get/locations',{'level': 2, 'id':0},function(province){
+        var province = eval(province)
+        var province_html = '<option value="" selected="selected">选择省份</option>'
+        for(var i=0; i<province.length; i++){
+            province_html += '<option value="' + province[i][0] + '">' + province[i][1] + '</option>'
+        }
+        $('#province').html(province_html);
+    });
+    $('#province').change(function(){
+        $.get('/get/locations',{'level': 3, 'id':$(this).val()},function(city){
+            var city = eval(city)
+            var city_html = '<option value="" selected="selected">选择城市</option>'
+            for(var i=0; i<city.length; i++){
+                city_html += '<option value="' + city[i][0] + '">' + city[i][1] + '</option>'
+            }
+            $('#city').html(city_html);
+        });
+    });
+    $('#city').change(function(){
+        $.get('/get/locations',{'level': 5, 'id':$(this).val()},function(district){
+            var district = eval(district)
+            var district_html = '<option value="" selected="selected">选择城市</option>'
+            for(var i=0; i<district.length; i++){
+                district_html += '<option value="' + district[i][0] + '">' + district[i][1] + '</option>'
+            }
+            $('#district').html(district_html);
+        });
+    });
+});//function
+
+/*
+ajax提交用户信息到后台
+ */
+function submitClick(){
+    var username = $('#username').val();
+    var gender = $('#gender').val();
+    var province = $('#province').val();
+    var city = $('#city').val();
+    var district = $('#district').val();
+    var location = '';
+    if(district){
+        location = district;
+    }else if(city){
+        location = city;
+    }else if(province){
+        location = province;
+    }
+
+    $.post('/register/finish', {'username': username, 'gender': gender, 'location': location},
+    function(error){
+        try{
+            var errorInfo = eval(error)[0];
+            alert(errorInfo.error);
+        }catch(e){
+            window.location.href = '/';
+        }
+    });
+};
+</script>
+{% endblock %}
+{% block mainBlock %}
+   <div class="zc-k">
+      <div class="zc-k-1"><a class="logo2"></a></div>
+	  <Div>
+	     
+		
+	    <div class="xxzl"></div>
+		<Div class="xxzl2">
+		<form action="" method="get">
+		   <div class="xxzl2w"><Span class="xxx12bz">昵称</Span><span class="xxx12b1">
+               <input name="" type="text" id="username"/>
+           </span></div>
+		   <div class="xxzl2w"><Span class="xxx12bz">性别</Span><span class="xxx12b1">
+               <select name="性别" id="gender">
+                <option value="1">男</option>
+                <option value="0">女</option>
+               </select>
+           </span></div>
+		   <div class="xxzl2w"><Span class="xxx12bz">地址</Span>
+               <span class="xxx12b1">
+                   <select name="" id="province">
+                   </select>
+                   <select name="" id="city">
+                       <option value="" selected="selected">选择城市</option>
+                   </select>
+                   <select name="" id="district">
+                       <option value="" selected="selected">选择县市</option>
+                   </select>
+           </span></div>
+		   <div class="xxzl2w"><a class="wanc" href="javascript:submitClick()">完成</a></div>
+		
+		</form>
+		
+		
+		
+		</Div>
+	  
+	  
+	  
+	  </Div>
+   
+   
+   
+   
+   </div>
+{% endblock %}

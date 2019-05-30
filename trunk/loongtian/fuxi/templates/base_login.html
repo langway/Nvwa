@@ -1,0 +1,37 @@
+<div class="bg" style="z-index: 1000"></div>
+<div class="dengl" style="z-index:1001;">
+   <div class="dengl-t">
+       <span class="dengl-t1"></span>
+       <span  class="dengl-t2"></span>
+       <span class="dengl-t3" onclick="close_windows()"><a class="dengl-t3" href="#"></a></span>
+       <span></span>
+   </div>
+   <div class="dengl-r">
+       <form action="" method="get">
+            <div class="dengl-r1">
+                <div class="dengl-r1"> <span class="dengl-r11 dengl-r11x"></span> <span class="dengl-r12">
+                    <input id="username" type="text"class="dengl-r121" value="用户名/手机" onfocus="if(this.value==defaultValue) {this.value='';}" onblur="if(!value) {value=defaultValue; this.type='text';}" style="color:#000;" />
+                    </span>
+                </div>
+            </div>
+            <div class="dengl-r1">
+                <span class="dengl-r11 dengl-r11z"></span>
+                <span class="dengl-r12">
+                    <input id="password" type="password"class="dengl-r121" value="登录密码" onfocus="if(this.value==defaultValue) {this.value='';this.type='password'}" onblur="if(!value) {value=defaultValue; this.type='text';}" style="color:#000;" />
+                </span>
+            </div>
+            <div  class="dengl-r2">
+               <span class="dengl-r21"><input id="next_login" name="" type="checkbox" value="" /></span>
+               <Span class="dengl-r22">下次自动登录</Span>
+            </div>
+            <div><a class="dengl-r3" style="cursor: pointer" href="javascript:loginSubmit()">登录</a></div>
+            <div class="dengl-r4">
+                <span class="dengl-r31">其他账号登录</span><span class="dengl-r32"><a  href="#" class="dengl-r321"></a><a class="dengl-r322" href="#"></a><a class="dengl-r323" href="#"></a></span>
+            </div>
+       </form>
+   </div>
+   <div class="dengl-b">
+       <a href="/register" class="dengl-b1">注册新用户</a>|
+       <a class="dengl-b2" href="/pwd/find" style="cursor: pointer">忘记密码</a>
+   </div>
+</div>

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block titleBlock %}龙搜{% endblock %}
+{% block metaBlock %}
+<meta name="keywords" content="搜索,龙搜,首页" />
+<meta name="description" content="龙搜，搜索" />
+{% endblock %}
+{% block styleBlock %}
+<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+{% endblock %}
+{% block scriptBlock %}
+<script type="text/javascript" charset="utf-8" src="/static/script/mousewheel.js"></script>
+<script type="text/javascript" charset="utf-8" src="/static/script/easyscroll.js"></script>
+<style type="text/css">
+.quotes li{float: left;}
+.set-nv ul li:nth-child(2) { background:#2a8fdd;}
+.set-nv ul li:nth-child(2) a {color:#FFF;}
+.set-nv ul li:nth-child(2) a{background: url('/static/img/ann-2.png') no-repeat; background-position: 23px -60px;}
+</style>
+<script type="text/javascript">
+	$(function(){
+		$('.div_scroll').scroll_absolute({arrows:true});
+		$('.container2 .div_scroll').scroll_absolute({arrows:false});
+        $('body').attr('class', 'bg2');
+	})
+</script>
+{% endblock %}
+{% block mainBlock %}
+<div class="ss22">dsad</div>
+<div class="ss22">dsad</div>
+<div class="set">
+   {% include 'base_user_left.html' %}
+     <div class="set-y">
+	 
+	  <div class="set-yt"><span class="set-yt1">搜索记录</span><span class="set-yt2">使用龙搜</span></div>
+	 <Div>
+         {% for h in historyRecord %}
+	     <div class="ssjl-1">
+             <Span class="ssjl-11"><a href="#">{{ h.search }}</a></Span>
+             <span class="ssjl-12">{{ h.addtime }}</span>
+         </div>
+         {% endfor %}
+		<div class="snsyejiao">
+            <div class="quotes" style="cursor: pointer">
+                {{ pagination.links }}
+            </div>
+        </div>
+     </Div>
+	 </div>
+
+
+</div>
+{% endblock %}

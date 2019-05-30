@@ -1,0 +1,125 @@
+{% for h in history_record %}
+<div class="nr-sj">{{ h.addtime }}</div>
+{% if h.result|show_result('type') == 'text' %}
+<div class="nr-xx">
+    <Div class="nr-xxz">
+        <div class="nr-xx1"><a class="tx"><img src="{{ mine.photo|show_head('50x50', 'users') }}" width="68" height="68" /></a></div>
+        <div class="nr-xx3"></div>
+    </Div>
+    <Div class="nr-xx2">{{ h.search }}</Div>
+</div>
+<div class="nr-tx">
+    <div class="nr-tx1">
+        <a class="tx"><img src="/static/img/231_03.png" width="68" height="68" /></a>
+    </div>
+    <div class="nr-tx3z">
+        <div class="nr-tx3"></div>
+        <div class="nr-tx2">{{ h.result|show_result('title') }}</div>
+    </div>
+</div>
+{% elif search_type == 'images' %}
+<div class="nr-xx">
+    <Div class="nr-xxz">
+        <div class="nr-xx1"><a class="tx"><img src="{{ mine.photo|show_head('50x50', 'users') }}" width="68" height="68" /></a></div>
+        <div class="nr-xx3"></div>
+    </Div>
+    <Div class="nr-xx2">{{ h.search }}</Div>
+</div>
+<div class="nr-tx">
+    <div class="nr-tx1">
+        <a class="tx">
+            <img src="/static/img/231_03.png" width="68" height="68" />
+        </a>
+    </div>
+    <div class="nr-tx3z">
+        <div class="nr-tx3"></div>
+        <div class="nr-tx2">{{ h.result|show_result('title') }}<br />
+        <img src="{{ h.result|show_result('url') }}" width="400" height="284" />
+        </div>
+    </div>
+</div>
+{% elif h.result|show_result('type') == 'info' %}
+<div class="nr-xx">
+    <Div class="nr-xxz">
+        <div class="nr-xx1"><a class="tx"><img src="{{ mine.photo|show_head('50x50', 'users') }}" width="68" height="68" /></a></div>
+        <div class="nr-xx3"></div>
+    </Div>
+    <Div class="nr-xx2">{{ h.search }}</Div>
+</div>
+<div class="nr-tx">
+    <div class="nr-tx1">
+        <a class="tx">
+            <img src="/static/img/231_03.png" width="68" height="68" />
+        </a>
+    </div>
+    <div class="nr-tx3z">
+        <div class="nr-tx3"></div>
+        <div class="nr-tx2">
+            <div class="ltnr">
+                <img src="/static/photo/l1.jpg" />
+            </div>
+            <div class="ltnr1">
+                <div class="ltnrx3">{{ h.result|show_result('title') }}</div>
+                <div class="ltnrx1">{{ h.result|show_result('info') }}...<a> 详细</a></div>
+                <div class="ltnrx2">
+                    {% for s in h.result|show_result('tags') %}
+                    <a>{{ s.title|show_unicode() }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% elif h.result|show_result('type') == 'music' %}
+<div class="nr-xx">
+    <Div class="nr-xxz">
+        <div class="nr-xx1"><a class="tx"><img src="{{ mine.photo|show_head('50x50', 'users') }}" width="68" height="68" /></a></div>
+        <div class="nr-xx3"></div>
+    </Div>
+    <Div class="nr-xx2">{{ h.search }}</Div>
+</div>
+<div class="nr-tx">
+    <div class="nr-tx1">
+        <a class="tx">
+            <img src="/static/img/231_03.png" width="68" height="68" />
+        </a>
+    </div>
+    <div class="nr-tx3z">
+        <div class="nr-tx3"></div>
+        <div class="nr-tx2">
+			{{ h.result|show_result('title') }}<br />
+            <audio controls="controls" loop="loop">
+              <source src="song.ogg" type="audio/ogg" />
+              <source src="muisc/asd.mp3" type="audio/mpeg" />
+            Your browser does not support the audio element.
+            </audio>
+        </div>
+    </div>
+</div>
+{% elif h.result|show_result('type') == 'video' %}
+<div class="nr-xx">
+    <Div class="nr-xxz">
+        <div class="nr-xx1"><a class="tx"><img src="{{ mine.photo|show_head('50x50', 'users') }}" width="68" height="68" /></a></div>
+        <div class="nr-xx3"></div>
+    </Div>
+    <Div class="nr-xx2">{{ h.search }}</Div>
+</div>
+<div class="nr-tx">
+    <div class="nr-tx1">
+        <a class="tx">
+        <img src="/static/img/231_03.png" width="68" height="68" />
+        </a>
+    </div>
+    <div class="nr-tx3z">
+        <div class="nr-tx3"></div>
+        <div class="nr-tx2">{{ h.result|show_result('title') }}<br />
+            <video src="movie.ogg" controls="controls">
+                <source src="movie.ogg" type="video/ogg" />
+                <source src="movie.mp4" type="video/mp4" />
+                您的浏览器不支持 video 标签。
+            </video>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endfor %}

@@ -1,0 +1,88 @@
+[ INFO ]- 2017-06-04 12:42:01,232 - 服务器端(请求发出socket)开启，地址：tcp://*:2014。
+[ INFO ]- 2017-06-04 12:42:01,236 - 服务器端(数据广播socket)开启，地址：tcp://*:0602。
+[ INFO ]- 2017-06-04 12:42:01,237 - 服务器启动成功！
+[ INFO ]- 2017-06-04 12:42:17,164 - 服务器端(请求发出socket)成功连接，地址：tcp://localhost:2014
+[ INFO ]- 2017-06-04 12:42:17,167 - 服务器端(广播订阅socket)成功连接，地址：tcp://localhost:0602
+[ INFO ]- 2017-06-04 12:42:17,168 - 客户端启动成功！
+[ INFO ]- 2017-06-04 14:31:02,493 - 服务器端(请求发出socket)开启，地址：tcp://*:2014。
+[ INFO ]- 2017-06-04 14:31:02,503 - 服务器端(数据广播socket)开启，地址：tcp://*:0602。
+[ INFO ]- 2017-06-04 14:31:02,507 - 服务器启动成功！
+[ INFO ]- 2017-06-04 14:31:08,483 - 服务器端(请求发出socket)成功连接，地址：tcp://localhost:2014
+[ INFO ]- 2017-06-04 14:31:08,484 - 服务器端(广播订阅socket)成功连接，地址：tcp://localhost:0602
+[ INFO ]- 2017-06-04 14:31:08,486 - 客户端启动成功！
+[ INFO ]- 2017-06-05 16:03:59,015 - 服务器端(请求发出socket)未能开启，地址：tcp://localhost:2014，客户端无法执行！
+[ CRITICAL ]- 2017-06-05 16:28:15,119 - 服务器端(请求发出socket)未能开启，地址：tcp://localhost:2014，客户端无法执行！
+None
+[ CRITICAL ]- 2017-06-05 16:29:35,779 - 服务器端(请求发出socket)未能开启，地址：tcp://localhost:2014，客户端无法执行！
+None
+[ CRITICAL ]- 2017-06-05 16:31:46,348 - 服务器端(请求发出socket)未能开启，地址：tcp://localhost:2014，客户端无法执行！
+None
+[ CRITICAL ]- 2017-06-05 16:34:30,285 - 服务器端(请求发出socket)未能开启，地址：tcp://localhost:2014，客户端无法执行！
+None
+[ CRITICAL ]- 2017-06-05 16:37:59,420 - 服务器端(请求发出socket)未能开启，地址：tcp://localhost:2014，客户端无法执行！
+[ CRITICAL ]- 2017-06-05 16:38:59,246 - 服务器端(请求发出socket)未能开启，地址：tcp://localhost:2014，客户端无法执行！
+[ INFO ]- 2017-06-05 16:39:18,197 - 服务器端(请求发出socket)开启，地址：tcp://*:2014。
+[ INFO ]- 2017-06-05 16:39:18,207 - 服务器端(数据广播socket)开启，地址：tcp://*:0602。
+[ INFO ]- 2017-06-05 16:39:18,207 - 服务器启动成功！
+[ INFO ]- 2017-06-05 16:39:25,134 - 服务器端(请求发出socket)成功连接，地址：tcp://localhost:2014
+[ INFO ]- 2017-06-05 16:39:25,135 - 服务器端(广播订阅socket)成功连接，地址：tcp://localhost:0602
+[ INFO ]- 2017-06-05 16:39:25,138 - 客户端启动成功！
+[ INFO ]- 2017-06-05 16:40:04,397 - 服务器端(请求发出socket)开启，地址：tcp://*:2014。
+[ INFO ]- 2017-06-05 16:40:04,404 - 服务器端(数据广播socket)开启，地址：tcp://*:0602。
+[ INFO ]- 2017-06-05 16:40:04,407 - 服务器启动成功！
+[ INFO ]- 2017-06-05 16:48:08,068 - 服务器端(请求发出socket)开启，地址：tcp://*:2014。
+[ INFO ]- 2017-06-05 16:48:08,076 - 服务器端(数据广播socket)开启，地址：tcp://*:0602。
+[ INFO ]- 2017-06-05 16:48:08,078 - 服务器启动成功！
+[ CRITICAL ]- 2017-06-05 16:48:09,917 - 当前(请求发出)地址：tcp://*:2014 被占用！请检查地址是否设置正确或有相同的服务开启
+Traceback (most recent call last):
+  File "F:\0-code\0-Nvwa\trunk\loongtian\util\rpc\vnrpc.py", line 147, in __set_socket
+    self.__socketREP.bind(repAddress)# 请求回应socket设置
+  File "zmq/backend/cython/socket.pyx", line 495, in zmq.backend.cython.socket.Socket.bind (zmq\backend\cython\socket.c:5653)
+  File "zmq/backend/cython/checkrc.pxd", line 25, in zmq.backend.cython.checkrc._check_rc (zmq\backend\cython\socket.c:10014)
+    raise ZMQError(errno)
+ZMQError: Address in use
+[ CRITICAL ]- 2017-06-05 16:48:11,023 - Address in use
+Traceback (most recent call last):
+  File "F:\0-code\0-Nvwa\trunk\loongtian\util\rpc\vnrpc.py", line 162, in __set_socket
+    self.__socketPUB.bind(pubAddress)
+  File "zmq/backend/cython/socket.pyx", line 495, in zmq.backend.cython.socket.Socket.bind (zmq\backend\cython\socket.c:5653)
+  File "zmq/backend/cython/checkrc.pxd", line 25, in zmq.backend.cython.checkrc._check_rc (zmq\backend\cython\socket.c:10014)
+    raise ZMQError(errno)
+ZMQError: Address in use
+[ INFO ]- 2017-06-05 16:48:12,164 - 服务器启动成功！
+[ CRITICAL ]- 2017-06-05 16:49:40,743 - 当前(请求发出)地址：tcp://*:2014 被占用！请检查地址是否设置正确或有相同的服务开启
+Traceback (most recent call last):
+  File "F:\0-code\0-Nvwa\trunk\loongtian\util\rpc\vnrpc.py", line 147, in __set_socket
+    self.__socketREP.bind(repAddress)# 请求回应socket设置
+  File "zmq/backend/cython/socket.pyx", line 495, in zmq.backend.cython.socket.Socket.bind (zmq\backend\cython\socket.c:5653)
+  File "zmq/backend/cython/checkrc.pxd", line 25, in zmq.backend.cython.checkrc._check_rc (zmq\backend\cython\socket.c:10014)
+    raise ZMQError(errno)
+ZMQError: Address in use
+[ CRITICAL ]- 2017-06-05 16:50:51,917 - 当前(请求发出)地址：tcp://*:2014 被占用！请检查地址是否设置正确或有相同的服务开启
+Traceback (most recent call last):
+  File "F:\0-code\0-Nvwa\trunk\loongtian\util\rpc\vnrpc.py", line 147, in __set_socket
+    self.__socketREP.bind(repAddress)# 请求回应socket设置
+  File "zmq/backend/cython/socket.pyx", line 495, in zmq.backend.cython.socket.Socket.bind (zmq\backend\cython\socket.c:5653)
+  File "zmq/backend/cython/checkrc.pxd", line 25, in zmq.backend.cython.checkrc._check_rc (zmq\backend\cython\socket.c:10014)
+    raise ZMQError(errno)
+ZMQError: Address in use
+[ INFO ]- 2017-06-05 16:50:52,967 - 服务器socket未能设置成功，无法正常启动！
+[ INFO ]- 2017-06-05 16:52:47,134 - 服务器端(请求发出socket)开启，地址：tcp://*:2014。
+[ INFO ]- 2017-06-05 16:52:47,145 - 服务器端(数据广播socket)开启，地址：tcp://*:0602。
+[ INFO ]- 2017-06-05 16:52:47,148 - 服务器启动成功！
+[ CRITICAL ]- 2017-06-05 16:52:55,115 - 当前(请求发出)地址：tcp://*:2014 被占用！请检查地址是否设置正确或有相同的服务开启
+Traceback (most recent call last):
+  File "F:\0-code\0-Nvwa\trunk\loongtian\util\rpc\vnrpc.py", line 147, in __set_socket
+    self.__socketREP.bind(repAddress)# 请求回应socket设置
+  File "zmq/backend/cython/socket.pyx", line 495, in zmq.backend.cython.socket.Socket.bind (zmq\backend\cython\socket.c:5653)
+  File "zmq/backend/cython/checkrc.pxd", line 25, in zmq.backend.cython.checkrc._check_rc (zmq\backend\cython\socket.c:10014)
+    raise ZMQError(errno)
+ZMQError: Address in use
+[ CRITICAL ]- 2019-01-13 14:18:26,767 - nvwa - logger.py:457 - 服务器端(请求发出socket)未能开启，地址：tcp://localhost:2014，客户端无法执行！
+None
+[ INFO ]- 2019-01-13 14:18:55,960 - nvwa - logger.py:419 - 服务器端(请求发出socket)开启，地址：tcp://*:2014。
+[ INFO ]- 2019-01-13 14:18:55,960 - nvwa - logger.py:419 - 服务器端(数据广播socket)开启，地址：tcp://*:0602。
+[ INFO ]- 2019-01-13 14:18:55,961 - nvwa - logger.py:419 - 服务器启动成功！
+[ INFO ]- 2019-01-13 14:19:18,812 - nvwa - logger.py:419 - 客户端(请求发出socket)成功连接，地址：tcp://localhost:2014
+[ INFO ]- 2019-01-13 14:19:18,812 - nvwa - logger.py:419 - 客户端(广播订阅socket)成功连接，地址：tcp://localhost:0602
+[ INFO ]- 2019-01-13 14:19:18,825 - nvwa - logger.py:419 - 客户端启动成功！

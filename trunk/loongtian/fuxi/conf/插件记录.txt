@@ -1,0 +1,16 @@
+﻿python:                     2.7.8
+flask:                      0.10.1              web框架
+werkzeug:                   0.11.2              WSGI规范实用函数库
+jinja2:                     2.8                 模板引擎
+itsdangerous:               0.24                解决数据安全签名
+PIL:                        1.1.7               处理图片
+flask-SQLAlchemy:           2.1                 ORM框架
+SQLAlchemy:                 1.0.9               ORM框架
+MySQL-python:               1.2.3               链接mysql数据库服务
+parameters
+
+flask_mail
+
+pip install postgres # PostgreSQL数据库连接
+pip install dbutils # 数据库连接池
+pip install multiprocessing #多进程（可调用多核CPU）

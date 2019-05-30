@@ -1,0 +1,23 @@
+#!/bin/env python
+# -*- coding: utf-8 -*-
+
+import time
+
+from loongtian.util.uiautomation import screen
+
+# title = "上日诚意金余额："
+title = "无标题 - 记事本"
+window_handles = screen.get_handles_by_keywords_in_title(title)
+
+window_handle=None
+if window_handles:
+    window_handle = window_handles.items()[0][0]
+
+# order = liutangTradeData.get_liutangOrderWindow(window_handle)
+Edit=screen.get_idxSubHandle(window_handle,"Edit",0)
+# 刷新屏幕控件，捕获TextOut
+while True:
+    # screen.refresh_window(order.Buy[0])
+    screen.refresh_window(Edit[0][0])
+    screen.sleep(1000)
+    print("?",time.time())

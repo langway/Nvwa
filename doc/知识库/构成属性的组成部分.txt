@@ -1,0 +1,19 @@
+逻辑关系  LogicRelation
+扩展关系  ExtendedRelation
+逻辑存在  LogicExistence
+逻辑转移条件 Condition
+构成属性名称 ConstituentName
+可空  Ignoreable
+构成属性值  ConstituentValue
+考察维度 Dimensions
+逻辑数量 LogicNumber
+
+
+BridgeLinker 牛-腿
+
+外延
+
+ThinkResult ReactResult
+
+
+基觉 的构成属性 自我引用

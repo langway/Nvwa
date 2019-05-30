@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block titleBlock %}龙搜——设置密码{% endblock %}
+{% block metaBlock %}
+<meta name="keywords" content="搜索,龙搜,设置密码" />
+<meta name="description" content="龙搜，搜索" />
+{% endblock %}
+{% block styleBlock %}
+<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+{% endblock %}
+{% block scriptBlock %}
+<script type="text/javascript">
+$(function(){
+    $('body').attr('class', 'bg2');
+});//function
+/*
+保存密码提交按钮点击事件
+ */
+function pwdSubmitClick(){
+    var pwd = $('#pwd').val();
+    var repeat = $('#repeat').val();
+    $.post('/pwd/set', {'pwd': pwd, 'repeat': repeat}, function(error){
+        var errorInfo = eval(error)[0];
+        if(errorInfo.error){
+            alert(errorInfo.error)
+        }else{
+            location.href = errorInfo.url;
+        }
+    });
+};
+</script>
+{% endblock %}
+{% block mainBlock %}
+<div class="ss22">dsad</div>
+<div class="ss22">dsad</div>
+<div class="set" style="height: 650px;">
+    <div style="margin: 120px 0 0 280px">
+        <div style="margin-bottom: 20px">
+            <span class="sj-k">新密码</span>
+            <span class="yzm">
+                <input id="pwd" type="password" name="name" placeholder="输入新密码" style="width: 300px;"/>
+            </span>
+        </div>
+        <div style="margin-bottom: 20px">
+            <span class="sj-k">重复密码</span>
+            <span class="yzm">
+                <input id="repeat" type="password" name="name" placeholder="重复密码" style="width: 300px;"/>
+            </span>
+        </div>
+
+        <div class="sj-k2"><a class="sj-zc" id="xyb" href="javascript:pwdSubmitClick()">完成</a></div>
+    </div>
+</div>
+{% endblock %}

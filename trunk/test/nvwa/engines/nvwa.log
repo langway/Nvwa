@@ -1,0 +1,10 @@
+[ INFO ]- ——learned No.23 file:E:\0-Nvwa\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\10岁妹妹救落水姐姐双双遇难.txt
+InnerTraceback (most recent call last):
+File "E:\0-nvwa\trunk\loongtian\util\log\logger.py", line 442, in info
+File "E:\0-nvwa\trunk\loongtian\nvwa\engines\metaEngine.py", line 592, in learnFiles
+File "E:\0-nvwa\trunk\test\nvwa\engines\testMetaEnginet.py", line 322, in testLearnFiles total_seconds:1.306 - 2019-02-27 11:31:29,914 - nvwa - logger.py:442
+[ INFO ]- ——learning No.23 file:E:\0-Nvwa\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\10岁姐姐赴京救白血病妹妹续：成功植入干细胞.txt
+InnerTraceback (most recent call last):
+File "E:\0-nvwa\trunk\loongtian\util\log\logger.py", line 442, in info
+File "E:\0-nvwa\trunk\loongtian\nvwa\engines\metaEngine.py", line 586, in learnFiles
+File "E:\0-nvwa\trunk\test\nvwa\engines\testMetaEnginet.py", line 322, in testLearnFiles - 2019-02-27 11:31:29,940 - nvwa - logger.py:442

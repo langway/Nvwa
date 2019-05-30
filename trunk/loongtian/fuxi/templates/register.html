@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% block titleBlock %}龙搜_用户注册{% endblock %}
+{% block metaBlock %}
+<meta name="keywords" content="搜索,龙搜, 新用户注册" />
+<meta name="description" content="龙搜，搜索, 用户注册" />
+{% endblock %}
+{% block styleBlock %}{% endblock %}
+{% block scriptBlock %}
+<script type="text/javascript">
+$(function(){
+    $('body').attr('class', 'zc-bg');
+    //加载验证码
+    imgvarify_login();
+});//function
+/*
+验证码加载
+ */
+function imgvarify_login() {
+    var self = $("#image_login");
+    self.attr('src', '/captcha?s=' + Math.random() * 35);
+    self.blur();
+}
+/*
+注册提交按钮点击事件
+ */
+function registerSubmitClick(){
+    var username = $('#username').val();
+    var password = $('#password').val();
+    var repeat = $('#repeat').val();
+    var verify = $('#verify').val();
+    var readchk = $('#readchk').val();
+    $.post('/register', {'username': username, 'password': password,
+    'repeat': repeat, 'verify': verify}, function(error){
+        var errorInfo = eval(error)[0];
+        if(errorInfo.error){
+            alert(errorInfo.error)
+            imgvarify_login();
+        }else{
+            location.href = errorInfo.url;
+        }
+    });
+};
+</script>
+{% endblock %}
+{% block mainBlock %}
+   <div class="zc-k">
+      <div class="zc-k-1"><a class="logo2"></a></div>
+	  <Div>
+	     <div class="zcy">
+		 <form action="" method="post">
+		     <div><a class="xxzc xxxc-d">信箱注册</a><a class="xxzc1 sjzc">信箱注册</a></div>
+			 <div class="sj-k2">
+                 <span class="sj-k">手机/信箱</span>
+                 <span class="sj-n">
+                     <input name="username" id="username" type="text" />
+                 </span>
+             </div>
+			 <div class="sj-k2">
+                 <span class="sj-k">密码</span>
+                 <span class="sj-n">
+                     <input name="password" id="password" type="password" />
+                 </span>
+             </div>
+		     <div class="sj-k2"><span class="sj-k">确定密码</span><span class="sj-n">
+		     <input name="repeat" id="repeat" type="password" /></span></div>
+			 <div class="sj-k2">
+                 <span class="sj-k">验证码</span>
+                 <span class="yzm">
+		            <input name="verify" id="verify" type="text" />
+                 </span>
+                 <Span class="yzmm" style="background: none">
+                     <img onclick="imgvarify_login()" id="image_login" style="cursor:pointer; position:absolute;margin-top: 5px;"/>
+                 </Span>
+                 <span class="hyh" style="margin-left: 80px;"><a href="javascript:imgvarify_login()">换一换</a></span>
+             </div>
+			 
+			 <div class="sj-k2">
+                 <Span class="xiey">
+                    <input name="readchk" id="readchk" type="checkbox" value="1" />
+                </Span>
+                 <span>我已阅读并同意<span class="xiey1">《龙天用户协议》</span></span>
+             </div>
+			 
+			 <div class="sj-k2"><a class="sj-zc" href="javascript:registerSubmitClick()">注册</a></div>
+		 </form>
+		 </div>
+	    <div class="zcr">
+		
+		<div class="yyzh">已有龙天账号</div>
+		<div><a class="zjdl">直接登录</a></div>
+		<Div class="zjd2">使用以下账号直接登录</Div>
+		<div class="zjd3"><a class="qq1"></a><a class="wx1"></a><a class="wb3"></a></div>
+		
+		
+		</div>
+	  
+	  
+	  </Div>
+   
+   
+   
+   
+   </div>
+{% endblock %}

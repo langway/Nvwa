@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block titleBlock %}龙搜__找回密码__邮件发送{% endblock %}
+{% block metaBlock %}
+<meta name="keywords" content="搜索,龙搜,找回密码邮件发送" />
+<meta name="description" content="龙搜，搜索" />
+{% endblock %}
+{% block styleBlock %}
+<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+{% endblock %}
+{% block scriptBlock %}
+<script type="text/javascript">
+$(function(){
+    $('body').attr('class', 'bg2');
+    //加载验证码
+    imgvarify_login();
+});//function
+/*
+验证码加载
+ */
+function imgvarify_login() {
+    var self = $("#image_login");
+    self.attr('src', '/captcha?s=' + Math.random() * 35);
+    self.blur();
+}
+/*
+下一步提交按钮点击事件
+ */
+function nextSubmitClick(){
+    var usermail = $('#usermail').val();
+    var verify = $('#verify').val();
+    $.post('/pwd/find', {'usermail': usermail, 'verify': verify}, function(error){
+        var errorInfo = eval(error)[0];
+        if(errorInfo.error){
+            alert(errorInfo.error)
+        }else{
+            location.href = errorInfo.url;
+        }
+    });
+};
+</script>
+{% endblock %}
+{% block mainBlock %}
+<div class="ss22">dsad</div>
+<div class="ss22">dsad</div>
+<div class="set" style="height: 650px;">
+    <div style="margin: 120px 0 0 280px;font-size: 24px;line-height: 80px">
+        <span>
+            找回密码链接已发送至您的邮箱<br>
+            {{ usermail }}
+            <a href="{{ mail_url }}">去邮箱设置密码</a>
+        </span></br>
+
+        <span style=""><a href="/pwd/find">没收到，重新发送！</a></span>
+    </div>
+</div>
+{% endblock %}

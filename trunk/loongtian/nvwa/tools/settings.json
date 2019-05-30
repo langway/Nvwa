@@ -1,0 +1,28 @@
+{
+  "fontFamily": "微软雅黑",
+  "fontSize": 12,
+  "language": "chinese",
+  "db": "postgres",
+  "adminUser": {
+        "userName" : "admin_user",
+        "consoleIp": "127.0.0.1",
+        "consolePort": 8077,
+        "manageIp": "127.0.0.1",
+        "managePort": 8078
+    },
+
+  "mongoHost": "localhost",
+  "mongoPort": 27017,
+  "mongoLogging": true,
+
+  "postgresHost": "localhost",
+  "postgresPort": 5432,
+  "postgresDatabase": "nvwa",
+  "postgresUser": "postgres",
+  "postgresPassword": "191739qaz",
+
+  "logActive": true,
+  "logLevel": "debug",
+  "logConsole": true,
+  "logFile": true
+}

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--标题-->
+<title>{% block titleBlock %}龙搜首页{% endblock %}</title>
+<meta http-equiv="Content-Type" content="text/html;" charset="utf-8"/>
+<!--关键词-->
+{% block metaBlock %}
+<meta name="keywords" content="搜索,龙搜" />
+<meta name="description" content="搜索" />
+{% endblock %}
+<link href="/favicon.ico" rel="shortcut icon" />
+<link href="/favicon.ico" rel="bookmark" />
+<link href="/static/css/index.css" rel="stylesheet" type="text/css" />
+<!--样式-->
+{% block styleBlock %}{% endblock %}
+<!--[if IE]><script type="text/javascript" src="/static/script/html5.js"></script><![endif]-->
+<script type="text/jscript" src="/static/script/jquery-1.11.3.min.js"></script>
+<!--脚本-->
+{% block scriptBlock %}{% endblock %}
+<style type="text/css">
+.bg{background-color:#666;position:absolute;z-index:99;left:0;top:0;display:none;width:100%;height:100%;opacity:0.5;filter: alpha(opacity=50);-moz-opacity: 0.5;}
+.login_p{ top:35%; left:38%; z-index:100;position: absolute;}
+.zk_zero{position: absolute;left:15%; height:auto; top:98px;z-index: 1000}
+a{text-decoration: none}
+</style>
+<script type="text/javascript">
+$(function(){
+{#        $('.div_scroll').scroll_absolute({arrows:true});#}
+{#		$('.container2 .div_scroll  ').scroll_absolute({arrows:false});#}
+    // 设置按钮鼠标效果
+    $('#user_set').hover(function(){
+        $('.tops').find('.sezz').show();
+    }, function(){
+        $('.tops').find('.sezz').hide();
+        $('.tops').find('.sezz').hover(function(){
+            $('.tops').find('.sezz').show();
+        },function(){
+            $('.tops').find('.sezz').hide();
+        });
+    });
+        // 消息按钮鼠标效果
+{#        $('#user_mess').hover(function(){#}
+{#            $('.tops').find('.sezz1').show();#}
+{#        }, function(){#}
+{#            $('.tops').find('.sezz1').hide();#}
+{#            $('.tops').find('.sezz1').hover(function(){#}
+{#                $('.tops').find('.sezz1').show();#}
+{#            },function(){#}
+{#                $('.tops').find('.sezz1').hide();#}
+{#            });#}
+{#        });#}
+{#    $.post('/login/auto', {'auto_login': 'auto_login'}, function(status){#}
+{#        if(status == '200'){#}
+{#            alert('333')#}
+{#            window.location.href = '';#}
+{#        }#}
+{#    });#}
+});//function
+/*
+登录按钮点击事件focusImage
+*/
+function login_click(){
+	$('.bg').show();
+	$('.dengl').show();
+	$('.dengl').addClass('login_p');
+}
+/*
+登录按钮提交
+*/
+function loginSubmit(){
+    var username = $('#username').val();
+    var password = $('#password').val();
+    var next_login = $('#next_login').is(':checked');
+    $.post('/login', {'username': username, 'password': password,
+        'next_login': next_login}, function(error){
+        try{
+            var errorInfo = eval(error)[0];
+            alert(errorInfo.error);
+        }catch(e){
+            window.location.href = '';
+        }
+    });
+};
+/*
+关闭登录弹窗
+*/
+function close_windows(){
+	$('.bg').hide();
+	$('.dengl').hide();
+}
+/*
+板式点击事件
+*/
+function zkk2z_click(){
+	$('.zkk2x').show();
+};
+
+/*
+退出登录点击事件
+ */
+function loginOut(exit){
+    $.post('/login/out', {'exit': exit}, function(){
+        location.href = ''; // 刷新当前页面
+    });
+};
+</script>
+</head>
+<body class="">
+{% include 'base_head.html' %}
+<!--主题内容-->
+{% block mainBlock %}{% endblock %}
+<div class=""></div>
+{% include 'base_login.html' %}
+<div class="zk_zero">
+    <div class="zkk2" style="margin:50px 0 80px 20px; width:80px;min-height: 375px;">
+        <a class="zkk"  style="left:900px;"></a>
+        <a class="zkk1z"  style="display:none" href="/"></a>
+        <a class="zkk2z" style="display:none" href="javascript:zkk2z_click()"></a>
+        <div class="zkk2x" style="height: 700px;display: none">
+            <a class="zkk2x-1" href="/indexchat?pattern=small">
+             <div class="zkk2x-11" style="margin-left: 10px;width: 92px;"></div>
+             <div class="zkk2x-12">默认</div>
+            </a>
+            <a class="zkk2x-1" href="/indexchat?pattern=mid">
+             <div class="zkk2x-13"style="margin-left: 10px;width: 92px;"></div>
+             <div class="zkk2x-12">适合</div>
+            </a>
+            <a class="zkk2x-1" href="/indexchat?pattern=max">
+             <div class="zkk2x-13"style="margin-left: 10px;width: 92px;"></div>
+             <div class="zkk2x-12">全屏</div>
+            </a>
+        </div>
+        <div class="zkk12"></div>
+    </div>
+</div>
+<script type="text/javascript">
+	/*
+	首页模式选择可移动按钮处理
+	*/
+	var clicked = "Nope.";
+	var mausx = "0";
+	var mausy = "0";
+	var winx = "0";
+	var winy = "0";
+	var difx = mausx - winx;
+	var dify = mausy - winy;
+
+	$("html").mousemove(function (event) {
+		
+		mausx = event.pageX;
+		mausy = event.pageY;
+		
+		winx = $(".zk_zero").offset().left;
+		winy = $(".zk_zero").offset().top;
+		if (clicked == "Nope.") {
+			difx = mausx - winx;
+			dify = mausy - winy;
+		}
+		
+		var newx = event.pageX - difx;
+		var newy = event.pageY - dify;
+		$(".zk_zero").css({ top: newy, left: newx });
+	});
+
+	$(".zkk").mousedown(function (event) {
+		clicked = "Yeah.";
+		
+	
+	});
+	$(".zkk").mouseover(function (event) {
+		$('.zkk1z').show();
+		$('.zkk2z').show();	
+	
+	});
+	
+
+	$("html").mouseup(function (event) {
+
+		clicked = "Nope.";
+	});
+	$('.zk_zero').mouseleave(function(event){
+		$('.zkk1z').hide();
+		$('.zkk2z').hide();	
+		$('.zkk2x').hide();
+	});
+	/*结束：首页模式选择可移动按钮处理*/
+</script>
+
+{% include 'base_footer.html' %}
+
+</body>
+</html>

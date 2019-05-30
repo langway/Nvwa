@@ -1,0 +1,84 @@
+2016-03-09 19:25:14,286 - nvwa.mod.submod - INFO - submod.py:10 - logger of submod say something...
+2016-03-09 19:25:14,286 - nvwa - INFO - mod.py:12 - logger of mod say something...
+2016-03-09 19:25:14,288 - nvwa - INFO - testLogger.py:35 - let's test mod.testLogger()
+2016-03-09 19:25:14,288 - nvwa.mod.submod - INFO - submod.py:13 - this is submod.tst()...
+2016-03-09 19:25:14,288 - nvwa - INFO - testLogger.py:37 - finish mod test...
+InnerTraceback (most recent call last):
+File "E:\My Documents\0-Nvwa\0-New\trunk\test\util\logger\testLogger.py", line 37, in testLogger
+2016-03-09 19:25:14,289 - nvwa - WARNING - testLogger.py:40 - warning：敌人来袭！
+2016-03-09 19:25:14,289 - nvwa - WARNING - testLogger.py:41 - warning：敌人已靠近！
+InnerTraceback (most recent call last):
+File "E:\My Documents\0-Nvwa\0-New\trunk\test\util\logger\testLogger.py", line 41, in testLogger
+2016-03-09 19:25:14,289 - nvwa - ERROR - testLogger.py:47 - 这里是程序提供的异常信息！
+Traceback (most recent call last):
+  File "E:\My Documents\0-Nvwa\0-New\trunk\test\util\logger\testLogger.py", line 45, in testLogger
+    excptionCreator()
+  File "E:\My Documents\0-Nvwa\0-New\trunk\test\util\logger\testLogger.py", line 16, in excptionCreator
+    raise ValueError('You Must provide a value!')
+ValueError: You Must provide a value!
+2016-03-09 19:25:14,292 - nvwa - ERROR - testLogger.py:48 - You Must provide a value!
+Traceback (most recent call last):
+  File "E:\My Documents\0-Nvwa\0-New\trunk\test\util\logger\testLogger.py", line 45, in testLogger
+    excptionCreator()
+  File "E:\My Documents\0-Nvwa\0-New\trunk\test\util\logger\testLogger.py", line 16, in excptionCreator
+    raise ValueError('You Must provide a value!')
+ValueError: You Must provide a value!
+2016-03-09 19:25:14,292 - nvwa - INFO - testLogger.py:54 - <module 'test.util.logger.Example.mod' from 'E:\My Documents\0-Nvwa\0-New\trunk\test\util\logger\Example\mod.pyc'>
+InnerTraceback (most recent call last):
+File "E:\My Documents\0-Nvwa\0-New\trunk\test\util\logger\testLogger.py", line 54, in testLogger
+[ INFO ]- 2016-05-30 17:34:02,012 - nvwa.mod.submod - submod.py:10 - logger of submod say something...
+[ INFO ]- 2016-05-30 17:34:02,029 - nvwa - mod.py:12 - logger of mod say something...
+[ INFO ]- 2016-05-30 17:34:02,029 - nvwa - testLogger.py:36 - let's test mod.testLogger()
+[ INFO ]- 2016-05-30 17:34:02,029 - nvwa.mod.submod - submod.py:13 - this is submod.tst()...
+[ INFO ]- 2016-05-30 17:34:02,029 - nvwa - testLogger.py:38 - finish mod test...
+InnerTraceback (most recent call last):
+File "E:\My Documents\0-Nvwa\0-New\trunk\test\util\logger\testLogger.py", line 38, in testLogger
+[ WARNING ]- 2016-05-30 17:34:02,029 - nvwa - testLogger.py:41 - warning：敌人来袭！
+[ WARNING ]- 2016-05-30 17:34:02,029 - nvwa - testLogger.py:42 - warning：敌人已靠近！
+InnerTraceback (most recent call last):
+File "E:\My Documents\0-Nvwa\0-New\trunk\test\util\logger\testLogger.py", line 42, in testLogger
+[ ERROR ]- 2016-05-30 17:34:02,029 - nvwa - testLogger.py:48 - 这里是程序提供的异常信息！
+Traceback (most recent call last):
+  File "E:\My Documents\0-Nvwa\0-New\trunk\test\util\logger\testLogger.py", line 46, in testLogger
+    excptionCreator()
+  File "E:\My Documents\0-Nvwa\0-New\trunk\test\util\logger\testLogger.py", line 17, in excptionCreator
+    raise ValueError('You Must provide a value!')
+ValueError: You Must provide a value!
+[ ERROR ]- 2016-05-30 17:34:02,030 - nvwa - testLogger.py:49 - You Must provide a value!
+Traceback (most recent call last):
+  File "E:\My Documents\0-Nvwa\0-New\trunk\test\util\logger\testLogger.py", line 46, in testLogger
+    excptionCreator()
+  File "E:\My Documents\0-Nvwa\0-New\trunk\test\util\logger\testLogger.py", line 17, in excptionCreator
+    raise ValueError('You Must provide a value!')
+ValueError: You Must provide a value!
+[ INFO ]- 2016-05-30 17:34:02,030 - nvwa - testLogger.py:55 - <module 'test.util.logger.Example.mod' from 'E:\My Documents\0-Nvwa\0-New\trunk\test\util\logger\Example\mod.py'>
+InnerTraceback (most recent call last):
+File "E:\My Documents\0-Nvwa\0-New\trunk\test\util\logger\testLogger.py", line 55, in testLogger
+[ INFO ]- 2016-05-30 17:35:45,457 - nvwa.mod.submod - submod.py:10 - logger of submod say something...
+[ INFO ]- 2016-05-30 17:35:45,457 - nvwa - mod.py:12 - logger of mod say something...
+[ INFO ]- 2016-05-30 17:35:45,457 - nvwa - testLogger.py:36 - let's test mod.testLogger()
+[ INFO ]- 2016-05-30 17:35:45,457 - nvwa.mod.submod - submod.py:13 - this is submod.tst()...
+[ INFO ]- 2016-05-30 17:35:45,457 - nvwa - testLogger.py:38 - finish mod test...
+InnerTraceback (most recent call last):
+File "E:\My Documents\0-Nvwa\0-New\trunk\test\util\logger\testLogger.py", line 38, in testLogger
+[ WARNING ]- 2016-05-30 17:35:45,457 - nvwa - testLogger.py:41 - warning：敌人来袭！
+[ WARNING ]- 2016-05-30 17:35:45,457 - nvwa - testLogger.py:42 - warning：敌人已靠近！
+InnerTraceback (most recent call last):
+File "E:\My Documents\0-Nvwa\0-New\trunk\test\util\logger\testLogger.py", line 42, in testLogger
+[ ERROR ]- 2016-05-30 17:35:45,457 - nvwa - testLogger.py:48 - 这里是程序提供的异常信息！
+Traceback (most recent call last):
+  File "E:\My Documents\0-Nvwa\0-New\trunk\test\util\logger\testLogger.py", line 46, in testLogger
+    excptionCreator()
+  File "E:\My Documents\0-Nvwa\0-New\trunk\test\util\logger\testLogger.py", line 17, in excptionCreator
+    raise ValueError('You Must provide a value!')
+ValueError: You Must provide a value!
+[ ERROR ]- 2016-05-30 17:35:45,457 - nvwa - testLogger.py:49 - You Must provide a value!
+Traceback (most recent call last):
+  File "E:\My Documents\0-Nvwa\0-New\trunk\test\util\logger\testLogger.py", line 46, in testLogger
+    excptionCreator()
+  File "E:\My Documents\0-Nvwa\0-New\trunk\test\util\logger\testLogger.py", line 17, in excptionCreator
+    raise ValueError('You Must provide a value!')
+ValueError: You Must provide a value!
+[ INFO ]- 2016-05-30 17:35:45,457 - nvwa - testLogger.py:55 - <module 'test.util.logger.Example.mod' from 'E:\My Documents\0-Nvwa\0-New\trunk\test\util\logger\Example\mod.pyc'>
+InnerTraceback (most recent call last):
+File "E:\My Documents\0-Nvwa\0-New\trunk\test\util\logger\testLogger.py", line 55, in testLogger

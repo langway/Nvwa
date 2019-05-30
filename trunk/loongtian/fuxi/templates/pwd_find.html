@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block titleBlock %}龙搜——找回密码{% endblock %}
+{% block metaBlock %}
+<meta name="keywords" content="搜索,龙搜,找回密码" />
+<meta name="description" content="龙搜，搜索" />
+{% endblock %}
+{% block styleBlock %}
+<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+{% endblock %}
+{% block scriptBlock %}
+<script type="text/javascript">
+$(function(){
+    $('body').attr('class', 'bg2');
+    //加载验证码
+    imgvarify_login();
+});//function
+/*
+验证码加载
+ */
+function imgvarify_login() {
+    var self = $("#image_login");
+    self.attr('src', '/captcha?s=' + Math.random() * 35);
+    self.blur();
+}
+/*
+下一步提交按钮点击事件
+ */
+function nextSubmitClick(){
+    var usermail = $('#usermail').val();
+    var verify = $('#verify').val();
+    $.post('/pwd/find', {'usermail': usermail, 'verify': verify}, function(error){
+        var errorInfo = eval(error)[0];
+        if(errorInfo.error){
+            alert(errorInfo.error)
+            imgvarify_login();
+        }else{
+            location.href = errorInfo.url;
+        }
+    });
+};
+</script>
+{% endblock %}
+{% block mainBlock %}
+<div class="ss22">dsad</div>
+<div class="ss22">dsad</div>
+<div class="set" style="height: 650px;">
+    <div style="margin: 120px 0 0 280px">
+        <div style="margin-bottom: 20px">
+            <span class="sj-k">注册邮箱</span>
+            <span class="yzm">
+                <input id="usermail" type="text" name="name" placeholder="邮箱" style="width: 300px;"/>
+            </span>
+        </div>
+        <div>
+            <span class="sj-k">验证码</span><span class="yzm">
+            <input name="yzm" id="verify" type="text" autocomplete="off"/></span>
+            <Span class="yzmm" id="yzmm" style="background: none">
+                <img onclick="imgvarify_login()" id="image_login" style="cursor:pointer; position:absolute;margin-top: 5px;"/>
+            </Span>
+            <span class="hyh" style="margin-left: 80px;"><a id="hyh" href="javascript:imgvarify_login();">换一换</a></span>
+            <span class="errors2" id="yzmerror"> </span>
+        </div>
+        <div class="sj-k2"><a class="sj-zc" id="xyb" href="javascript:nextSubmitClick()">下一步</a></div>
+    </div>
+</div>
+{% endblock %}

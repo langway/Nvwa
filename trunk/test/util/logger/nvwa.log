@@ -1,0 +1,276 @@
+[ INFO ]- 2016-12-09 11:33:27,508 - nvwa.mod.submod - submod.py:10 - logger of submod say something...
+[ INFO ]- 2016-12-09 11:33:27,508 - nvwa - mod.py:12 - logger of mod say something...
+[ INFO ]- 2016-12-09 11:33:27,508 - nvwa - testLogger.py:36 - let's test mod.testLogger()
+[ INFO ]- 2016-12-09 11:33:27,508 - nvwa.mod.submod - submod.py:13 - this is submod.tst()...
+[ INFO ]- 2016-12-09 11:33:27,509 - nvwa - testLogger.py:38 - finish mod test...
+InnerTraceback (most recent call last):
+File "E:\My Documents\0-Code\0-Nvwa\trunk\test\util\logger\testLogger.py", line 38, in testLogger
+[ WARNING ]- 2016-12-09 11:33:27,509 - nvwa - testLogger.py:41 - warning£∫µ–»À¿¥œÆ£°
+[ WARNING ]- 2016-12-09 11:33:27,523 - nvwa - testLogger.py:42 - warning£∫µ–»À“—øøΩ¸£°
+InnerTraceback (most recent call last):
+File "E:\My Documents\0-Code\0-Nvwa\trunk\test\util\logger\testLogger.py", line 42, in testLogger
+[ ERROR ]- 2016-12-09 11:33:27,524 - nvwa - testLogger.py:48 - ’‚¿Ô «≥Ã–ÚÃ·π©µƒ“Ï≥£–≈œ¢£°
+Traceback (most recent call last):
+  File "E:\My Documents\0-Code\0-Nvwa\trunk\test\util\logger\testLogger.py", line 46, in testLogger
+    excptionCreator()
+  File "E:\My Documents\0-Code\0-Nvwa\trunk\test\util\logger\testLogger.py", line 17, in excptionCreator
+    raise ValueError('You Must provide a value!')
+ValueError: You Must provide a value!
+[ INFO ]- 2016-12-09 11:37:33,429 - nvwa.mod.submod - submod.py:10 - logger of submod say something...
+[ INFO ]- 2016-12-09 11:37:33,429 - nvwa - mod.py:12 - logger of mod say something...
+[ INFO ]- 2016-12-09 11:37:33,429 - nvwa - testLogger.py:36 - let's test mod.testLogger()
+[ INFO ]- 2016-12-09 11:37:33,429 - nvwa.mod.submod - submod.py:13 - this is submod.tst()...
+[ INFO ]- 2016-12-09 11:37:33,429 - nvwa - testLogger.py:38 - finish mod test...
+InnerTraceback (most recent call last):
+File "E:\My Documents\0-Code\0-Nvwa\trunk\test\util\logger\testLogger.py", line 38, in testLogger
+[ WARNING ]- 2016-12-09 11:37:33,429 - nvwa - testLogger.py:41 - warning£∫µ–»À¿¥œÆ£°
+[ WARNING ]- 2016-12-09 11:37:33,430 - nvwa - testLogger.py:42 - warning£∫µ–»À“—øøΩ¸£°
+InnerTraceback (most recent call last):
+File "E:\My Documents\0-Code\0-Nvwa\trunk\test\util\logger\testLogger.py", line 42, in testLogger
+[ ERROR ]- 2016-12-09 11:37:33,430 - nvwa - testLogger.py:48 - ’‚¿Ô «≥Ã–ÚÃ·π©µƒ“Ï≥£–≈œ¢£°
+Traceback (most recent call last):
+  File "E:\My Documents\0-Code\0-Nvwa\trunk\test\util\logger\testLogger.py", line 46, in testLogger
+    excptionCreator()
+  File "E:\My Documents\0-Code\0-Nvwa\trunk\test\util\logger\testLogger.py", line 17, in excptionCreator
+    raise ValueError('You Must provide a value!')
+ValueError: You Must provide a value!
+[ INFO ]- 2016-12-09 11:38:27,431 - nvwa.mod.submod - submod.py:10 - logger of submod say something...
+[ INFO ]- 2016-12-09 11:38:27,431 - nvwa - mod.py:12 - logger of mod say something...
+[ INFO ]- 2016-12-09 11:38:27,432 - nvwa - testLogger.py:36 - let's test mod.testLogger()
+[ INFO ]- 2016-12-09 11:38:27,432 - nvwa.mod.submod - submod.py:13 - this is submod.tst()...
+[ INFO ]- 2016-12-09 11:38:27,432 - nvwa - testLogger.py:38 - finish mod test...
+InnerTraceback (most recent call last):
+File "E:\My Documents\0-Code\0-Nvwa\trunk\test\util\logger\testLogger.py", line 38, in testLogger
+[ WARNING ]- 2016-12-09 11:38:27,432 - nvwa - testLogger.py:41 - warning£∫µ–»À¿¥œÆ£°
+[ WARNING ]- 2016-12-09 11:38:27,432 - nvwa - testLogger.py:42 - warning£∫µ–»À“—øøΩ¸£°
+InnerTraceback (most recent call last):
+File "E:\My Documents\0-Code\0-Nvwa\trunk\test\util\logger\testLogger.py", line 42, in testLogger
+[ ERROR ]- 2016-12-09 11:38:27,432 - nvwa - testLogger.py:48 - ’‚¿Ô «≥Ã–ÚÃ·π©µƒ“Ï≥£–≈œ¢£°
+Traceback (most recent call last):
+  File "E:\My Documents\0-Code\0-Nvwa\trunk\test\util\logger\testLogger.py", line 46, in testLogger
+    excptionCreator()
+  File "E:\My Documents\0-Code\0-Nvwa\trunk\test\util\logger\testLogger.py", line 17, in excptionCreator
+    raise ValueError('You Must provide a value!')
+ValueError: You Must provide a value!
+[ INFO ]- 2016-12-09 11:38:44,399 - nvwa.mod.submod - submod.py:10 - logger of submod say something...
+[ INFO ]- 2016-12-09 11:38:44,422 - nvwa - mod.py:12 - logger of mod say something...
+[ INFO ]- 2016-12-09 11:38:44,422 - nvwa - testLogger.py:36 - let's test mod.testLogger()
+[ INFO ]- 2016-12-09 11:38:44,423 - nvwa.mod.submod - submod.py:13 - this is submod.tst()...
+[ INFO ]- 2016-12-09 11:38:44,423 - nvwa - testLogger.py:38 - finish mod test...
+InnerTraceback (most recent call last):
+File "E:\My Documents\0-Code\0-Nvwa\trunk\test\util\logger\testLogger.py", line 38, in testLogger
+[ WARNING ]- 2016-12-09 11:38:44,424 - nvwa - testLogger.py:41 - warning£∫µ–»À¿¥œÆ£°
+[ WARNING ]- 2016-12-09 11:38:44,424 - nvwa - testLogger.py:42 - warning£∫µ–»À“—øøΩ¸£°
+InnerTraceback (most recent call last):
+File "E:\My Documents\0-Code\0-Nvwa\trunk\test\util\logger\testLogger.py", line 42, in testLogger
+[ ERROR ]- 2016-12-09 11:38:44,424 - nvwa - testLogger.py:48 - ’‚¿Ô «≥Ã–ÚÃ·π©µƒ“Ï≥£–≈œ¢£°
+Traceback (most recent call last):
+  File "E:\My Documents\0-Code\0-Nvwa\trunk\test\util\logger\testLogger.py", line 46, in testLogger
+    excptionCreator()
+  File "E:\My Documents\0-Code\0-Nvwa\trunk\test\util\logger\testLogger.py", line 17, in excptionCreator
+    raise ValueError('You Must provide a value!')
+ValueError: You Must provide a value!
+[ INFO ]- 2016-12-09 11:40:18,033 - nvwa.mod.submod - submod.py:10 - logger of submod say something...
+[ INFO ]- 2016-12-09 11:40:18,034 - nvwa - mod.py:12 - logger of mod say something...
+[ INFO ]- 2016-12-09 11:40:18,034 - nvwa - testLogger.py:36 - let's test mod.testLogger()
+[ INFO ]- 2016-12-09 11:40:18,035 - nvwa.mod.submod - submod.py:13 - this is submod.tst()...
+[ INFO ]- 2016-12-09 11:40:18,036 - nvwa - testLogger.py:38 - finish mod test...
+InnerTraceback (most recent call last):
+File "E:\My Documents\0-Code\0-Nvwa\trunk\test\util\logger\testLogger.py", line 38, in testLogger
+[ WARNING ]- 2016-12-09 11:40:18,036 - nvwa - testLogger.py:41 - warning£∫µ–»À¿¥œÆ£°
+[ WARNING ]- 2016-12-09 11:40:18,036 - nvwa - testLogger.py:42 - warning£∫µ–»À“—øøΩ¸£°
+InnerTraceback (most recent call last):
+File "E:\My Documents\0-Code\0-Nvwa\trunk\test\util\logger\testLogger.py", line 42, in testLogger
+[ ERROR ]- 2016-12-09 11:40:18,037 - nvwa - testLogger.py:48 - ’‚¿Ô «≥Ã–ÚÃ·π©µƒ“Ï≥£–≈œ¢£°
+Traceback (most recent call last):
+  File "E:\My Documents\0-Code\0-Nvwa\trunk\test\util\logger\testLogger.py", line 46, in testLogger
+    excptionCreator()
+  File "E:\My Documents\0-Code\0-Nvwa\trunk\test\util\logger\testLogger.py", line 17, in excptionCreator
+    raise ValueError('You Must provide a value!')
+ValueError: You Must provide a value!
+[ ERROR ]- 2016-12-09 11:40:25,776 - nvwa - testLogger.py:49 - You Must provide a value!
+Traceback (most recent call last):
+  File "E:\My Documents\0-Code\0-Nvwa\trunk\test\util\logger\testLogger.py", line 46, in testLogger
+    excptionCreator()
+  File "E:\My Documents\0-Code\0-Nvwa\trunk\test\util\logger\testLogger.py", line 17, in excptionCreator
+    raise ValueError('You Must provide a value!')
+ValueError: You Must provide a value!
+[ INFO ]- 2016-12-09 11:40:25,777 - nvwa - testLogger.py:55 - <module 'test.util.logger.Example.mod' from 'E:\\My Documents\\0-Code\\0-Nvwa\\trunk\\test\\util\\logger\\Example\\mod.py'>
+InnerTraceback (most recent call last):
+File "E:\My Documents\0-Code\0-Nvwa\trunk\test\util\logger\testLogger.py", line 55, in testLogger
+[ INFO ]- 2018-05-23 22:03:50,157 - logger of submod say something...
+[ INFO ]- 2018-05-23 22:03:50,157 - logger of mod say something...
+[ INFO ]- 2018-05-23 22:03:50,158 - let's test mod.testLogger()
+[ INFO ]- 2018-05-23 22:03:50,158 - this is submod.tst()...
+[ INFO ]- 2018-05-23 22:03:50,158 - finish mod test...
+InnerTraceback (most recent call last):
+File "E:\0-Nvwa\trunk\test\util\logger\testLogger.py", line 38, in testLogger
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 84, in info
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 197, in log
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 231, in __getInnerStackTrace
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 341, in __findCaller
+[ WARNING ]- 2018-05-23 22:03:50,168 - warningÔºöÊïå‰∫∫Êù•Ë¢≠ÔºÅ
+[ WARNING ]- 2018-05-23 22:03:50,168 - warningÔºöÊïå‰∫∫Â∑≤Èù†ËøëÔºÅ
+InnerTraceback (most recent call last):
+File "E:\0-Nvwa\trunk\test\util\logger\testLogger.py", line 42, in testLogger
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 98, in warning
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 197, in log
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 231, in __getInnerStackTrace
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 341, in __findCaller
+[ ERROR ]- 2018-05-23 22:03:50,168 - ËøôÈáåÊòØÁ®ãÂ∫èÊèê‰æõÁöÑÂºÇÂ∏∏‰ø°ÊÅØÔºÅ
+Traceback (most recent call last):
+  File "E:\0-Nvwa\trunk\test\util\logger\testLogger.py", line 46, in testLogger
+    excptionCreator()
+  File "E:\0-Nvwa\trunk\test\util\logger\testLogger.py", line 17, in excptionCreator
+    raise ValueError('You Must provide a value!')
+ValueError: You Must provide a value!
+[ ERROR ]- 2018-05-23 22:03:50,170 - You Must provide a value!
+Traceback (most recent call last):
+  File "E:\0-Nvwa\trunk\test\util\logger\testLogger.py", line 46, in testLogger
+    excptionCreator()
+  File "E:\0-Nvwa\trunk\test\util\logger\testLogger.py", line 17, in excptionCreator
+    raise ValueError('You Must provide a value!')
+ValueError: You Must provide a value!
+[ INFO ]- 2018-05-23 22:03:50,170 - <module 'test.util.logger.Example.mod' from 'E:\0-Nvwa\trunk\test\util\logger\Example\mod.py'>
+InnerTraceback (most recent call last):
+File "E:\0-Nvwa\trunk\test\util\logger\testLogger.py", line 55, in testLogger
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 84, in info
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 197, in log
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 231, in __getInnerStackTrace
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 341, in __findCaller
+[ INFO ]- 2018-05-23 22:08:57,098 - logger of submod say something...
+[ INFO ]- 2018-05-23 22:08:57,099 - logger of mod say something...
+[ INFO ]- 2018-05-23 22:08:57,099 - let's test mod.testLogger()
+[ INFO ]- 2018-05-23 22:08:57,099 - this is submod.tst()...
+[ INFO ]- 2018-05-23 22:08:57,099 - finish mod test...
+InnerTraceback (most recent call last):
+File "E:\0-Nvwa\trunk\test\util\logger\testLogger.py", line 50, in testLogger
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 84, in info
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 197, in log
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 231, in __getInnerStackTrace
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 341, in __findCaller
+[ WARNING ]- 2018-05-23 22:08:57,101 - warningÔºöÊïå‰∫∫Êù•Ë¢≠ÔºÅ
+[ WARNING ]- 2018-05-23 22:08:57,101 - warningÔºöÊïå‰∫∫Â∑≤Èù†ËøëÔºÅ
+InnerTraceback (most recent call last):
+File "E:\0-Nvwa\trunk\test\util\logger\testLogger.py", line 54, in testLogger
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 98, in warning
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 197, in log
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 231, in __getInnerStackTrace
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 341, in __findCaller
+[ ERROR ]- 2018-05-23 22:08:57,101 - ËøôÈáåÊòØÁ®ãÂ∫èÊèê‰æõÁöÑÂºÇÂ∏∏‰ø°ÊÅØÔºÅ
+Traceback (most recent call last):
+  File "E:\0-Nvwa\trunk\test\util\logger\testLogger.py", line 58, in testLogger
+    excptionCreator()
+  File "E:\0-Nvwa\trunk\test\util\logger\testLogger.py", line 17, in excptionCreator
+    raise ValueError('You Must provide a value!')
+ValueError: You Must provide a value!
+[ ERROR ]- 2018-05-23 22:08:57,101 - You Must provide a value!
+Traceback (most recent call last):
+  File "E:\0-Nvwa\trunk\test\util\logger\testLogger.py", line 58, in testLogger
+    excptionCreator()
+  File "E:\0-Nvwa\trunk\test\util\logger\testLogger.py", line 17, in excptionCreator
+    raise ValueError('You Must provide a value!')
+ValueError: You Must provide a value!
+[ INFO ]- 2018-05-23 22:08:57,101 - <module 'test.util.logger.Example.mod' from 'E:\0-Nvwa\trunk\test\util\logger\Example\mod.py'>
+InnerTraceback (most recent call last):
+File "E:\0-Nvwa\trunk\test\util\logger\testLogger.py", line 70, in testLogger
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 84, in info
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 197, in log
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 231, in __getInnerStackTrace
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 341, in __findCaller
+[ INFO ]- 2018-05-23 22:09:33,763 - logger of submod say something...
+[ INFO ]- 2018-05-23 22:09:33,763 - logger of mod say something...
+[ INFO ]- 2018-05-23 22:09:33,763 - let's test mod.testLogger()
+[ INFO ]- 2018-05-23 22:09:33,763 - this is submod.tst()...
+[ INFO ]- 2018-05-23 22:09:33,763 - finish mod test...
+InnerTraceback (most recent call last):
+File "E:\0-Nvwa\trunk\test\util\logger\testLogger.py", line 50, in testLogger
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 84, in info
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 197, in log
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 231, in __getInnerStackTrace
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 341, in __findCaller
+[ WARNING ]- 2018-05-23 22:09:33,763 - warningÔºöÊïå‰∫∫Êù•Ë¢≠ÔºÅ
+[ WARNING ]- 2018-05-23 22:09:33,763 - warningÔºöÊïå‰∫∫Â∑≤Èù†ËøëÔºÅ
+InnerTraceback (most recent call last):
+File "E:\0-Nvwa\trunk\test\util\logger\testLogger.py", line 54, in testLogger
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 98, in warning
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 197, in log
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 231, in __getInnerStackTrace
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 341, in __findCaller
+[ ERROR ]- 2018-05-23 22:09:33,763 - ËøôÈáåÊòØÁ®ãÂ∫èÊèê‰æõÁöÑÂºÇÂ∏∏‰ø°ÊÅØÔºÅ
+Traceback (most recent call last):
+  File "E:\0-Nvwa\trunk\test\util\logger\testLogger.py", line 58, in testLogger
+    excptionCreator()
+  File "E:\0-Nvwa\trunk\test\util\logger\testLogger.py", line 17, in excptionCreator
+    raise ValueError('You Must provide a value!')
+ValueError: You Must provide a value!
+[ ERROR ]- 2018-05-23 22:09:33,763 - You Must provide a value!
+Traceback (most recent call last):
+  File "E:\0-Nvwa\trunk\test\util\logger\testLogger.py", line 58, in testLogger
+    excptionCreator()
+  File "E:\0-Nvwa\trunk\test\util\logger\testLogger.py", line 17, in excptionCreator
+    raise ValueError('You Must provide a value!')
+ValueError: You Must provide a value!
+[ INFO ]- 2018-05-23 22:09:33,765 - <module 'test.util.logger.Example.mod' from 'E:\0-Nvwa\trunk\test\util\logger\Example\mod.py'>
+InnerTraceback (most recent call last):
+File "E:\0-Nvwa\trunk\test\util\logger\testLogger.py", line 70, in testLogger
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 84, in info
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 197, in log
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 231, in __getInnerStackTrace
+File "E:\0-Nvwa\trunk\loongtian\util\log\logger.py", line 341, in __findCaller
+[ INFO ]- 2018-05-23 22:10:33,591 - logger of submod say something...
+[ INFO ]- 2018-05-23 22:10:33,592 - logger of mod say something...
+[ INFO ]- 2018-05-23 22:10:33,592 - let's test mod.testLogger()
+[ INFO ]- 2018-05-23 22:10:33,592 - this is submod.tst()...
+[ INFO ]- 2018-05-23 22:10:33,592 - finish mod test...
+InnerTraceback (most recent call last):
+File "E:\0-Nvwa\trunk\test\util\logger\testLogger.py", line 50, in testLogger
+[ WARNING ]- 2018-05-23 22:10:33,592 - warningÔºöÊïå‰∫∫Êù•Ë¢≠ÔºÅ
+[ WARNING ]- 2018-05-23 22:10:33,592 - warningÔºöÊïå‰∫∫Â∑≤Èù†ËøëÔºÅ
+InnerTraceback (most recent call last):
+File "E:\0-Nvwa\trunk\test\util\logger\testLogger.py", line 54, in testLogger
+[ ERROR ]- 2018-05-23 22:10:33,592 - ËøôÈáåÊòØÁ®ãÂ∫èÊèê‰æõÁöÑÂºÇÂ∏∏‰ø°ÊÅØÔºÅ
+Traceback (most recent call last):
+  File "E:\0-Nvwa\trunk\test\util\logger\testLogger.py", line 58, in testLogger
+    excptionCreator()
+  File "E:\0-Nvwa\trunk\test\util\logger\testLogger.py", line 17, in excptionCreator
+    raise ValueError('You Must provide a value!')
+ValueError: You Must provide a value!
+[ ERROR ]- 2018-05-23 22:10:33,595 - You Must provide a value!
+Traceback (most recent call last):
+  File "E:\0-Nvwa\trunk\test\util\logger\testLogger.py", line 58, in testLogger
+    excptionCreator()
+  File "E:\0-Nvwa\trunk\test\util\logger\testLogger.py", line 17, in excptionCreator
+    raise ValueError('You Must provide a value!')
+ValueError: You Must provide a value!
+[ INFO ]- 2018-05-23 22:10:33,595 - <module 'test.util.logger.Example.mod' from 'E:\0-Nvwa\trunk\test\util\logger\Example\mod.py'>
+InnerTraceback (most recent call last):
+File "E:\0-Nvwa\trunk\test\util\logger\testLogger.py", line 70, in testLogger
+[ INFO ]- 2018-05-23 22:15:24,065 - logger of submod say something...
+[ INFO ]- 2018-05-23 22:15:24,065 - logger of mod say something...
+[ INFO ]- 2018-05-23 22:15:24,065 - let's test mod.testLogger()
+[ INFO ]- 2018-05-23 22:15:24,065 - this is submod.tst()...
+[ INFO ]- 2018-05-23 22:15:24,065 - finish mod test...
+InnerTraceback (most recent call last):
+File "E:\0-Nvwa\trunk\test\util\logger\testLogger.py", line 50, in testLogger
+[ WARNING ]- 2018-05-23 22:15:24,065 - warningÔºöÊïå‰∫∫Êù•Ë¢≠ÔºÅ
+[ WARNING ]- 2018-05-23 22:15:24,065 - warningÔºöÊïå‰∫∫Â∑≤Èù†ËøëÔºÅ
+InnerTraceback (most recent call last):
+File "E:\0-Nvwa\trunk\test\util\logger\testLogger.py", line 54, in testLogger
+[ ERROR ]- 2018-05-23 22:15:24,065 - ËøôÈáåÊòØÁ®ãÂ∫èÊèê‰æõÁöÑÂºÇÂ∏∏‰ø°ÊÅØÔºÅ
+Traceback (most recent call last):
+  File "E:\0-Nvwa\trunk\test\util\logger\testLogger.py", line 58, in testLogger
+    excptionCreator()
+  File "E:\0-Nvwa\trunk\test\util\logger\testLogger.py", line 17, in excptionCreator
+    raise ValueError('You Must provide a value!')
+ValueError: You Must provide a value!
+[ ERROR ]- 2018-05-23 22:15:24,066 - You Must provide a value!
+Traceback (most recent call last):
+  File "E:\0-Nvwa\trunk\test\util\logger\testLogger.py", line 58, in testLogger
+    excptionCreator()
+  File "E:\0-Nvwa\trunk\test\util\logger\testLogger.py", line 17, in excptionCreator
+    raise ValueError('You Must provide a value!')
+ValueError: You Must provide a value!
+[ INFO ]- 2018-05-23 22:15:24,066 - <module 'test.util.logger.Example.mod' from 'E:\0-Nvwa\trunk\test\util\logger\Example\mod.py'>
+InnerTraceback (most recent call last):
+File "E:\0-Nvwa\trunk\test\util\logger\testLogger.py", line 70, in testLogger

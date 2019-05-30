@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block titleBlock %}龙搜{% endblock %}
+{% block metaBlock %}
+<meta name="keywords" content="搜索,龙搜,首页" />
+<meta name="description" content="龙搜，搜索" />
+{% endblock %}
+{% block styleBlock %}
+{% endblock %}
+{% block scriptBlock %}
+<link rel="stylesheet" href="/static/script/umeditor/themes/default/css/umeditor.css">
+<script type="text/javascript" src="/static/script/umeditor/umeditor.config.js"></script>
+<script type="text/javascript" src="/static/script/umeditor/umeditor.min.js"></script>
+<script type="text/javascript" src="/static/script/umeditor/lang/zh-cn/zh-cn.js"></script>
+<style>
+div{overflow:inherit;}  /*系统冲突*/
+
+/*调整编辑器样式*/
+.edui-container{border: none}
+.edui-btn-toolbar .edui-btn .edui-icon{
+    width: 20px;
+    height: 20px;
+    float: left;
+    width: 30px;
+    height: 30px;
+    background-image: url('/static/img/biaoq.png');
+}
+.edui-btn-toolbar .edui-btn .edui-icon-emotion {
+    background-position: -2px -32px;
+}
+.edui-btn-toolbar .edui-btn .edui-icon-link {
+    background-position: -2px -335px;
+}
+.edui-btn-toolbar .edui-btn .edui-icon-image {
+    background-position: -2px -182px;
+}
+.edui-toolbar{
+    margin-left: -50px;
+}
+
+/*调整编辑器样式*/
+</style>
+<script type="text/javascript">
+$(function(){
+
+    window.um = UM.getEditor('container', {
+        /* 传入配置参数,可配参数列表看umeditor.config.js */
+        toolbar: ['link image emotion fontfamily']
+    });
+    $('.edui-btn-toolbar').append('<img src="/static/img/shous.png" class="edit_search">')
+    $('.edit_search').click(function(){
+        alert('33333333333')
+    });
+
+});//function
+</script>
+{% endblock %}
+{% block mainBlock %}
+<div style="width:800px;margin:40px auto 40px;">
+    <script id="container" name="content" type="text/plain" style="width:600px;height:50px;"></script>
+</div>
+
+{% endblock %}

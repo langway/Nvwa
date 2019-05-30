@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block titleBlock %}龙搜{% endblock %}
+{% block metaBlock %}
+<meta name="keywords" content="搜索,龙搜,首页" />
+<meta name="description" content="龙搜，搜索" />
+{% endblock %}
+{% block styleBlock %}
+<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+{% endblock %}
+{% block scriptBlock %}
+<script type="text/javascript" charset="utf-8" src="/static/script/mousewheel.js"></script>
+<script type="text/javascript" charset="utf-8" src="/static/script/easyscroll.js"></script>
+<script type="text/javascript" charset="utf-8" src="/static/script/jquery.juploader.js"></script>
+<script type="text/javascript" charset="utf-8" src="/static/script/jquery.Jcrop.js"></script>
+<script type="text/javascript" src="/static/script/upload_img_utils.js"></script>
+<link rel="stylesheet" href="/static/css/jquery.Jcrop.css" />
+<style type="text/css">
+.set-nv ul li:nth-child(3) { background:#2a8fdd;}
+.set-nv ul li:nth-child(3) a {color:#FFF;}
+.set-nv ul li:nth-child(3) a{background: url('/static/img/ann-2.png') no-repeat; background-position: 23px -110px;}
+</style>
+<script type="text/javascript">
+//上传图片参数
+ld_param = {'btn_id':'btn_upload' ,'img_id': 'img_y', 'parent_div_css': 'xztx', 'img_path':'img_path',
+            'cut_size':[50, 50, 280, 280], 'width':'299', 'height':'298',
+            'img_size':[{'name':'img_1', 'x':180, 'y':180},{'name':'img_2', 'x':50, 'y':50}],
+            'saveBtn_id': 'saveCutImg'
+}
+$(function(){
+    $('.div_scroll').scroll_absolute({arrows:true});
+    $('.container2 .div_scroll').scroll_absolute({arrows:false});
+    $('body').attr('class', 'bg2');
+    upload_img();//上传图片
+});
+
+/*
+提交图片路径到后台
+ */
+function postImgUrl(imgUrl){
+    $.post('/user/photo', {'imgUrl': imgUrl}, function(info){
+        var errorInfo = eval(info)[0];
+        if(errorInfo.error){
+            alert(errorInfo.error);
+        }else if(errorInfo.url){
+            window.location.href = '';
+        }
+    });
+};
+</script>
+{% endblock %}
+{% block mainBlock %}
+<div class="ss22">dsad</div>
+<div class="ss22">dsad</div>
+<div class="set">
+   {% include 'base_user_left.html' %}
+     <div class="set-y">
+	 
+	  <div class="set-yt"><span class="set-yt1">搜索记录</span><span class="set-yt2">使用龙搜</span></div>
+	 <Div>
+	     <div class="xzfs">选着上传方式</div>
+		 
+		 <DIV class=" bdzp1" id="btn_upload"> <a class="zpzp"></a></DIV>
+		 <div class="jzc">仅支持JPG、PNG、GIF格式，文件大小2M(使用高质量图片，可生成高清图片)</div>
+		 <div>
+		     <div class="xztx">
+                 <img src="/static/img/lsht.png"  style="max-width: 299px;max-height: 298px;"/>
+             </div>
+
+			 <div>
+			   <div class="zdsc">你上传的图片将自动生成</div>
+			   <div class="zdsc1">
+			      <div class="zdsc12" style="width: 180px;height:180px;overflow: hidden; ">
+                      <img id="img_1" src="{{ mine.photo|show_head('180x180', 'users') }}" width="180" height="180" />
+                  </div>
+				  <Div class="zdsc13">大尺寸头像，180/180像素</Div>
+			   </div>
+			   <Div class="zdsc2">
+			      <div class="zdsc21" style="width: 50px;height:50px;overflow: hidden; ">
+                      <img id="img_2" src="{{ mine.photo|show_head('50x50', 'users') }}" width="50" height="50" />
+                  </div>
+			   <div class="zdsc22">50像素</div>
+			   </Div>
+			 </div>
+		 </div>
+         <div style="float: left;">
+             <A id="saveCutImg" href="javascript:save_img_click()" class="baochun" style="margin: 10px 0 0 20px;display: none">保存</A>
+         </div>
+
+		 </Div>
+	 </div>
+
+</div>
+{% endblock %}

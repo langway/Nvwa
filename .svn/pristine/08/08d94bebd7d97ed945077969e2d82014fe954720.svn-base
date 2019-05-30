@@ -1,0 +1,248 @@
+[ INFO ]- 开始加载数据库元数据
+InnerTraceback (most recent call last):
+File "E:\0-nvwa\trunk\loongtian\util\log\logger.py", line 442, in info
+File "E:\0-nvwa\trunk\loongtian\nvwa\engines\metaEngine.py", line 159, in loadAllMetaFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 742, in loadAllMetaFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 730, in init
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\centralBrain.py", line 55, in init
+File "E:/0-nvwa/trunk/loongtian/nvwa/centralBrainRuner.py", line 16, in <module> - 2019-03-07 18:12:33,901 - nvwa - logger.py:442
+[ INFO ]- 加载数据库元数据完毕
+InnerTraceback (most recent call last):
+File "E:\0-nvwa\trunk\loongtian\util\log\logger.py", line 442, in info
+File "E:\0-nvwa\trunk\loongtian\nvwa\engines\metaEngine.py", line 166, in loadAllMetaFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 742, in loadAllMetaFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 730, in init
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\centralBrain.py", line 55, in init
+File "E:/0-nvwa/trunk/loongtian/nvwa/centralBrainRuner.py", line 16, in <module> total_seconds:0.031 - 2019-03-07 18:12:33,933 - nvwa - logger.py:442
+[ INFO ]- 开始从MetaNet数据库加载NgramDict
+InnerTraceback (most recent call last):
+File "E:\0-nvwa\trunk\loongtian\util\log\logger.py", line 442, in info
+File "E:\0-nvwa\trunk\loongtian\nvwa\engines\metaEngine.py", line 68, in loadNgramDictFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 767, in loadNgramDictFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 731, in init
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\centralBrain.py", line 55, in init
+File "E:/0-nvwa/trunk/loongtian/nvwa/centralBrainRuner.py", line 16, in <module> - 2019-03-07 18:12:33,948 - nvwa - logger.py:442
+[ INFO ]- 从MetaNet数据库加载NgramDict完毕，没有可用的MetaNet
+InnerTraceback (most recent call last):
+File "E:\0-nvwa\trunk\loongtian\util\log\logger.py", line 442, in info
+File "E:\0-nvwa\trunk\loongtian\nvwa\engines\metaEngine.py", line 74, in loadNgramDictFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 767, in loadNgramDictFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 731, in init
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\centralBrain.py", line 55, in init
+File "E:/0-nvwa/trunk/loongtian/nvwa/centralBrainRuner.py", line 16, in <module> total_seconds:0.0 - 2019-03-07 18:12:33,948 - nvwa - logger.py:442
+[ INFO ]- 开始加载数据库元数据
+InnerTraceback (most recent call last):
+File "E:\0-nvwa\trunk\loongtian\util\log\logger.py", line 442, in info
+File "E:\0-nvwa\trunk\loongtian\nvwa\engines\metaEngine.py", line 159, in loadAllMetaFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 742, in loadAllMetaFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 730, in init
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\centralBrain.py", line 55, in init
+File "E:/0-nvwa/trunk/loongtian/nvwa/centralBrainRuner.py", line 16, in <module> - 2019-03-07 18:13:56,141 - nvwa - logger.py:442
+[ INFO ]- 加载数据库元数据完毕
+InnerTraceback (most recent call last):
+File "E:\0-nvwa\trunk\loongtian\util\log\logger.py", line 442, in info
+File "E:\0-nvwa\trunk\loongtian\nvwa\engines\metaEngine.py", line 166, in loadAllMetaFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 742, in loadAllMetaFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 730, in init
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\centralBrain.py", line 55, in init
+File "E:/0-nvwa/trunk/loongtian/nvwa/centralBrainRuner.py", line 16, in <module> total_seconds:0.015 - 2019-03-07 18:13:56,155 - nvwa - logger.py:442
+[ INFO ]- 开始从MetaNet数据库加载NgramDict
+InnerTraceback (most recent call last):
+File "E:\0-nvwa\trunk\loongtian\util\log\logger.py", line 442, in info
+File "E:\0-nvwa\trunk\loongtian\nvwa\engines\metaEngine.py", line 68, in loadNgramDictFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 767, in loadNgramDictFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 731, in init
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\centralBrain.py", line 55, in init
+File "E:/0-nvwa/trunk/loongtian/nvwa/centralBrainRuner.py", line 16, in <module> - 2019-03-07 18:13:56,155 - nvwa - logger.py:442
+[ INFO ]- 从MetaNet数据库加载NgramDict完毕，没有可用的MetaNet
+InnerTraceback (most recent call last):
+File "E:\0-nvwa\trunk\loongtian\util\log\logger.py", line 442, in info
+File "E:\0-nvwa\trunk\loongtian\nvwa\engines\metaEngine.py", line 74, in loadNgramDictFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 767, in loadNgramDictFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 731, in init
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\centralBrain.py", line 55, in init
+File "E:/0-nvwa/trunk/loongtian/nvwa/centralBrainRuner.py", line 16, in <module> total_seconds:0.0 - 2019-03-07 18:13:56,171 - nvwa - logger.py:442
+[ INFO ]- 开始加载数据库元数据
+InnerTraceback (most recent call last):
+File "E:\0-nvwa\trunk\loongtian\util\log\logger.py", line 442, in info
+File "E:\0-nvwa\trunk\loongtian\nvwa\engines\metaEngine.py", line 159, in loadAllMetaFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 742, in loadAllMetaFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 730, in init
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\centralBrain.py", line 55, in init
+File "E:/0-nvwa/trunk/loongtian/nvwa/centralBrainRuner.py", line 16, in <module> - 2019-03-07 18:15:24,272 - nvwa - logger.py:442
+[ INFO ]- 加载数据库元数据完毕
+InnerTraceback (most recent call last):
+File "E:\0-nvwa\trunk\loongtian\util\log\logger.py", line 442, in info
+File "E:\0-nvwa\trunk\loongtian\nvwa\engines\metaEngine.py", line 166, in loadAllMetaFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 742, in loadAllMetaFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 730, in init
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\centralBrain.py", line 55, in init
+File "E:/0-nvwa/trunk/loongtian/nvwa/centralBrainRuner.py", line 16, in <module> total_seconds:0.015 - 2019-03-07 18:15:24,286 - nvwa - logger.py:442
+[ INFO ]- 开始从MetaNet数据库加载NgramDict
+InnerTraceback (most recent call last):
+File "E:\0-nvwa\trunk\loongtian\util\log\logger.py", line 442, in info
+File "E:\0-nvwa\trunk\loongtian\nvwa\engines\metaEngine.py", line 68, in loadNgramDictFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 767, in loadNgramDictFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 731, in init
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\centralBrain.py", line 55, in init
+File "E:/0-nvwa/trunk/loongtian/nvwa/centralBrainRuner.py", line 16, in <module> - 2019-03-07 18:15:24,286 - nvwa - logger.py:442
+[ INFO ]- 从MetaNet数据库加载NgramDict完毕，没有可用的MetaNet
+InnerTraceback (most recent call last):
+File "E:\0-nvwa\trunk\loongtian\util\log\logger.py", line 442, in info
+File "E:\0-nvwa\trunk\loongtian\nvwa\engines\metaEngine.py", line 74, in loadNgramDictFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 767, in loadNgramDictFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 731, in init
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\centralBrain.py", line 55, in init
+File "E:/0-nvwa/trunk/loongtian/nvwa/centralBrainRuner.py", line 16, in <module> total_seconds:0.0 - 2019-03-07 18:15:24,286 - nvwa - logger.py:442
+[ INFO ]- 开始加载数据库元数据
+InnerTraceback (most recent call last):
+File "E:\0-nvwa\trunk\loongtian\util\log\logger.py", line 442, in info
+File "E:\0-nvwa\trunk\loongtian\nvwa\engines\metaEngine.py", line 159, in loadAllMetaFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 742, in loadAllMetaFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 730, in init
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\centralBrain.py", line 55, in init
+File "E:/0-nvwa/trunk/loongtian/nvwa/centralBrainRuner.py", line 16, in <module> - 2019-03-07 18:22:15,289 - nvwa - logger.py:442
+[ INFO ]- 加载数据库元数据完毕
+InnerTraceback (most recent call last):
+File "E:\0-nvwa\trunk\loongtian\util\log\logger.py", line 442, in info
+File "E:\0-nvwa\trunk\loongtian\nvwa\engines\metaEngine.py", line 166, in loadAllMetaFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 742, in loadAllMetaFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 730, in init
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\centralBrain.py", line 55, in init
+File "E:/0-nvwa/trunk/loongtian/nvwa/centralBrainRuner.py", line 16, in <module> total_seconds:0.016 - 2019-03-07 18:22:15,305 - nvwa - logger.py:442
+[ INFO ]- 开始从MetaNet数据库加载NgramDict
+InnerTraceback (most recent call last):
+File "E:\0-nvwa\trunk\loongtian\util\log\logger.py", line 442, in info
+File "E:\0-nvwa\trunk\loongtian\nvwa\engines\metaEngine.py", line 68, in loadNgramDictFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 767, in loadNgramDictFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 731, in init
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\centralBrain.py", line 55, in init
+File "E:/0-nvwa/trunk/loongtian/nvwa/centralBrainRuner.py", line 16, in <module> - 2019-03-07 18:22:15,321 - nvwa - logger.py:442
+[ INFO ]- 从MetaNet数据库加载NgramDict完毕，没有可用的MetaNet
+InnerTraceback (most recent call last):
+File "E:\0-nvwa\trunk\loongtian\util\log\logger.py", line 442, in info
+File "E:\0-nvwa\trunk\loongtian\nvwa\engines\metaEngine.py", line 74, in loadNgramDictFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 767, in loadNgramDictFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 731, in init
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\centralBrain.py", line 55, in init
+File "E:/0-nvwa/trunk/loongtian/nvwa/centralBrainRuner.py", line 16, in <module> total_seconds:0.0 - 2019-03-07 18:22:15,321 - nvwa - logger.py:442
+[ INFO ]- 开始加载数据库元数据
+InnerTraceback (most recent call last):
+File "E:\0-nvwa\trunk\loongtian\util\log\logger.py", line 442, in info
+File "E:\0-nvwa\trunk\loongtian\nvwa\engines\metaEngine.py", line 159, in loadAllMetaFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 742, in loadAllMetaFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 730, in init
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\centralBrain.py", line 55, in init
+File "E:/0-nvwa/trunk/loongtian/nvwa/centralBrainRuner.py", line 16, in <module> - 2019-03-07 18:31:32,568 - nvwa - logger.py:442
+[ INFO ]- 加载数据库元数据完毕
+InnerTraceback (most recent call last):
+File "E:\0-nvwa\trunk\loongtian\util\log\logger.py", line 442, in info
+File "E:\0-nvwa\trunk\loongtian\nvwa\engines\metaEngine.py", line 166, in loadAllMetaFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 742, in loadAllMetaFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 730, in init
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\centralBrain.py", line 55, in init
+File "E:/0-nvwa/trunk/loongtian/nvwa/centralBrainRuner.py", line 16, in <module> total_seconds:0.016 - 2019-03-07 18:31:32,584 - nvwa - logger.py:442
+[ INFO ]- 开始从MetaNet数据库加载NgramDict
+InnerTraceback (most recent call last):
+File "E:\0-nvwa\trunk\loongtian\util\log\logger.py", line 442, in info
+File "E:\0-nvwa\trunk\loongtian\nvwa\engines\metaEngine.py", line 68, in loadNgramDictFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 767, in loadNgramDictFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 731, in init
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\centralBrain.py", line 55, in init
+File "E:/0-nvwa/trunk/loongtian/nvwa/centralBrainRuner.py", line 16, in <module> - 2019-03-07 18:31:32,584 - nvwa - logger.py:442
+[ INFO ]- 从MetaNet数据库加载NgramDict完毕，没有可用的MetaNet
+InnerTraceback (most recent call last):
+File "E:\0-nvwa\trunk\loongtian\util\log\logger.py", line 442, in info
+File "E:\0-nvwa\trunk\loongtian\nvwa\engines\metaEngine.py", line 74, in loadNgramDictFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 767, in loadNgramDictFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 731, in init
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\centralBrain.py", line 55, in init
+File "E:/0-nvwa/trunk/loongtian/nvwa/centralBrainRuner.py", line 16, in <module> total_seconds:0.015 - 2019-03-07 18:31:32,598 - nvwa - logger.py:442
+[ INFO ]- 开始加载数据库元数据
+InnerTraceback (most recent call last):
+File "E:\0-nvwa\trunk\loongtian\util\log\logger.py", line 442, in info
+File "E:\0-nvwa\trunk\loongtian\nvwa\engines\metaEngine.py", line 159, in loadAllMetaFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 742, in loadAllMetaFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 730, in init
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\centralBrain.py", line 55, in init
+File "E:/0-nvwa/trunk/loongtian/nvwa/centralBrainRuner.py", line 16, in <module> - 2019-03-07 18:33:23,513 - nvwa - logger.py:442
+[ INFO ]- 加载数据库元数据完毕
+InnerTraceback (most recent call last):
+File "E:\0-nvwa\trunk\loongtian\util\log\logger.py", line 442, in info
+File "E:\0-nvwa\trunk\loongtian\nvwa\engines\metaEngine.py", line 166, in loadAllMetaFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 742, in loadAllMetaFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 730, in init
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\centralBrain.py", line 55, in init
+File "E:/0-nvwa/trunk/loongtian/nvwa/centralBrainRuner.py", line 16, in <module> total_seconds:0.015 - 2019-03-07 18:33:23,528 - nvwa - logger.py:442
+[ INFO ]- 开始从MetaNet数据库加载NgramDict
+InnerTraceback (most recent call last):
+File "E:\0-nvwa\trunk\loongtian\util\log\logger.py", line 442, in info
+File "E:\0-nvwa\trunk\loongtian\nvwa\engines\metaEngine.py", line 68, in loadNgramDictFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 767, in loadNgramDictFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 731, in init
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\centralBrain.py", line 55, in init
+File "E:/0-nvwa/trunk/loongtian/nvwa/centralBrainRuner.py", line 16, in <module> - 2019-03-07 18:33:23,528 - nvwa - logger.py:442
+[ INFO ]- 从MetaNet数据库加载NgramDict完毕，没有可用的MetaNet
+InnerTraceback (most recent call last):
+File "E:\0-nvwa\trunk\loongtian\util\log\logger.py", line 442, in info
+File "E:\0-nvwa\trunk\loongtian\nvwa\engines\metaEngine.py", line 74, in loadNgramDictFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 767, in loadNgramDictFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 731, in init
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\centralBrain.py", line 55, in init
+File "E:/0-nvwa/trunk/loongtian/nvwa/centralBrainRuner.py", line 16, in <module> total_seconds:0.0 - 2019-03-07 18:33:23,528 - nvwa - logger.py:442
+[ INFO ]- 开始加载数据库元数据
+InnerTraceback (most recent call last):
+File "E:\0-nvwa\trunk\loongtian\util\log\logger.py", line 442, in info
+File "E:\0-nvwa\trunk\loongtian\nvwa\engines\metaEngine.py", line 159, in loadAllMetaFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 742, in loadAllMetaFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 730, in init
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\centralBrain.py", line 55, in init
+File "E:/0-nvwa/trunk/loongtian/nvwa/centralBrainRuner.py", line 16, in <module> - 2019-03-07 18:36:26,168 - nvwa - logger.py:442
+[ INFO ]- 加载数据库元数据完毕
+InnerTraceback (most recent call last):
+File "E:\0-nvwa\trunk\loongtian\util\log\logger.py", line 442, in info
+File "E:\0-nvwa\trunk\loongtian\nvwa\engines\metaEngine.py", line 166, in loadAllMetaFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 742, in loadAllMetaFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 730, in init
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\centralBrain.py", line 55, in init
+File "E:/0-nvwa/trunk/loongtian/nvwa/centralBrainRuner.py", line 16, in <module> total_seconds:0.016 - 2019-03-07 18:36:26,184 - nvwa - logger.py:442
+[ INFO ]- 开始从MetaNet数据库加载NgramDict
+InnerTraceback (most recent call last):
+File "E:\0-nvwa\trunk\loongtian\util\log\logger.py", line 442, in info
+File "E:\0-nvwa\trunk\loongtian\nvwa\engines\metaEngine.py", line 68, in loadNgramDictFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 767, in loadNgramDictFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 731, in init
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\centralBrain.py", line 55, in init
+File "E:/0-nvwa/trunk/loongtian/nvwa/centralBrainRuner.py", line 16, in <module> - 2019-03-07 18:36:26,184 - nvwa - logger.py:442
+[ INFO ]- 从MetaNet数据库加载NgramDict完毕，没有可用的MetaNet
+InnerTraceback (most recent call last):
+File "E:\0-nvwa\trunk\loongtian\util\log\logger.py", line 442, in info
+File "E:\0-nvwa\trunk\loongtian\nvwa\engines\metaEngine.py", line 74, in loadNgramDictFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 767, in loadNgramDictFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 731, in init
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\centralBrain.py", line 55, in init
+File "E:/0-nvwa/trunk/loongtian/nvwa/centralBrainRuner.py", line 16, in <module> total_seconds:0.015 - 2019-03-07 18:36:26,200 - nvwa - logger.py:442
+[ INFO ]- 开始加载数据库元数据
+InnerTraceback (most recent call last):
+File "E:\0-nvwa\trunk\loongtian\util\log\logger.py", line 442, in info
+File "E:\0-nvwa\trunk\loongtian\nvwa\engines\metaEngine.py", line 159, in loadAllMetaFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 742, in loadAllMetaFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 730, in init
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\centralBrain.py", line 55, in init
+File "E:/0-nvwa/trunk/loongtian/nvwa/centralBrainRuner.py", line 16, in <module> - 2019-03-07 18:39:20,477 - nvwa - logger.py:442
+[ INFO ]- 加载数据库元数据完毕
+InnerTraceback (most recent call last):
+File "E:\0-nvwa\trunk\loongtian\util\log\logger.py", line 442, in info
+File "E:\0-nvwa\trunk\loongtian\nvwa\engines\metaEngine.py", line 166, in loadAllMetaFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 742, in loadAllMetaFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 730, in init
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\centralBrain.py", line 55, in init
+File "E:/0-nvwa/trunk/loongtian/nvwa/centralBrainRuner.py", line 16, in <module> total_seconds:0.015 - 2019-03-07 18:39:20,493 - nvwa - logger.py:442
+[ INFO ]- 开始从MetaNet数据库加载NgramDict
+InnerTraceback (most recent call last):
+File "E:\0-nvwa\trunk\loongtian\util\log\logger.py", line 442, in info
+File "E:\0-nvwa\trunk\loongtian\nvwa\engines\metaEngine.py", line 68, in loadNgramDictFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 767, in loadNgramDictFromDB
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\memory.py", line 731, in init
+File "E:\0-nvwa\trunk\loongtian\nvwa\organs\centralBrain.py", line 55, in init
+File "E:/0-nvwa/trunk/loongtian/nvwa/centralBrainRuner.py", line 16, in <module> - 2019-03-07 18:39:20,493 - nvwa - logger.py:442

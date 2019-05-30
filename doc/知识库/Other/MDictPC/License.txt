@@ -1,0 +1,105 @@
+MDict最终用户许可协议
+MDict End-User License Agreement
+
+在使用本软件的同时，你已经默认接受了此协议。
+请仔细阅读以下使用许可，如果您不同意以下任何一点，请立即停止使用此软件。
+
+Rayman Zhang 将本软件程序的最终使用许可权授予您，但您必须向 Rayman Zhang 作以下保证：
+
+本《最终用户许可协议》(以下称《协议》)是您(个人或机构团体)与上述软件(以下称“软件”或“软件产品”)版权所有人 Rayman Zhang 之间的法律协议。 在您使用本软件产品之前,请务必阅读此《协议》，任何与《协议》有关的软件、电子文档等都应是按本协议的条款而授予您的，同时本《协议》亦适用于任何有关本软件产品的后期发行和升级。 您一旦安装、复制、下裁、访问或以其它方式使用本软件产品，即表示您同意接受本《协议》各项条款的约束。 如您不同意本《协议》的条款，那么，版权所有人 Rayman Zhang 则不予将本软件产品的使用权授予您。 在这种情况下，您不得使用、复制或传播本软件产品。 
+
+By using this software, you are agreeing to the terms of this license.
+
+This End-User License Agreement ("EULA") is a legal agreement between you (either an individual or a single entity) and the mentioned author (Rayman Zhang) of this Software for the software product identified above, which includes computer software and may include associated media, printed materials, and "online" or electronic documentation ("SOFTWARE PRODUCT"). By installing, copying, or otherwise using the SOFTWARE PRODUCT, you agree to be bounded by the terms of this EULA. If you do not agree to the terms of this EULA, do not install or use the SOFTWARE PRODUCT.
+
+All versions of the SOFTWARE PRODUCT are protected by copyright laws and international copyright treaties, as well as other intellectual property laws and treaties. The sole property belongs to Rayman Zhang. The SOFTWARE PRODUCT may not be duplicated, sold, distributed or utilized in any manner not described herein without the prior written consent of Rayman Zhang. Parties interested in licensing the SOFTWARE PRODUCT for other than personal use should contact Rayman Zhang.
+
+
+本《协议》中，将软件使用用途分为“个人非商业用途”和“商业用途”：个人用途指个人在非团体机构中使用本软件并用于非商业目的；商业用途指个人用于任何商业目的或团体机构出于任何目的使用本软件。本《协议》中对于个人非商业用途和商业用途将采用不同的授权范围和使用方式。
+
+本软件产品受著作权法及国际著作权条约和其它知识产权法及条约的保护。
+
+1. 许可证的授予. 本《协议》授予您下列权利
+安装和使用: 
+对于个人非商业用途，即仅供个人用户用于非商业环境及非盈利活动，您可安装无限制数量的本软件产品来使用。
+对于商业用途，你必须预先获得版权人授权许可后才能安装和使用本软件产品。
+
+复制、分发和传播: 
+您可以复制、分发和传播无限制数量的软件产品, 但您必须保证每一份复制、分发和传播都必须是完整和真实的, 包括所有有关本软件产品的软件、电子文档, 版权和商标宣言, 亦包括本协议. 
+
+本软件可以独立分发亦可随同其他软件一起分发, 但如因此而引起任何问题, 版权人将不予承担任何责任. 
+1. GRANT OF LICENSE.
+This EULA grants you the following rights:
+
+License to.
+The SOFTWARE PRODUCT only license to person for non-commercial purposes in non-business, non-commercial environment. If you want to use it for commercial purpose or use it in any company, government, or any organization, you must get author's authorization before using it.
+
+Installation and Use.
+You may install and use an unlimited number of copies of the SOFTWARE PRODUCT.
+
+Reproduction and Distribution.
+You may reproduce and distribute an unlimited number of copies of the SOFTWARE PRODUCT; provided that each copy shall be a true and complete copy, including all copyright and trademark notices, and shall be accompanied by a copy of this EULA. Copies of the SOFTWARE PRODUCT may be distributed as a standalone product or included with your own product as long as The SOFTWARE PRODUCT is not sold or included in a product or package that intends to receive benefits through the inclusion of the SOFTWARE PRODUCT. The SOFTWARE PRODUCT may be included in any free or non-profit packages or products.
+
+
+2. 其它权利和限制说明
+禁止反向工程、反向编译和反向汇编：
+您不得对本软件产品进行反向工程、反向编译和反向汇编，同时不得改动编译在程序文件内部的任何资源。 除非适用法律明文允许上述活动，否则您必须遵守此协议限制。 
+
+组件的分隔：
+本软件产品是被当成一个单一产品而被授予许可使用，不得将各个部分分开用于任何目的行动。 
+
+软件产品转让：
+您可以在不保留任何副本的情况下，将本“软件产品”(包括所有组成部分、媒体内容和印刷材料、任何更新版本、本《协议》等)全部转让，并且受让人接受本《协议》的各项条件下，您可永久转让您在本《协议》下的所有权利。 如果本“软件产品”为更新版本，转让时必须包括本“软件产品”所有前版本。 
+
+终止：
+如您未遵守本《协议》的各项条件，在不损害其它权利的情况下，版权人可将本《协议》终止。 如发生此种情况，则您必须销毁“软件产品”及其各部分的所有副本。 
+
+商标：
+本《协议》不授予您由版权人 Rayman Zhang 所拥有的任何商标或服务商标有关的任何权利。 
+
+使用方式：
+对于个人非商业用途，本软件产品准许个人用户免费使用。凡用于商业用途，均须得到版权人授权许可。
+
+本软件产品不能用于销售或随同旨在获益的软件产品或产品包一起分发，但本软件可包含在任何免费或非赢利性的软件产品或产品包里. 同时您必须保证所分发的软件包含全部文件, 并且未作任何修改。
+
+个别授权: 
+如有任何组织或个人利用本软件以任何方式为公众服务并同时满足其自身特定目的而分发、复制和传播本软件产品, 均须得到版权人授权同意后方可进行, 否则视为侵权. 
+
+2. DESCRIPTION OF OTHER RIGHTS AND LIMITATIONS.
+Reverse Engineering, Decompilation, Disassembly and Modification.
+You may not reverse engineer, decompile, or disassemble the SOFTWARE PRODUCT and change (add, delete or modify) the resources of the compiled assembly, except and only to the extent that such activity is expressly permitted by applicable law notwithstanding this limitation.
+
+Separation of Components.
+The SOFTWARE PRODUCT is licensed as a single product. Its component parts may not be separated for use on more than one computer.
+
+Software Transfer.
+You may permanently transfer all of your rights under this EULA, provided the recipient agrees to the terms of this EULA.
+
+Termination.
+Without prejudice to any other rights, the Author of this Software may terminate this EULA if you fail to comply with the terms and conditions of this EULA. In such event, you must destroy all copies of the SOFTWARE PRODUCT and all of its component parts.
+
+3. 版权
+本软件产品（包括但不限于本软件产品中所含的任何图象、照片、动画、文字和附加程序，不包含本软件可访问的词典及其内容）、随附的印刷材料、及本软件产品的任何副本的一切所有权和知识产权，均由版权人 Rayman Zhang 拥有。
+
+通过使用本“软件产品”可访问的词典及其内容的一切所有权和知识产权，均属于各自内容的所有者拥有，并可能受适用著作权或其它知识产权法律和条约的保护，本《协议》不授予您使用这些内容的权利。如果您需要使用，应当另外取得词典及其内容所有者的同意和授权。
+3. COPYRIGHT.
+All title and copyrights in and to the SOFTWARE PRODUCT(including but not limited to any images, photographs, animations, video, audio, music, text, and "applets" incorporated into the SOFTWARE PRODUCT, except dictionaries and its contents which the SOFTWARE PRODUCT can use), the accompanying printed materials, and any copies of the SOFTWARE PRODUCT are owned by the Author of this Software. 
+
+All rights or copyrights of dictionaries or contents which you can visit by the SOFTWARE PRODUCT belong to their authors, and maybe they are protected by copyright laws and international treaty provisions. The license doesn't provide you with all rights of using these contents. You must get agreement and license of owners of these contents before you used them.
+
+4. 有限保证
+无保证：
+本软件版权人 Rayman Zhang 特此申明对本软件产品之使用不提供任何保证。 版权人将不对任何用户保证本软件产品的适用性，不保证无故障产生；亦不对任何用户使用此软件所遭遇到的任何理论上的或实际上的损失承担负责。
+
+对造成损失无责任：
+本软件版权人对本软件产品可能或已知问题造成的意外，连续，直接或间接损失不承担任何责任(包括利益损失，商业中断，信息丢失或其他任何经济上的损失)。
+4. LIMITED WARRANTY.
+NO WARRANTIES.
+The Author of this Software expressly disclaims any warranty for the SOFTWARE PRODUCT. The SOFTWARE PRODUCT and any related documentation is provided "as is" without warranty of any kind, either express or implied, including, without limitation, the implied warranties or merchantability, fitness for a particular purpose, or non-infringement. The entire risk arising out of use or performance of the SOFTWARE PRODUCT remains with you.
+
+NO LIABILITY FOR DAMAGES.
+In no event shall the author of this Software be liable for any special, consequential, incidental or indirect damages whatsoever (including, without limitation, damages for loss of business profits, business interruption, loss of business information, or any other pecuniary loss) arising out of the use of or inability to use this product, even if the Author of this Software is aware of the possibility of such damages and known defects.
+
+
+Rayman Zhang 版权所有，保留所有权利。
+Copyright Rayman Zhang, All Rights Reserved.

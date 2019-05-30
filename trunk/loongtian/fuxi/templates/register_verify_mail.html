@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block titleBlock %}龙搜_用户注册{% endblock %}
+{% block metaBlock %}
+<meta name="keywords" content="搜索,龙搜, 新用户注册" />
+<meta name="description" content="龙搜，搜索, 用户注册" />
+{% endblock %}
+{% block styleBlock %}{% endblock %}
+{% block scriptBlock %}
+<script type="text/javascript">
+$(function(){
+    $('body').attr('class', 'zc-bg');
+});//function
+/*
+注册提交按钮点击事件
+ */
+function verifyClick(){
+    var verify = $('#verify').val();
+    $.post('/register/verify/mail', {'verify': verify}, function(error){
+        var errorInfo = eval(error)[0];
+        if(errorInfo.error){
+            alert(errorInfo.error)
+        }else{
+            location.href = errorInfo.url;
+        }
+    });
+};
+</script>
+{% endblock %}
+{% block mainBlock %}
+   <div class="zc-k">
+      <div class="zc-k-1"><a class="logo2"></a></div>
+	  <Div>
+	     
+		  <div class="xxtp"></div>
+		  <div class="jhxx">
+		  
+		     <div class="jhxx1">激活邮箱</div>
+			 <Div class="jhkk"><form action="" method="get">
+			 
+			 
+		  <span class="jhk">
+              <input name="" type="text" id="verify"/>
+          </span><span>
+                 <a class="djjh" href="javascript:verifyClick()">点击激活</a>
+             </span><span><a class="wzz">稍后激活，先进入龙搜</a></span>
+			 
+			 
+			 
+			 </form></Div>
+			 <div class="yfs"><span class="yfs1">已发送激活邮件到你的信箱：</span><span class="yfs2">{{ mine.email }}</span><span><A class="ljck">[立即查看]</A></span></div>
+			 <div class="mysd">没有收到邮件?</div>
+			 <div class="xjj">确认邮箱是否正确、若错误、点此<a class="cxzc" href="#">重新注册</a><br />
+			 邮件可能被误判为垃圾邮件、请仔细查看<br />
+			 网络延迟也会造成此现象、稍等2分钟、或0秒后、点击<A class="cxfs" href="#">重新发送</A>
+			 </div>
+		  
+		  </div>
+	    
+	  
+	  
+	  </Div>
+   
+   
+   
+   
+   </div>
+{% endblock %}

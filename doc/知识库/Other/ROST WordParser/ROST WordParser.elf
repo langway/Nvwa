@@ -1,0 +1,207 @@
+EurekaLog 5.1.3
+
+Application:
+-------------------------------------------------------
+  1.1 Start Date      : Sun, 26 Oct 2008 22:38:58 +0800
+  1.2 Name/Description: ROST WordParser.exe
+  1.3 Version Number  : 5.8.1.9
+  1.4 Parameters      : 
+  1.5 Compilation Date: Thu, 10 Jan 2008 11:58:13 +0800
+
+Exception:
+-----------------------------------------------------------
+  2.1 Date   : Sun, 26 Oct 2008 22:40:04 +0800
+  2.2 Address: 0049C376
+  2.3 Module : ROST WordParser.exe
+  2.4 Type   : EInvalidOperation
+  2.5 Message: Cannot focus a disabled or invisible window.
+
+Active Controls:
+------------------------------------------------------------------------------
+  3.1 Form Class   : TForm1
+  3.2 Form Text    : 武汉大学ROST中文分词软件----ROST WordParser 5.8.1.9内测版
+  3.3 Control Class: TRzCheckList
+  3.4 Control Text : 
+
+Computer:
+-------------------------------------------------------------
+  4.1 Name          : IBMT40
+  4.2 User          : zhoujun
+  4.3 Total Memory  : 1023 Mb
+  4.4 Free Memory   : 647 Mb
+  4.5 Total Disk    : 5.53 Gb
+  4.6 Free Disk     : 3.17 Gb
+  4.7 System Up Time: 1 hour, 56 minutes, 50 seconds
+  4.8 Processor     : Intel(R) Pentium(R) M processor 1500MHz
+  4.9 Display Mode  : 1024 x 768, 32 bit
+
+Operating System:
+------------------------------------
+  5.1 Type    : Microsoft Windows XP
+  5.2 Build # : 2600
+  5.3 Update  : Service Pack 3
+  5.4 Language: Chinese
+
+Network:
+---------------------------------
+  6.1 IP Address: 000.000.000.000
+  6.2 Submask   : 000.000.000.000
+  6.3 Gateway   : 000.000.000.000
+  6.4 DNS 1     : 000.000.000.000
+  6.5 DNS 2     : 000.000.000.000
+  6.6 DHCP      : ON             
+
+Call Stack Information:
+-------------------------------------------------------------------------------------
+|Address |Module             |Unit         |Class |Procedure/Method            |Line|
+-------------------------------------------------------------------------------------
+| Running Thread: ID=4104; Priority=0; Class=; [Main]                               |
+|-----------------------------------------------------------------------------------|
+|00566573|ROST WordParser.exe|untmain.pas  |TForm1|SynEdit1Click               |356 |
+|7C92EC9A|ntdll.dll          |             |      |RtlMultiByteToUnicodeN      |    |
+|7C92EB74|ntdll.dll          |             |      |RtlAnsiStringToUnicodeString|    |
+|7C92D30A|ntdll.dll          |             |      |NtFindAtom                  |    |
+|77D2A97D|user32.dll         |             |      |CallWindowProcA             |    |
+|77D29011|user32.dll         |             |      |OffsetRect                  |    |
+|7C9210E0|ntdll.dll          |             |      |RtlLeaveCriticalSection     |    |
+|77D292DE|user32.dll         |             |      |SendMessageW                |    |
+|77D2929A|user32.dll         |             |      |SendMessageW                |    |
+|77D2A993|user32.dll         |             |      |CallWindowProcA             |    |
+|77D2A97D|user32.dll         |             |      |CallWindowProcA             |    |
+|77D2B3FC|user32.dll         |             |      |CallNextHookEx              |    |
+|77D194DA|user32.dll         |             |      |GetCapture                  |    |
+|77D196C2|user32.dll         |             |      |DispatchMessageA            |    |
+|77D196B8|user32.dll         |             |      |DispatchMessageA            |    |
+|00568AC4|ROST WordParser.exe|splitword.dpr|      |                            |17  |
+|7C92DC9A|ntdll.dll          |             |      |NtSetInformationThread      |    |
+-------------------------------------------------------------------------------------
+
+Modules Information:
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|Handle  |Name               |Description                                      |Version         |Size   |Modified           |Path                                                                                                |
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|00380000|Normaliz.dll       |Unicode Normalization DLL                        |6.0.5441.0      |23552  |2006-06-29 08:05:44|F:\WINDOWS\system32                                                                                 |
+|00400000|ROST WordParser.exe|                                                 |5.8.1.9         |1814016|2008-01-10 11:58:14|G:\沈阳博士\他的软件相关\ROST WordParser                                                            |
+|03160000|msls31.dll         |Microsoft Line Services library file             |3.10.349.0      |156160 |2007-08-13 18:54:10|F:\WINDOWS\system32                                                                                 |
+|042C0000|xpsp2res.dll       |Service Pack 2 Messages                          |5.1.2600.5512   |5535744|2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|1B000000|ImgUtil.dll        |IE plugin image decoder support DLL              |7.0.5730.13     |36352  |2007-08-13 18:36:06|F:\WINDOWS\system32                                                                                 |
+|411D0000|pngfilt.dll        |IE PNG plugin image decoder                      |7.0.6000.16705  |44544  |2008-06-24 00:14:54|F:\WINDOWS\system32                                                                                 |
+|41D50000|iertutil.dll       |Run time utility for Internet Explorer           |7.0.6000.16705  |267776 |2008-06-24 00:14:54|F:\WINDOWS\system32                                                                                 |
+|41F50000|mshtmled.dll       |Microsoft? HTML Editing Component                |7.0.6000.16705  |477696 |2008-06-24 00:14:54|F:\WINDOWS\system32                                                                                 |
+|41FD0000|wininet.dll        |Internet Extensions for Win32                    |7.0.6000.16705  |826368 |2008-06-24 00:14:56|F:\WINDOWS\system32                                                                                 |
+|420B0000|URLMON.DLL         |OLE32 Extensions for Win32                       |7.0.6000.16705  |1159680|2008-06-24 00:14:54|F:\WINDOWS\system32                                                                                 |
+|422B0000|ieframe.dll        |Internet Explorer                                |7.0.6000.16705  |6066176|2008-06-24 00:14:54|F:\WINDOWS\system32                                                                                 |
+|42990000|mshtml.dll         |Microsoft (R) HTML Viewer                        |7.0.6000.16705  |3592192|2008-06-24 10:14:56|F:\WINDOWS\system32                                                                                 |
+|4AE90000|gdiplus.dll        |Microsoft GDI+                                   |5.1.3102.5581   |1724416|2008-04-16 01:47:48|F:\WINDOWS\WinSxS\x86_Microsoft.Windows.GdiPlus_6595b64144ccf1df_1.0.2600.5581_x-ww_dfbc4fc4        |
+|5AD70000|UxTheme.dll        |Microsoft UxTheme Library                        |6.0.2600.0      |202763 |2003-12-13 00:40:16|F:\WINDOWS\system32                                                                                 |
+|5D170000|comctl32.dll       |Common Controls Library                          |5.82.2900.5512  |617472 |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|5EFE0000|olepro32.dll       |                                                 |5.1.2600.5512   |84992  |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|5FDD0000|NETAPI32.dll       |Net Win32 API DLL                                |5.1.2600.5512   |337408 |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|60FD0000|hnetcfg.dll        |Home Networking Configuration Manager            |5.1.2600.5512   |333824 |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|62C20000|LPK.DLL            |Language Pack                                    |5.1.2600.5512   |22016  |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|6D020000|adialhk.dll        |kldialhk                                         |8.0.0.454       |83208  |2008-07-29 20:20:58|C:\Program Files\Kaspersky Lab                                                                      |
+|6D4C0000|kloehk.dll         |Kaspersky OE plugin loader                       |8.0.0.454       |11016  |2008-07-29 20:21:40|C:\Program Files\Kaspersky Lab                                                                      |
+|6D510000|klscav.dll         |Script Checker AV Plugin                         |8.0.0.454       |33032  |2008-07-29 20:21:44|C:\Program Files\Kaspersky Lab                                                                      |
+|6D710000|mzvkbd.dll         |Mozilla 2 Virtual Keyboard                       |8.0.0.454       |79112  |2008-07-29 20:22:08|C:\Program Files\Kaspersky Lab                                                                      |
+|6D730000|mzvkbd3.dll        |Mozilla 3 Virtual Keyboard                       |8.0.0.454       |79112  |2008-07-29 20:22:12|C:\Program Files\Kaspersky Lab                                                                      |
+|6D810000|prloader.dll       |Prague Loader                                    |8.0.0.454       |263432 |2008-07-29 20:22:22|C:\Program Files\Kaspersky Lab                                                                      |
+|6D860000|prremote.dll       |PR_REMOTE                                        |8.0.0.454       |91400  |2008-07-29 20:22:24|C:\Program Files\Kaspersky Lab                                                                      |
+|6D8E0000|scrchpg.dll        |Script Checker                                   |8.0.0.454       |152840 |2008-07-29 20:22:30|C:\Program Files\Kaspersky Lab                                                                      |
+|6E240000|params.ppl         |Structure Serializer                             |8.0.0.454       |505096 |2008-07-29 20:25:24|c:\program files\kaspersky lab                                                                      |
+|6E360000|prkernel.ppl       |Prague kernel                                    |8.0.0.454       |152840 |2008-07-29 20:25:36|C:\Program Files\Kaspersky Lab                                                                      |
+|6E4B0000|pxstub.ppl         |Proxy Stubs                                      |8.0.0.454       |29448  |2008-07-29 20:25:54|c:\program files\kaspersky lab                                                                      |
+|6E680000|tempfile.ppl       |Temporary IO                                     |8.0.0.454       |14088  |2008-07-29 20:26:40|c:\program files\kaspersky lab                                                                      |
+|719C0000|mswsock.dll        |Microsoft Windows Sockets 2.0 Service Provider   |5.1.2600.5625   |240640 |2008-06-21 01:46:00|F:\WINDOWS\system32                                                                                 |
+|71A00000|wshtcpip.dll       |Windows Sockets Helper DLL                       |5.1.2600.5512   |19456  |2008-04-22 04:00:00|F:\WINDOWS\System32                                                                                 |
+|71A10000|WS2HELP.dll        |Windows Socket 2.0 Helper for Windows NT         |5.1.2600.5512   |19968  |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|71A20000|WS2_32.dll         |Windows Socket 2.0 32-Bit DLL                    |5.1.2600.5512   |82432  |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|71A40000|wsock32.dll        |Windows Socket 32-Bit DLL                        |5.1.2600.5512   |28672  |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|72240000|sensapi.dll        |SENS Connectivity API DLL                        |5.1.2600.5512   |7168   |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|72F70000|winspool.drv       |Windows Spooler Driver                           |5.1.2600.5512   |145920 |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|73250000|RICHED32.DLL       |Wrapper Dll for Richedit 1.0                     |5.1.2600.0      |3584   |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|73640000|msctfime.ime       |Microsoft Text Frame Work Service IME            |5.1.2600.5512   |177152 |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|73FA0000|USP10.dll          |Uniscribe Unicode script processor               |1.420.2600.5512 |406016 |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|74650000|msimtf.dll         |Active IMM Server DLL                            |5.1.2600.5512   |159232 |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|74680000|MSCTF.dll          |MSCTF Server DLL                                 |5.1.2600.5512   |296960 |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|74CF0000|mlang.dll          |Multi Language Support DLL                       |6.0.2900.5512   |586240 |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|74D90000|RICHED20.dll       |Rich Text Edit Control, v3.0                     |5.30.23.1230    |433664 |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|75430000|CRYPTUI.dll        |Microsoft Trust UI Provider                      |5.131.2600.5512 |449024 |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|759D0000|USERENV.dll        |Userenv                                          |5.1.2600.5512   |708608 |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|75BC0000|jscript.dll        |Microsoft (R) JScript                            |5.7.0.18066     |512000 |2008-05-09 18:53:48|F:\WINDOWS\system32                                                                                 |
+|75E00000|SXS.DLL            |Fusion 2.5                                       |5.1.2600.5512   |705024 |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|75EF0000|browseui.dll       |Shell Browser UI Library                         |6.0.2900.5512   |1024512|2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|76060000|SETUPAPI.dll       |Windows Setup API                                |5.1.2600.5512   |1389568|2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|762F0000|msimg32.dll        |GDIEXT Client DLL                                |5.1.2600.5512   |4608   |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|76300000|IMM32.DLL          |Windows XP IMM32 API Client DLL                  |5.1.2600.5512   |110080 |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|76320000|comdlg32.dll       |Common Dialogs DLL                               |6.0.2900.5512   |269824 |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|76570000|CSCDLL.dll         |Offline Network Agent                            |5.1.2600.5512   |99840  |2008-04-22 04:00:00|F:\WINDOWS\System32                                                                                 |
+|76590000|cscui.dll          |Client Side Caching UI                           |5.1.2600.5512   |304128 |2008-04-22 04:00:00|F:\WINDOWS\System32                                                                                 |
+|765E0000|CRYPT32.dll        |Crypto API32                                     |5.131.2600.5512 |591872 |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|76950000|LINKINFO.dll       |Windows Volume Tracking                          |5.1.2600.5512   |19968  |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|76960000|ntshrui.dll        |Shell extensions for sharing                     |5.1.2600.5512   |137216 |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|76990000|ole32.dll          |Microsoft OLE for Windows                        |5.1.2600.5512   |1287168|2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|76AF0000|ATL.DLL            |ATL Module for Windows XP (Unicode)              |3.5.2284.1      |58880  |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|76B10000|winmm.dll          |MCI API DLL                                      |5.1.2600.5512   |163840 |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|76BC0000|PSAPI.DLL          |Process Status Helper                            |5.1.2600.5512   |23040  |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|76C00000|WINTRUST.dll       |Microsoft Trust Verification APIs                |5.131.2600.5512 |175616 |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|76C60000|IMAGEHLP.dll       |Windows NT Image Helper                          |5.1.2600.5512   |144384 |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|76D30000|iphlpapi.dll       |IP Helper API                                    |5.1.2600.5512   |94208  |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|76D70000|appHelp.dll        |Application Compatibility Client Library         |5.1.2600.5512   |125952 |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|76DB0000|MSASN1.dll         |ASN.1 Runtime APIs                               |5.1.2600.5512   |57344  |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|76E50000|rtutils.dll        |Routing Utilities                                |5.1.2600.5512   |44032  |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|76E60000|rasman.dll         |Remote Access Connection Manager                 |5.1.2600.5512   |61440  |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|76E80000|TAPI32.dll         |Microsoft(R) Windows(TM) Telephony API Client DLL|5.1.2600.5512   |181760 |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|76EB0000|RASAPI32.dll       |Remote Access API                                |5.1.2600.5512   |236032 |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|76EF0000|DNSAPI.dll         |DNS Client API DLL                               |5.1.2600.5625   |147968 |2008-06-21 01:46:00|F:\WINDOWS\system32                                                                                 |
+|76F30000|WLDAP32.dll        |Win32 LDAP API DLL                               |5.1.2600.5512   |170496 |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|76F90000|rasadhlp.dll       |Remote Access AutoDial Helper                    |5.1.2600.5512   |7680   |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|76FA0000|CLBCATQ.DLL        |                                                 |2001.12.4414.700|498688 |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|77020000|COMRes.dll         |                                                 |2001.12.4414.700|615936 |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|770F0000|oleaut32.dll       |                                                 |5.1.2600.5512   |551936 |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|77180000|comctl32.dll       |User Experience Controls Library                 |6.0.2900.5512   |1054208|2008-04-22 04:00:00|F:\WINDOWS\WinSxS\x86_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.2600.5512_x-ww_35d4ce83|
+|77BD0000|version.dll        |Version Checking and File Installation Libraries |5.1.2600.5512   |18944  |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|77BE0000|msvcrt.dll         |Windows NT CRT DLL                               |7.0.2600.5512   |343040 |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|77C40000|msv1_0.dll         |Microsoft Authentication Package v1.0            |5.1.2600.5594   |132608 |2008-05-05 19:06:04|F:\WINDOWS\system32                                                                                 |
+|77D10000|user32.dll         |Windows XP USER API Client DLL                   |5.1.2600.5512   |574976 |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|77DA0000|advapi32.dll       |Advanced Windows 32 Base API                     |5.1.2600.5512   |674816 |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|77E50000|RPCRT4.dll         |Remote Procedure Call Runtime                    |5.1.2600.5512   |584704 |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|77EF0000|GDI32.dll          |GDI Client DLL                                   |5.1.2600.5512   |285184 |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|77F40000|SHLWAPI.dll        |Shell Light-weight Utility Library               |6.0.2900.5512   |473088 |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|77FC0000|Secur32.dll        |Security Support Provider Interface              |5.1.2600.5512   |56320  |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|78130000|MSVCR80.dll        |Microsoft? C Runtime Library                     |8.0.50727.762   |626688 |2006-12-01 22:54:32|F:\WINDOWS\WinSxS\x86_Microsoft.VC80.CRT_1fc8b3b9a1e18e3b_8.0.50727.762_x-ww_6b128700               |
+|78800000|msxml5.dll         |MSXML 5.0                                        |5.20.1072.0     |1422088|2006-10-26 13:41:16|F:\Program Files\Common Files\Microsoft Shared\OFFICE11                                             |
+|7C420000|MSVCP80.dll        |Microsoft? C++ Runtime Library                   |8.0.50727.762   |548864 |2006-12-01 22:54:34|F:\WINDOWS\WinSxS\x86_Microsoft.VC80.CRT_1fc8b3b9a1e18e3b_8.0.50727.762_x-ww_6b128700               |
+|7C800000|kernel32.dll       |Windows NT BASE API Client DLL                   |5.1.2600.5512   |1150464|2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|7C920000|ntdll.dll          |NT Layer DLL                                     |5.1.2600.5512   |589312 |2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+|7D590000|shell32.dll        |Windows Shell Common Dll                         |6.0.2900.5622   |8318976|2008-06-18 03:00:42|F:\WINDOWS\system32                                                                                 |
+|7E550000|shdocvw.dll        |Shell Doc Object and Control Library             |6.0.2900.5512   |1498624|2008-04-22 04:00:00|F:\WINDOWS\system32                                                                                 |
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Registers:
+-----------------------------
+EAX: 00EFB28C   EDI: 00EEA300
+EBX: 00EDF510   ESI: 00487AC8
+ECX: 00000000   ESP: 0012F598
+EDX: 0049C37B   EIP: 0049C376
+
+Stack:               Memory Dump:
+------------------   ---------------------------------------------------------------------------
+0012F598: 0012F5D0   0049C376: E8 45 84 F6 FF 89 BB 20 02 00 00 F6 43 1C 01 75  .E..... ....C..u
+0012F59C: 004046F4   0049C386: 1B 80 BB 2E 02 00 00 00 74 07 8B C3 E8 39 03 00  ........t....9..
+0012F5A0: 0012F5B4   0049C396: 00 8B C3 66 BE B2 FF E8 82 7D F6 FF 33 C0 5A 59  ...f.....}..3.ZY
+0012F5A4: 0000BD11   0049C3A6: 59 64 89 10 68 BF C3 49 00 8D 45 FC E8 B5 8A F6  Yd..h..I..E.....
+0012F5A8: 00EDF510   0049C3B6: FF C3 E9 07 83 F6 FF EB F0 5F 5E 5B 59 5D C3 8D  ........._^[Y]..
+0012F5AC: 00EEA301   0049C3C6: 40 00 53 56 57 8B D9 8B F2 8B F8 84 DB 74 1A 8B  @.SVW........t..
+0012F5B0: 00000000   0049C3D6: 97 24 02 00 00 8B C6 E8 4A 82 FE FF 84 C0 74 09  .$......J.....t.
+0012F5B4: 0012F5F8   0049C3E6: 8B 46 30 89 87 24 02 00 00 8B 97 20 02 00 00 8B  .F0..$..... ....
+0012F5B8: 0049C421   0049C3F6: C6 E8 30 82 FE FF 84 C0 74 09 33 D2 8B C7 E8 07  ..0.....t.3.....
+0012F5BC: 000004BD   0049C406: FF FF FF 5F 5E 5B C3 8D 40 00 53 56 8B F0 8A 9E  ..._^[..@.SV....
+0012F5C0: 00EEA300   0049C416: 2E 02 00 00 8B C6 E8 EF FE FF FF 84 DB 75 0A 8B  .............u..
+0012F5C4: 00487B1D   0049C426: C6 8B 10 FF 92 C4 00 00 00 5E 5B C3 8B C0 55 8B  .........^[...U.
+0012F5C8: 00EDF510   0049C436: EC 83 C4 F8 53 56 57 89 55 FC 8B D8 C6 45 FB 00  ....SVW.U....E..
+0012F5CC: 00566579   0049C446: FF 05 94 B5 56 00 83 BB 50 02 00 00 00 75 18 3B  ....V...P....u.;
+0012F5D0: 0012F904   0049C456: 5D FC 74 0B 8B 45 FC 89 83 20 02 00 00 EB 08 33  ].t..E... .....3
+0012F5D4: 004046F4   0049C466: C0 89 83 20 02 00 00 A1 D4 01 57 00 8B 55 FC 89  ... ......W..U..
+
+
+

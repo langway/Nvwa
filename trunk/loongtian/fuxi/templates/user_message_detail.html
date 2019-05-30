@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block titleBlock %}龙搜__用户__消息详细{% endblock %}
+{% block metaBlock %}
+<meta name="keywords" content="搜索,龙搜,消息详细" />
+<meta name="description" content="龙搜，搜索" />
+{% endblock %}
+{% block styleBlock %}
+<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+{% endblock %}
+{% block scriptBlock %}
+<script type="text/javascript" charset="utf-8" src="/static/script/mousewheel.js"></script>
+<script type="text/javascript" charset="utf-8" src="/static/script/easyscroll.js"></script>
+<style type="text/css">
+.quotes li{float: left;}
+.set-nv ul li:nth-child(4) { background:#2a8fdd;}
+.set-nv ul li:nth-child(4) a {color:#FFF;}
+.set-nv ul li:nth-child(4) a{background: url('/static/img/ann-2.png') no-repeat; background-position: 23px -158px;}
+</style>
+<script type="text/javascript">
+	$(function(){
+		$('.div_scroll').scroll_absolute({arrows:true});
+		$('.container2 .div_scroll').scroll_absolute({arrows:false});
+        $('body').attr('class', 'bg2');
+	})
+</script>
+{% endblock %}
+{% block mainBlock %}
+<div class="ss22">dsad</div>
+<div class="ss22">dsad</div>
+<div class="set">
+   {% include 'base_user_left.html' %}
+     <div class="set-y">
+        <div class="set-yt">
+             <span class="set-yt1">搜索记录</span>
+             <span class="set-yt2">使用龙搜</span>
+        </div>
+        <Div>
+             <div class="biaot">{{ usersSmsDetail.title }}</div>
+             <div class="req">日期{{ usersSmsDetail.addtime }}</div>
+             <div class="nr-z">{{ usersSmsDetail.content }}</div>
+
+             <div class="biaot2">
+{#                 <a class="biaot21">下一页</a><a class="biaot21">上一页</a>#}
+             </div>
+        </Div>
+	 </div>
+</div>
+{% endblock %}

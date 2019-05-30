@@ -1,0 +1,209 @@
+[DEBUG] 20110905 09:03:47 (0)CMDictApp init start
+[DEBUG] 20110905 09:03:47 (0)Load config done
+[DEBUG] 20110905 09:03:50 (2297)Font F:\Leon\Code\0-Nvwa\Data\MDictPC\Fonts\DroidSansFallback_DejaVuSans.ttf Loaded
+[DEBUG] 20110905 09:03:50 (15)Load font resource done
+[DEBUG] 20110905 09:03:50 (0)Load lib list done
+[DEBUG] 20110905 09:03:50 (0)No library in list, auto search all...
+[DEBUG] 20110905 09:03:50 (0)Auto search all done
+[DEBUG] 20110905 09:03:50 (0)Searching audio library...
+[DEBUG] 20110905 09:03:50 (0)Found 0 audio library file
+[DEBUG] 20110905 09:03:50 (0)Search audio lib done
+[DEBUG] 20110905 09:03:50 (0)Searching reference library...
+[DEBUG] 20110905 09:03:50 (0)Found 0 reference library file
+[DEBUG] 20110905 09:03:50 (0)Search reference lib done
+[DEBUG] 20110905 09:03:50 (0)Doc object created
+[DEBUG] 20110905 09:03:50 (172)Main frame window created
+[DEBUG] 20110905 09:03:50 (0)IWebbrowser helper object inited
+[DEBUG] 20110905 09:03:50 (0)Main doc loaded
+[DEBUG] 20110905 09:03:50 (0)OT doc inited
+[INFO] 20110905 09:03:50 (0)Begin Get Text
+[INFO] 20110905 09:03:50 (0)End Get Text
+[INFO] 20110905 09:03:50 (63)End of set document
+[INFO] 20110905 09:03:50 (0)End of Audio check
+[DEBUG] 20110905 09:03:50 (31)MDict App init completed
+[INFO] 20110905 09:03:50 (406)End of rendering
+[INFO] 20110905 09:04:08 (17344)Begin Get Text
+[INFO] 20110905 09:04:08 (0)End Get Text
+[INFO] 20110905 09:04:08 (31)End of set document
+[INFO] 20110905 09:04:08 (0)End of Audio check
+[INFO] 20110905 09:04:08 (47)End of rendering
+[INFO] 20110905 09:05:06 (58406)Begin Get Text
+[INFO] 20110905 09:05:06 (0)End Get Text
+[INFO] 20110905 09:05:06 (0)End of set document
+[INFO] 20110905 09:05:06 (0)End of Audio check
+[INFO] 20110905 09:05:06 (63)End of rendering
+[INFO] 20110905 09:05:14 (8000)Begin Get Text
+[INFO] 20110905 09:05:14 (0)End Get Text
+[INFO] 20110905 09:05:14 (0)End of set document
+[INFO] 20110905 09:05:14 (0)End of Audio check
+[INFO] 20110905 09:05:14 (78)End of rendering
+[INFO] 20110905 09:05:25 (10844)Begin Get Text
+[INFO] 20110905 09:05:25 (31)End Get Text
+[INFO] 20110905 09:05:25 (16)End of set document
+[INFO] 20110905 09:05:25 (0)End of Audio check
+[INFO] 20110905 09:05:25 (265)End of rendering
+[INFO] 20110905 09:09:05 (219813)Begin Get Text
+[INFO] 20110905 09:09:05 (0)End Get Text
+[INFO] 20110905 09:09:05 (0)End of set document
+[INFO] 20110905 09:09:05 (0)End of Audio check
+[INFO] 20110905 09:09:05 (0)End of rendering
+[INFO] 20110905 09:09:31 (26234)Begin Get Text
+[INFO] 20110905 09:09:31 (0)End Get Text
+[INFO] 20110905 09:09:31 (0)End of set document
+[INFO] 20110905 09:09:31 (0)End of Audio check
+[INFO] 20110905 09:09:31 (16)End of rendering
+[INFO] 20110905 09:09:59 (27812)Begin Get Text
+[INFO] 20110905 09:09:59 (16)End Get Text
+[INFO] 20110905 09:09:59 (0)End of set document
+[INFO] 20110905 09:09:59 (0)End of Audio check
+[INFO] 20110905 09:09:59 (15)End of rendering
+[INFO] 20110905 09:10:43 (44125)Begin Get Text
+[INFO] 20110905 09:10:43 (16)End Get Text
+[INFO] 20110905 09:10:43 (0)End of set document
+[INFO] 20110905 09:10:43 (0)End of Audio check
+[INFO] 20110905 09:10:43 (0)End of rendering
+[INFO] 20110905 09:10:45 (1938)Begin Get Text
+[INFO] 20110905 09:10:45 (0)End Get Text
+[INFO] 20110905 09:10:45 (0)End of set document
+[INFO] 20110905 09:10:45 (0)End of Audio check
+[INFO] 20110905 09:10:45 (15)End of rendering
+[INFO] 20110905 09:10:53 (7875)Begin Get Text
+[INFO] 20110905 09:10:53 (31)End Get Text
+[INFO] 20110905 09:10:53 (0)End of set document
+[INFO] 20110905 09:10:53 (0)End of Audio check
+[INFO] 20110905 09:10:53 (47)End of rendering
+[INFO] 20110905 09:11:01 (7297)Begin Get Text
+[INFO] 20110905 09:11:01 (0)End Get Text
+[INFO] 20110905 09:11:01 (0)End of set document
+[INFO] 20110905 09:11:01 (0)End of Audio check
+[INFO] 20110905 09:11:01 (16)End of rendering
+[INFO] 20110905 09:11:02 (1625)Begin Get Text
+[INFO] 20110905 09:11:02 (0)End Get Text
+[INFO] 20110905 09:11:02 (0)End of set document
+[INFO] 20110905 09:11:02 (0)End of Audio check
+[INFO] 20110905 09:11:02 (15)End of rendering
+[INFO] 20110905 09:11:03 (875)Begin Get Text
+[INFO] 20110905 09:11:03 (0)End Get Text
+[INFO] 20110905 09:11:03 (0)End of set document
+[INFO] 20110905 09:11:03 (0)End of Audio check
+[INFO] 20110905 09:11:03 (16)End of rendering
+[INFO] 20110905 09:11:08 (4766)Begin Get Text
+[INFO] 20110905 09:11:08 (0)End Get Text
+[INFO] 20110905 09:11:08 (0)End of set document
+[INFO] 20110905 09:11:08 (0)End of Audio check
+[INFO] 20110905 09:11:08 (15)End of rendering
+[INFO] 20110905 09:11:13 (5219)Begin Get Text
+[INFO] 20110905 09:11:13 (0)End Get Text
+[INFO] 20110905 09:11:13 (0)End of set document
+[INFO] 20110905 09:11:13 (0)End of Audio check
+[INFO] 20110905 09:11:13 (16)End of rendering
+[INFO] 20110905 09:11:26 (13109)Begin Get Text
+[INFO] 20110905 09:11:26 (0)End Get Text
+[INFO] 20110905 09:11:26 (0)End of set document
+[INFO] 20110905 09:11:26 (0)End of Audio check
+[INFO] 20110905 09:11:26 (109)End of rendering
+[INFO] 20110905 09:11:32 (5610)Begin Get Text
+[INFO] 20110905 09:11:32 (0)End Get Text
+[INFO] 20110905 09:11:32 (0)End of set document
+[INFO] 20110905 09:11:32 (0)End of Audio check
+[INFO] 20110905 09:11:32 (15)End of rendering
+[INFO] 20110905 09:11:50 (18438)Begin Get Text
+[INFO] 20110905 09:11:50 (0)End Get Text
+[INFO] 20110905 09:11:50 (0)End of set document
+[INFO] 20110905 09:11:50 (0)End of Audio check
+[INFO] 20110905 09:11:50 (16)End of rendering
+[INFO] 20110905 09:11:53 (2437)Begin Get Text
+[INFO] 20110905 09:11:53 (0)End Get Text
+[INFO] 20110905 09:11:53 (0)End of set document
+[INFO] 20110905 09:11:53 (0)End of Audio check
+[INFO] 20110905 09:11:53 (16)End of rendering
+[INFO] 20110905 09:12:01 (8140)Begin Get Text
+[INFO] 20110905 09:12:01 (16)End Get Text
+[INFO] 20110905 09:12:01 (0)End of set document
+[INFO] 20110905 09:12:01 (0)End of Audio check
+[INFO] 20110905 09:12:01 (16)End of rendering
+[INFO] 20110905 09:12:10 (8921)Begin Get Text
+[INFO] 20110905 09:12:10 (16)End Get Text
+[INFO] 20110905 09:12:10 (0)End of set document
+[INFO] 20110905 09:12:10 (0)End of Audio check
+[INFO] 20110905 09:12:10 (0)End of rendering
+[INFO] 20110905 09:12:11 (844)Begin Get Text
+[INFO] 20110905 09:12:11 (0)End Get Text
+[INFO] 20110905 09:12:11 (0)End of set document
+[INFO] 20110905 09:12:11 (0)End of Audio check
+[INFO] 20110905 09:12:11 (15)End of rendering
+[INFO] 20110905 09:12:11 (532)Begin Get Text
+[INFO] 20110905 09:12:11 (15)End Get Text
+[INFO] 20110905 09:12:11 (0)End of set document
+[INFO] 20110905 09:12:11 (0)End of Audio check
+[INFO] 20110905 09:12:11 (16)End of rendering
+[INFO] 20110905 09:12:12 (578)Begin Get Text
+[INFO] 20110905 09:12:12 (16)End Get Text
+[INFO] 20110905 09:12:12 (0)End of set document
+[INFO] 20110905 09:12:12 (0)End of Audio check
+[INFO] 20110905 09:12:12 (0)End of rendering
+[INFO] 20110905 09:12:16 (4031)Begin Get Text
+[INFO] 20110905 09:12:16 (0)End Get Text
+[INFO] 20110905 09:12:16 (0)End of set document
+[INFO] 20110905 09:12:16 (0)End of Audio check
+[INFO] 20110905 09:12:16 (16)End of rendering
+[INFO] 20110905 09:12:19 (2750)Begin Get Text
+[INFO] 20110905 09:12:19 (0)End Get Text
+[INFO] 20110905 09:12:19 (0)End of set document
+[INFO] 20110905 09:12:19 (0)End of Audio check
+[INFO] 20110905 09:12:19 (15)End of rendering
+[INFO] 20110905 09:12:27 (8406)Begin Get Text
+[INFO] 20110905 09:12:27 (0)End Get Text
+[INFO] 20110905 09:12:27 (0)End of set document
+[INFO] 20110905 09:12:27 (0)End of Audio check
+[INFO] 20110905 09:12:27 (16)End of rendering
+[INFO] 20110905 09:12:30 (2922)Begin Get Text
+[INFO] 20110905 09:12:30 (0)End Get Text
+[INFO] 20110905 09:12:30 (0)End of set document
+[INFO] 20110905 09:12:30 (0)End of Audio check
+[INFO] 20110905 09:12:30 (0)End of rendering
+[INFO] 20110905 09:12:33 (2625)Begin Get Text
+[INFO] 20110905 09:12:33 (16)End Get Text
+[INFO] 20110905 09:12:33 (0)End of set document
+[INFO] 20110905 09:12:33 (0)End of Audio check
+[INFO] 20110905 09:12:33 (15)End of rendering
+[INFO] 20110905 09:12:35 (2469)Begin Get Text
+[INFO] 20110905 09:12:35 (0)End Get Text
+[INFO] 20110905 09:12:35 (0)End of set document
+[INFO] 20110905 09:12:35 (0)End of Audio check
+[INFO] 20110905 09:12:35 (16)End of rendering
+[INFO] 20110905 09:12:38 (2468)Begin Get Text
+[INFO] 20110905 09:12:38 (0)End Get Text
+[INFO] 20110905 09:12:38 (0)End of set document
+[INFO] 20110905 09:12:38 (0)End of Audio check
+[INFO] 20110905 09:12:38 (16)End of rendering
+[INFO] 20110905 09:13:07 (29234)Begin Get Text
+[INFO] 20110905 09:13:07 (16)End Get Text
+[INFO] 20110905 09:13:07 (0)End of set document
+[INFO] 20110905 09:13:07 (0)End of Audio check
+[INFO] 20110905 09:13:07 (16)End of rendering
+[INFO] 20110905 09:13:08 (828)Begin Get Text
+[INFO] 20110905 09:13:08 (0)End Get Text
+[INFO] 20110905 09:13:08 (15)End of set document
+[INFO] 20110905 09:13:08 (0)End of Audio check
+[INFO] 20110905 09:13:08 (0)End of rendering
+[INFO] 20110905 09:13:16 (8297)Begin Get Text
+[INFO] 20110905 09:13:16 (16)End Get Text
+[INFO] 20110905 09:13:16 (0)End of set document
+[INFO] 20110905 09:13:16 (0)End of Audio check
+[INFO] 20110905 09:13:16 (15)End of rendering
+[INFO] 20110905 09:13:21 (5063)Begin Get Text
+[INFO] 20110905 09:13:21 (0)End Get Text
+[INFO] 20110905 09:13:21 (16)End of set document
+[INFO] 20110905 09:13:21 (0)End of Audio check
+[INFO] 20110905 09:13:21 (15)End of rendering
+[INFO] 20110905 09:13:30 (8656)Begin Get Text
+[INFO] 20110905 09:13:30 (16)End Get Text
+[INFO] 20110905 09:13:30 (0)End of set document
+[INFO] 20110905 09:13:30 (0)End of Audio check
+[INFO] 20110905 09:13:30 (16)End of rendering
+[INFO] 20110905 09:13:32 (1812)Begin Get Text
+[INFO] 20110905 09:13:32 (0)End Get Text
+[INFO] 20110905 09:13:32 (0)End of set document
+[INFO] 20110905 09:13:32 (0)End of Audio check
+[INFO] 20110905 09:13:32 (16)End of rendering

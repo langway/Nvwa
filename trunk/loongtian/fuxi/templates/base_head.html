@@ -1,0 +1,43 @@
+<div class="top">
+    <div class="tops">
+        <div class="top-l" style="width: 30px;"><a class="dl" href="/">首页</a></div>
+        <div class="top-l">
+            {% if mine %}
+            <a class="zc" href="/user/info">{{ mine.name }}</a>
+            <a class="dl" onclick="loginOut('exit')" style="cursor: pointer">退出</a>
+            {% else %}
+            <a class="zc" href="/register">注册</a>
+            <a class="dl" onclick="login_click()" style="cursor: pointer">登录</a>
+            {% endif %}
+        </div>
+        <div class="top-2" style="cursor: pointer">
+            {% if mine %}
+                <a class="sc" id="user_mess" href="/user/message">消息</a>
+                <a class="sz" id="user_set">设置</a>
+            {% endif %}
+            <a class="swzy">设为主页</a><a class="sc">收藏</a>
+        </div>
+{#        <div class="sezz1" style="cursor: pointer;right: 275px;display: none">#}
+{#            <div class="daas"></div>#}
+{#            <div class="grsz1">#}
+{#                 <span class="shuz"><a class="shuza">12</a></span>#}
+{#                 <span class="shuz1"><a class="shuz1a">系统通知</a></span>#}
+{#            </div>#}
+{#        </div>#}
+        <div class="sezz" style="cursor: pointer;right: 195px;display: none">
+            <div class="daas"></div>
+            <div class="grsz1" style="text-align: center">
+                <span class="shuz1"><a class="shuz1a" href="/user/info">个人设置</a></span>
+            </div>
+            <div class="grsz1" style="text-align: center">
+                <span class="shuz1"><a class="shuz1a" href="/user/search">搜索记录</a></span>
+            </div>
+            <div class="grsz1" style="text-align: center">
+                <span class="shuz1"><a class="shuz1a" href="/user/photo">修改头像</a></span>
+            </div>
+            <div class="grsz1" style="text-align: center">
+                <span class="shuz1"><a class="shuz1a" href="/user/safety">账号安全</a></span>
+            </div>
+        </div>
+    </div>
+</div>
