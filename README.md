@@ -14,14 +14,41 @@ Nvwa Brain，女娲大脑，是世界上第一款基于理解体系建立起来�
 
 ## 三、运行基本代码
 ### 1、启动nvwa大脑：运行/调试 loongtian/nvwa/centralBrainRuner.py
-    （1）系统会询问是否删除原有数据（如下图），默认调试状态下，建议删除，以便测试系统关联的正确性；
-    （2）启动完成后，应如下图：
+#### （1）系统会询问是否删除原有数据（如下图），默认调试状态下，建议删除，以便测试系统关联的正确性；
+
+![Image text](https://raw.githubusercontent.com/langway/Nvwa/master/doc/img/start-nvwa-del-db.png)
+    
+#### （2）启动完成后，应如下图：
+    
+![Image text](https://raw.githubusercontent.com/langway/Nvwa/master/doc/img/start-nvwa-success.png)
+
 ### 2、启动输入输出控制台（客户端）：运行/调试 loongtian/nvwa/adminConsoleRunner.py
-    （1）会要求输入用户名和密码，系统默认用户名：nvwa，密码：123，即可登录，登录后界面如下图：
-    （2）试着输入“牛”、“牛有腿”等简单句子，结果如下：
+
+![Image text](https://raw.githubusercontent.com/langway/Nvwa/master/doc/img/start-console.png)
+
+#### （1）会要求输入用户名和密码，系统默认用户名：nvwa，密码：123，即可登录，登录后界面如下图：
+    
+![Image text](https://raw.githubusercontent.com/langway/Nvwa/master/doc/img/start-console-logon.png)
+    
+#### （2）试着输入“牛”、“牛有腿”等简单句子，结果如下：
+    
+![Image text](https://raw.githubusercontent.com/langway/Nvwa/master/doc/img/console-dialog1.png)
+    
+![Image text](https://raw.githubusercontent.com/langway/Nvwa/master/doc/img/console-dialog2.png)
+
 ### 3、开发情况下，直接使用test/nvwa/testBrain.py，运行testMeaning函数，即可逐行查看运行结果
 
+![Image text](https://raw.githubusercontent.com/langway/Nvwa/master/doc/img/console-dialog3.png)
+
 ## 三、基于理解的理论（基础部分）
+### 1、关于元数据-实际对象
+### 2、关于丁字形数据结构（T型数据结构）
+### 3、关于意义的分层结构
+### 4、关于动作
+#### （1）简单动作
+#### （2）共轭动作
+#### （3）上下文动作
+#### （4）内外关联动作
 
 ## 四、其他
 ###  1、python库更改
