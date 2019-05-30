@@ -50,6 +50,8 @@ Nvwa Brain，女娲大脑，是世界上第一款基于理解体系建立起来�
 #### （3）上下文动作
 #### （4）内外关联动作
 
+目前，可阅读doc/《对象之间的关系.doc》
+
 ## 四、其他
 ###  1、python库更改
 \Lib\logging\__init__.py\LogRecord.getMessage最后一句话：
@@ -81,4 +83,4 @@ class RotatingFileHandler(BaseRotatingHandler):
                 except:
                     pass
 
-
+## 联系方式：手机/微信 15640193617
