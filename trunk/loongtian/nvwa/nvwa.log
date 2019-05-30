@@ -142,3 +142,4 @@ File "E:\nvwa-run\trunk\loongtian\nvwa\models\baseEntity.py", line 959, in updat
 File "E:\nvwa-run\trunk\loongtian\nvwa\models\realObject.py", line 522, in setType
 File "E:\nvwa-run\trunk\loongtian\nvwa\engines\modelingEngine.py", line 329, in _createNewPatternAndMeaning
 File "E:\nvwa-run\trunk\loongtian\nvwa\engines\modelingEngine.py", line 230, in _createRealObjectExecutionInfo - 2019-05-30 16:33:19,904 - nvwa - logger.py:449
+[ INFO ]- 开始加载数据库元数据
