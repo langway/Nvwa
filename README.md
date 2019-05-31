@@ -40,7 +40,7 @@ Nvwa Brain，女娲大脑，是世界上第一款基于理解体系建立起来�
 
 ![Image text](https://raw.githubusercontent.com/langway/Nvwa/master/doc/img/console-dialog3.png)
 
-## 三、基于理解的理论（基础部分）
+## 四、基于理解的理论（基础部分）
 ### 1、关于元数据-实际对象
 ### 2、关于顶级关系
 ### 3、关于丁字形数据结构（T型数据结构）
@@ -53,7 +53,7 @@ Nvwa Brain，女娲大脑，是世界上第一款基于理解体系建立起来�
 
 目前，可阅读doc/《对象之间的关系.doc》
 
-## 四、其他
+## 五、其他
 ###  1、python库更改
 \Lib\logging\__init__.py\LogRecord.getMessage最后一句话：
 原语句：
@@ -84,4 +84,4 @@ class RotatingFileHandler(BaseRotatingHandler):
                 except:
                     pass
 
-## 五、联系方式：手机/微信 15640193617
+## 六、联系方式：手机/微信 15640193617
