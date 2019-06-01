@@ -1,5 +1,5 @@
 # Nvwa
-女娲大脑，是世界上第一款基于理解体系建立起来的可真正实现机器思维的“强”人工智能（GAI，General Artificial Intelligence）！ 目标是打造一款像人一样“学习、思维”，帮人做事的机器思维！一个类似于人的可理解的世界，可以进一步形成其他技术实现不了的逻辑推理，联想，情感，甚至幽默等思维结果！
+女娲大脑，是世界上第一款基于理解体系建立起来的可真正实现机器思维的“强”人工智能（GAI，General Artificial Intelligence）！ 目标是打造一款像人一样“学习、思维”，帮人做事的机器思维！一个类似于人的可理解的世界，可以进一步形成其他技术实现不了的逻辑推理，联想，情感，甚至幽默等思维结果！  
 Nvwa Brain，is the first GAI（GAI，General Artificial Intelligence）of the world, base on understanding theory! The goal is making a machine thinking like human's"Learning,Thinking",to help people to do things! Thiking similar to Human,and get logic  inference，association，emotion，even humor that other technology can not do!
 
 ## 一、为什么叫女娲？
