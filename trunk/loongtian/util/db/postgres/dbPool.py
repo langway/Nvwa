@@ -44,7 +44,7 @@ class _DbPool(object):
                 blocking=blocking, maxusage=maxusage, setsession=setsession, ping=ping
             )
         except Exception as e:
-            # print (e.message.decode("GBK"))
+            # print (str(e).decode("GBK"))
             raise e
 
     def size(self):
@@ -65,7 +65,7 @@ class _DbPool(object):
         :return 返回执行SQL语句的结果集
         """
         self.count = 0
-        if not type(sql) is types.ListType:
+        if not isinstance(sql,list):
             sql = [sql]
 
         connection = None
@@ -133,7 +133,7 @@ class _DbPools():
         if _DbPools.__DbPools and not force_to_reload:
             return _DbPools.__DbPools
         _DbPools.__DbPools = {}
-        for key, setting in DB_Postgres_Settings.iteritems():
+        for key, setting in DB_Postgres_Settings.items():
             cur_DbPool = _DbPool(host=setting.Host, port=setting.Port,
                                  database=setting.Database, user=setting.User,
                                  password=setting.Password)

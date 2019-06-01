@@ -3,7 +3,7 @@
 
 __author__ = 'Leon'
 
-from SocketServer import StreamRequestHandler
+from socketserver import StreamRequestHandler
 
 class BaseStreamHandler(StreamRequestHandler):
     """

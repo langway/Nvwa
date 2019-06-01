@@ -27,7 +27,7 @@ class BaseEntity(object):
     __tablename__ 模型对应的表名
     primaryKey 模型对应的主键
     cloumns 模型对应的非主键的列:
-    isdel:逻辑删除标记
+    status:状态; 0-不可用(逻辑删除);200-正常;800-不可遗忘
     createtime:创建时间。（使用trigger）
     updatetime:更新时间。（使用trigger）
     lasttime:最后使用时间。（使用trigger）
@@ -68,7 +68,7 @@ class BaseEntity(object):
                  memory=None):
         """
         初始化函数
-        :param id: 供内部使用的id，需要在子类中与具体的id挂钩，例如：元数据中，self.id==self.mid
+        :param id: 供内部使用的id，需要在子类中与具体的id挂钩，例如：元数据中，self.id==self.id
         :param createtime: 创建时间
         :param updatetime: 更新时间
         :param lasttime: 最近访问时间
@@ -79,27 +79,24 @@ class BaseEntity(object):
             raise Exception("\"__tablename__\" attribute is required, and isn't None.")
         if self.primaryKey is None and self.columns is None:
             raise Exception("\"primaryKey\" or \"columns\" has at least one not None.")
-        # id属性，便于子类与self.id同步（避免对对象进行判断才能取得实际id）
-        self.id = None
+        # id属性
         if id is None:
-            self._setId(unicode(BaseEntity.createNewUuid()))
+            self.id = str(BaseEntity.createNewUuid())
         else:
-            self._setId(unicode(id))
+            self.id = str(id)
+
+        self.type = ObjType.UNKNOWN # 总是返回UNKNOWN类型
 
         self.createrid = createrid
-        # self.createrip = createrip
-
         self.createtime = createtime
         self.updatetime = updatetime
         self.lasttime = lasttime
         self.status = status  # 状态; 0-不可用(逻辑删除);200-正常;800-不可遗忘
 
-        # self.isadmined = False  # 是否由管理员用户创建（实现管理员数据对象与用户数据对象分离）
-
         self.MemoryCentral = memory  # 记录当前对象的记忆区，便于直接从记忆区取对象而不用每次从数据库中取
-        self.Layers = _Layers(self)  # 关联所有对于分层对象操作的封装类
+        self.Layers = Layers(self)  # 关联所有对于分层对象操作的封装类
 
-        self.Observers = _Observers(self)
+        self.Observers = Observers(self)
         # ####################################
         #      下面为运行时数据
         # ####################################
@@ -135,7 +132,7 @@ class BaseEntity(object):
         if not entity:
             return u""
 
-        if isinstance(entity, str) or isinstance(entity, unicode):
+        if isinstance(entity, str):
             return entity
 
         if hasattr(entity, "id"):
@@ -148,28 +145,18 @@ class BaseEntity(object):
         _id = None
         if len(entity.primaryKey) == 1:
             if hasattr(entity, entity.primaryKey[0]):
-                _id = unicode(getattr(entity, entity.primaryKey[0]))
+                _id = str(getattr(entity, entity.primaryKey[0]))
         else:
             _id = u""
             for key in entity.primaryKey:
                 if hasattr(entity, key) and getattr(entity, key):
-                    _id += unicode(getattr(entity, key))
+                    _id += str(getattr(entity, key))
 
         if not _id:
             raise Exception("无法取得Id，item类型：%s" % (type(entity)))
 
         entity._id = _id
         return _id
-
-    def _setId(self, id):
-        """
-        设置对象的Id
-        :return:
-        """
-        self.id = id
-        # if len(self.primaryKey) == 1:
-        #     # 同步primaryKey和_id
-        #     setattr(self, self.primaryKey[0], id)
 
     @staticmethod
     def getIdAndType(entity):
@@ -178,7 +165,7 @@ class BaseEntity(object):
         :param entity:
         :return:_id,_type
         """
-        error_msg = "无法取得对象的id及type，对象应为MetaData、MetaNetItem、RealObject、Knowledge、Layer或[sid,utype]\(sid,utype)，当前类型错误："
+        error_msg = "无法取得对象的id及type，对象应为MetaData、MetaNet、RealObject、Knowledge、Layer或[sid,utype]\(sid,utype)，当前类型错误："
         if isinstance(entity, list) or isinstance(entity, tuple):
             _id = entity[0]
             _type = entity[1]
@@ -204,18 +191,18 @@ class BaseEntity(object):
         if pythonToSQL:  # 从python对象转化成sql字符串
             if param is None:
                 return "null"
-            elif isinstance(param, str) or isinstance(param, unicode):
-                param = "'%s'" % param
-                # param =param.replace("'", "''")
-            else:
+            elif not isinstance(param, str):
                 param = str(param)
-                param = "'%s'" % param
-                # param = param.replace("'", "''")
+
+            param = param.replace("'", "\\'")
+            param = "'%s'" % param
+            if param.find("\\"):
+                param = "E" + param
 
         else:  # 从sql字符串转化成python对象
             if param == "'null'" or param == "\"null\"":
                 return None
-            elif isinstance(param, str) or isinstance(param, unicode):
+            elif isinstance(param, str) :
                 param = "'%s'" % param.replace("'", "\\'")
 
             param = jsonplus.dumps(param)
@@ -224,7 +211,7 @@ class BaseEntity(object):
 
     def _checkPrimaryKey(self, vars):
         for pk in self.primaryKey:
-            if not vars.has_key(pk):
+            if not pk in vars:
                 raise Exception("Insert \"%s(pk)\" is Empty!" % pk)
 
     @classmethod
@@ -238,39 +225,37 @@ class BaseEntity(object):
         for dct in result:
             entity = cls()
             for attribute in cls.primaryKey:
-                if dct.has_key(attribute.lower()):
+                if attribute.lower() in dct:
                     value = dct[attribute.lower()]
-                    if isinstance(value, str):
-                        value = value.decode("utf-8")
 
-                    if isinstance(value, unicode):
+                    if isinstance(value, str):
                         value = value.strip()
 
                     setattr(entity, attribute, value)
-                    # entity.__dict__[attribute] = cls.getParamer(dct[attribute.lowerid()], pythonToSQL = False)
-                    # exec ("entity.%s = %s" % (attribute, cls.getParamer(dct[attribute.lowerid()], pythonToSQL=False)))
+                    # entity.__dict__[attribute] = cls.getParamer(dct[attribute.endid()], pythonToSQL = False)
+                    # exec ("entity.%s = %s" % (attribute, cls.getParamer(dct[attribute.endid()], pythonToSQL=False)))
 
             for attribute in cls.columns:
-                if dct.has_key(attribute.lower()):
+                if attribute.lower() in dct:
                     value = dct[attribute.lower()]
-                    if isinstance(value, str):
-                        value = unicode(value)
-                    if cls.jsonColumns.__contains__(attribute):  # 从json解析为对象
-                        value = jsonplus.loads(value)
-                    entity.__setattr__(attribute, value)
-                    # exec("entity.%s = %s" % (attribute, cls.getParamer(dct[attribute.lowerid()], pythonToSQL = False)))
+                    if not value is None:
+
+                        if cls.jsonColumns.__contains__(attribute):  # 从json解析为对象
+                            value = jsonplus.loads(value)
+                    setattr(entity, attribute, value)
+                    # exec("entity.%s = %s" % (attribute, cls.getParamer(dct[attribute.endid()], pythonToSQL = False)))
 
             # ##################################
             # 同步_id 与primaryKey（否则会出现不一致的情况）
             # ##################################
             if len(cls.primaryKey) == 1:
-                entity._setId(unicode(getattr(entity, cls.primaryKey[0])))
+                entity.id = str(getattr(entity, cls.primaryKey[0]))
             elif len(cls.primaryKey) > 1:
                 temp_id = u""
                 for _primaryKey in cls.primaryKey:
-                    temp_id += unicode(getattr(entity, _primaryKey)) + u"_"
+                    temp_id += str(getattr(entity, _primaryKey)) + u"_"
                 temp_id = temp_id.rstrip(u"_")
-                entity._setId(temp_id)
+                entity.id = temp_id
 
             # 标记是从数据库中取出来的
             entity._isInDB = True
@@ -287,19 +272,22 @@ class BaseEntity(object):
         :param recordInDB:是否在数据库中创建（False返回自身，例如：自然语言的知识链（NL_Knowledge，奇数位为“下一个为”）就不需要在数据库中创建）
         :return: 返回建立的Entity。
         """
+        self.notifySysOperation(self.create)
         result = None
         if checkExist:  # 保证同一性（避免重复及不相同）
             # 从内存或数据库中取得已存在的对象
             result = self.getExist(getAllByColumnsInDB=False)
 
         # 从内存或数据库中取不到，真正创建到数据库，并添加到内存
+        # 从内存或数据库中取不到，真正创建到数据库，并添加到内存
         if result is None:
-            if recordInDB:
+            if recordInDB and not self._isInDB:
                 result = self._createInDB()
                 if result and not result._isGetByConflictDBColumns:  # 根据重复键违反唯一约束取得已知对象
                     result._isNewCreated = True
             else:
                 result = self
+
 
             # 添加到工作内存以便后续操作
             if result and result.id and self.MemoryCentral:
@@ -319,20 +307,26 @@ class BaseEntity(object):
         从内存或数据库中取得已存在的对象
         :return:
         """
-        if fromMemory:
+        if fromMemory:  # 0、首先从内存中取
             result = self.getByIdInMemory()
             if result:
                 return result
+            # 根据系统定义查询时需要使用的字段取得对象
+            result = self.getByRetrieveColumns(fromMemory=True, fromDB=False)
+            if result:
+                return result
 
-        if not fromDB:
+        if not fromDB:  # 上面内存没取到，如果不从数据库中取，直接返回None
             return None
+
+        # 1、内存之中取不到，从数据库中取
         # 根据Id字段取得对象
         result = self.getByIdInDB()
         if result:
             return result
 
         # 根据系统定义查询时需要使用的字段取得对象
-        result = self.getByRetrieveColumns(fromMemory=fromMemory, fromDB=fromDB)
+        result = self.getByRetrieveColumns(fromMemory=False, fromDB=True)
         if result:
             return result
 
@@ -354,7 +348,7 @@ class BaseEntity(object):
 
         result = None
         for col in list(self.primaryKey) + list(self.columns):
-            if var.has_key(col):
+            if col in var:
                 cols_claus.append("%s, " % col)
                 value = var.get(col)
                 if self.jsonColumns.__contains__(col):  # 是否需要使用使用json解析
@@ -368,27 +362,30 @@ class BaseEntity(object):
             result = self
 
         except IntegrityError as e:
-            # 有可能已经存在，会抛出该错误，形式：
+            # 有可能数据库已经存在，会抛出该错误，形式：
             # IntegrityError:
             # 1、错误:  重复键违反唯一约束"realobject_pkey"
             # DETAIL:  键值"(rid)=(R0000000000000000000000000000001)" 已经存在
             # 2、错误:  重复键违反唯一约束"metadata_mvalue_key"
-            # DETAIL:  键值"(mvalue)=(无)" 已经存在
+            # DETAIL:  键值"(mvalue)=(组件)" 已经存在
             # 取得冲突的键-值
-            conflictDBColumns = self._getConflictDBColumns(e.message)
+            conflictDBColumns = self._getConflictDBColumns(str(e))
             if conflictDBColumns:
-                result = self.getAllByConditionsInDB(memory=self.MemoryCentral, **conflictDBColumns)
+                result = self.getAllByConditionsInDB(**conflictDBColumns)  # 不记录到内存中
                 if result:
-                    if isinstance(result, list):
+                    if not isinstance(result, BaseEntity):
                         raise Exception("根据唯一约束条件取得的对象不唯一！")
+
                     result._isGetByConflictDBColumns = True  # 标记根据重复键违反唯一约束取得对象
-                    # self.__decreaseDebugerCounter()
+                    # 再从内存中取，保证同一性
+                    if self.MemoryCentral:
+                        self.__processDbResult(result,self.MemoryCentral)
+
                     if __debug__:
-                        logger.debug("已存在该对象：%s,系统已取得数据库中对象" % e.message)
+                        logger.debug("已存在该对象：%s,系统已取得数据库中对象" % str(e))
         except Exception as e:
             logger.error("创建对象到数据库错误！原因：%s" % e)
             result = None
-            # self.__decreaseDebugerCounter()
 
         if result:
             result._isInDB = True
@@ -399,6 +396,24 @@ class BaseEntity(object):
                 self.MemoryCentral.PersistentMemory.addInMemory(result)
 
         return result
+
+    @staticmethod
+    def recordInDB(obj, memory=None):
+        """
+        将对象（单个/多个）记录到数据库
+        :param obj:
+        :return:
+        """
+        if obj is None:
+            return
+        if isinstance(obj, list) or isinstance(obj, tuple):
+            for obj in obj:
+                BaseEntity.recordInDB(obj, memory=memory)
+        elif isinstance(obj, BaseEntity):
+            if not obj._isInDB:
+                obj.MemoryCentral=memory
+                obj.create(checkExist=True, recordInDB=True)
+
 
     def _getConflictDBColumns(self, error_str):
         """
@@ -447,39 +462,38 @@ class BaseEntity(object):
 
         return None
 
-    def __increaseDebugerCounter(self):
-        """
-        [测试用] 增加调试用计数器。生产环境下注释掉
-        :return:
-        """
-        if not __debug__:  # 测试用
-            return
-        cur_num = 0
-        type_name = str(type(self)).split(".")[4].split("'")[0]
+    # def __increaseDebugerCounter(self):
+    #     """
+    #     [测试用] 增加调试用计数器。生产环境下注释掉
+    #     :return:
+    #     """
+    #     if not __debug__:  # 测试用
+    #         return
+    #     cur_num = 0
+    #     type_name = str(type(self)).split(".")[4].split("'")[0]
+    #
+    #     if type_name in debugCounter:
+    #         cur_num = debugCounter.get(type_name) + 1
+    #         debugCounter[type_name] = cur_num
+    #     else:
+    #         debugCounter[type_name] = cur_num
+    #
+    #     self._setId(type_name + str(cur_num))
 
-        if debugCounter.has_key(type_name):
-            cur_num = debugCounter.get(type_name) + 1
-            debugCounter[type_name] = cur_num
-        else:
-            debugCounter[type_name] = cur_num
-
-        self._setId(type_name + str(cur_num))
-
-    def __decreaseDebugerCounter(self):
-        """
-        [测试用] 减少调试用计数器。生产环境下注释掉
-        :return:
-        """
-        if not __debug__:  # 测试用，生产环境下注释掉
-            return
-        cur_num = 0
-        type_name = str(type(self)).split(".")[4].split("'")[0]
-
-        if debugCounter.has_key(type_name):
-            debugCounter[type_name] -= 1
-
-
-        self._setId(type_name + str(cur_num))
+    # def __decreaseDebugerCounter(self):
+    #     """
+    #     [测试用] 减少调试用计数器。生产环境下注释掉
+    #     :return:
+    #     """
+    #     if not __debug__:  # 测试用，生产环境下注释掉
+    #         return
+    #     cur_num = 0
+    #     type_name = str(type(self)).split(".")[4].split("'")[0]
+    #
+    #     if type_name in debugCounter:
+    #         debugCounter[type_name] -= 1
+    #
+    #     self._setId(type_name + str(cur_num))
 
     def getByColumnsInDB(self, useRetrieveColumns=True, recordInMemory=True):
         """
@@ -501,7 +515,7 @@ class BaseEntity(object):
         for column_name in columns:
             if self.jsonColumns.__contains__(column_name):  # 如果需要使用使用json解析，则不需要成为查询条件
                 continue
-            if curVars.has_key(column_name):
+            if column_name in curVars:
                 column_value = curVars.get(column_name)
                 if column_value and not isinstance(column_value, BaseEntity.Command):
                     wheres[column_name] = column_value
@@ -626,7 +640,7 @@ class BaseEntity(object):
             result = memory.getByDoubleKeysInMemory(key1, key2, cls)
             if result:
                 if isinstance(result, dict):
-                    return result.values()
+                    return list(result.values())
                 else:
                     return result
         elif len(cls.retrieveColumns) == 1:
@@ -644,7 +658,7 @@ class BaseEntity(object):
         return cls.getAllByConditionsInDB(memory=memory)
 
     # 标明对象类型的字段，用于查找子类型对象。在ObjType中进行枚举定义
-    type_attributes = ["type", "ltype", "utype", "lower_type", "upper_type"]
+    type_attributes = ["type", "stype", "etype", "start_type", "end_type"]
 
     @classmethod
     def getAllByConditionsInDB(cls, limit=None, offset=None,
@@ -728,33 +742,52 @@ class BaseEntity(object):
         """
         if results is None or len(results) == 0:
             return None
-        elif len(results) == 1:
-            result = results[0]
-            result._isInDB = True
-            result._isNewCreated = False
-            if result.id and memory:  # 添加到内存以便后续操作
-                memory.PersistentMemory.addInMemory(result)  # type(result))
-                if isinstance(result, dict):
-                    a = 1
-                result._isInPersistentMemory = True
-                # 记录MemoryCentral
-                result.MemoryCentral = memory
+        if limit is None or limit==-1:
+            limit=len(results)
+
+        if len(results) == 1:
+            if limit<1:
+                raise Exception("当前取得的数据库对象数量为1，超出数量限制%d" % limit)
+            if memory:
+                result=BaseEntity.__processDbResult(results[0],memory)
+            else:
+                result =results[0]
             return result
         else:
             if memory:  # 添加到内存以便后续操作
-                for result in results:
-                    result._isInDB = True
-                    result._isNewCreated = False
-                    if result.id:
-                        memory.PersistentMemory.addInMemory(result)  # type(result))
-                        result._isInPersistentMemory = True
-                        # 记录MemoryCentral
-                        result.MemoryCentral = memory
+                final_results=[]
+                for i in range(len(results)):
+                    if i>limit:
+                        break
+                    result=BaseEntity.__processDbResult(results[i],memory)
+                    final_results.append(result)
+                results=final_results
             return results
+
+    @classmethod
+    def __processDbResult(cls, result, memory=None):
+
+        if not isinstance(result,BaseEntity):
+            return None
+        if memory:  # 添加到内存以便后续操作
+            # 记录MemoryCentral
+            result.MemoryCentral = memory
+            # 保证同一性
+            result_in_memory = result.getExist(fromMemory=True, fromDB=False, getAllByColumnsInDB=False)
+            if result_in_memory:
+                result=result_in_memory
+            else:
+                memory.PersistentMemory.addInMemory(result)  # type(result))
+                result._isInPersistentMemory = True
+
+        result._isInDB = True
+        result._isNewCreated = False
+        return result
 
     @classmethod
     def getAllLikeByStartMiddleEndInDB(cls, attributeName, start=None, end=None, middles=None,
                                        limit=None, offset=None,
+                                       seperator="%",
                                        memory=None):
         """
         取得指定属性（字段）中，所有以头部字符串开始，以尾部字符串结尾的实体类
@@ -767,25 +800,41 @@ class BaseEntity(object):
         :param recordInMemory 使用内存进行存储
         :return:
         """
-        pattern=cls.getLikePattern(start)
+        if start is None and end is None and middles is None:
+            raise Exception("至少提供头部、中部、尾部之中一个参数！")
+        if start:
+            pattern = cls.getLikePattern(start,seperator)
+        else:
+            pattern = "%"
+
         if middles:
             pattern += "%"
             for middle in middles:
-                pattern += cls.getLikePattern(middle)
+                if not middle:
+                    continue
+                pattern += cls.getLikePattern(middle,seperator)
+                if seperator:
+                    pattern += seperator
             pattern += "%"
         # else: # 不应该加%，否则会查询出其他结果
         #     pattern += "%"
 
-        pattern += cls.getLikePattern(end)
+        if end:
+            pattern += cls.getLikePattern(end,seperator)
+        else:
+            pattern += "%"
+
+        while pattern.find("%%") > 0:
+            pattern = pattern.replace("%%", "%")
 
         pattern = pattern.replace("[,", "[")
-        pattern= pattern.replace(",]","]")
+        pattern = pattern.replace(",]", "]")
         # SELECT * FROM tbl_knowledge WHERE s_chain LIKE '[R1,%,R3]'
         # raise Exception("正则表达式错误！")
         return cls.getAllLikeByInDB(limit, offset, memory=memory, **{attributeName: pattern})
 
     @classmethod
-    def getLikePattern(cls, obj):
+    def getLikePattern(cls, obj,seperator="%"):
         """
         取得对象的like查询的pattern
         :param obj:
@@ -793,15 +842,19 @@ class BaseEntity(object):
         """
         pattern = ""
         if isinstance(obj, BaseEntity):
-            pattern = "\"%s\"," % cls._getId(obj)
+            pattern = "\"%s\"" % cls._getId(obj)
         elif isinstance(obj, list):
-            for _obj in obj:
-                child_pattern=cls.getLikePattern(_obj)
+            for _obj in obj:  # todo 这里不对
+                child_pattern = cls.getLikePattern(_obj)
                 if child_pattern:
-                    pattern+=child_pattern
-        elif isinstance(obj,str) or isinstance(obj,unicode):
-            pattern +=obj
+                    pattern += child_pattern
+                    if seperator:
+                        pattern+=seperator
+        elif isinstance(obj, str):
+            pattern += obj
 
+        if seperator:
+            pattern=pattern.rstrip(seperator)
         return pattern
 
     @classmethod
@@ -935,7 +988,7 @@ class BaseEntity(object):
         for col in self.columns:
             if col.startswith("_") or col.startswith("__"):  # 过滤掉私有变量
                 continue
-            if var.has_key(col):
+            if col in var:
                 sets[col] = var.get(col)
 
         self.updateAllInDB(targetRowsAffected=1, wheres=wheres, **sets)
@@ -1046,9 +1099,9 @@ class BaseEntity(object):
                         elif isinstance(objs_in_chain, BaseEntity):
                             objs_in_chain.delete()
 
-            self.updateAttributeValues(isdel=True)
+            self.updateAttributeValues(status=0)
         except Exception as e:
-            raise Exception("逻辑删除对象失败，原因：%s" % e.message)
+            raise Exception("逻辑删除对象失败，原因：%s" % str(e))
         return self
 
     @classmethod
@@ -1068,7 +1121,7 @@ class BaseEntity(object):
                     entities.delete()
 
         except Exception as e:
-            raise Exception("逻辑删除对象失败，原因：%s" % e.message)
+            raise Exception("逻辑删除对象失败，原因：%s" % str(e))
 
     @classmethod
     def deleteAll(cls, memory=None):
@@ -1087,7 +1140,7 @@ class BaseEntity(object):
                     entities.delete()
 
         except Exception as e:
-            raise Exception("逻辑删除对象失败，原因：%s" % e.message)
+            raise Exception("逻辑删除对象失败，原因：%s" % str(e))
 
     def restore(self):
         """
@@ -1100,7 +1153,7 @@ class BaseEntity(object):
             self.status = 200
             self.updateAttributeValues(status=200)
         except Exception as e:
-            raise Exception("恢复逻辑删除对象失败，原因：%s" % e.message)
+            raise Exception("恢复逻辑删除对象失败，原因：%s" % str(e))
         return self
 
     @classmethod
@@ -1113,7 +1166,7 @@ class BaseEntity(object):
         try:
             cls.updateAllInDB(wheres=wheres, isdel=False)
         except Exception as e:
-            raise Exception("逻辑恢复删除对象失败，原因：%s" % e.message)
+            raise Exception("逻辑恢复删除对象失败，原因：%s" % str(e))
 
     def setUnforgetable(self):
         """
@@ -1157,7 +1210,7 @@ class BaseEntity(object):
             self._checkPrimaryKey(var)
             for where in list(self.primaryKey):
                 value = var.get(where)
-                if var.has_key(where) and not isinstance(value, BaseEntity.Command):
+                if where in var and not isinstance(value, BaseEntity.Command):
                     if not value is None:
                         wheres[where] = value
                     else:
@@ -1169,7 +1222,7 @@ class BaseEntity(object):
             return affectedRowsNum
 
         except Exception as e:
-            raise Exception("物理删除对象失败，原因：%s" % e.message)
+            raise Exception("物理删除对象失败，原因：%s" % str(e))
 
     @classmethod
     def _physicalDeleteAll(cls):
@@ -1191,7 +1244,7 @@ class BaseEntity(object):
                     entities._physicalDelete(deleteChainedObjs=False)
 
         except Exception as e:
-            raise Exception("物理删除对象失败，原因：%s" % e.message)
+            raise Exception("物理删除对象失败，原因：%s" % str(e))
 
     @classmethod
     def _physicalDeleteBy(cls, targetRowsAffected=-1, memory=None, **wheres):
@@ -1210,7 +1263,7 @@ class BaseEntity(object):
         waiting_deltions = cls.getAllByConditionsInDB(memory=memory, **wheres)
 
         if not waiting_deltions:  # 已经删除了，不再处理
-            return
+            return -1
         # 拼接删除条件
         for where, value in wheres.items():  # + list(self.columns):
             if value is None:
@@ -1286,7 +1339,20 @@ class BaseEntity(object):
         return BaseEntity.sortBy(li, BaseEntity.weightAttribName, reverse)
 
     def getType(self):
-        return ObjType.UNKNOWN
+        """
+        取得当前对象的类型。
+        :return: 当前对象的类型。
+        """
+        return self.type
+
+    def notifySysOperation(self,operation):
+        """
+        通知当前系统操作
+        :return:
+        """
+        if self.MemoryCentral:
+            pass
+        logger.info(operation)
 
     def isKnownInDB(self):
         """
@@ -1321,7 +1387,7 @@ class BaseEntity(object):
         """
 
 
-class _Layers(object):
+class Layers(object):
     """
     所有对于分层对象操作的封装类。
     """
@@ -1391,9 +1457,9 @@ class _Layers(object):
         :return:
         """
         from loongtian.nvwa.models.layer import Layer
-        return Layer.createLayerByUpperAndLowerInDB(upper, self.entity,
-                                                    weight, utype, ltype,
-                                                    memory=self.entity.MemoryCentral)
+        return Layer.createByStartAndEndInDB(upper, self.entity,
+                                             weight, utype, ltype,
+                                             memory=self.entity.MemoryCentral)
 
     def addLower(self, lower, weight=Character.Original_Link_Weight, recordInDB=True, utype=None, ltype=None):
         """
@@ -1451,9 +1517,9 @@ class _Layers(object):
         :return:
         """
         from loongtian.nvwa.models.layer import Layer
-        return Layer.createLayerByUpperAndLowerInDB(self.entity, lower,
-                                                    weight, utype, ltype,
-                                                    memory=self.entity.MemoryCentral)
+        return Layer.createByStartAndEndInDB(self.entity, lower,
+                                             weight, utype, ltype,
+                                             memory=self.entity.MemoryCentral)
 
     def getLowerLayers(self):
         """
@@ -1461,7 +1527,7 @@ class _Layers(object):
         :return:
         """
         from loongtian.nvwa.models.layer import Layer
-        layers = Layer.getAllByConditionsInDB(upperid=self.entity.id,
+        layers = Layer.getAllByConditionsInDB(startid=self.entity.id,
                                               memory=self.entity.MemoryCentral)
         return layers
 
@@ -1471,7 +1537,7 @@ class _Layers(object):
         :return:
         """
         from loongtian.nvwa.models.layer import Layer
-        layers = Layer.getAllByConditionsInDB(lowerid=self.entity.id,
+        layers = Layer.getAllByConditionsInDB(endid=self.entity.id,
                                               memory=self.entity.MemoryCentral)
         return layers
 
@@ -1485,8 +1551,8 @@ class _Layers(object):
             return self.entity._UpperEntities
         from loongtian.nvwa.models.layer import Layer
 
-        self.entity._UpperEntities = Layer.getUppersByLowerInDB(self.entity, lazy_get=False,
-                                                                memory=self.entity.MemoryCentral)
+        self.entity._UpperEntities = Layer.getStartsByEndInDB(self.entity, lazy_get=False,
+                                                              memory=self.entity.MemoryCentral)
         self.checkLimitation(self.entity._UpperEntities, self.entity.upperLimitation, DirectionType.UPPER)
         return self.entity._UpperEntities
 
@@ -1540,9 +1606,9 @@ class _Layers(object):
 
         if not uppers:
             from loongtian.nvwa.models.layer import Layer
-            uppers = Layer.getTypedUppersByLowerInDB(self.entity, upper_type=type,
-                                                     lazy_get=lazy_get,
-                                                     memory=self.entity.MemoryCentral)
+            uppers = Layer.getTypedStartsByEndInDB(self.entity, start_type=type,
+                                                   lazy_get=lazy_get,
+                                                   memory=self.entity.MemoryCentral)
             if uppers:
                 if self.entity._UpperEntities:
                     self.entity._UpperEntities.merge(uppers)
@@ -1562,8 +1628,8 @@ class _Layers(object):
             return self.entity._LowerEntities
         from loongtian.nvwa.models.layer import Layer
 
-        self.entity._LowerEntities = Layer.getLowersByUpperInDB(self.entity, lazy_get=False,
-                                                                memory=self.entity.MemoryCentral)
+        self.entity._LowerEntities = Layer.getEndsByStartInDB(self.entity, lazy_get=False,
+                                                              memory=self.entity.MemoryCentral)
         self.checkLimitation(self.entity._LowerEntities, self.entity.lowerLimitation, DirectionType.LOWER)
         return self.entity._LowerEntities
 
@@ -1590,9 +1656,9 @@ class _Layers(object):
 
         if not lowers:
             from loongtian.nvwa.models.layer import Layer
-            lowers = Layer.getTypedLowersByUpperInDB(self.entity, lower_type=type,
-                                                     lazy_get=lazy_get,
-                                                     memory=self.entity.MemoryCentral)
+            lowers = Layer.getTypedEndsByStartInDB(self.entity, end_type=type,
+                                                   lazy_get=lazy_get,
+                                                   memory=self.entity.MemoryCentral)
             if lowers:
                 if self.entity._LowerEntities:
                     self.entity._LowerEntities.merge(lowers)
@@ -1627,7 +1693,7 @@ class _Layers(object):
         :return:
         """
         from loongtian.nvwa.models.layer import Layer
-        if Layer.getLayerByUpperAndLower(upper, lower, lazy_get=True, memory=memory):
+        if Layer.getByStartAndEnd(upper, lower, lazy_get=True, memory=memory):
             return True
         return False
 
@@ -1662,7 +1728,7 @@ class _Layers(object):
         :return:
         """
         from loongtian.nvwa.models.layer import Layer
-        return Layer.deleteByUpperAndLower(upper, self.entity)
+        return Layer.deleteByStartAndEnd(upper, self.entity)
 
     def removeLower(self, lower, recordInDB=True):
         """
@@ -1694,7 +1760,7 @@ class _Layers(object):
         :return:
         """
         from loongtian.nvwa.models.layer import Layer
-        return Layer.deleteByUpperAndLower(self.entity, lower)
+        return Layer.deleteByStartAndEnd(self.entity, lower)
 
     def deleteRelatedLayers(self):
         """
@@ -1755,7 +1821,7 @@ class _Layers(object):
         :return:
         """
         from loongtian.nvwa.models.layer import Layer
-        return Layer._physicalDeleteByUpperAndLower(upper, self.entity)
+        return Layer._physicalDeleteByStartAndEnd(upper, self.entity)
 
     def _physicalDeleteWithLower(self, lower, recordInDB=True):
         """
@@ -1776,7 +1842,7 @@ class _Layers(object):
         :return:
         """
         from loongtian.nvwa.models.layer import Layer
-        return Layer._physicalDeleteByUpperAndLower(self.entity, lower)
+        return Layer._physicalDeleteByStartAndEnd(self.entity, lower)
 
 
 class LayerLimitation(object):
@@ -1834,7 +1900,7 @@ class LayerLimitation(object):
         return len(self.main) + len(self.subs)
 
 
-class _Observers(_Layers):
+class Observers(Layers):
     """
     所有对于数据对象与观察者之间的关联关系操作的封装类。todo 与_Layers相同
     """
@@ -1844,7 +1910,7 @@ class _Observers(_Layers):
         所有对于数据对象与观察者之间的关联关系操作的封装类 todo 与_Layers相同
         :param entity:
         """
-        super(_Observers, self).__init__(entity)
+        super(Observers, self).__init__(entity)
 
         # todo 每个函数单独调用下面的Observer
         # from loongtian.nvwa.models.observer import Observer

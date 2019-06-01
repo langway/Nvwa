@@ -9,12 +9,12 @@ from loongtian.nvwa.engines.engineBase import EngineBase
 class NgramEngine(EngineBase):
 
     @staticmethod
-    def loadNgramDictFromDB(NgramDict,NgramNum):
+    def loadNgramDictFromDB(NgramDict,NgramNum,memory=None):
         """
         加载数据库中所有的N元关系到内存中的NgramDict
         :return:allMetaNet
         """
-        allMetaNet=MetaNet.getAllInDB()
+        allMetaNet=MetaNet.getAllInDB(memory=memory)
         if not allMetaNet:
             return None
         # 加载到内存的NgramDict

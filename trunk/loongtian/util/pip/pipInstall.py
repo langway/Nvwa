@@ -8,4 +8,4 @@ import loongtian.util.pip.pipHelper as pipHelper
 
 if __name__ == '__main__':
     # 安装组件
-    pipHelper.install("py-moneyed")
+    pipHelper.install("socketserver")

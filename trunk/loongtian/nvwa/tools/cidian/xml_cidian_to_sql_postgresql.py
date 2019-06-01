@@ -95,9 +95,9 @@ def insertOrUpdateMetaData(mvalue, u_id, pronunciation, remark, file_w, file_w_n
         cur.execute("select * from %s where mvalue=\'%s\'" % (tbl_metadata, mvalue))
         rows = cur.fetchall()
         if rows.__len__() == 0:
-            # sql = """INSERT INTO %s (mid, type, mvalue, pronunciation,remark, weight) VALUES ('%s', 100, '%s', '%s','%s', 0.02);\n"""\
+            # sql = """INSERT INTO %s (id, type, mvalue, pronunciation,remark, weight) VALUES ('%s', 100, '%s', '%s','%s', 0.02);\n"""\
             #           %(tbl_metadata,u_id, mvalue,pronunciation, remark)
-            sql = """INSERT INTO %s (mid, type, mvalue, remark, weight) VALUES ('%s', 100, '%s', '%s',%d);\n""" \
+            sql = """INSERT INTO %s (id, type, mvalue, remark, weight) VALUES ('%s', 100, '%s', '%s',%d);\n""" \
                   % (tbl_metadata, u_id, mvalue, remark,Character.Original_Link_Weight)
             cur.execute(sql)
             file_w.write(sql)
@@ -105,8 +105,8 @@ def insertOrUpdateMetaData(mvalue, u_id, pronunciation, remark, file_w, file_w_n
             if rows[0][4] and remark:
                 remark = rows[0][4] + '\n' + remark
             if remark:
-                # sql = """UPDATE %s SET remark='%s',pronunciation='%s' WHERE mid='%s';\n"""%(tbl_metadata,remark,pronunciation, rows[0][0])
-                sql = """UPDATE %s SET remark='%s' WHERE mid='%s';\n""" % (tbl_metadata, remark, rows[0][0])
+                # sql = """UPDATE %s SET remark='%s',pronunciation='%s' WHERE id='%s';\n"""%(tbl_metadata,remark,pronunciation, rows[0][0])
+                sql = """UPDATE %s SET remark='%s' WHERE id='%s';\n""" % (tbl_metadata, remark, rows[0][0])
                 cur.execute(sql)
                 file_w_n.write(sql)
 

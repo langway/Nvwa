@@ -4,7 +4,7 @@
 __author__ = 'Leon'
 
 import threading
-import Queue
+import queue
 from loongtian.util.tasks.runnable import Runnable
 
 
@@ -15,7 +15,7 @@ class TcpClientReceiveListener(Runnable):
         self.client = client
         self._name = 'TcpClientReceiveListener[%s:%s]' % (self.client._TcpClient__host,self.client._TcpClient__port)
         self.prompt = prompt
-        self.output_queue =Queue.Queue()
+        self.output_queue =queue.Queue()
         self._lock =threading.Lock()
 
     def _execute(self):

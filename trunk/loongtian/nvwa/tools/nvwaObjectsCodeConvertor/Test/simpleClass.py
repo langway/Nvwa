@@ -8,27 +8,25 @@ __author__ = 'Leon（梁冰）'
 
 
 class TestA:
+    # _PropertyA=''
 
-
-    #_PropertyA=''
-
-    PropertyB=123
+    PropertyB = 123
 
     @property
     def PropertyA(self):
-
         return self._PropertyA
 
     @PropertyA.setter
-    def PropertyA(self,value):
-        self._PropertyA=value
-
+    def PropertyA(self, value):
+        self._PropertyA = value
 
     def FuncA(self):
-        print 5==1+1
-        print 6==4
+        print(5 == 1 + 1)
+        print(6 == 4)
         pass
+
     pass
+
 
 class TestB():
 
@@ -37,29 +35,25 @@ class TestB():
 
     pass
 
+
 class TestC(object):
 
     def FuncC(self):
         pass
 
-
     pass
 
 
 class TestD(TestB):
+    # 属性的重载
+    PropertyB = 234
 
-    #属性的重载
-    PropertyB=234
-
-    #函数的重载
+    # 函数的重载
     def FuncB(self):
         pass
-
 
     pass
 
 # a=TestA()
 #
 # a.FuncA()
-
-

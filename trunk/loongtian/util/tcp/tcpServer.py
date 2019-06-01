@@ -3,7 +3,7 @@
 
 __author__ = 'Leon'
 
-import SocketServer
+import socketserver
 from loongtian.util.tasks.runnable import Runnable
 
 class TcpServer(Runnable):
@@ -13,7 +13,7 @@ class TcpServer(Runnable):
             self._name = 'TcpServer({0}:{1})'.format(host, port)
         else:
             self._name = 'TcpServer({0}[{1}:{2}])'.format(name,host, port)
-        self.server = SocketServer.ThreadingTCPServer((host, port), handler)
+        self.server = socketserver.ThreadingTCPServer((host, port), handler)
 
 
     def _execute(self):

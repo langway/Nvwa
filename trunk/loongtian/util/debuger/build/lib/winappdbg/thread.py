@@ -1557,7 +1557,7 @@ class Thread (object):
                                        win32.CONTEXT_INTEGER)
         aProcess    = self.get_process()
         data        = dict()
-        for (reg_name, reg_value) in context.iteritems():
+        for (reg_name, reg_value) in context.items():
             if reg_name not in peekable_registers:
                 continue
 ##            if reg_name == 'Ebp':

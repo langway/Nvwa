@@ -1,18 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+__author__ = 'Leon'
 
 from loongtian.nvwa.engines.engineBase import EngineBase
 import copy
 from loongtian.util.log import logger
 from loongtian.nvwa.models.realObject import RealObject
-from loongtian.nvwa.models.metaData import MetaData
-from loongtian.nvwa.models.metaNet import MetaNet
-from loongtian.nvwa.models.knowledge import Knowledge
-from loongtian.nvwa.runtime.relatedObjects import RelatedObj
+import loongtian.nvwa.models.entityHelper as  entityHelper
 from loongtian.nvwa.runtime.thinkResult.realLevelResult import RealLevelResult
-from loongtian.nvwa.runtime.thinkResult.fragments import UnknownMeta, UnknownObj
-from loongtian.nvwa.runtime.meanings import Meaning
 from loongtian.nvwa.runtime.systemInfo import ThinkingInfo
 from loongtian.nvwa.runtime.instinct import Instincts
 
@@ -59,35 +54,35 @@ class EvaluateEngine(EngineBase):
                 elif metaLevelResult.metaLevelThinkingRecords.curMetaLevelMatchInfo == ThinkingInfo.MetaLevelInfo.MatchInfo.SINGLE_META_RELATED_REALS_MATCHED:
                     msg = "我记得“%s”这个字符，记得其对应的实际对象有：%s" % (
                         thinkResult.rawInput,
-                        self._getNatureLanguage(
+                        entityHelper.getNatureLanguage(
                             metaLevelResult.metaLevelThinkingRecords.curMetaLevelMatchRecord.thinkingObj))
             else:  # 多元数据
                 if metaLevelResult.metaLevelThinkingRecords.curMetaLevelMatchInfo == ThinkingInfo.MetaLevelInfo.MatchInfo.METANET_KNOWLEDGE_MEANING_MATCHED:
-                    msg = "我记得“%s”这句话,记得意义为：%s" % self._getNatureLanguage(
-                        metaLevelResult.meta_chain), self._getNatureLanguage(
-                        metaLevelResult.meta_net_matched_knowledges_meaning_klgs)
+                    msg = "我记得“%s”这句话,记得意义为：%s" % (entityHelper.getNatureLanguage(
+                        metaLevelResult.meta_chain), entityHelper.getNatureLanguage(
+                        metaLevelResult.get_meta_net_matched_knowledges_meaning_klgs()))
                 elif metaLevelResult.metaLevelThinkingRecords.curMetaLevelMatchInfo == ThinkingInfo.MetaLevelInfo.MatchInfo.META_CHAIN_UNMATCHED:
                     msg = "“%s”这句话中，所有的字符我都不知道是什么:“%s”！" % (
-                        self._getNatureLanguage(metaLevelResult.meta_chain),
-                        self._getNatureLanguage(metaLevelResult.unknownMetas))
+                        entityHelper.getNatureLanguage(metaLevelResult.meta_chain),
+                        entityHelper.getNatureLanguage(metaLevelResult.unknownMetas))
                 elif metaLevelResult.metaLevelThinkingRecords.curMetaLevelMatchInfo == ThinkingInfo.MetaLevelInfo.MatchInfo.META_CHAIN_PARTIAL_MATCHED:
-                    msg = "“%s”这句话中，" % (self._getNatureLanguage(metaLevelResult.meta_chain))
+                    msg = "“%s”这句话中，" % (entityHelper.getNatureLanguage(metaLevelResult.meta_chain))
                     if len(metaLevelResult.unknownMetas) > 0:
                         msg += "有%d个字符我不知道是什么:“%s”！" % (
-                            len(metaLevelResult.unknownMetas), self._getNatureLanguage(metaLevelResult.unknownMetas))
+                            len(metaLevelResult.unknownMetas), entityHelper.getNatureLanguage(metaLevelResult.unknownMetas))
                     if len(metaLevelResult.proceedUnknownMetas) > 0:
                         msg += "有%d个字符，虽然我不知道是什么，但已经过理解处理:“%s”！" % (
                             len(metaLevelResult.proceedUnknownMetas),
-                            self._getNatureLanguage(metaLevelResult.proceedUnknownMetas))
+                            entityHelper.getNatureLanguage(metaLevelResult.proceedUnknownMetas))
                 else:
-                    msg = "我知道“%s”。" % self._getNatureLanguage(metaLevelResult.meta_chain)
+                    msg = "我知道“%s”。" % entityHelper.getNatureLanguage(metaLevelResult.meta_chain)
 
             # 1、查看实际对象级别的理解、匹配结果
             realLevelResults = copy.copy(metaLevelResult)  # 这里必须复制一个，否则就pop没有了
             cur_msg = self._getRealLevelResultsMsgs(realLevelResults)
             if cur_msg:
                 msg += cur_msg
-            elif not metaLevelResult.isSingle():
+            elif not metaLevelResult.isUndertood():
                 msg += "\r\n       这句话我没能理解！"
 
             msg = msg.lstrip("\r\n       ")
@@ -140,34 +135,34 @@ class EvaluateEngine(EngineBase):
             if realLevelResult.realLevelThinkingRecords.curRealLevelUnderstoodInfo == ThinkingInfo.RealLevelInfo.UnderstoodInfo.ALL_REALS_UNKNOWN:
                 unknow_reals = realLevelResult.realLevelThinkingRecords.curRealLevelUnderstoodRecord.thinkingObj
 
-                msg += "\r\n       并且这%d个实际对象我都不知道是什么：%s" % (len(unknow_reals), self._getNatureLanguage(unknow_reals))
+                msg += "\r\n       并且这%d个实际对象我都不知道是什么：%s" % (len(unknow_reals), entityHelper.getNatureLanguage(unknow_reals))
 
             elif realLevelResult.realLevelThinkingRecords.curRealLevelUnderstoodInfo == ThinkingInfo.RealLevelInfo.UnderstoodInfo.REALS_NEED_CONTEXT:
                 for unsatisfiedFragment in realLevelResult.unsatisfiedFragments:
                     msg += self._getContextMsg(unsatisfiedFragment, realLevelResult)
             elif realLevelResult.realLevelThinkingRecords.curRealLevelUnderstoodInfo == ThinkingInfo.RealLevelInfo.UnderstoodInfo.MEANING_MATCHED_UNDERSTOOD:
-                msg += "\r\n       这句话我匹配到了已理解的知识链为：%s" % self._getNatureLanguage(
+                msg += "\r\n       这句话我匹配到了已理解的知识链为：%s" % entityHelper.getNatureLanguage(
                     realLevelResult.realLevelThinkingRecords.curRealLevelUnderstoodRecord.thinkingObj)
             elif realLevelResult.realLevelThinkingRecords.curRealLevelUnderstoodInfo == ThinkingInfo.RealLevelInfo.UnderstoodInfo.ALL_REALS_UNDERSTOOD:
 
                 if len(realLevelResult.understood_meaning_klg_dict) == 1:
-                    klg = realLevelResult.understood_meaning_klg_dict.values()[0]
-                    msg += "\r\n       这句话我理解为：%s" % self._getNatureLanguage(klg)
+                    klg = list(realLevelResult.understood_meaning_klg_dict.values())[0]
+                    msg += "\r\n       这句话我理解为：%s" % entityHelper.getNatureLanguage(klg)
                 else:
                     i = 1
-                    for id, klg in realLevelResult.understood_meaning_klg_dict.iteritems():
-                        msg += "\r\n       这句话我的第%s种理解为：%s" % (i, self._getNatureLanguage(klg))
+                    for id, klg in realLevelResult.understood_meaning_klg_dict.items():
+                        msg += "\r\n       这句话我的第%s种理解为：%s" % (i, entityHelper.getNatureLanguage(klg))
                         i += 1
 
             elif realLevelResult.realLevelThinkingRecords.curRealLevelUnderstoodInfo == ThinkingInfo.RealLevelInfo.UnderstoodInfo.ALL_REALS_UNDERSTOOD_ANYTHING_MATCHED:
 
                 if len(realLevelResult.understood_meaning_klg_dict) == 1:
-                    klg = realLevelResult.understood_meaning_klg_dict.values()[0]
-                    msg += "\r\n       这句话我理解为：%s" % self._getNatureLanguage(klg)
+                    klg = list(realLevelResult.understood_meaning_klg_dict.values())[0]
+                    msg += "\r\n       这句话我理解为：%s" % entityHelper.getNatureLanguage(klg)
                 else:
                     i = 1
-                    for id, klg in realLevelResult.understood_meaning_klg_dict.iteritems():
-                        msg += "\r\n       这句话我的第%s种理解为：%s" % (i, self._getNatureLanguage(klg))
+                    for id, klg in realLevelResult.understood_meaning_klg_dict.items():
+                        msg += "\r\n       这句话我的第%s种理解为：%s" % (i, entityHelper.getNatureLanguage(klg))
                         i += 1
 
                 msg += "\r\n       系统处理的结果为：\r\n       ["
@@ -182,31 +177,52 @@ class EvaluateEngine(EngineBase):
 
 
                 if realLevelResult.anything_matched_klgs:
+                    result=[]
                     for klg in realLevelResult.anything_matched_klgs:
                         components=klg.getSequenceComponents()
                         for anything_index in anything_indexes:
-                            component=components[anything_index]
-                            if component.id == Instincts.instinct_original_anything.id or\
-                                component.Constitutions.isChild(Instincts.instinct_original_anything):
-                                continue
-                            msg += self._getNatureLanguage(component) + ","
-                    msg = msg.rstrip(",")
+                            try:
+                                component=components[anything_index]
+                                if component.id == Instincts.instinct_original_anything.id or\
+                                    component.Constitutions.isChild(Instincts.instinct_original_anything):
+                                    continue
+                                result.append(component)
+                            except: # 可能取不到，例如查询结果为：牛-组件，现在要匹配的第3位的什么
+                                pass
+
+                    result=list(set(result)) # 去重
+                    msg += entityHelper.getNatureLanguage(result)
                     msg += "]"
 
             elif realLevelResult.realLevelThinkingRecords.curRealLevelUnderstoodInfo == ThinkingInfo.RealLevelInfo.UnderstoodInfo.FRAGMENTS_CONFLICTED_MISUNDERSTOOD:
                 msg += "\r\n       这句话有冲突，"
                 for conflicted_understoodFragment in realLevelResult.realLevelThinkingRecords.curRealLevelUnderstoodRecord.thinkingObj:
                     msg += "到底是：%s，还是：%s" % (
-                        self._getNatureLanguage(conflicted_understoodFragment[0].getFragmentedReals()),
-                        self._getNatureLanguage(conflicted_understoodFragment[1].getFragmentedReals()))
+                        entityHelper.getNatureLanguage(conflicted_understoodFragment[0].getFragmentedReals()),
+                        entityHelper.getNatureLanguage(conflicted_understoodFragment[1].getFragmentedReals()))
             elif realLevelResult.realLevelThinkingRecords.curRealLevelUnderstoodInfo == ThinkingInfo.RealLevelInfo.UnderstoodInfo.SELF_EXPLAIN_SELF:
                 msg += "\r\n       这句是车轱辘话，自己解释自己！"
             elif realLevelResult.realLevelThinkingRecords.curRealLevelUnderstoodInfo == ThinkingInfo.RealLevelInfo.UnderstoodInfo.EXECUTIONINFO_CREATED:
                 thinking_obj = realLevelResult.realLevelThinkingRecords.curRealLevelUnderstoodRecord.thinkingObj
-                msg += "\r\n       这句话创建了“%s”的意义！" % self._getNatureLanguage(thinking_obj.action)
+                msg += "\r\n       这句话创建了“%s”的意义！" % entityHelper.getNatureLanguage(thinking_obj.action)
             elif realLevelResult.realLevelThinkingRecords.curRealLevelUnderstoodInfo == ThinkingInfo.RealLevelInfo.UnderstoodInfo.EXECUTIONINFO_EXIST:
                 thinking_obj = realLevelResult.realLevelThinkingRecords.curRealLevelUnderstoodRecord.thinkingObj
-                msg += "\r\n       这句话匹配到了“%s”的意义！" % self._getNatureLanguage(thinking_obj.action)
+                msg += "\r\n       这句话匹配到了“%s”的意义！" % entityHelper.getNatureLanguage(thinking_obj.action)
+
+            elif realLevelResult.realLevelThinkingRecords.curRealLevelUnderstoodInfo == ThinkingInfo.RealLevelInfo.UnderstoodInfo.EXECUTIONINFOS_CREATED:
+                thinking_obj = realLevelResult.realLevelThinkingRecords.curRealLevelUnderstoodRecord.thinkingObj
+                actions=[]
+                for _thinking_obj in thinking_obj:
+                    actions.append(_thinking_obj.action)
+
+                msg += "\r\n       这句话创建了“%s”的意义！" % entityHelper.getNatureLanguage(actions)
+            elif realLevelResult.realLevelThinkingRecords.curRealLevelUnderstoodInfo == ThinkingInfo.RealLevelInfo.UnderstoodInfo.EXECUTIONINFOS_EXIST:
+                thinking_obj = realLevelResult.realLevelThinkingRecords.curRealLevelUnderstoodRecord.thinkingObj
+                actions = []
+                for _thinking_obj in thinking_obj:
+                    actions.append(_thinking_obj.action)
+
+                msg += "\r\n       这句话匹配到了“%s”的意义！" % entityHelper.getNatureLanguage(actions)
         return msg
 
     def _getContextMsg(self, unsatisfiedFragment, realLevelResult):
@@ -216,13 +232,13 @@ class EvaluateEngine(EngineBase):
         msg = None
         if realLevelResult.realLevelThinkingRecords.curRealLevelMatchInfo == ThinkingInfo.RealLevelInfo.MatchInfo.FRAGMENT_UNSATISFIED_NEED_ABOVES:
             msg = "\r\n       想要理解这句话，“%s”这个对象需要%d个上文！" % (
-                self._getNatureLanguage(unsatisfiedFragment.getCurExe()), need_aboves_num)
+                entityHelper.getNatureLanguage(unsatisfiedFragment.getCurExe()), need_aboves_num)
         elif realLevelResult.realLevelThinkingRecords.curRealLevelMatchInfo == ThinkingInfo.RealLevelInfo.MatchInfo.FRAGMENT_UNSATISFIED_NEED_NEXTS:
             msg = "\r\n       想要理解这句话，“%s”这个对象需要%d个下文！" % (
-                self._getNatureLanguage(unsatisfiedFragment.getCurExe()), need_nexts_num)
+                entityHelper.getNatureLanguage(unsatisfiedFragment.getCurExe()), need_nexts_num)
         elif realLevelResult.realLevelThinkingRecords.curRealLevelMatchInfo == ThinkingInfo.RealLevelInfo.MatchInfo.FRAGMENT_UNSATISFIED_NEED_CONTEXTS:
             msg = "\r\n       想要理解这句话，“%s”这个对象需要%d个上文，%d个下文！" % (
-                self._getNatureLanguage(unsatisfiedFragment.getCurExe()), need_aboves_num, need_nexts_num)
+                entityHelper.getNatureLanguage(unsatisfiedFragment.getCurExe()), need_aboves_num, need_nexts_num)
 
         return msg
 
@@ -236,41 +252,42 @@ class EvaluateEngine(EngineBase):
             print ("\r\n[nvwa]:%s" % msg)
         self.MemoryCentral.Brain.response(msg)
 
-    def _getNatureLanguage(self, obj):
-        """
-        取得对象的自然语言
-        :param obj:
-        :return:
-        """
-        if isinstance(obj, RealObject):
-            return obj.remark
-        elif isinstance(obj, MetaData):
-            return obj.mvalue
-        elif isinstance(obj, MetaNet):
-            obj.getSequenceComponents()
-            return obj._t_chain_words
-        elif isinstance(obj, Knowledge):
-            components = obj.getSequenceComponents()
-            return self._getNatureLanguage(components)
-        elif isinstance(obj, RelatedObj):
-            return self._getNatureLanguage(obj.obj)
-        elif isinstance(obj, UnknownMeta):
-            return self._getNatureLanguage(obj.unknown_meta)
-        elif isinstance(obj, UnknownObj):
-            return self._getNatureLanguage(obj.unknown_obj)
-        elif isinstance(obj, Meaning):
-            return self._getNatureLanguage(obj.toObjChain())
-        elif isinstance(obj, list):
-            nl = "["
-            for _obj in obj:
-                nl += self._getNatureLanguage(_obj) + ","
-            nl = nl.rstrip(",")
-            nl += "]"
-            return nl
-        elif isinstance(obj, dict):
-            nl = "{"
-            for id, _obj in obj.iteritems():
-                nl += self._getNatureLanguage(_obj) + ","
-            nl = nl.rstrip(",")
-            nl += "}"
-            return nl
+    # def getNatureLanguage(self, obj):
+    #     """
+    #     取得对象的自然语言
+    #     :param obj:
+    #     :return:
+    #     """
+    #     if isinstance(obj, RealObject):
+    #         return obj.remark
+    #     elif isinstance(obj, MetaData):
+    #         return obj.mvalue
+    #     elif isinstance(obj, MetaNet):
+    #         obj.getSequenceComponents()
+    #         return obj._t_chain_words
+    #     elif isinstance(obj, Knowledge):
+    #         components = obj.getSequenceComponents()
+    #         return entityHelper.getNatureLanguage(components)
+    #     elif isinstance(obj, RelatedObj):
+    #         return entityHelper.getNatureLanguage(obj.obj)
+    #     elif isinstance(obj, UnknownMeta):
+    #         return entityHelper.getNatureLanguage(obj.unknown_meta)
+    #     elif isinstance(obj, UnknownObj):
+    #         return entityHelper.getNatureLanguage(obj.unknown_obj)
+    #     elif isinstance(obj, Meaning):
+    #         return entityHelper.getNatureLanguage(obj.toObjChain())
+    #     elif isinstance(obj, list) or isinstance(obj, tuple):
+    #         # obj=list(set(obj)) # 去重
+    #         nl = "["
+    #         for _obj in obj:
+    #             nl += entityHelper.getNatureLanguage(_obj) + ","
+    #         nl = nl.rstrip(",")
+    #         nl += "]"
+    #         return nl
+    #     elif isinstance(obj, dict):
+    #         nl = "{"
+    #         for id, _obj in obj.items():
+    #             nl += entityHelper.getNatureLanguage(_obj) + ","
+    #         nl = nl.rstrip(",")
+    #         nl += "}"
+    #         return nl

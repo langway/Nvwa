@@ -176,7 +176,7 @@ def exc_callback(excinfo):
 
 def startThread(args, func, threadNum):
     import Queue
-    __q = Queue.Queue()
+    __q = queue.Queue()
     __t = []
     for arg in args:
         __q.put(arg)

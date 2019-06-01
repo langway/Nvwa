@@ -63,6 +63,9 @@ class _Instincts(object):
 
         self.instinct_meaning = None  # 意义为 # meaning不是top relation，是一种曲折线性对象的动作
 
+        # 保证同一性的操作（两个对象变一个对象，同步Id）
+        self.instinct_realSynchronizer = None
+
         # 观察者
         self.instinct_observer = None  # 观察者为
         # 女娲本身
@@ -199,6 +202,13 @@ class _Instincts(object):
                                       weight=Character.System_Obj_Weight * 10,
                                       status=800,
                                       memory=memory).create()
+
+        # 保证同一性的操作（两个对象变一个对象，同步Id）
+        self.meta_realSynchronizer = MetaData(mvalue=InstinctsText.realSynchronizer,
+                                      weight=Character.System_Obj_Weight * 10,
+                                      status=800,
+                                      memory=memory).create()
+
         # 观察者
         self.meta_observer = MetaData(mvalue=InstinctsText.observer,
                                       weight=Character.System_Obj_Weight * 10,
@@ -227,7 +237,7 @@ class _Instincts(object):
             self.meta_original_object.mvalue: self.meta_original_object,
             self.meta_original_knowledge.mvalue: self.meta_original_knowledge,
 
-            self.meta_original_anything.mvalue:self.meta_original_anything,
+            # self.meta_original_anything.mvalue:self.meta_original_anything,
 
             # 集合
             self.meta_original_collection.mvalue: self.meta_original_collection,
@@ -303,8 +313,8 @@ class _Instincts(object):
 
             # 这里有个特殊的存在：任意对象（需求解）
             # 需要对其进行数据库查询匹配、求解操作的任何对象。(类型不能设为ObjType.INSTINCT，否则会跟其他动作粘连，例如：牛有什么)
-            self.instinct_original_anything = self._createInstinctByMeta(self.meta_original_anything,realType=ObjType.VIRTUAL)
-
+            self.instinct_original_anything = self._createInstinctByMeta(self.meta_original_anything)
+            self.instinct_original_anything.type=ObjType.VIRTUAL
             # 集合
             self.instinct_original_collection = self._createInstinctByMeta(self.meta_original_collection)
             self.instinct_original_next = self._createInstinctByMeta(self.meta_original_next)
@@ -328,6 +338,9 @@ class _Instincts(object):
             # meaning不是top relation，是一种曲折线性对象的动作
             self.instinct_meaning = self._createInstinctByMeta(self.meta_meaning1)
 
+            # 保证同一性的操作（两个对象变一个对象，同步Id）
+            self.instinct_realSynchronizer=self._createInstinctByMeta(self.meta_realSynchronizer)
+
             # 观察者
             self.instinct_observer = self._createInstinctByMeta(self.meta_observer)
             # 女娲对象本身
@@ -344,7 +357,7 @@ class _Instincts(object):
 
             return self._AllInstincts
         except Exception as e:
-            raise Exception(InstinctsErrors.Can_Not_Create_Instinct % e.message)
+            raise Exception(InstinctsErrors.Can_Not_Create_Instinct % str(e))
 
     def _loadInstinctsToList(self):
         """
@@ -382,6 +395,9 @@ class _Instincts(object):
 
             # meaning不是top relation，是一种曲折线性对象的动作
             self.instinct_meaning,
+
+            # 保证同一性的操作（两个对象变一个对象，同步Id）
+            self.instinct_realSynchronizer,
 
             # 女娲自身定义
             self.instinct_nvwa_ai,
@@ -454,7 +470,7 @@ class _Instincts(object):
         """
         # 如果已加载，直接返回内存结果
         if not forceToReload and len(self.InstinctsIdDict) > 0:
-            return self.InstinctsIdDict.values()
+            return list(self.InstinctsIdDict.values())
 
         # 加载元数据
         self._createMetas(memory=memory)
@@ -464,10 +480,20 @@ class _Instincts(object):
             from loongtian.nvwa.models.realObject import RealObject
             instincts = RealObject.getAllByConditionsInDB(memory=memory, type=ObjType.INSTINCT)
 
+            # 首先加载父对象
+
             # 记录到内存中
             if instincts:
                 if isinstance(instincts, list):
+                    # 首先加载父对象
                     for instinct in instincts:
+                        if instinct.remark == self.meta_parent.mvalue:
+                            # 将数据库加载的直觉对象与当前类中的定义对象关联在一起
+                            self._setInstinct(instinct)
+                            break
+                    for instinct in instincts:
+                        if instinct.remark == self.meta_parent.mvalue:
+                            continue
                         # 将数据库加载的直觉对象与当前类中的定义对象关联在一起
                         self._setInstinct(instinct)
                     # 加载直觉对象到列表
@@ -483,7 +509,7 @@ class _Instincts(object):
 
             return instincts
         except Exception as e:
-            raise Exception(InstinctsErrors.Load_Instincts_Failure + e.message)
+            raise Exception(InstinctsErrors.Load_Instincts_Failure + str(e))
 
     def _setInstinct(self, instinct):
         """
@@ -510,6 +536,7 @@ class _Instincts(object):
         # 任意对象（需求解）
         elif instinct.remark == self.meta_original_anything.mvalue:
             self.instinct_original_anything = instinct
+            self.instinct_original_anything.type = ObjType.VIRTUAL
             self.meta_original_anything.Layers.addLower(instinct, recordInDB=False)  # 关联meta和real
 
         # 集合
@@ -563,6 +590,10 @@ class _Instincts(object):
         elif instinct.remark == self.meta_observer.mvalue:
             self.instinct_observer = instinct
             self.meta_observer.Layers.addLower(instinct, recordInDB=False)  # 关联meta和real
+        # 保证同一性的操作（两个对象变一个对象，同步Id）
+        elif instinct.remark == self.meta_realSynchronizer.mvalue:
+            self.instinct_realSynchronizer = instinct
+            self.meta_realSynchronizer.Layers.addLower(instinct, recordInDB=False)  # 关联meta和real
         elif instinct.remark == self.meta_nvwa_ai.mvalue:
             self.instinct_nvwa_ai = instinct
             self.meta_nvwa_ai.Layers.addLower(instinct, recordInDB=False)  # 关联meta和real
@@ -594,8 +625,8 @@ class _Instincts(object):
         elif instinct.id == self.instinct_original_collection.id:  # 元集合
             return self.distance_instinct_original_collection
 
-        elif instinct.id == self.instinct_original_anything.id:  # 元集合
-            return self.distance_instinct_original_anything
+        # elif instinct.id == self.instinct_original_anything.id:  # 元集合
+        #     return self.distance_instinct_original_anything
 
         # 构成
         elif instinct.id == self.instinct_ingredient.id:  # 成分为
@@ -630,6 +661,19 @@ class _Instincts(object):
             if instinct.id == self.instinct_parent.id:  # 顶级关系中，只有父对象无值，因为父对象本身就是对象的类，就是值！
                 return False
             return True
+
+    @staticmethod
+    def hasInstinctMeaning(reals):
+        """
+        当前实际对象链是否需要创建意义（包含直觉意义对象）
+        :return:
+        """
+        from loongtian.nvwa.models.realObject import RealObject
+        for real in reals:
+            if isinstance(real,RealObject) and Instincts.instinct_meaning.id == real.id:
+                return True
+
+        return False
 
 
 # 向外部显现直觉对象

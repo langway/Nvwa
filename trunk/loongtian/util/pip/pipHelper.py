@@ -13,8 +13,8 @@ import loongtian.util.pip.pip_settings as pip_settings
 # from pywin import *
 
 # 重载sys模块，设置默认字符串编码方式为utf8
-reload(sys)
-sys.setdefaultencoding('utf8')
+# reload(sys)
+# sys.setdefaultencoding('utf8')
 
 # 是否使用douban等的国内镜像（默认为True）
 useImageAddress=pip_settings.useImageAddress

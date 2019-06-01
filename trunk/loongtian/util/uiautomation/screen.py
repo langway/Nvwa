@@ -413,7 +413,7 @@ def get_handle_text(pHandle, class_name, lastHandle=None, index=0,position=0, ge
 
         return [lastHandle,class_name, text,position]
     except Exception as e:
-        print (e.message.decode("gbk"))
+        print (str(e).decode("gbk"))
 
 
 def get_idxSubHandle(pHandle, class_name, index=0, getText=True):

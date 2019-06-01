@@ -514,7 +514,7 @@ class SteadyDBCursor:
             cursor = self._cursor
         if self._inputsizes:
             cursor.setinputsizes(self._inputsizes)
-        for column, size in self._outputsizes.iteritems():
+        for column, size in self._outputsizes.items():
             if column is None:
                 cursor.setoutputsize(size)
             else:

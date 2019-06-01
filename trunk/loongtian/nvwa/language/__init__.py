@@ -3,10 +3,10 @@
 
 from loongtian.nvwa import settings
 
-from chinese import text, constant
-from chinese.text import *
-from chinese.constant import *
-from chinese.errors import *
+from loongtian.nvwa.language.chinese import text, constant
+from loongtian.nvwa.language.chinese.text import *
+from loongtian.nvwa.language.chinese.constant import *
+from loongtian.nvwa.language.chinese.errors import *
 
 # 默认设置
 cur_language = settings.language
@@ -14,7 +14,7 @@ if cur_language =="chinese":
     pass # 已经作为默认选项加载过了（见上面）
 
 elif cur_language=="english":
-    from english import text,constant
-    from english.text import *
-    from english.constant import *
-    from english.errors import *
+    from loongtian.nvwa.language.english import text,constant
+    from loongtian.nvwa.language.english.text import *
+    from loongtian.nvwa.language.english.constant import *
+    from loongtian.nvwa.language.english.errors import *

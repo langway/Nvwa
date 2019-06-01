@@ -184,7 +184,7 @@ class Collection():
         :return:
         """
         from loongtian.nvwa.models.knowledge import Knowledge
-        klg = Knowledge.getKnowledgeByObjectChain(components,memory=memory)
+        klg = Knowledge.getByObjectChain(components,memory=memory)
         if not klg:
             klg = Knowledge.createKnowledgeByObjChain(components,memory=memory)
         return klg.toCollectionRealObject()
@@ -197,7 +197,7 @@ class Collection():
         :return:
         """
         from loongtian.nvwa.models.knowledge import Knowledge
-        klg = Knowledge.getKnowledgeByObjectChain(components,memory=memory)
+        klg = Knowledge.getByObjectChain(components,memory=memory)
         if not klg:
             klg = Knowledge.createKnowledgeByObjChain(components,recordInDB=recordInDB,memory=memory)
 
@@ -798,5 +798,15 @@ class Collection():
             return set1 | set2
         except Exception as ex:
             raise ex
+
+    @staticmethod
+    def contains(list1,list2):
+        """
+        判断list1是否包含list2中的所有元素
+        :param list1:
+        :param list2:
+        :return:
+        """
+        return not [False for c in list2 if c not in list1]
 
 

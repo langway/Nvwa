@@ -22,14 +22,17 @@ from loongtian.nvwa.runtime.thinkResult.fragments import (BaseFragment,
                                                           UnderstoodFragment,
                                                           UnsatisfiedFragment,
                                                           CollectionFragment,
+                                                          ModificationFragment,
                                                           JoinedUnderstoodFragments)
 from loongtian.nvwa.runtime.thinkResult.realLevelResult import RealLevelResult, RegeneratedRealLevelResult
 from loongtian.nvwa.runtime.systemInfo import ThinkingInfo, SystemInfo
 from loongtian.nvwa.runtime.sequencedObjs import SequencedObj
 from loongtian.nvwa.runtime.specialList import RelatedRealObjs, RelatedRealChain
-from loongtian.nvwa.runtime.meanings import Meaning, ExecutionInfoCreatedMeaning, SelfExplainSelfMeaning
+from loongtian.nvwa.runtime.meanings import Meaning, ExecutionInfoCreatedMeaning,ExecutionInfoCreatedMeanings, SelfExplainSelfMeaning
+from loongtian.nvwa.runtime.reals import AdminUser
 
 from loongtian.nvwa.engines.metaEngine import SegmentedResult, SegmentedResults
+from loongtian.nvwa.managers.attentionManager import AttentionManager
 from loongtian.nvwa.organs.character import Character
 
 
@@ -63,7 +66,7 @@ class Mind(SequencedObj):
             self.Memory = thinkingCentral.Brain.MemoryCentral
 
         if not rawInput or \
-                (not isinstance(rawInput, str) and not isinstance(rawInput, unicode)) or \
+                not isinstance(rawInput, str) or \
                 len(rawInput.strip()) == 0:
             raise Exception("必须提供元输入，才能创建Mind！")
         # 对输入的思维结果
@@ -72,6 +75,8 @@ class Mind(SequencedObj):
         self.metaArea = MetaArea(self)  # 每个Mind的元数据/元数据网层面的处理区
         self.realArea = RealArea(self)  # 每个Mind的实际对象/知识链层面的处理区
         # self.knowledgeArea = KnowledgeArea(self)  # 每个Mind的既往知识区
+
+        self.AttentionManager = AttentionManager()
 
         Instincts.loadAllInstincts(memory=self.Memory)  # 加载所有直觉对象，避免出现错误！
 
@@ -227,70 +232,113 @@ class Mind(SequencedObj):
                 real.Layers.addUpper(meta, weight=related_real.weight, recordInDB=True)
 
         if record_knowledge:
-            if isinstance(frag,BaseFragment):
+            if isinstance(frag, BaseFragment):
                 frag_reals_klg = frag.getFragmentedRealsKnowledge(memory=self.Memory)
                 if not frag_reals_klg._isInDB:  # 如果已经在数据库中了，略过
                     components = frag_reals_klg.getSequenceComponents()
                     Knowledge.createKnowledgeByObjChain(components, recordInDB=True, memory=self.Memory)
-            elif isinstance(frag,JoinedUnderstoodFragments):
+            elif isinstance(frag, JoinedUnderstoodFragments):
                 frag_reals_klgs = frag.getMeaningsKnowledges()
                 for frag_reals_klg in frag_reals_klgs:
                     if not frag_reals_klg._isInDB:  # 如果已经在数据库中了，略过
                         components = frag_reals_klg.getSequenceComponents()
                         Knowledge.createKnowledgeByObjChain(components, recordInDB=True, memory=self.Memory)
 
-
-    def recordAllUnderstoodJoinedFragments(self, frag, record_knowledge=False):
+    def recordAllUnderstoodJoinedFragments(self, frag, record_meta=True, record_metanet=True, record_real=True,
+                                           record_knowledge=False):
         """
         已经理解一句（一段）话，对其中的元数据、实际数据、知识链进行处理（记录到数据库、从未知对象中移除等）
         :param frag:
+        :param record_meta:
+        :param record_metanet:
+        :param record_real:
         :param record_knowledge:是否保存知识链，一般用户暂不保存
         :return:
         """
+
         metas = frag.realLevelResult.metaLevelResult.meta_chain
+        metanet = None
         for i in frag.joined_poses:
-            meta = metas[i]
+            meta = None
+            try:
+                meta = metas[i]
+            except:
+                continue
+
             if meta._isInDB:  # 如果已经在数据库中了，略过
                 continue
-            # 现在在内存中，保存到数据库
-            meta.recognized = True  # 设置为已识别
-            db_meta = meta.create(checkExist=False, recordInDB=True)
-            # 加载到内存词典
-            self.thinkingCentral.Brain.MemoryCentral.WorkingMemory.loadMetaToChainCharFrequncyMetaDict(db_meta)
+            if record_meta:
+                # 现在在内存中，保存到数据库
+                meta.recognized = True  # 设置为已识别
+                meta.MemoryCentral = self.Memory
+                db_meta = meta.create(checkExist=False, recordInDB=True)
+                # 加载到内存词典
+                self.Memory.WorkingMemory.loadMetaToChainCharFrequncyMetaDict(db_meta)
             # 注销未知元数据
             self.unregistUnknownMetas(meta, frag.realLevelResult.metaLevelResult)
             # 在已处理的未知元数据中注册
             self.registProceedUnknownMetas(meta, i, frag.realLevelResult.metaLevelResult)
-            # 取得内存中的关联对象
-            related_reals = meta.Layers.getLowerEntitiesByType(ObjType.REAL_OBJECT)
-            # 逐一保存到数据库
-            while True:
-                related_real = related_reals.getCurObj(return_related_obj=True)
-                if not related_real:
-                    break
-                real = related_real.obj
-                if real._isInDB:  # 如果已经在数据库中了，略过
-                    continue
-                real.create(checkExist=False, recordInDB=True)
-                real.Layers.addUpper(meta, weight=related_real.weight, recordInDB=True)
+            if record_real:
+                # 取得内存中的关联对象
+                related_reals = meta.Layers.getLowerEntitiesByType(ObjType.REAL_OBJECT)
+                # 逐一保存到数据库
+                while True:
+                    related_real = related_reals.getCurObj(return_related_obj=True)
+                    if not related_real:
+                        break
+                    real = related_real.obj
+                    if real._isInDB:  # 如果已经在数据库中了，略过
+                        continue
+                    real.create(checkExist=False, recordInDB=True)
+                    real.Layers.addUpper(meta, weight=related_real.weight, recordInDB=True)
 
-        from loongtian.nvwa.runtime.reals import AdminUser
-        _AdminUser=AdminUser.getAdminUser(memory=self.Memory)
-        # 如果是女娲超级管理账户，record_knowledge=True
-        if self.thinkingCentral and \
-                self.thinkingCentral.Brain and \
-                self.thinkingCentral.Brain.User.id == _AdminUser.id:
-            record_knowledge = True
-
+        if record_metanet:
+            metanet = MetaNet.createMetaNetByMetaChain(metas, memory=self.Memory)
 
         if record_knowledge:
-            if isinstance(frag,BaseFragment):
-                frag_reals_klg = frag.getFragmentedRealsKnowledge(memory=self.Memory)
-                Knowledge.recordInDB(frag_reals_klg, memory=self.Memory)
-            elif isinstance(frag,JoinedUnderstoodFragments):
-                frag_reals_klgs = frag.getMeaningsKnowledges()
-                for frag_reals_klg in frag_reals_klgs:
-                    Knowledge.recordInDB(frag_reals_klg, memory=self.Memory)
+            if isinstance(frag, BaseFragment):
+                # 不记录创建意义的输入
+                frag_reals = frag.getFragmentedReals(memory=self.Memory)
+                if Instincts.hasInstinctMeaning(frag_reals):
+                    return
+                frag_klg = frag.getFragmentedRealsKnowledge(recordInDB=False, memory=self.Memory)
+                if not frag_klg:
+                    return
+                self._recordKnowledge(frag_klg, metanet)
+            elif isinstance(frag, JoinedUnderstoodFragments):
+                # 不记录创建意义的输入
+                if Instincts.hasInstinctMeaning(frag.realLevelResult.reals):
+                    return
+                frag_klg = Knowledge.createKnowledgeByObjChain(frag.realLevelResult.reals, recordInDB=False,
+                                                               memory=self.Memory)
+                if not frag_klg:
+                    return
+                db_klg = self._recordKnowledge(frag_klg, metanet)
+                frag_meanings_klgs = frag.getMeaningsKnowledges(recordInDB=False)
+                if not frag_meanings_klgs:
+                    return
+                for frag_meanings_klg in frag_meanings_klgs:
+                    frag_klg_components = frag_meanings_klg.getSequenceComponents()
+                    if RealObject.hasAnything(frag_klg_components):  # 意义中不能有anything
+                        continue
+                    else:
+                        frag_meanings_klg.create(checkExist=False, recordInDB=True)
+
+    def _recordKnowledge(self, klg, metanet):
+        """
+        记录知识链（并添加上层元数据网）
+        :param klg:
+        :param metanet:
+        :return:
+        """
+        klg_components = klg.getSequenceComponents()
+        if RealObject.hasAnything(klg_components):  # 意义中不能有anything
+            return None
+        else:
+            db_klg = klg.create(checkExist=False, recordInDB=True)
+            if metanet:  # 添加上层元数据网
+                metanet.Layers.addLower(db_klg)
+            return db_klg
 
     @staticmethod
     def _getConstitution(obj, constitutionType=None):
@@ -375,12 +423,11 @@ class Mind(SequencedObj):
         :return:
         """
         knowledges_meaning_klgs = {}
-        for related_knowledge in knowledges:
-            cur_knowledge = related_knowledge.obj
-            # self.Mind.thinkResult.understoodResult.knowledges[_knowledge.id] = _knowledge
+        for kid, related_knowledge in knowledges.items():
             # 查看当前知识链是否被“理解”（当前知识链，或下层知识链是否具有顶级关系或匹配其他模式）
-            meaning_klgs = cur_knowledge.Meanings.getAllMeanings()  # 可能有多个
-            if meaning_klgs:
+            cur_knowledge = related_knowledge.obj
+            is_understood, meaning_klgs = cur_knowledge.isUnderstood()
+            if is_understood:  # 如果已经理解
                 knowledges_meaning_klgs[related_knowledge] = meaning_klgs
 
         return knowledges_meaning_klgs
@@ -445,18 +492,20 @@ class MetaArea(SequencedObj):
 
         elif len(self.Mind.thinkResult.rawInput) > 1:
             # 1、使用输入字符串直接查询metaNet（可能有多个：南京市长江大桥，南京市-长江大桥，南京-市长-江大桥，可能都对）。
-            meta_nets = MetaNet.getMetaNetsByStringValue(self.Mind.thinkResult.rawInput)
+            meta_nets = MetaNet.getMetaNetsByStringValue(self.Mind.thinkResult.rawInput, memory=self.Mind.Memory)
 
             if meta_nets:  # 1、如果使用字符串匹配到了元数据网，处理之
-                for meta_net in meta_nets:
-                    meta_chain = meta_net.getSequenceComponents()  # todo 未实现
+                if isinstance(meta_nets, list):
+                    for meta_net in meta_nets:
+                        meta_chain = meta_net.getSequenceComponents()
+                        metas_level_result = self.Mind.thinkResult.createNewMetaLevelResult(meta_chain, None)
+
+                        self._processMetaNet(metas_level_result, meta_net)
+                elif isinstance(meta_nets, MetaNet):
+                    meta_chain = meta_nets.getSequenceComponents()
                     metas_level_result = self.Mind.thinkResult.createNewMetaLevelResult(meta_chain, None)
 
-                    # # 设置ObjectsExecuteRecord执行状态
-                    # metas_level_result.metaLevelThinkingRecords.setObjectsExecuteRecord(
-                    #     ThinkingInfo.ObjectsExecuteInfo.Processing_RawInput, self.Mind.thinkResult.rawInput)
-
-                    self._processMetaNet(metas_level_result, meta_net)
+                    self._processMetaNet(metas_level_result, meta_nets)
 
             else:  # 2、使用文本处理引擎对输入进行分割，以便进一步处理
                 segment_result = self.textEngine.segmentInputWithChainCharMetaDict(
@@ -594,10 +643,24 @@ class MetaArea(SequencedObj):
 
             # 根据metaChain取得metaNet，然后查找是否有相关的知识链，如果找到了，并且是可以理解，直接返回
             # 0、使用完全匹配查询元数据链（只能有一个）
-            metaNet = MetaNet.getMetaNetByMetaChain(meta_chain)
-            if metaNet:
-                # 函数内会设置其理解状态为“元数据网已匹配”
-                self._processMetaNet(metas_level_result, metaNet)
+            unproceed = []
+            metaNet = MetaNet.getByObjectChain(meta_chain, unproceed=unproceed,memory=self.Mind.Memory)  # todo 这里如果是部分匹配，应该能够处理
+            # metaNet=MetaNet()
+            if metaNet and not unproceed:
+                if isinstance(metaNet, MetaNet) and len(metaNet.getSequenceComponents()) == len(meta_chain):
+                    # 函数内会设置其理解状态为“元数据网已匹配”
+                    self._processMetaNet(metas_level_result, metaNet)
+                elif isinstance(metaNet, list):
+                    total_lenght = 0
+                    for _metaNet in metaNet:
+                        total_lenght += len(_metaNet.getSequenceComponents())
+                    if total_lenght != len(meta_chain):
+                        raise Exception("取得的所有元数据链的长度之和不等于所有元数据的长度！")
+
+                    for _metaNet in metaNet:
+                        # 函数内会设置其理解状态为“元数据网已匹配”
+                        self._processMetaNet(metas_level_result, _metaNet)
+
             else:
                 # # 1、使用近似查询元数据链（可能有多个）
                 # metaNets = MetaNet.getMetaNetLikeMetaChain(self.Mind.thinkResult.metaLevelResult.meta_chain)
@@ -612,9 +675,9 @@ class MetaArea(SequencedObj):
 
                 # 将其设置到metaLevelResult.meta_net
                 # 函数内会设置其理解状态为“元数据网未匹配（等待进一步实际对象级别处理）”
-                metas_level_result.meta_net = None
+                metas_level_result.set_meta_net(None)
 
-                # 设置其匹配状态为“元数据链全部匹配（等待进一步实际对象级别处理）”
+                # 设置其匹配状态为“元数据全部匹配（等待进一步实际对象级别处理）”
                 metas_level_result.metaLevelThinkingRecords.setMetaLevelMatchRecord(
                     ThinkingInfo.MetaLevelInfo.MatchInfo.META_CHAIN_MATCHED, None)
                 # 不设置理解状态，等待后续处理
@@ -708,19 +771,16 @@ class MetaArea(SequencedObj):
         :param meta_net:
         :return:
         """
-        # from loongtian.nvwa.runtime.thinkResult.metaLevelResult import MetaLevelResult
-        # metaLevelResult = MetaLevelResult()
-
         # 将其设置到metaLevelResult.meta_net
         # 函数内会设置其执行状态，理解状态为“元数据网已匹配”
-        metaLevelResult.meta_net = meta_net
+        metaLevelResult.set_meta_net(meta_net)
 
         # 取得元数据网下一层的知识链
-        related_knowledges = meta_net.getRelatedKnowledge()
+        related_knowledges = meta_net.Layers.getLowerEntitiesByType(ObjType.KNOWLEDGE)
 
         # 将其设置到metaLevelResult.meta_net_matched_knowledges
         # 根据meta_net匹配的knowledges(函数内或设置其执行状态及匹配状态)
-        metaLevelResult.meta_net_matched_knowledges = related_knowledges
+        metaLevelResult.set_meta_net_matched_knowledges(meta_net, related_knowledges)
 
         if related_knowledges:  # 只有在meta_net匹配出knowledges时，才进一步处理意义
 
@@ -729,7 +789,7 @@ class MetaArea(SequencedObj):
 
             # 设置根据meta_net匹配的knowledges向下一层取得的意义知识链
             # 函数内会设置其执行、匹配及理解状态
-            metaLevelResult.meta_net_matched_knowledges_meaning_klgs = meta_net_matched_knowledges_meaning_klgs
+            metaLevelResult.set_meta_net_matched_knowledges_meaning_klgs(meta_net, meta_net_matched_knowledges_meaning_klgs)
 
 
 class RealArea(SequencedObj):
@@ -924,6 +984,8 @@ class RealArea(SequencedObj):
         grouped_reals_list = self._processObjToIter(grouped_reals_list)
         # 笛卡尔积
         for grouped_reals in itertools.product(*grouped_reals_list):
+            # 转换成list
+            grouped_reals = self.changeToList(grouped_reals)
             # 从牛有腿，牛组件腿，求同存异，推测出 possible word，牛，腿，推测出可能的动词，有
             # 创建一个实际对象链的思考结果，并添加到metaLevelResult中。
             _realLevelResult = metaLevelResult.createNewRealLevelResult(grouped_reals)
@@ -933,31 +995,49 @@ class RealArea(SequencedObj):
                 ThinkingInfo.RealLevelInfo.ExecuteInfo.Processing_RealObjects, grouped_reals)
 
             # 0、首先查找是否有直接匹配的knowledge
-            # TODO 目前未考虑多个匹配
-            unproceed = []
-            matched_klg = Knowledge.getKnowledgeByObjectChain(grouped_reals, unproceed=unproceed,
-                                                              memory=self.Mind.Memory)
+
+            # 考虑多个匹配，例如：输入：牛有头马有尾巴，匹配到牛有头,马有尾巴
+            unproceed = []  # 未能处理的对象
+            matched_klgs = Knowledge.getByObjectChain(grouped_reals,
+                                                      unproceed=unproceed,
+                                                      memory=self.Mind.Memory)
             # 查看是否是全链匹配（有可能是部分匹配）
-            if matched_klg and not unproceed:  # 如果实际对象链匹配到知识链，查看其意义
+            if matched_klgs and not unproceed:  # 如果实际对象链匹配到知识链，查看其意义
+
+                if not isinstance(matched_klgs, list):
+                    matched_klgs = [matched_klgs]
                 # 全链匹配
                 # 设置根据real_chain匹配的knowledges(函数内会设置其执行状态及匹配状态)
-                _realLevelResult.reals_matched_knowledges = matched_klg
+                _realLevelResult.reals_matched_knowledges = matched_klgs
 
-                # 0.1 查看当前知识链是否被“理解”（当前知识链，或下层知识链是否具有顶级关系或匹配其他模式）
-                meaning_klgs = matched_klg.Meanings.getAllMeanings()  # 可能有多个
+                for matched_klg in matched_klgs:
+                    # 0.1 查看当前知识链是否被“理解”（当前知识链，或下层知识链是否具有顶级关系或匹配其他模式）
+                    meaning_klgs = matched_klg.Meanings.getAllMeanings()  # 可能有多个
 
-                # 设置根据real_chain匹配的knowledges向下一层取得的意义知识链（可能没有）
-                # (函数内或设置其执行、匹配及理解状态)
-                _realLevelResult.reals_matched_knowledges_meaning_klgs = meaning_klgs
-
-                if not meaning_klgs:  # 如果没有意义，真正进行理解
-                    self._tryUnderstand(_realLevelResult, think_one_by_one)
+                    # 设置根据real_chain匹配的knowledges向下一层取得的意义知识链（可能没有）
+                    # (函数内或设置其执行、匹配及理解状态)
+                    if _realLevelResult.reals_matched_knowledges_meaning_klgs:
+                        _realLevelResult.reals_matched_knowledges_meaning_klgs[matched_klg] = meaning_klgs
+                    else:
+                        _realLevelResult.reals_matched_knowledges_meaning_klgs = {matched_klg: meaning_klgs}
+                    if not meaning_klgs:  # 如果没有意义，真正进行理解
+                        self._tryUnderstand(_realLevelResult, think_one_by_one)
 
             else:  # 如果实际对象链没有匹配到知识链，真正进行理解
                 # 设置根据real_chain匹配的knowledges(函数内会设置其执行状态及匹配状态)
                 _realLevelResult.reals_matched_knowledges = None
 
                 self._tryUnderstand(_realLevelResult, think_one_by_one)
+
+    def changeToList(self, objs):
+        li = []
+        for obj in objs:
+            if isinstance(obj, list) or isinstance(obj, tuple):
+                li.append(self.changeToList(obj))
+            else:
+                li.append(obj)
+
+        return li
 
     def _tryUnderstand(self, realLevelResult, think_one_by_one=True,
                        misunderstoodRethinkDepth=Character.Misunderstood_Rethink_Depth):
@@ -990,17 +1070,18 @@ class RealArea(SequencedObj):
         except:  # 有可能取不到，忽略
             return
 
-        if not cur_real or \
-                (not isinstance(cur_real, RelatedObj) and
-                 not isinstance(cur_real, RealObject) and
-                 not isinstance(cur_real, UnderstoodFragment) and
-                 not isinstance(cur_real, Knowledge)):
+        if not cur_real:
+            return
+        elif isinstance(cur_real, RelatedObj):
+            cur_real = cur_real.obj
+        elif isinstance(cur_real, UnderstoodFragment):
+            cur_real = cur_real.getFragmentedRealsKnowledge(memory=self.Mind.Memory)
+        elif (not isinstance(cur_real, RealObject) and
+              not isinstance(cur_real, Knowledge)):
             return
 
-        if isinstance(cur_real, RelatedObj):
-            cur_real = cur_real.obj
-
-        if isinstance(cur_real, RealObject):  # 只有实际对象才能“执行”
+            # 只有实际对象才能“执行”,knowledge、UnderstoodFragment直接略过
+        if isinstance(cur_real, RealObject):
             if not cur_real.isExecutable():
                 # 判断是否是新创建的，并且未保存到数据库（完全未知小鲜肉）
                 if not cur_real._isInDB and cur_real._isNewCreated:
@@ -1029,6 +1110,10 @@ class RealArea(SequencedObj):
                     self.ProcessExeWithInnerFunction(cur_real, cur_pos, realLevelResult.reals,
                                                      self._inner_function_process_executable, realLevelResult)
 
+        # 添加到注意力引擎
+        if self.Mind.AttentionManager.addFocus(cur_real):
+            pass
+
         # 继续处理下一个
         self._thinkOneByOne(realLevelResult, cur_pos + 1)
 
@@ -1038,14 +1123,14 @@ class RealArea(SequencedObj):
         :return:
         """
 
-        cur_exe_info = cur_exe.getSelfExecutionInfo()
+        cur_exe_info = cur_exe.ExecutionInfo.getSelfLinearExecutionInfo()
         if not cur_exe_info:
             return
         if not cur_exe_info.isExecutable():
             return
         cur_exe_info.restoreCurObjIndex()  # 重置索引
         while True:
-            exe_pattern, exe_meaning ,exe_meaning_value= cur_exe_info.getCur()
+            exe_pattern, exe_meaning, exe_meaning_value = cur_exe_info.getCur()
             if not exe_pattern or not exe_meaning:  # 已经取不到了，停止循环
                 break
 
@@ -1055,7 +1140,7 @@ class RealArea(SequencedObj):
                 continue
             if not _exe_pattern_check_result.context_satisfaction_result:
                 continue
-            _exe_pattern_check_result.exe_meaning_value=exe_meaning_value
+            _exe_pattern_check_result.exe_meaning_value = exe_meaning_value
 
             can_break = inner_function(_exe_pattern_check_result, *inner_function_args)
             if can_break:
@@ -1070,7 +1155,7 @@ class RealArea(SequencedObj):
         :param realLevelResult:
         :return:
         """
-        if not exe_pattern_check_result or not isinstance(exe_pattern_check_result, RealArea._ExePatternCheckResult):
+        if not exe_pattern_check_result or not isinstance(exe_pattern_check_result, RealArea.ExePatternCheckResult):
             raise Exception("参数错误：exe_pattern_check_result，必须是RealArea._ExePatternCheckResult类型！")
 
         # 分项取得上下文的检查结果（context_satisfaction_result是一个tuple）
@@ -1090,7 +1175,7 @@ class RealArea(SequencedObj):
         if aboves_satisfied:
             if nexts_satisfied:  # 上下文数量均能满足模式，查找数据库（对应的知识链及其意义），如果没找到，进行迁移（理解）
 
-                self._do_fragment_context_satisfied(realLevelResult,frag)
+                self._do_fragment_context_satisfied(realLevelResult, frag)
 
             else:  # 如果下文的数量不满足，记录到UnsatisfiedFragment，等待下文
                 if isinstance(realLevelResult, RegeneratedRealLevelResult):
@@ -1114,7 +1199,7 @@ class RealArea(SequencedObj):
                                                   exe_pattern_check_result.context_satisfaction_result,
                                                   unsatisfied_poses)
 
-    class _ExePatternCheckResult(object):
+    class ExePatternCheckResult(object):
         """
         对可执行实际对象的pattern的检查结果，是一个私有类
         """
@@ -1150,7 +1235,7 @@ class RealArea(SequencedObj):
         :return:
         """
 
-        _exe_pattern_check_result = RealArea._ExePatternCheckResult()
+        _exe_pattern_check_result = RealArea.ExePatternCheckResult()
         _exe_pattern_check_result.cur_exe = cur_exe
         _exe_pattern_check_result.exe_pos = exe_pos
         _exe_pattern_check_result.exe_pattern = exe_pattern
@@ -1393,9 +1478,9 @@ class RealArea(SequencedObj):
 
         # 首先应该查找知识库
         frag_unproceed = []
-        frag_klg = Knowledge.getKnowledgeByObjectChain(frag_real_chain,
-                                                       unproceed=frag_unproceed,
-                                                       memory=self.Mind.Memory)
+        frag_klg = Knowledge.getByObjectChain(frag_real_chain,
+                                              unproceed=frag_unproceed,
+                                              memory=self.Mind.Memory)
         # 查看是否是全链匹配（有可能是部分匹配）
         if frag_klg and not frag_unproceed:  # 如果在数据库中查找到实际对象链对应的知识链，继续查找其意义，如果没有，试图理解
             self._do_fragment_matched_knowledge_and_meaning(frag, frag_klg)
@@ -1525,7 +1610,7 @@ class RealArea(SequencedObj):
             ThinkingInfo.RealLevelInfo.ExecuteInfo.Understanding_Fragment, base_frag)
 
         transited_meaning = self.Mind.thinkingCentral.TransitionEngine.transitByAction(
-            base_frag.getFragmentedReals(), base_frag.exe_pattern, base_frag.exe_meaning,base_frag.exe_meaning_value)
+            base_frag.getFragmentedReals(), base_frag.exe_pattern, base_frag.exe_meaning, base_frag.exe_meaning_value)
 
         cur_understoodFragment = None
 
@@ -1549,6 +1634,17 @@ class RealArea(SequencedObj):
                 else:
                     base_frag.realLevelResult.realLevelThinkingRecords.setRealLevelUnderstoodRecord(
                         ThinkingInfo.RealLevelInfo.UnderstoodInfo.EXECUTIONINFO_EXIST, transited_meaning)
+            elif isinstance(transited_meaning, ExecutionInfoCreatedMeanings):  # 建立多个动词的意义[因为...所以...]。根据意义标记，建立了左右两侧对象的意义关联
+                for _transited_meaning in transited_meaning:
+                    # 记录理解状态（意义建立或已存在）
+                    if _transited_meaning.newCreated:
+                        base_frag.realLevelResult.realLevelThinkingRecords.setRealLevelUnderstoodRecord(
+                            ThinkingInfo.RealLevelInfo.UnderstoodInfo.EXECUTIONINFOS_CREATED, transited_meaning)
+                        break
+                    else:
+                        base_frag.realLevelResult.realLevelThinkingRecords.setRealLevelUnderstoodRecord(
+                            ThinkingInfo.RealLevelInfo.UnderstoodInfo.EXECUTIONINFOS_EXIST, transited_meaning)
+                        break
 
         else:
             # 记录到thinkResult，这里为None（没有迁移结果）
@@ -1558,7 +1654,7 @@ class RealArea(SequencedObj):
         return cur_understoodFragment
 
     def _do_fragment_context_unsatisfied(self, realLevelResult,
-                                         frag,context_satisfaction_result,
+                                         frag, context_satisfaction_result,
                                          unsatisfied_poses):
         """
         处理上下文有一方或两方数量不能满足模式的情况。对上下文要求的父对象是元知识链、元集合进行重新思考；或记录到UnsatisfiedFragment，查找上文或等待下文。
@@ -1586,8 +1682,8 @@ class RealArea(SequencedObj):
         #         return
         # 2、如果没得到重新思考的结果，这是真正的上下文不满足了
         cur_unsatisfiedFragment = UnsatisfiedFragment.createByBaseFragment(frag,
-                                                                  unsatisfied_poses,
-                                                                  context_satisfaction_result)
+                                                                           unsatisfied_poses,
+                                                                           context_satisfaction_result)
         # 记录到thinkResult
         # 函数内会设置其执行状态，理解状态
         realLevelResult.unsatisfiedFragments.append(cur_unsatisfiedFragment)
@@ -1678,9 +1774,9 @@ class RealArea(SequencedObj):
     #     for pos, executable in pos_executables:
     #         executable = executable.obj
     #         executable.getSelfExecutionInfo()  # 取得执行信息
-    #         for id, pattern in executable.ExecutionInfo.pattern_knowledges.items():
+    #         for id, pattern in executable.LinearExecutionInfo.pattern_knowledges.items():
     #             pattern_klg = pattern.obj
-    #             meaning_klgs = executable.ExecutionInfo.meaning_knowledges[pattern.id]
+    #             meaning_klgs = executable.LinearExecutionInfo.meaning_knowledges[pattern.id]
     #             if not meaning_klgs:
     #                 raise Exception("查找不到pattern的meaning！")
     #
@@ -1813,16 +1909,27 @@ class RealArea(SequencedObj):
             if allUnderstoodJoinedFrags:  # 如果有全部理解的，不用考虑是否存在冲突、未知、未满足
                 # 根据理解片段生成意义知识链
                 understood_meaning_klg_dict = realLevelResult.createMeaningsByUnderstoodFragments()
-                # 记录理解信息（忽略自解释及意义创建）
+                # 记录理解信息（忽略自解释及意义创建的知识链和元数据网）
+                record_meta, record_real, record_knowledge, record_metanet = True, True, False, False
+
                 if understood_meaning_klg_dict and \
                         not realLevelResult.isSelfExplainSelf() and \
                         not realLevelResult.isExecutionInfoCreated():
                     # 处理结果中的Anything
-                    anything_matched_klgs=self._processKnowledgeDictAnything(realLevelResult, understood_meaning_klg_dict)
+                    anything_matched_klgs = self._processKnowledgeDictAnything(realLevelResult,
+                                                                               understood_meaning_klg_dict)
+
                     if not anything_matched_klgs:
+                        _AdminUser = AdminUser.getAdminUser(memory=self.Mind.Memory)
+                        # 如果是女娲超级管理账户，record_knowledge=True
+                        if self.Mind.thinkingCentral and \
+                                self.Mind.thinkingCentral.Brain and \
+                                self.Mind.thinkingCentral.Brain.User.id == _AdminUser.id:
+                            record_knowledge, record_metanet = True, True
                         realLevelResult.realLevelThinkingRecords.setRealLevelUnderstoodRecord(
                             ThinkingInfo.RealLevelInfo.UnderstoodInfo.ALL_REALS_UNDERSTOOD,
                             understood_meaning_klg_dict)
+
                     else:
                         realLevelResult.realLevelThinkingRecords.setRealLevelUnderstoodRecord(
                             ThinkingInfo.RealLevelInfo.UnderstoodInfo.ALL_REALS_UNDERSTOOD,
@@ -1833,7 +1940,9 @@ class RealArea(SequencedObj):
 
                 # 已经理解这句话，对其中的元数据、实际数据、知识链进行处理（记录到数据库、从未知对象中移除等）
                 for allUnderstoodJoinedFrag in allUnderstoodJoinedFrags:
-                    self.Mind.recordAllUnderstoodJoinedFragments(allUnderstoodJoinedFrag)
+                    self.Mind.recordAllUnderstoodJoinedFragments(allUnderstoodJoinedFrag, record_meta,
+                                                                 record_metanet, record_real, record_knowledge)
+
 
             elif partitalUnderstoodJoinedFrags and misunderstoodRethinkDepth >= 0:
                 # todo 这里还有一种情况：取得的partitalUnderstoodJoinedFrag都是单个的，而且可能位于冲突的列表中，这时不需要生成
@@ -1928,7 +2037,7 @@ class RealArea(SequencedObj):
         :return:
         """
 
-        if not exe_pattern_check_result or not isinstance(exe_pattern_check_result, RealArea._ExePatternCheckResult):
+        if not exe_pattern_check_result or not isinstance(exe_pattern_check_result, RealArea.ExePatternCheckResult):
             raise Exception("参数错误：exe_pattern_check_result，必须是RealArea._ExePatternCheckResult类型！")
 
         # 分项取得上下文的检查结果（context_satisfaction_result是一个tuple）
@@ -2120,7 +2229,7 @@ class RealArea(SequencedObj):
 
         _possible_aboves_list = copy.copy(_posed_possible_aboves_list)  # 复制一个
         # if _possible_aboves_matched_understood_frag_dict:  # 如果有需要用理解片段进行替换的，替换之
-        #     for index, understood_frags in _possible_aboves_matched_understood_frag_dict.iteritems():
+        #     for index, understood_frags in _possible_aboves_matched_understood_frag_dict.items():
         #         if not understood_frags:
         #             continue
         #         if len(understood_frags) == 1:
@@ -2197,7 +2306,7 @@ class RealArea(SequencedObj):
         #
         _possible_nexts_list = copy.copy(_posed_possible_nexts_list)  # 复制一个
         # if _possible_nexts_matched_understood_frag_dict:  # 如果有需要用理解片段进行替换的，替换之
-        #     for index, understood_frags in _possible_nexts_matched_understood_frag_dict.iteritems():
+        #     for index, understood_frags in _possible_nexts_matched_understood_frag_dict.items():
         #         if not understood_frags:
         #             continue
         #         if len(understood_frags) == 1:
@@ -2247,7 +2356,7 @@ class RealArea(SequencedObj):
         :param index:
         :return:
         """
-        if not exe_pattern_check_result or not isinstance(exe_pattern_check_result, RealArea._ExePatternCheckResult):
+        if not exe_pattern_check_result or not isinstance(exe_pattern_check_result, RealArea.ExePatternCheckResult):
             raise Exception("参数错误：exe_pattern_check_result，必须是RealArea._ExePatternCheckResult类型！")
 
         # 分项取得上下文的检查结果（context_satisfaction_result是一个tuple）
@@ -2266,40 +2375,38 @@ class RealArea(SequencedObj):
         :param realLevelResult:
         :return:
         """
-        klgs=[]
-        for kid, klg in klg_dict.iteritems():
+        klgs = []
+        for kid, klg in klg_dict.items():
             components = klg.getSequenceComponents()
             if not self._hasAnything(components):
                 continue
-            cur_klgs=[]
-            self._processAnything(components,cur_klgs)
+            cur_klgs = []
+            self._processAnything(components, cur_klgs)
             if cur_klgs:
                 klgs.extend(cur_klgs)
         if klgs:
-            realLevelResult.anything_matched_klgs=klgs
+            realLevelResult.anything_matched_klgs = klgs
         return klgs
 
-
-    def _processAnything(self, reals,result):
+    def _processAnything(self, reals, result):
         """
         处理结果中的Anything，例如：已知：牛有腿，牛有角，输入：牛有什么，输出：牛有腿，牛有角
         :param reals:
         :return:
         """
         if result is None:
-            result=[]
+            result = []
         if Collection.isPlainRealChain(reals):
             if self._hasAnything(reals):
-                klgs= self._getAnythingMatchedKnowledges(reals)
+                klgs = self._getAnythingMatchedKnowledges(reals)
                 if klgs:
                     result.extend(klgs)
         else:
             for real in reals:
                 if isinstance(real, list):
-                    self._processAnything(real,result)
+                    self._processAnything(real, result)
 
-
-    def _getAnythingMatchedKnowledges(self,reals):
+    def _getAnythingMatchedKnowledges(self, reals):
         anything_indexes = []
         i = 0
         for real in reals:
@@ -2325,8 +2432,8 @@ class RealArea(SequencedObj):
         middles = None
         end = None
         if len(final_reals) == 1:
-            if len(anything_indexes)==1 and anything_indexes[0]==0: # 这里考虑开始就是“什么”，例如：什么-父对象-水果
-                end=final_reals[0]
+            if len(anything_indexes) == 1 and anything_indexes[0] == 0:  # 这里考虑开始就是“什么”，例如：什么-父对象-水果
+                end = final_reals[0]
             else:
                 start = final_reals[0]
         elif len(final_reals) == 2:
@@ -2351,13 +2458,15 @@ class RealArea(SequencedObj):
         else:
             end = "]"
 
-        klgs = Knowledge.getAllLikeByStartMiddleEndInDB(attributeName="s_chain", start=start, end=end, middles=middles,
+        klgs = Knowledge.getAllLikeByStartMiddleEndInDB(attributeName="s_chain",
+                                                        start=start, end=end, middles=middles,
+                                                        seperator=",",
                                                         memory=self.Mind.Memory)
 
         if not klgs:
             return None
         _klgs = []
-        if isinstance(klgs,list):
+        if isinstance(klgs, list):
             for klg in klgs:
                 try:
                     klg.getChainItems()
@@ -2366,7 +2475,7 @@ class RealArea(SequencedObj):
                         _klgs.append(klg)
                 except:
                     pass
-        else: # 单独一个knowledge
+        else:  # 单独一个knowledge
             try:
                 klgs.getChainItems()
                 # todo 这里如何过滤嵌套的知识链？
@@ -2383,15 +2492,14 @@ class RealArea(SequencedObj):
         :return:
         """
         for real in reals:
-            if isinstance(real,list):
-                child_has_anything =self._hasAnything(real)
+            if isinstance(real, list):
+                child_has_anything = self._hasAnything(real)
                 if child_has_anything:
                     return True
-            elif isinstance(real,RealObject):
+            elif isinstance(real, RealObject):
                 if real.isAnything():
                     return True
         return False
-
 
     def _processMisunderstoodPartitions(self, realLevelResult):
         """
@@ -2399,11 +2507,11 @@ class RealArea(SequencedObj):
         :param realLevelResult:
         :return:
         """
-        if realLevelResult.hasConjugatedActions():
+        if realLevelResult.hasLinkedActions():
             # 如果有动词交联的情况：
-            # 1、将第.conjugatedActions一个动词的前部（至前一个动词止），与第二个动词及后续部分（至第三个动词止）重新拼合
+            # 1、将第一个动词的前部（至前一个动词止），与第二个动词及后续部分（至第三个动词止）重新拼合
             # 2、作为集合考虑
-            self._processConjugatedActions(realLevelResult)
+            self._processLinkedActions(realLevelResult)
             pass
 
         if realLevelResult.hasUnknowns():  # 如果有未知的，判断是否全部未知，如否，将能够按位置相连的未知实际对象连接在一起，
@@ -2436,7 +2544,7 @@ class RealArea(SequencedObj):
                 ThinkingInfo.RealLevelInfo.UnderstoodInfo.FRAGMENTS_CONFLICTED_MISUNDERSTOOD,
                 conflicted_understoodFragments)
 
-    def _processConjugatedActions(self, realLevelResult):
+    def _processLinkedActions(self, realLevelResult):
         """
         处理动词交联的情况
         :return:
@@ -2447,27 +2555,32 @@ class RealArea(SequencedObj):
             2、作为集合考虑
         """
         for conjugatedAction in realLevelResult.conjugatedActions:
-            if len(conjugatedAction.actions)==len(realLevelResult.reals): # 全部都是动作
-                frag=CollectionFragment(realLevelResult,realLevelResult.reals,0,len(realLevelResult.reals))
-                self._thinkAsCollection(realLevelResult,frag,realsType=ObjType.ACTION)
-            else:
-                return self._processConjugatedAction(realLevelResult, conjugatedAction)
+            if len(conjugatedAction.actions) == len(realLevelResult.reals):  # 全部都是动作
+                frag = CollectionFragment(realLevelResult, realLevelResult.reals, 0, len(realLevelResult.reals))
+                self._thinkAsCollection(realLevelResult, frag, realsType=ObjType.ACTION)
+                if not realLevelResult.isAllUnderstood():
+                    frag=ModificationFragment(realLevelResult, realLevelResult.reals, 0, len(realLevelResult.reals))
+                    self._thinkAsModification(realLevelResult, frag, realsType=ObjType.ACTION)
 
-    def _processConjugatedAction(self, realLevelResult, conjugatedAction):
+            else:
+                return self._processLinkedAction(realLevelResult, conjugatedAction)
+
+    def _processLinkedAction(self, realLevelResult, linkedAction):
         """
         处理动词交联。
         :param realLevelResult:
-        :param conjugatedAction:
+        :param linkedAction:
         :return:
         """
-        aboves_and_nexts_list = self._get_conjugatedAction_action_aboves_and_nexts(
-            realLevelResult.reals, conjugatedAction)
+        aboves_and_nexts_list = self._get_linkedAction_action_aboves_and_nexts(
+            realLevelResult.reals, linkedAction)
 
-        for i in range(len(conjugatedAction.actions)):
+        new_created_reals_list = []
+        for i in range(len(linkedAction.actions)):
             cur_aboves_and_nexts = aboves_and_nexts_list[i]
 
-            cur_action = conjugatedAction.actions[i]
-            cur_action_exe_info = cur_action.getSelfExecutionInfo()
+            cur_action = linkedAction.actions[i]
+            cur_action_exe_info = cur_action.ExecutionInfo.getSelfLinearExecutionInfo()
             cur_action_index = -1
             try:
                 cur_action_index = cur_aboves_and_nexts.index(cur_action)
@@ -2478,44 +2591,47 @@ class RealArea(SequencedObj):
             # 根据动作的pattern定义来创建对象链
             if cur_action_exe_info and cur_action_exe_info.isExecutable():
                 cur_action_exe_info.restoreCurObjIndex()  # 重置索引
-                _regeneratedRealLevelResults = []  # 必须建立列表，然后在下面的循环体外执行，否则将无限循环
+
                 while True:
-                    exe_pattern, exe_meaning,exe_meaning_value = cur_action_exe_info.getCur()
+                    exe_pattern, exe_meaning, exe_meaning_value = cur_action_exe_info.getCur()
                     if not exe_pattern or not exe_meaning:  # 已经取不到了，停止循环
                         break
                     # 根据动作的pattern定义来创建对象链
-                    new_created_reals_list = self._createRealChainByPattern(cur_aboves_and_nexts,
-                                                                            cur_action_index,
-                                                                            cur_action,
-                                                                            exe_pattern)
-                    if new_created_reals_list:
-                        for new_created_reals in new_created_reals_list:
-                            # 创建一个新的重构的实际对象链的思考结果，并添加到regeneratedRealLevelResults列表中。
-                            _regeneratedRealLevelResult = realLevelResult.regeneratedRealLevelResults.createNewRegeneratedRealLevelResult(
-                                new_created_reals)
-
-                            _regeneratedRealLevelResults.append(_regeneratedRealLevelResult)
+                    cur_new_created_reals_list = self._createRealChainByPattern(cur_aboves_and_nexts,
+                                                                                cur_action_index,
+                                                                                cur_action,
+                                                                                exe_pattern)
+                    if cur_new_created_reals_list:
+                        new_created_reals_list.extend(cur_new_created_reals_list)
 
                 cur_action_exe_info.restoreCurObjIndex()  # 重置索引
 
-                # 必须建立列表，然后在上面的循环体外执行，否则将无限循环
-                for _regeneratedRealLevelResult in _regeneratedRealLevelResults:
-                    self._tryUnderstand(_regeneratedRealLevelResult)
-                    if _regeneratedRealLevelResult.isAllUnderstood():
-                        pass
+        if new_created_reals_list:
+            new_created_reals_list = set(new_created_reals_list)  # 去重
+            _regeneratedRealLevelResults = []  # 必须建立列表，然后在下面的循环体外执行，否则将无限循环
+            for new_created_reals in new_created_reals_list:
+                # 创建一个新的重构的实际对象链的思考结果，并添加到regeneratedRealLevelResults列表中。
+                _regeneratedRealLevelResult = realLevelResult.regeneratedRealLevelResults.createNewRegeneratedRealLevelResult(
+                    new_created_reals)
+                _regeneratedRealLevelResults.append(_regeneratedRealLevelResult)
+            # 必须建立列表，然后在上面的循环体外执行，否则将无限循环
+            for _regeneratedRealLevelResult in _regeneratedRealLevelResults:
+                self._tryUnderstand(_regeneratedRealLevelResult)
+                if _regeneratedRealLevelResult.isAllUnderstood():
+                    pass
 
-    def _get_conjugatedAction_action_aboves_and_nexts(self, reals, conjugatedAction):
+    def _get_linkedAction_action_aboves_and_nexts(self, reals, linkedAction):
         """
         以动词为基点，取得动词的前部（至前一个动词止），与第二个动词及后续部分（至第三个动词止）重新拼合
         :return: 
         """
         # 以第一个动词为基点，取得上文中的所有动词
         above_pos_executables = self.getExecutables(reals, sort=False, start_pos=0,
-                                                    end_pos=conjugatedAction.first_pos)
+                                                    end_pos=linkedAction.first_pos)
 
         # 以最后一个动词为基点，取得下文中的所有动词
         next_pos_executables = self.getExecutables(reals, sort=False,
-                                                   start_pos=conjugatedAction.first_pos + len(conjugatedAction.actions))
+                                                   start_pos=linkedAction.first_pos + len(linkedAction.actions))
 
         # 当前动词的前部（至前一个动词止）
         # todo 目前未考虑怎么去除已理解的部分
@@ -2523,22 +2639,22 @@ class RealArea(SequencedObj):
         if above_pos_executables and len(above_pos_executables) > 0:
             above_start_pos = above_pos_executables[-1][0]  # 元组，拆开
 
-        aboves = list(reals[above_start_pos:conjugatedAction.first_pos])
+        aboves = list(reals[above_start_pos:linkedAction.first_pos])
 
         next_end_pos = len(reals)
         if next_pos_executables and len(next_pos_executables) > 0:
             next_end_pos = next_pos_executables[0][0]  # 元组，拆开
 
-        nexts = list(reals[conjugatedAction.first_pos + len(conjugatedAction.actions):next_end_pos])
+        nexts = list(reals[linkedAction.first_pos + len(linkedAction.actions):next_end_pos])
 
         aboves_and_nexts_list = []
-        for i in range(len(conjugatedAction.actions)):
+        for i in range(len(linkedAction.actions)):
             cur_aboves = copy.copy(aboves)
-            cur_aboves.extend(conjugatedAction.actions[0:i])
+            cur_aboves.extend(linkedAction.actions[0:i])
 
-            cur_nexts = list(conjugatedAction.actions[i + 1:])
+            cur_nexts = list(linkedAction.actions[i + 1:])
             cur_nexts.extend(nexts)
-            aboves_and_nexts_list.append([cur_aboves, conjugatedAction.actions[i], cur_nexts])
+            aboves_and_nexts_list.append([cur_aboves, linkedAction.actions[i], cur_nexts])
 
         return aboves_and_nexts_list
 
@@ -2570,7 +2686,7 @@ class RealArea(SequencedObj):
                 cur_pos += 1
                 continue
             if obj.isExecutable():  # 判断当前实际对象是否是可执行性对象
-                obj.getSelfExecutionInfo()  # 取得执行信息
+                obj.ExecutionInfo.getSelfLinearExecutionInfo()  # 取得执行信息
                 pos_executables.append((cur_pos, obj))
             cur_pos += 1
 
@@ -2593,6 +2709,11 @@ class RealArea(SequencedObj):
         action_nexts = aboves_and_nexts[exe_index_in_context + 1:]
         # if not action_aboves and not action_nexts:
         #     return None # 啥都没有，还找个屁！
+        # 由于切片的原因，要扒一层皮
+        if action_aboves:
+            action_aboves = action_aboves[0]
+        if action_nexts:
+            action_nexts = action_nexts[0]
         new_obj_chain_list = []
 
         exe_pattern_components = exe_pattern.getSequenceComponents()
@@ -2600,20 +2721,23 @@ class RealArea(SequencedObj):
                                                      raiseException=True,
                                                      errorMsg="当前可执行实际对象不在其定义的pattern之中！pattern定义错误！")
 
-        # if len(exe_pattern_components) != 3:
-        #     # todo 待考察是否女娲系统内部pattern必须是三元组定义
-        #     raise Exception("女娲系统内部pattern必须是三元组定义！")
-
         # 1、取得模式（pattern）中占位符的父对象
         exe_above_pattern_components = exe_pattern_components[0:exe_pos_in_pattern]
         exe_next_pattern_components = exe_pattern_components[exe_pos_in_pattern + 1:]
-        above_need_match_parents, related_ks = exe_pattern_components[0].Constitutions.getSelfParentObjects()
-        next_need_match_parents, related_ks = exe_pattern_components[2].Constitutions.getSelfParentObjects()
 
-        above_new_created_list_list = self._created_new_obj_by_parent(above_need_match_parents,
-                                                                      action_aboves)
-        next_new_created_list_list = self._created_new_obj_by_parent(next_need_match_parents,
-                                                                     action_nexts)
+        above_new_created_list_list = []
+        for exe_above_pattern_component in exe_above_pattern_components:
+            above_need_match_parents, related_ks = exe_above_pattern_component.Constitutions.getSelfParentObjects()
+            cur_above_new_created_list_list = self._created_new_obj_by_parent(above_need_match_parents,
+                                                                              action_aboves)
+            above_new_created_list_list.extend(cur_above_new_created_list_list)
+        next_new_created_list_list = []
+        for exe_next_pattern_component in exe_next_pattern_components:
+            next_need_match_parents, related_ks = exe_next_pattern_component.Constitutions.getSelfParentObjects()
+
+            cur_next_new_created_list_list = self._created_new_obj_by_parent(next_need_match_parents,
+                                                                             action_nexts)
+            next_new_created_list_list.extend(cur_next_new_created_list_list)
 
         # 笛卡尔积
         for new_obj_chain in itertools.product(
@@ -2712,9 +2836,17 @@ class RealArea(SequencedObj):
             if new_created:
                 new_created_list.append(new_created)
         else:  # 只能是元对象
-            new_created = RealObject(memory=self.Mind.Memory)
-            new_created.Constitutions.addParent(Instincts.instinct_original_object, recordInDB=False)
-            new_created_list.append([new_created])
+            if len(objs) == 1:
+                new_created = objs[0]
+            elif len(objs) > 1:
+                klg = Knowledge.createKnowledgeByObjChain(objs,
+                                                          understood_ratio=Character.Inner_Thinking_Link_Weight,
+                                                          recordInDB=False,
+                                                          memory=self.Mind.Memory)
+                new_created = klg.toEntityRealObject()
+
+            # new_created.Constitutions.addParent(Instincts.instinct_original_object, recordInDB=False)
+            new_created_list.append(new_created)
 
         return new_created_list
 
@@ -2725,17 +2857,26 @@ class RealArea(SequencedObj):
         :param collectionFrag:
         :return:
         """
-        reals=collectionFrag.getFragmentedReals(self.Mind.Memory)
+        reals = collectionFrag.getFragmentedReals(self.Mind.Memory)
         if not reals:
             return None
-        _collection_klg = Collection.createKnowledgeAsCollection(reals,recordInDB=False,memory=self.Mind.Memory)
-        collectionFrag.collection_klg=_collection_klg
+        _collection_klg = Collection.createKnowledgeAsCollection(reals, recordInDB=False, memory=self.Mind.Memory)
+        collectionFrag.collection_klg = _collection_klg
         collectionFrag.collection_real = _collection_klg._self_realObject
-        if realsType==ObjType.REAL_OBJECT:
-            collectionFrag.entity_real= _collection_klg.toEntityRealObject()
+        if realsType == ObjType.REAL_OBJECT:
+            collectionFrag.entity_real = _collection_klg.toEntityRealObject()
         realLevelResult.collectionFragments.append(collectionFrag)
 
         return collectionFrag
+
+    def _thinkAsModification(self, realLevelResult, modificationFrag, realsType=ObjType.REAL_OBJECT):
+        """
+
+        :param realLevelResult:
+        :param modificationFrag:
+        :param realsType:
+        :return:
+        """
 
     def _processUnsatisfiedFragments(self, realLevelResult):
         """

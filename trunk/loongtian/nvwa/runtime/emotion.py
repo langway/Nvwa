@@ -42,7 +42,7 @@ class Emotion(SequencedObj):
         self.coreValueType = CoreValueType.Preservation
         # 从状态A到状态B对核心价值的贡献度（价值大小），例如吃饭对Preservation的价值，要大于吃水果
         # 正数代表有益，负数代表有害
-        # 相当于情感理论中 的愉悦度（快感），系统尽量使其等于1
+        # 相当于情感理论中 的愉悦度（快感），系统尽量使其benifit等于1，punishment等于0
         self.benifit = 1.0  # 取值范围[0,1]
         self.punishment = 0.0  # 取值范围[-1,0]
 

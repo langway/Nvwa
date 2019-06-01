@@ -1,4 +1,4 @@
-#/usr/bin/python
+# /usr/bin/python
 # coding: utf-8
 """
 检查指定文件夹下所有代码是否有错误（包括文件、子文件夹）
@@ -7,12 +7,11 @@ todo 当前不能处理程序自动抛出的错误，所以需要建立一个需
 """
 __author__ = 'Leon'
 
-
-import os,subprocess,time
+import os, subprocess, time
 import loongtian.util.helper.stringHelper as stringHelper
 
 
-def CheckSingleFile(path,timeout=500):
+def CheckSingleFile(path, timeout=500):
     """
     检查单个文件的代码是否正确
     :rawParam path:
@@ -21,23 +20,24 @@ def CheckSingleFile(path,timeout=500):
     if path in Ignored_File_List:
         return
 
-    command=u"python \"" +path +"\""
+    command = u"python \"" + path + "\""
     print(u"——正在检查文件：" + path)
     # if path.endswith("vtClient.py"):
     #     # print(path in Ignored_File_List)
 
-    command=str(command)
-    pro = subprocess.Popen(command, stdout=subprocess.PIPE,stderr=subprocess.PIPE,
-                                   shell=True)
 
-    outdatelist=pro.stderr.readlines()
+    pro = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                           shell=True)
+
+    outdatelist = pro.stderr.readlines()
 
     if outdatelist:
-        converted=""
+        converted = ""
         for outdate in outdatelist:
-            outdate=stringHelper.convert_hex_to_string(outdate)
-            converted +=outdate
-        print(converted.replace("\r\n",""))
+            outdate = stringHelper.convert_hex_to_string(outdate)
+            converted += outdate
+        # print(converted.replace("\r\n", ""))
+        print(converted)
     # out_temp = tempfile.SpooledTemporaryFile(bufsize=1000 * 1000)
     # fileno = out_temp.fileno()
     # p = subprocess.Popen(command, stdout=fileno, shell=True,
@@ -51,45 +51,44 @@ def CheckSingleFile(path,timeout=500):
     pass
 
 
-
-
 def CheckAllPyFiles(path):
     """
     检查当前文件夹下所有代码是否有错误（包括文件、子文件夹）
     :rawParam path:
     :return:
     """
-    errors=[]
+    errors = []
     try:
 
         for root, dirs, files in os.walk(path):
-            #检查当前目录下文件的代码量
+            # 检查当前目录下文件的代码量
             for fileItem in files:
-                ext = os.path .splitext(fileItem)
-                ext = ext[-1]  #get the postfix of the file
-                if(ext in [u".py"]):  #["cpp", "c", "h", "java", "py", "xml", "properties", "php"]):
+                ext = os.path.splitext(fileItem)
+                ext = ext[-1]  # get the postfix of the file
+                if (ext in [u".py"]):  # ["cpp", "c", "h", "java", "py", "xml", "properties", "php"]):
 
-                    subpath = os.path.join(root , fileItem)
+                    subpath = os.path.join(root, fileItem)
 
-                    temp_errors= CheckSingleFile(subpath)
+                    temp_errors = CheckSingleFile(subpath)
                     if temp_errors:
-                        errors.append((subpath,temp_errors))
+                        errors.append((subpath, temp_errors))
 
-            #检查下一个目录下文件的代码量
+            # 检查下一个目录下文件的代码量
             for dir in dirs:
-                print (u"正在检查目录：" + path)
-                #print dir
-                if dir !=u".idea" and dir!=u".svn": #略过svn文件夹
+                print(u"正在检查目录：" + path)
+                # print dir
+                if dir != u".idea" and dir != u".svn":  # 略过svn文件夹
 
-                    temp_errors=CheckAllPyFiles(os.path.join(path, dir))
+                    temp_errors = CheckAllPyFiles(os.path.join(path, dir))
 
                     errors.extend(temp_errors)
             return errors
 
     except BaseException as e:
-        print ('BaseException',e)
+        print('BaseException', e)
 
         pass
+
 
 def CheckAllPythonFiles(path):
     """
@@ -97,22 +96,21 @@ def CheckAllPythonFiles(path):
     :param path:
     :return:
     """
-    print ("-"*50)
-    print("current path:" +path)
-    print ("---Code Check Stated---")
-    errors=CheckAllPyFiles(path)
+    print("-" * 50)
+    print("current path:" + path)
+    print("---Code Check Stated---")
+    errors = CheckAllPyFiles(path)
     if errors:
-        print ("---共有{0}个文件出现错误：---".format(len(errors)))
+        print("---共有{0}个文件出现错误：---".format(len(errors)))
         for e in errors:
             print(e[0])
             print(e[1])
 
-    print ("---Code Check Ended---")
-
+    print("---Code Check Ended---")
 
 
 # 需要略过的文件列表
-Ignored_File_List=[
+Ignored_File_List = [
 
     # autotrade部分
     u"E:\\0-nvwa\\trunk\\loongtian\\autotrade\\trader\\archive\\vtClient.py",
@@ -136,7 +134,6 @@ Ignored_File_List=[
     u"E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api\\xspeed\\test\\xspeedmdtest.py",
     u"E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api\\xspeed\\test\\xspeedtdtest.py",
 
-
     # nvwa部分
     u"E:\\0-nvwa\\trunk\\loongtian\\nvwa\\tools\\cidian\\BeautifulSoup.py",
     u"E:\\0-nvwa\\trunk\\loongtian\\nvwa\\adminConsoleRunner.py",
@@ -146,17 +143,20 @@ Ignored_File_List=[
     u"E:\\0-nvwa\\trunk\\test\\autotrade\\rpc\\testServer.py",
     u"E:\\0-nvwa\\trunk\\test\\autotrade\\rpc\\testClient.py",
     u"E:\\0-nvwa\\trunk\\test\\util\\tasks\\Example\\exceptRaisableThread.py",
+
+    u"E:\\0-nvwa\\trunk\\loongtian\\fuxi\\httpServerRunner.py",
+    u"E:\\0-nvwa\\trunk\\loongtian\\util\\codeCheck\\codeChecker.py",
+
 ]
 
 # Ignored_File_List=[f.replace(u"\\",u"\\\\") for f in Ignored_File_List]
-Ignored_File_List=[os.path .normpath(f) for f in Ignored_File_List]
+Ignored_File_List = [os.path.normpath(f) for f in Ignored_File_List]
 
 # 是否检查输入的目录，如否，则检查Directories_to_check给定的目录
-Check_from_input=True
-
+Check_from_input = True
 
 # 需要自动化检查的目录列表
-Directories_to_check=[
+Directories_to_check = [
     # u"E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api",
     # u"E:\\0-nvwa\\trunk\\loongtian\\autotrade\\data",
     # u"E:\\0-nvwa\\trunk\\loongtian\\autotrade\\examples",
@@ -166,14 +166,11 @@ Directories_to_check=[
 # CheckSingleFile(u"E:\\0-nvwa\\trunk\\loongtian\\autotrade\\trader\\archive\\vtClient.py")
 
 
-
 if Check_from_input:
     while True:
-        path =raw_input('请输入要检查代码的路径：').decode('utf-8')
-        path=os.path .normpath(path)
+        path = input('请输入要检查代码的路径：')
+        path = os.path.normpath(path)
         CheckAllPythonFiles(path)
 else:
     for path in Directories_to_check:
         CheckAllPythonFiles(path)
-
-

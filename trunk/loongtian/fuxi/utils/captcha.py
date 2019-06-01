@@ -11,7 +11,8 @@ captcha
 """
 __author__ = 'xujz'
 
-import StringIO
+
+from io import StringIO
 from loongtian.util.helper import captcha
 from flask import session
 from loongtian.fuxi import app

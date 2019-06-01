@@ -46,6 +46,9 @@ class ModelingEngine(ThinkEngineBase):
     @staticmethod
     def createExcutionInfo(executable,
                            patten, meaning, meaning_value=None,
+                           pattern_type=ObjType.LINEAR_EXE_INFO,
+                           meaning_type=ObjType.LINEAR_EXE_INFO,
+                           meaning_value_type=ObjType.LINEAR_EXE_MEANING_VALUE,
                            memory=None, recordInDB=False):
         """
         创建可执行性信息。根据输入的实际对象链提取/创建模式pattern、提取/创建意义meaning。左右形式及左右对象类别
@@ -94,18 +97,25 @@ class ModelingEngine(ThinkEngineBase):
         # 真正创建可执行信息
         if isinstance(executable, RealObject):
             # 为实际对象提取/创建模式pattern、提取/meaning
-            return ModelingEngine._createRealObjectExecutionInfo(executable,
-                                                                 patten_objs,
-                                                                 meaning_objs,
-                                                                 meaning_value,
-                                                                 memory=memory,
-                                                                 recordInDB=recordInDB)
+            executionInfo, new_created = ModelingEngine._createRealObjectExecutionInfo(executable,
+                                                                                       patten_objs,
+                                                                                       meaning_objs,
+                                                                                       meaning_value,
+                                                                                       pattern_type=pattern_type,
+                                                                                       meaning_type=meaning_type,
+                                                                                       meaning_value_type=meaning_value_type,
+                                                                                       memory=memory,
+                                                                                       recordInDB=recordInDB)
+            return {executable: (executionInfo, new_created)}
         # 为多实际对象，例如：[因为...所以...]提取/创建模式pattern、提取/meaning
         elif isinstance(executable, list):  # 例如：因为placeholder-k1所以placeholder-k2,这是一种模式，应该创建一个对象代表之
             return ModelingEngine._createRealChainExecutionInfo(executable,
                                                                 patten_objs,
                                                                 meaning_objs,
                                                                 meaning_value,
+                                                                pattern_type=pattern_type,
+                                                                meaning_type=meaning_type,
+                                                                meaning_value_type=meaning_value_type,
                                                                 memory=memory)
         elif isinstance(executable, Knowledge):  # 例如：因为placeholder-k1所以placeholder-k2,这是一种模式，应该创建一个对象代表之
             executable.getChainItems()
@@ -191,8 +201,12 @@ class ModelingEngine(ThinkEngineBase):
     @staticmethod
     def _createRealObjectExecutionInfo(executable,
                                        patten_objs, meaning_objs, meaning_value=None,
+                                       pattern_type=ObjType.LINEAR_EXE_INFO,
+                                       meaning_type=ObjType.LINEAR_EXE_INFO,
+                                       meaning_value_type=ObjType.LINEAR_EXE_MEANING_VALUE,
                                        memory=None,
-                                       recordInDB=False):
+                                       recordInDB=False,
+                                       other_executables=None):
         """
         为实际对象提取/创建模式pattern、提取/meaning
         :param executable:
@@ -203,11 +217,11 @@ class ModelingEngine(ThinkEngineBase):
                 [self.real_niu,self.brain.MemoryCentral.Instincts.instinct_component,self.real_tui], # knowledge知识链第一步中包含的第一个knowledge，是一个线性结构
             ],
         ]
-        :return:
+        :return:executionInfo, new_created
         """
         # 取得现有的执行相关信息
-        executionInfo = executable.getSelfExecutionInfo()
-        new_created=True
+        executionInfo = executable.ExecutionInfo.getSelfLinearExecutionInfo()
+        new_created = True
         # 如果已有pattern/meaning，对现有pattern/meaning进行检查
         if executionInfo and executionInfo.isExecutable():
 
@@ -215,19 +229,29 @@ class ModelingEngine(ThinkEngineBase):
                 executable.setType(ObjType.ACTION)
 
             if ModelingEngine._matchPatternAndMeaning(executionInfo, patten_objs, meaning_objs, meaning_value):
-                new_created=False
+                new_created = False
                 return executionInfo, new_created  # newcreted=False
             # 如果没有匹配出来的模式和意义，创建新的pattern、meaning（先不考虑模式是否相同，后期应该有一个专有模式处理引擎对其进行合并）
-            return ModelingEngine._createNewPatternAndMeaning(executable, patten_objs, meaning_objs,
+            return ModelingEngine._createNewPatternAndMeaning(executable,
+                                                              patten_objs, meaning_objs,
                                                               meaning_value=meaning_value,
+                                                              pattern_type=pattern_type,
+                                                              meaning_type=meaning_type,
+                                                              meaning_value_type=meaning_value_type,
                                                               recordInDB=recordInDB,
-                                                              memory=memory),new_created
+                                                              memory=memory,
+                                                              other_executables=other_executables), new_created
 
         else:  # 如果没有，创建新的pattern、meaning
-            return ModelingEngine._createNewPatternAndMeaning(executable, patten_objs, meaning_objs,
+            return ModelingEngine._createNewPatternAndMeaning(executable,
+                                                              patten_objs, meaning_objs,
                                                               meaning_value=meaning_value,
+                                                              pattern_type=pattern_type,
+                                                              meaning_type=meaning_type,
+                                                              meaning_value_type=meaning_value_type,
                                                               recordInDB=recordInDB,
-                                                              memory=memory),new_created
+                                                              memory=memory,
+                                                              other_executables=other_executables), new_created
 
     @staticmethod
     def _matchPatternAndMeaning(executionInfo, patten_objs, meaning_objs,
@@ -242,7 +266,7 @@ class ModelingEngine(ThinkEngineBase):
         from loongtian.nvwa.runtime.placeholder import Placeholder
         executionInfo.restoreCurObjIndex()  # 将当前可执行信息所处的位置重置为0（模式及模式的意义）
         while True:
-            cur_pattern, cur_meaning ,cur_meaning_value= executionInfo.getCur()
+            cur_pattern, cur_meaning, cur_meaning_value = executionInfo.getCur()
             if not cur_pattern:  # 如果是最后一个了，停止循环
                 break
 
@@ -253,7 +277,7 @@ class ModelingEngine(ThinkEngineBase):
             if obj_placeholder_dict:
                 replaced_meaning_objs = Placeholder.replaceWithPlaceholderDict(meaning_objs,
                                                                                obj_placeholder_dict)
-                if cur_meaning.isSame(replaced_meaning_objs):
+                if cur_meaning.getSequenceComponents() == replaced_meaning_objs:
                     # 如果匹配出了模式和意义，直接返回
                     return True  # not new created
 
@@ -262,16 +286,21 @@ class ModelingEngine(ThinkEngineBase):
         return False
 
     @staticmethod
-    def _createNewPatternAndMeaning(executable, patten_objs, meaning_objs,
+    def _createNewPatternAndMeaning(executable,
+                                    patten_objs, meaning_objs,
                                     meaning_value=None,
+                                    pattern_type=ObjType.LINEAR_EXE_INFO,
+                                    meaning_type=ObjType.LINEAR_EXE_INFO,
+                                    meaning_value_type=ObjType.LINEAR_EXE_MEANING_VALUE,
                                     recordInDB=False,
-                                    memory=None):
+                                    memory=None,
+                                    other_executables=None):
         """
         如果没有匹配出来的模式和意义，创建新的pattern、meaning
         :param executable:
         :param patten_objs:
         :param meaning_objs:
-        :return:executable.ExecutionInfo,True/False # newcreted=True/False
+        :return:executable.LinearExecutionInfo,True/False # newcreted=True/False
         """
         from loongtian.nvwa.runtime.placeholder import Placeholder
         from loongtian.nvwa.models.knowledge import Knowledge
@@ -280,7 +309,8 @@ class ModelingEngine(ThinkEngineBase):
         pattern_placeholders, pattern_dict, pattern_splits = \
             Placeholder._createPlaceHolders(patten_objs, executable,
                                             recordInDB=recordInDB,
-                                            memory=memory)
+                                            memory=memory,
+                                            other_executables=other_executables)
         if not pattern_placeholders or not pattern_dict:
             raise Exception("无法取得pattern的占位符链，无法创建pattern！")
 
@@ -288,7 +318,7 @@ class ModelingEngine(ThinkEngineBase):
         ModelingEngine._createPlaceholdersParent(pattern_dict)
 
         pattern_klg = Knowledge.createKnowledgeByObjChain(pattern_placeholders,
-                                                          type=ObjType.EXE_INFO,
+                                                          type=pattern_type,
                                                           understood_ratio=1.0,
                                                           recordInDB=recordInDB,
                                                           memory=memory)
@@ -304,7 +334,8 @@ class ModelingEngine(ThinkEngineBase):
             raise Exception("无法取得meaning的占位符链，无法创建meaning！")
 
         # 创建意义
-        meaning_klg = Knowledge.createKnowledgeByObjChain(meaning_placeholders, type=ObjType.EXE_INFO,
+        meaning_klg = Knowledge.createKnowledgeByObjChain(meaning_placeholders,
+                                                          type=meaning_type,
                                                           understood_ratio=1.0, recordInDB=recordInDB,
                                                           memory=memory)
         if not meaning_klg:
@@ -314,13 +345,13 @@ class ModelingEngine(ThinkEngineBase):
         pattern_klg.Layers.addLower(meaning_klg, recordInDB=recordInDB)
 
         # 关联meaning对象及其meaning_value
-        meaning_klg.Layers.addLower(meaning_value,ltype=ObjType.EXE_MEANING_VALUE, recordInDB=recordInDB)
+        meaning_klg.Layers.addLower(meaning_value, ltype=meaning_value_type, recordInDB=recordInDB)
 
         # pattern_placeholders、meaning_placeholders里面可能有一些并未记录到数据库，
         # 这时要记录之，否则未来读取时会出现找不到对象的情况
         if recordInDB:
-            ModelingEngine._createInDB(pattern_placeholders)
-            ModelingEngine._createInDB(meaning_placeholders)
+            BaseEntity.recordInDB(pattern_placeholders, memory=memory)
+            BaseEntity.recordInDB(meaning_placeholders, memory=memory)
 
         # 2、设置到实际对象的可执行信息
         executable.addExecutionInfo(pattern_klg, meaning_klg, meaning_value)
@@ -332,21 +363,6 @@ class ModelingEngine(ThinkEngineBase):
 
         return executable.ExecutionInfo  # newcreted=True
 
-    @staticmethod
-    def _createInDB(objs):
-        """
-        将对象记录到数据库
-        :param objs:
-        :return:
-        """
-        if objs is None:
-            return
-        if isinstance(objs, list) or isinstance(objs, list):
-            for obj in objs:
-                ModelingEngine._createInDB(obj)
-        elif isinstance(objs, BaseEntity):
-            if not objs._isInDB:
-                objs.create(checkExist=False, recordInDB=True)
 
     @staticmethod
     def _createPlaceholdersParent(obj_placeholder_dict):
@@ -354,7 +370,7 @@ class ModelingEngine(ThinkEngineBase):
         关联占位符及对应的实际对象之间的父对象
         :return:
         """
-        for real, placeholder in obj_placeholder_dict.iteritems():
+        for real, placeholder in obj_placeholder_dict.items():
             real_parents, real_parents_klg = real.Constitutions.getSelfParentObjects()
             if not real_parents:
                 # 2019-03-12：默认都是元对象，不需要添加
@@ -369,6 +385,9 @@ class ModelingEngine(ThinkEngineBase):
     @staticmethod
     def _createRealChainExecutionInfo(real_chain,
                                       patten_objs, meaning_objs, meaning_value=None,
+                                      pattern_type=ObjType.LINEAR_EXE_INFO,
+                                      meaning_type=ObjType.LINEAR_EXE_INFO,
+                                      meaning_value_type=ObjType.LINEAR_EXE_MEANING_VALUE,
                                       memory=None):
         """
         为多实际对象，例如：[因为...所以...]提取/创建模式pattern、提取/meaning
@@ -378,11 +397,24 @@ class ModelingEngine(ThinkEngineBase):
         :param meaning_value:
         :return:
         """
-        for real in real_chain:
-            ModelingEngine._createRealObjectExecutionInfo(real,
-                                                          patten_objs, meaning_objs,
-                                                          meaning_value,
-                                                          memory=memory)
+        import copy
+        result = {}
+        for i in range(len(real_chain)):
+            real = real_chain[i]
+            other_executables = copy.copy(real_chain)  # 浅表复制一个
+            other_executables.pop(i)
+            executionInfo, new_created = ModelingEngine._createRealObjectExecutionInfo(real,
+                                                                                       patten_objs, meaning_objs,
+                                                                                       meaning_value,
+                                                                                       pattern_type=pattern_type,
+                                                                                       meaning_type=meaning_type,
+                                                                                       meaning_value_type=meaning_value_type,
+                                                                                       memory=memory,
+                                                                                       other_executables=other_executables)
+
+            result[real] = (executionInfo, new_created)
+
+        return result
 
     def _createKnowledgeExecutionInfo(self, knowledge,
                                       patten_objs, meaning_objs,
@@ -399,10 +431,10 @@ class ModelingEngine(ThinkEngineBase):
         # 创建其上一层实际对象
         upper_obj = knowledge.createUpperRealObject(realType=ObjType.ACTION)
         # 关联其模式、意义
-        pattern_knowledge = Knowledge.createKnowledgeByObjChain(patten_objs, type=ObjType.EXE_INFO,
+        pattern_knowledge = Knowledge.createKnowledgeByObjChain(patten_objs, type=ObjType.LINEAR_EXE_INFO,
                                                                 understood_ratio=1.0,
                                                                 memory=self.MemoryCentral)
-        meaning_knowledge = Knowledge.createKnowledgeByObjChain(meaning_objs, type=ObjType.EXE_INFO,
+        meaning_knowledge = Knowledge.createKnowledgeByObjChain(meaning_objs, type=ObjType.LINEAR_EXE_INFO,
                                                                 understood_ratio=1.0,
                                                                 memory=self.MemoryCentral)
         # 关联可执行对象及其pattern
@@ -436,7 +468,11 @@ class ModelingEngine(ThinkEngineBase):
                 if isinstance(sub_exe, RealObject) and not ObjType.isExecutable(sub_exe):
                     sub_exe.type = ObjType.ACTION
 
-                self.createExcutionInfo(sub_exe, knowledge1._s_chain_items, knowledge2._s_chain_items)
+                self.createExcutionInfo(sub_exe, knowledge1._s_chain_items, knowledge2._s_chain_items,
+                                        pattern_type=ObjType.LINEAR_EXE_INFO,
+                                        meaning_type=ObjType.LINEAR_EXE_INFO,
+                                        meaning_value_type=ObjType.LINEAR_EXE_MEANING_VALUE,
+                                        )
             elif len(differs1) > 1:  # 有两个及以上的差异，例如：因为...所以，分成一组，生成其模式、意义
                 # 根据differs1对其进行分组，例如：因为太阳升起来了所以天亮了，如果差是"因为""所以"，则分组出：如果-太阳升起来了-所以-天亮了
                 grouped_splits = self._splitByDiffers(knowledge1.s_chain, differs1)
@@ -449,17 +485,21 @@ class ModelingEngine(ThinkEngineBase):
                             final_grouped_pattern.append(grouped_split[0])
                         else:
                             grouped_split_knowledge = Knowledge.createKnowledgeByObjChain(grouped_split,
-                                                                                          type=ObjType.EXE_INFO,
+                                                                                          type=ObjType.LINEAR_EXE_INFO,
                                                                                           memory=self.MemoryCentral)
                             final_grouped_pattern.append(grouped_split_knowledge)
                     else:
                         final_grouped_pattern.append(grouped_split)
 
                 cur_knowledge = Knowledge.createKnowledgeByObjChain(final_grouped_pattern,
-                                                                    type=ObjType.EXE_INFO,
+                                                                    type=ObjType.LINEAR_EXE_INFO,
                                                                     memory=self.MemoryCentral)
                 # 创建模式及意义
-                self.createExcutionInfo(cur_knowledge, final_grouped_pattern, knowledge2.s_chain)
+                self.createExcutionInfo(cur_knowledge, final_grouped_pattern, knowledge2.s_chain,
+                                        pattern_type=ObjType.LINEAR_EXE_INFO,
+                                        meaning_type=ObjType.LINEAR_EXE_INFO,
+                                        meaning_value_type=ObjType.LINEAR_EXE_MEANING_VALUE,
+                                        )
 
     def _splitByDiffers(self, objs, differs):
         """
@@ -532,7 +572,7 @@ class ModelingEngine(ThinkEngineBase):
         """
 
     @staticmethod
-    def regroupMeaningComponentsByPattern(meaning_components, pattern_components,memory=None):
+    def regroupMeaningComponentsByPattern(meaning_components, pattern_components, memory=None):
         """
         根据左边的模式重新构建（分组）意义
         :param meaning_components:
@@ -546,56 +586,53 @@ class ModelingEngine(ThinkEngineBase):
         # if pattern_components in meaning_components:
         #     return meaning_components, meaning_value
 
-        meaning_components = ModelingEngine._group_meaning_components_by_pattern(meaning_components, pattern_components,meaning_value)
+        meaning_components = ModelingEngine._group_meaning_components_by_pattern(meaning_components, pattern_components,
+                                                                                 meaning_value)
         if not meaning_components:
             return None, None
         return meaning_components, meaning_value
 
-
     @staticmethod
-    def _group_meaning_components_by_pattern(meaning_components, pattern_components,meaning_value):
+    def _group_meaning_components_by_pattern(meaning_components, pattern_components, meaning_value):
         """
         根据pattern对meaning进行重新分组
         :param meaning_components:
         :param pattern_components:
         :return:
         """
-        meaning_components = ModelingEngine._plain_meaning_components(meaning_components) # 扁平化
+        meaning_components = ModelingEngine._plain_meaning_components(meaning_components)  # 扁平化
         temp_pattern_components = ModelingEngine._plain_meaning_components(pattern_components)
         if len(temp_pattern_components) > len(meaning_components):
             return None
 
         first_pattern_component = temp_pattern_components[0]
-        need_group_index=[]
+        need_group_index = []
         i = 0
         while i < len(meaning_components):
-            cur_meaning_component=meaning_components[i]
-            if cur_meaning_component.id==first_pattern_component.id: # 看开头
-                cur_meaning_components=meaning_components[i:i+len(temp_pattern_components)] # 截取等长
-                if cur_meaning_components==temp_pattern_components: # 如果截取部分与pattern扁平化部分相同，说明可以替换
+            cur_meaning_component = meaning_components[i]
+            if cur_meaning_component.id == first_pattern_component.id:  # 看开头
+                cur_meaning_components = meaning_components[i:i + len(temp_pattern_components)]  # 截取等长
+                if cur_meaning_components == temp_pattern_components:  # 如果截取部分与pattern扁平化部分相同，说明可以替换
                     need_group_index.append(i)
-                    i+=len(temp_pattern_components)
+                    i += len(temp_pattern_components)
                     continue
 
             i += 1
         if not need_group_index:
             return None
-        grouped_meaning_components=[]
+        grouped_meaning_components = []
 
-        i=0
-        while i < len(meaning_components): # 替换
+        i = 0
+        while i < len(meaning_components):  # 替换
             if i in need_group_index:
                 grouped_meaning_components.append(meaning_value)
                 i += len(temp_pattern_components)
                 continue
             cur_meaning_component = meaning_components[i]
             grouped_meaning_components.append(cur_meaning_component)
-            i+=1
+            i += 1
 
         return grouped_meaning_components
-
-
-
 
     @staticmethod
     def _plain_meaning_components(meaning_components):

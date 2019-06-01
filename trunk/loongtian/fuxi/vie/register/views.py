@@ -10,7 +10,7 @@ import json
 import loongtian.util.helper.stringHelper as stringHelper
 
 from loongtian.fuxi.mod.models import User, Locations
-from loongtian.fuxi.utils.email import send_email
+from loongtian.fuxi.utils.emailHelper import send_email
 from loongtian.fuxi.utils.gateway import register_valid
 
 __author__ = 'js'

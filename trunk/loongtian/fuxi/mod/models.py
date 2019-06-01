@@ -28,7 +28,7 @@ class User(db.Model, RealUser):
 
     # __tablename__ = 'users' # 已在RealUser中定义
 
-    userid = db.Column(db.String(32), primary_key=True)  # 主键ID
+    id = db.Column(db.String(32), primary_key=True)  # 主键ID
     username = db.Column(db.String(80), unique=True, index=True)  # 用户名
     nickname = db.Column(db.String(80), unique=True, index=True)  # 显示昵称
     realname = db.Column(db.String(80), index=True)  # 真实的用户名

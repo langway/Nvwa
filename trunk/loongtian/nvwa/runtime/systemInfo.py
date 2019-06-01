@@ -81,7 +81,7 @@ class ThinkingInfo():
 
             # 单个元数据-实际对象层面
             SINGLE_META_RELATED_REALS_UNMATCHED = 2000  # 有单个meta，但实际对象未匹配（不属于realobject库）
-            SINGLE_META_RELATED_REALS_MATCHED = 2001  # 有单个meta，实际对象已匹配（属于realobject库，可能有多个）
+            SINGLE_META_RELATED_REALS_MATCHED = 2001  # 【思考终结点】有单个meta，实际对象已匹配（属于realobject库，可能有多个）
 
             # 知识链匹配层面
             METANET_KNOWLEDGE_UNMATCHED = 2500  # 知识链未匹配（不属于knowledge库，肯定找不到下一层知识链，相当于未理解）
@@ -90,7 +90,7 @@ class ThinkingInfo():
             METANET_KNOWLEDGE_MEANING_MATCHED = 2502  # 【思考终结点】知识链已匹配（属于knowledge库），能够理解（找到了下一层知识链）
             METANET_KNOWLEDGE_MEANING_UNMATCHED = 2503  # 知识链已匹配（属于knowledge库），但不能够理解（找不到下一层知识链）
 
-            RAWINPUT_KNOWLEDGE_MEANING_MATCHED = 2504  # 【思考终结点】知识链已匹配（属于knowledge库），能够理解（找到了下一层知识链）
+            # RAWINPUT_KNOWLEDGE_MEANING_MATCHED = 2504  # 【思考终结点】知识链已匹配（属于knowledge库），能够理解（找到了下一层知识链）
 
     class RealLevelInfo():
         """
@@ -186,11 +186,13 @@ class ThinkingInfo():
             SELF_EXPLAIN_SELF = 5506 # 自解释（自己解释自己，例如：牛组件腿意义为牛组件腿，牛有腿就是牛有腿）
                                          # 这种情况，只允许在“意义为”及其衍生对象中出现
 
-            EXECUTIONINFO_CREATED = 5507 # 根据意义标记，建立了左右两侧对象的意义关联
+            EXECUTIONINFO_CREATED = 5507 # 单动作-根据意义标记，建立了左右两侧对象的意义关联
 
-            EXECUTIONINFO_EXIST = 5508 # 根据意义标记，匹配到了左右两侧对象的意义关联
+            EXECUTIONINFO_EXIST = 5508 # 单动作-根据意义标记，匹配到了左右两侧对象的意义关联
 
+            EXECUTIONINFOS_CREATED = 5509  # 多动作-根据意义标记，建立了左右两侧对象的意义关联
 
+            EXECUTIONINFOS_EXIST = 5510  # 多动作-根据意义标记，匹配到了左右两侧对象的意义关联
 
 
 

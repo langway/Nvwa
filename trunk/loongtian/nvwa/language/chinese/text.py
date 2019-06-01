@@ -47,6 +47,8 @@ class InstinctsText():
     meaning5 = "理解为"
     meaning6 = " meaning as "
 
+    realSynchronizer="同一于"
+
     # 观察者
     observer = "观察者"
     # 女娲本身
@@ -59,12 +61,16 @@ class InstinctsText():
 
     inner_operation = "#inner_operation#"
     inner_operation_createExcutionInfo = "#createExcutionInfo#"
+    inner_operation_Synchronization = "#synchronization#"
 
 # from loongtian.nvwa.models.model import Model
-# class UserModel(Model):
-#
-#     def __init__(self):
-#         super(UserModel, self).__init__()
+class EntityName():
+    """
+    实体类的名称
+    """
+    MetaNetEntityName = "元数据链"
+    KnowledgeEntityName= "知识链"
+
     
 
 class UserTags():

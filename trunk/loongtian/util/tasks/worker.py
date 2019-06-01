@@ -55,12 +55,12 @@ class ThreadWorker(Thread, StateController):
                 self._resultQueue = workManager._resultQueue  # _resultQueue由worker提供
                 self._taskDict = workManager._taskDict  # 工作项字典，与_taskQueue一样，但可以根据ID进行查询。由worker提供
             else:
-                self._taskQueue = Queue.Queue()
-                self._resultQueue = Queue.Queue()
+                self._taskQueue = queue.Queue()
+                self._resultQueue = queue.Queue()
                 self._taskDict = {}  # 工作项字典，与_taskQueue一样，但可以根据ID进行查询。
         else:
-            self._taskQueue = Queue.Queue()
-            self._resultQueue = Queue.Queue()
+            self._taskQueue = queue.Queue()
+            self._resultQueue = queue.Queue()
             self._taskDict = {}  # 工作项字典，与_taskQueue一样，但可以根据ID进行查询。
 
         self.interval = interval
@@ -256,7 +256,7 @@ class ProcessWorker(Process, StateController):
 
     def __init__(self, worker, name=None):
         Process.__init__(self)
-        self.queue = Queue.Queue()
+        self.queue = queue.Queue()
         self.worker = worker
         if name is not None: self.name = name
 

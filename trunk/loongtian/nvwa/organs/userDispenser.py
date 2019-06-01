@@ -74,9 +74,6 @@ class UserDispenser(Runnable):
                 while not _q.empty():
                     _input = _q.get()
                     if isinstance(_input, str):
-                        _input = _input.encode('utf-8')
-
-                    if isinstance(_input, unicode):
                         _msgInfo = MsgInfo()
                         _msgInfo.fromStr(_input)
                     elif isinstance(_input,MsgInfo):

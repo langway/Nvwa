@@ -3,7 +3,7 @@
 
 __author__ = 'Leon'
 
-from Queue import Queue
+from queue import Queue
 from loongtian.util.log import logger
 from loongtian.util.tasks.runnable import Runnable
 
@@ -116,7 +116,7 @@ class Brain(Runnable):
         :param output:
         :return:
         """
-        if isinstance(output, str) or isinstance(output, unicode):
+        if isinstance(output, str):
             # 根据用户ip进行反馈
             from loongtian.nvwa.organs.centralManager import CentralManager
             CentralManager.response(output, self.client_address)

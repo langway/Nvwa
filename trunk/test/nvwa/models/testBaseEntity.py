@@ -13,7 +13,7 @@ class MyEntity(BaseEntity):
     __tablename__ = "test"  # 所在表。与Flask统一
 
     primaryKey = ("pkId", "pkUuid")
-    columns = ("colNone", "colInt", "colString", "colBool", "colNull","colList","isdel")
+    columns = ("colNone", "colInt", "colString", "colBool", "colNull","colList","status")
     jsonColumns=["colList"] # 需要用json解析的字段，一般都为text字段，创建(create)、更新(update)，需要解析为json，读取(retrive)时需要从json解析为对象
     retrieveColumns=("pkId", "pkUuid")
     def __init__(self,memory=None):
@@ -40,7 +40,7 @@ class TestBaseEntity(TestCase):
             colNull text,
             colList text,
             updatetime timestamp,
-            isdel boolean,
+            status int,
             PRIMARY KEY (pkId, pkUuid)
         );""")
 
@@ -75,17 +75,19 @@ class TestBaseEntity(TestCase):
         self.entity.colString = timeHelper.getNow() #BaseEntity.Command("now()")
         self.entity.colBool = True
         self.entity.colList=[1.2,"testString",u"test_unicode",set([2.3,("a",u"e",6)])]
-        self.entity = self.entity.create() # 第一次写到记忆中枢及数据库
+        created_entity = self.entity.create(checkExist=True,recordInDB=True) # 第一次写到记忆中枢及数据库
         self.assertIsNotNone(self.entity)
         self.assertIsNotNone(self.entity.pkId)
         self.assertIsNotNone(self.entity.pkUuid)
+        self.assertEqual(id(self.entity), id(created_entity))
         # print(Json.obj2json(self.entity, False))
 
-        self.entity = self.entity.create(recordInDB=False)  # 再次创建，应该是记忆中枢中的
-        self.entity = self.entity.create(recordInDB=True)  # 再次创建，强制写到数据库，错误会内部处理
+        self.entity = self.entity.create(checkExist=True,recordInDB=False)  # 再次创建，应该是记忆中枢中的
+        self.entity = self.entity.create(checkExist=True,recordInDB=True)  # 再次创建，强制写到数据库，这里会通过记忆中枢取出根据上面字段（pkId，_id）查找出的对象，所以后面会出现self.entity与create相同的情况
         self.assertIsNotNone(self.entity)
         self.assertIsNotNone(self.entity.pkId)
         self.assertIsNotNone(self.entity.pkUuid)
+        self.assertEqual(id(self.entity), id(created_entity))
 
         create = MyEntity(self.MemoryCentral)
         create.pkId=self.entity.pkId
@@ -94,14 +96,15 @@ class TestBaseEntity(TestCase):
         create.colInt = self.entity.colInt
         create.colString = self.entity.colString
         create.colBool = self.entity.colBool
-        create = create.create(checkExist=True,recordInDB=False) #这里会通过记忆中枢取出根据上面字段（pkId，_id）查找出的对象，所以后面会出现self.entity与create相同的情况
+        create = create.create(checkExist=False,recordInDB=True)
         self.assertEqual(self.entity.pkId, create.pkId)
         self.assertEqual(self.entity.pkUuid, create.pkUuid)
         self.assertEqual(id(self.entity), id(create))
 
-        create = create.create(recordInDB=True)  # 这里会通过报错（已存在相同pkId、pkUuid），错误会内部处理
+        create = create.create(recordInDB=True)
         self.assertEqual(self.entity.pkId, create.pkId)
         self.assertEqual(self.entity.pkUuid, create.pkUuid)
+        self.assertEqual(id(self.entity), id(create))
 
         create = MyEntity(self.MemoryCentral)
         create.colNone = self.entity.colNone
@@ -111,7 +114,7 @@ class TestBaseEntity(TestCase):
         create = create.create(checkExist=False)  # 这里会在数据库中创建新的对象，所以后面会出现self.entity与create不相同的情况
         self.assertNotEqual(self.entity.pkId, create.pkId)
         self.assertNotEqual(self.entity.pkUuid, create.pkUuid)
-
+        self.assertNotEqual(id(self.entity), id(create))
 
 
     def test_getByColumnsInDB(self):
@@ -291,7 +294,7 @@ class TestBaseEntity(TestCase):
         self.entity = self.entity.delete()
         self.assertIsNotNone(self.entity)
         findAll = MyEntity.getAllByConditionsInDB(memory=self.MemoryCentral,pkId = self.entity.pkId, pkUuid = self.entity.pkUuid)
-        self.assertEqual(findAll.isdel,True)
+        self.assertEqual(findAll.status,0)
         self.entity._physicalDelete()
         findAll = MyEntity.getAllByConditionsInDB(memory=self.MemoryCentral,pkId = self.entity.pkId, pkUuid = self.entity.pkUuid)
         self.assertIsNone(findAll)

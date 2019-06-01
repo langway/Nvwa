@@ -73,8 +73,8 @@ class GroupEngine(ThinkEngineBase):
                 if real.isSingularity():  # 判断当前实际对象是否是奇点对象
                     typed_objs[ObjType.UNKNOWN][i] = real
                 else:
-                    real.getSelfExecutionInfo()
-                    typed_objs[real.realType][i] = real
+                    real.ExecutionInfo.getSelfLinearExecutionInfo()
+                    typed_objs[real.getType()][i] = real
             elif isinstance(real, Unknowns):
                 typed_objs[ObjType.UNKNOWN][i] = real
             elif isinstance(real, Knowledge):
@@ -118,7 +118,7 @@ class GroupEngine(ThinkEngineBase):
         instincts_splits = None
         if not instincts is None and len(instincts) > 0:
             instincts_splits = self.splitByPosExecutable(reals, instincts)
-            realsChainList = self.getCandidatesRealChains(instincts_splits, instincts.values())
+            realsChainList = self.getCandidatesRealChains(instincts_splits, list(instincts.values()))
         else:
             realsChainList = [reals]
 
@@ -226,7 +226,7 @@ class GroupEngine(ThinkEngineBase):
         for real in reals:
             if isinstance(real, RelatedObj):
                 if real.obj.isExecutable():  # 判断当前实际对象是否是可执行性对象
-                    real.obj.getSelfExecutionInfo() # 取得执行信息
+                    real.obj.ExecutionInfo.getSelfLinearExecutionInfo() # 取得执行信息
                     pos_executables.append((pos,real))
             pos += 1
 
@@ -255,7 +255,7 @@ class GroupEngine(ThinkEngineBase):
                 pass
             else:
                 # 取得模式、意义
-                pattern_knowledge, meaning_knowledge = cur_exe.getSelfExecutionInfo()
+                pattern_knowledge, meaning_knowledge = cur_exe.ExecutionInfo.getSelfLinearExecutionInfo()
                 if pattern_knowledge:
                     # 取得线性列表
                     pattern_objs = pattern_knowledge.getSequenceComponents()

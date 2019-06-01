@@ -63,7 +63,7 @@ def words_in_cluster(word, word_to_label):
 	#it could be O(k), k=cluster size, but that would cost more Memory
 	label = word_to_label[word]
 	#get the other words with this label
-	similar_words = [key for key,val in word_to_label.iteritems() if val==label]
+	similar_words = [key for key,val in word_to_label.items() if val==label]
 	return similar_words
 
 def main():

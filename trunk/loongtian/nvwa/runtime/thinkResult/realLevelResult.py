@@ -14,7 +14,7 @@ from loongtian.nvwa.runtime.thinkResult.fragments import (UnderstoodFragments,
                                                           UnknownObjs,
                                                           JoinedUnderstoodFragments,
                                                           JoinedUnderstoodFragmentsList,
-                                                          ConjugatedActions)
+                                                          LinkedActions)
 from loongtian.nvwa.runtime.thinkResult.otherResults import (ParadigmResult,
                                                              AsCollectionResult,
                                                              InSightResult,
@@ -50,7 +50,7 @@ class RealLevelResult(object):
         self.collectionFragments = CollectionFragments(self)
         self.unsatisfiedFragments = UnsatisfiedFragments(self)  # pattern只能部分匹配的部分片段的列表。
         self.unknownObjs = UnknownObjs(self)  # 在一个realObject链（笛卡尔积）中未能正确理解的对象。
-        self.conjugatedActions = ConjugatedActions(self)  # 在一个realObject链（笛卡尔积）中交联的两个动作的包装类的列表
+        self.linkedActions = LinkedActions(self)  # 在一个realObject链（笛卡尔积）中交联的两个动作的包装类的列表
 
         self.realLevelThinkingRecords = RealLevelThinkingRecords(self)  # 关于思考状态的信息记录（这些状态在思维处理中不断被改变，是单向、互斥的）。
 
@@ -212,12 +212,12 @@ class RealLevelResult(object):
         """
         return self._reals_matched_knowledges and self._reals_matched_knowledges_meaning_klgs
 
-    def hasConjugatedActions(self):
+    def hasLinkedActions(self):
         """
         判断是否有动词交联的情况
         :return:
         """
-        return len(self.conjugatedActions) > 0
+        return len(self.linkedActions) > 0
 
     def isAllUnderstood(self):
         """
@@ -239,6 +239,8 @@ class RealLevelResult(object):
                 _curRealLevelUnderstoodInfo == ThinkingInfo.RealLevelInfo.UnderstoodInfo.MEANING_MATCHED_UNDERSTOOD or \
                 _curRealLevelUnderstoodInfo == ThinkingInfo.RealLevelInfo.UnderstoodInfo.EXECUTIONINFO_CREATED or \
                 _curRealLevelUnderstoodInfo == ThinkingInfo.RealLevelInfo.UnderstoodInfo.EXECUTIONINFO_EXIST or \
+                _curRealLevelUnderstoodInfo == ThinkingInfo.RealLevelInfo.UnderstoodInfo.EXECUTIONINFOS_CREATED or \
+                _curRealLevelUnderstoodInfo == ThinkingInfo.RealLevelInfo.UnderstoodInfo.EXECUTIONINFOS_EXIST or \
                 _curRealLevelUnderstoodInfo == ThinkingInfo.RealLevelInfo.UnderstoodInfo.SELF_EXPLAIN_SELF or \
                 _curRealLevelUnderstoodInfo == ThinkingInfo.RealLevelInfo.UnderstoodInfo.SINGLE_UNDERSTOOD:
             return True
@@ -280,7 +282,7 @@ class RealLevelResult(object):
         while i < len(self.understoodFragments):
             cur_understoodFragment = self.understoodFragments[i]
             cur_poses = tuple(cur_understoodFragment.getPosesInReals())
-            if pose_frags.has_key(cur_poses):
+            if cur_poses in pose_frags:
                 frags = pose_frags[cur_poses]
                 if frags:
                     frags.append(cur_understoodFragment)
@@ -415,7 +417,9 @@ class RealLevelResult(object):
         """
         _curRealLevelUnderstoodInfo = self.realLevelThinkingRecords.curRealLevelUnderstoodInfo
         return _curRealLevelUnderstoodInfo == ThinkingInfo.RealLevelInfo.UnderstoodInfo.EXECUTIONINFO_CREATED or \
-               _curRealLevelUnderstoodInfo == ThinkingInfo.RealLevelInfo.UnderstoodInfo.EXECUTIONINFO_EXIST
+               _curRealLevelUnderstoodInfo == ThinkingInfo.RealLevelInfo.UnderstoodInfo.EXECUTIONINFO_EXIST or \
+               _curRealLevelUnderstoodInfo == ThinkingInfo.RealLevelInfo.UnderstoodInfo.EXECUTIONINFOS_CREATED or \
+               _curRealLevelUnderstoodInfo == ThinkingInfo.RealLevelInfo.UnderstoodInfo.EXECUTIONINFOS_EXIST
 
     def processUnknowns(self):
         """

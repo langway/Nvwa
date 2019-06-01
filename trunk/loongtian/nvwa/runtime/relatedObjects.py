@@ -78,7 +78,7 @@ class RelatedObjs(dict):
         if isinstance(relatedObj, RelatedObj):
             self.pop(relatedObj.id)
             return True
-        elif isinstance(relatedObj, str) or isinstance(relatedObj, unicode):
+        elif isinstance(relatedObj, str):
             self.pop(relatedObj)
             return True
 
@@ -93,7 +93,7 @@ class RelatedObjs(dict):
         if self.sorted_objs_by_weights and not forceToResort:
             return self.sorted_objs_by_weights
 
-        self.sorted_objs_by_weights = self.values()
+        self.sorted_objs_by_weights = list(self.values())
         self.sorted_objs_by_weights.sort(key=lambda x: x.weight, reverse=reverse)
 
         return self.sorted_objs_by_weights
@@ -237,9 +237,9 @@ class _RelatedObjsWithDirection(RelatedObjs):
                 else:
                     raise Exception("不支持的对象类型%s，无法添加到RelatedObjsWithDirection中！" % type(relatedObj))
 
-            if not self.typed_objects.has_key(_type):
+            if not _type in self.typed_objects:
                 self.typed_objects[_type] = {}
-            if not self.cur_typed_obj_index.has_key(_type):
+            if not _type in self.cur_typed_obj_index:
                 self.cur_typed_obj_index[_type] = 0
 
             self.typed_objects[_type][relatedObj.id] = relatedObj
@@ -256,7 +256,7 @@ class _RelatedObjsWithDirection(RelatedObjs):
             for relatedObj in relatedObjs:
                 self.add(relatedObj)
         elif isinstance(relatedObjs,dict):
-            for id,relatedObj in relatedObjs.iteritems():
+            for id,relatedObj in relatedObjs.items():
                 self.add(relatedObj)
         else:
             raise Exception("无法将relatedObjs与当前列表合并，错误的类型：%s！" % type(relatedObjs))
@@ -278,7 +278,7 @@ class _RelatedObjsWithDirection(RelatedObjs):
         from loongtian.nvwa.models.baseEntity import BaseEntity
         if isinstance(relatedObj, BaseEntity):
             _type = relatedObj.getType()
-            if self.typed_objects.has_key(_type):
+            if _type in self.typed_objects:
                 self.typed_objects[_type].pop(relatedObj.id)
 
         super(_RelatedObjsWithDirection, self).remove(relatedObj)
@@ -351,13 +351,13 @@ class _RelatedObjsWithDirection(RelatedObjs):
         :param forceToResort:
         :return:
         """
-        if not forceToResort and self.sorted_typed_objects.has_key(type):
+        if not forceToResort and type in self.sorted_typed_objects:
             return self.sorted_typed_objects[type]
 
         objs = self.getObjsByType(type)  # {id:RelatedObj}
         if not objs:
             return None
-        objs = objs.values()
+        objs = list(objs.values())
 
         # objs.sort(cmp=comfun, reverse=reverse)
         objs.sort(key=lambda x: x.weight, reverse=reverse)

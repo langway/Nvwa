@@ -9,7 +9,7 @@ import sys
 import os
 
 path_r = os.path.join(os.path.split(os.path.realpath(__file__))[0], 'newDict.xml')
-file_r = open(path_r, 'r')
+file_r = open(path_r, 'r',encoding="utf-8")
 lines = file_r.readlines()
 file_r.close()
 
@@ -75,7 +75,7 @@ for line in lines:
 # print(replacedLines)
 
 path_w = os.path.join(os.path.split(os.path.realpath(__file__))[0], 'replacedDict.xml')
-file_w = open(path_w, 'w')
+file_w = open(path_w, 'w',encoding="utf-8")
 lines = file_w.writelines(finalLines)
 file_w.close()
 

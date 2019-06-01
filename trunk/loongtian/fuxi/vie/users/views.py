@@ -13,7 +13,7 @@ except:
 
 import loongtian.util.helper.stringHelper as stringHelper
 from loongtian.fuxi.mod.models import User, db, UsersSms, SearchRecord
-from loongtian.fuxi.utils.email import send_email
+from loongtian.fuxi.utils.emailHelper import send_email
 
 
 __author__ = 'js'

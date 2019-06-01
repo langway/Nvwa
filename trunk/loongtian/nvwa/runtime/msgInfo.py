@@ -28,7 +28,7 @@ class MsgInfo(object):
         if not dict:
             raise Exception("非json格式字符串！")
 
-        for attribute,value in dict.iteritems():
+        for attribute,value in dict.items():
             if hasattr(self,attribute.lower()):
                 if isinstance(value, str):
                     value = value.decode("utf-8")

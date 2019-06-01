@@ -61,16 +61,17 @@ class BaseMemory(object):
         # self.StopMarksRexPattern = {}  # [弃用]已经完成的分解句子所需的标点符号正则pattern。
 
         self.MetaDataValueDict = {}  # 已经加载的元数据，其格式为{元数据的值（字符串）:元数据}{value(word):metaData}
-        self.MetaDataIdDict = {}  # 已经加载的元数据，其格式为{元数据的Id（字符串）:元数据}，{mid:metaData}
+        self.MetaDataIdDict = {}  # 已经加载的元数据，其格式为{元数据的Id（字符串）:元数据}，{id:metaData}
 
         # 所有已加载的元数据网，用以查询元数据的构建（双键值字典）
         self.MetaNetDict = DoubleKeyDict(key1_name="startid", key2_name="endid")
+        self.MetaNetMNValueDict ={} # 已经加载的元数据网，其格式为{元数据的mnvalue（字符串）:元数据}{mnvalue(word):metaData}
 
-        self.RealObjectIdDict = {}  # 实际对象字典{rid:realObject}
+        self.RealObjectIdDict = {}  # 实际对象字典{id:realObject}
 
         self.KnowledgeDict = DoubleKeyDict(key1_name="startid", key2_name="endid")  # 知识链对象字典（双键值字典）
 
-        self.LayerDict = DoubleKeyDict(key1_name="upperid", key2_name="lowerid")  # 分层对象的关系表字典（双键值字典）
+        self.LayerDict = DoubleKeyDict(key1_name="startid", key2_name="endid")  # 分层对象的关系表字典（双键值字典）
 
         self.BaseEntityIdDict = {}
         # 测试用，生产环境下注释掉基础类对象字典{id:BaseEntity}
@@ -105,6 +106,7 @@ class BaseMemory(object):
         else:
             raise Exception("不支持的类型：%s" % type(obj))
 
+
     def addMetasInMemory(self, metas):
         """
         加载元数据列表到记忆中
@@ -120,16 +122,9 @@ class BaseMemory(object):
         :param relatedMetas:
         :return:
         """
-        if isinstance(meta.mid, str):
-            meta.mid = meta.mid.decode("utf-8")
-        if isinstance(meta.mvalue, str):
-            try:
-                meta.mvalue = meta.mvalue.decode("utf-8")
-            except:
-                # raise
-                pass
+        
 
-        self.MetaDataIdDict[meta.mid] = meta
+        self.MetaDataIdDict[meta.id] = meta
         self.MetaDataValueDict[meta.mvalue] = meta
         self.WordFrequncyDict[meta.mvalue] = meta.weight
         # 2019-02-19:不能元数据一创建就加载到ChainCharFrequncyMetaDict，否则会出现大量未识别
@@ -160,6 +155,8 @@ class BaseMemory(object):
         :param metaNet:
         :return:
         """
+        metaNet.getChainItems()
+        self.MetaNetMNValueDict[metaNet.mnvalue]=metaNet
         return self.MetaNetDict.add(metaNet.id, metaNet.startid, metaNet.endid, metaNet)
 
     def addRealObjectInMemory(self, realObj):
@@ -186,7 +183,7 @@ class BaseMemory(object):
         :param knowledge:
         :return:
         """
-        return self.LayerDict.add(layer.id, layer.upperid, layer.lowerid, layer)
+        return self.LayerDict.add(layer.id, layer.startid, layer.endid, layer)
 
     def getByIdsInMemory(self, ids, _type):
         """
@@ -229,13 +226,13 @@ class BaseMemory(object):
         else:
             raise Exception("不支持的类型：" + str(_type))
 
-    def getMetaByIdInMemory(self, mid):
+    def getMetaByIdInMemory(self, id):
         """
         从内存中根据Id取得Meta对象。
         :param id:
         :return:
         """
-        return self.MetaDataIdDict.get(mid)
+        return self.MetaDataIdDict.get(id)
 
     def getMetaByMvalueInMemory(self, mvalue):
         """
@@ -252,6 +249,14 @@ class BaseMemory(object):
         :return:
         """
         return self.MetaNetDict.getById(mnid)
+
+    def getMetaNetByMNValueInMemory(self, mnvalue):
+        """
+        从内存中根据mnvalue取得MetaNet对象。
+        :param id:
+        :return:
+        """
+        return self.MetaNetMNValueDict.get(mnvalue)
 
     def getRealObjectByIdInMemory(self, rid):
         """
@@ -335,13 +340,13 @@ class BaseMemory(object):
         """
         return self.KnowledgeDict.getByKeys(startid, endid)
 
-    def getLayerByDoubleKeysInMemory(self, upperid, lowerid):
+    def getLayerByDoubleKeysInMemory(self, startid, endid):
         """
-        从内存中根据upperid,lowerid取得Layer对象。
+        从内存中根据startid,endid取得Layer对象。
         :param id:
         :return:
         """
-        return self.LayerDict.getByKeys(upperid, lowerid)
+        return self.LayerDict.getByKeys(startid, endid)
 
     def deleteByIdInMemory(self, id, _type):
         """
@@ -371,16 +376,16 @@ class BaseMemory(object):
         else:
             raise Exception("不支持的类型：" + str(_type))
 
-    def deleteMetaByIdInMemory(self, mid):
+    def deleteMetaByIdInMemory(self, id):
         """
         从内存中根据Id删除MetaData对象
-        :param mid:
+        :param id:
         :return:
         """
-        meta = self.MetaDataIdDict.get(mid)
+        meta = self.MetaDataIdDict.get(id)
         if meta:
             self.MetaDataValueDict.pop(meta.mvalue)
-            return self.MetaDataIdDict.pop(mid, False)
+            return self.MetaDataIdDict.pop(id, False)
 
     def deleteMetaNetByIdInMemory(self, mnid):
         """
@@ -401,7 +406,7 @@ class BaseMemory(object):
     def deleteKnowledgeByIdInMemory(self, kid):
         """
         从内存中根据Id删除Knowledge对象
-        :param rid:
+        :param kid:
         :return:
         """
         self.KnowledgeDict.deleteById(kid)
@@ -409,56 +414,57 @@ class BaseMemory(object):
     def deleteLayerByIdInMemory(self, lid):
         """
         从内存中根据Id删除Layer对象
-        :param rid:
+        :param lid:
         :return:
         """
         return self.LayerDict.deleteById(lid)
 
-    def cleanMemory(self):
+    def flush(self):
         """
         清除所有的内存数据
         :return:
         """
-        self.cleanMetaData()
-        self.cleanMetaNet()
-        self.cleanRealObject()
-        self.cleanKnowledge()
-        self.cleanLayer()
+        self.flushMetaData()
+        self.flushMetaNet()
+        self.flushRealObject()
+        self.flushKnowledge()
+        self.flushLayer()
 
-        self.BaseEntityIdDict = {}
+        self.BaseEntityIdDict.clear()
         # 测试用，生产环境下注释掉基础类对象字典{id:BaseEntity}
-        self.BaseEntityDoubleKeyDict = DoubleKeyDict(key1_name="pkId", key2_name="pkUuid")
+        self.BaseEntityDoubleKeyDict.clean()
 
-    def cleanMetaData(self):
+    def flushMetaData(self):
         """
         清除MetaData的内存数据
         :return:
         """
-        self.MetaDataIdDict = {}
-        self.MetaDataValueDict = {}
+        self.MetaDataIdDict.clear()
+        self.MetaDataValueDict.clear()
 
-    def cleanMetaNet(self):
+    def flushMetaNet(self):
         """
         清除MetaNet的内存数据
         :return:
         """
         self.MetaNetDict.clean()
+        self.MetaNetMNValueDict.clear()
 
-    def cleanRealObject(self):
+    def flushRealObject(self):
         """
         清除RealObject的内存数据
         :return:
         """
-        self.RealObjectIdDict = {}
+        self.RealObjectIdDict.clear()
 
-    def cleanKnowledge(self):
+    def flushKnowledge(self):
         """
         清除Knowledge的内存数据
         :return:
         """
         self.KnowledgeDict.clean()
 
-    def cleanLayer(self):
+    def flushLayer(self):
         """
         清除Layer的内存数据
         :return:
@@ -721,16 +727,31 @@ class GeneralMemoryBase(object):
             result._isInPersistentMemory = True
         return result
 
-    def cleanMemory(self):
+    def getMetaNetByMNValueInMemory(self, mnvalue):
+        """
+        从内存中根据mnvalue取得MetaNet对象。
+        :param id:
+        :return:
+        """
+        result = self.WorkingMemory.getMetaNetByMNValueInMemory(mnvalue)
+        if result:
+            result._isInWorkingMemory = True
+            return result
+        result = self.PersistentMemory.getMetaNetByMNValueInMemory(mnvalue)
+        if result:
+            result._isInPersistentMemory = True
+        return result
+
+    def flush(self):
         """
         清除所有的内存数据
         :return:
         """
         logger.info("开始清除记忆中枢（内存）所有的数据...")
         logger.info("开始清除临时记忆区（内存）所有的数据...")
-        self.WorkingMemory.cleanMemory()
+        self.WorkingMemory.flush()
         logger.info("开始清除持久记忆区（内存）所有的数据...")
-        self.PersistentMemory.cleanMemory()
+        self.PersistentMemory.flush()
         logger.info("清除所有的记忆中枢（内存）数据完毕。")
 
     def init(self, forceToReload=False):
@@ -774,6 +795,7 @@ class GeneralMemoryBase(object):
         InnerOperations.loadAllInnerOperations(forceToReload, memory=self)
         InnerOperations.createMeaningExecutionInfo(memory=self)
         InnerOperations.createTopRelationExecutionInfo(memory=self)
+        InnerOperations.createRealsSynchronizer(memory=self)
 
     def loadNgramDictFromDB(self, NgramNum=None, forceToReload=False):
         """

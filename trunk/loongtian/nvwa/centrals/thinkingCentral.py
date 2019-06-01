@@ -55,7 +55,7 @@ class ThinkingCentral(CentralBase):
         :param str_input:
         :return:
         """
-        if not str_input or (not isinstance(str_input,str) and not isinstance(str_input,unicode)):
+        if not str_input or not isinstance(str_input,str):
             raise Exception("必须提供字符串以进行思考！")
 
         # 创建Mind，真正开始思考

@@ -5,7 +5,37 @@ __author__ = 'Leon'
 import uuid
 from loongtian.nvwa.models.enum import ObjType
 
+"""
+wf1=workflow("报销流程")
+step1=wf1.addStep("填写报销单")
+step1.addPartner("Any")
+step1.addPartnerExcepts("财务")
+step1.addTask(type=taskType.web,httpAddress="127.0.0.1/fillReimbursement")
+step1.outputVariables("amount")
 
+step2=step1.addNext("财务审批")
+step1.addPartner("财务")
+step2.addTask(type=taskType.web,httpAddress="127.0.0.1/financeCheck")
+step2.addCondition("amount":"<10000",type=conditionType.dict)
+step1.outputVariables("财务审批结果")
+
+step3=step1.addNext("部门经理审批")
+step1.addRole("部门经理")
+step3.addTask(type=taskType.web,httpAddress="127.0.0.1/managerCheck")
+step3.addCondition("amount":">=10000")
+step1.outputVariables("部门经理审批结果")
+
+step4=step2.addNext("结账")
+step3.addNextStep(step4)
+step4.addPartner("出纳")
+step4.addCondition("财务审批结果":"=True")
+step4.addCondition("部门经理审批结果":"=True")
+step4.addTask(type=taskType.function,function="giveMoney",args=["amount"])
+
+wf1.start()
+
+
+"""
 class Status(object):
     """
     [运行时对象]workflow知识链每一步中包含的状态（knowledge）
@@ -57,7 +87,7 @@ class Status(object):
                     child_real_chain=self._changeToNvwaObject(obj)
                     real_chain.append(child_real_chain)
                 elif isinstance(obj,dict):
-                    child_real_chain = self._changeToNvwaObject(obj.values())
+                    child_real_chain = self._changeToNvwaObject(list(obj.values()))
                     real_chain.append(child_real_chain)
                 else:
                     real = RealObject(remark=obj,memory=self.Memory)
@@ -86,7 +116,7 @@ class Status(object):
         return "{Status:{id:%s,objChain:%s}}" % (self.id,self.objChain)
 
 
-class Step():
+class Step(object):
     """
     [运行时对象]workflow知识链每一步（包含多个status，knowledge）
     """
@@ -243,7 +273,7 @@ class Workflow(object):
             raise Exception("必须提供多个步骤的实际对象链才能创建workflow！")
         _workflow = cls()
         # i=0
-        for step_objs in stepsObjChain:
+        for status_objs in stepsObjChain:
             condition_objs = None
             # if conditionObjChain and (isinstance(conditionObjChain, list) or isinstance(conditionObjChain, tuple)):
             #     try:
@@ -252,7 +282,7 @@ class Workflow(object):
             #         print (ex)
             #         pass
 
-            _step = Step.createByStatusesObjChain(step_objs, condition_objs,memory=memory)
+            _step = Step.createByStatusesObjChain(status_objs, condition_objs,memory=memory)
             _workflow.addStep(_step)
             # i+=1
 
@@ -484,8 +514,10 @@ class Workflow(object):
         """
         if self._knowledge: # 如果已经取得了，直接返回
             return self._knowledge
+        if not memory:
+            memory=self.Memory
         from loongtian.nvwa.runtime.instinct import Instincts
-        Instincts.loadAllInstincts(memory=self.Memory)  # 避免直觉系统未加载造成错误
+        Instincts.loadAllInstincts(memory=memory)  # 避免直觉系统未加载造成错误
         from loongtian.nvwa.models.knowledge import Knowledge
         # 进入Knowledge的，必须是实际对象或知识链等nvwa系统对象，所以forceToNvwaObject=True
         self._knowledge = Knowledge.createKnowledgeByObjChain(self.toObjChain(forceToNvwaObject=True,simplified=useSimplifiedObjChain), type=type,

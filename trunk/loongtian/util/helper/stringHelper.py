@@ -202,8 +202,7 @@ def isStringNullOrEmpty(content):
 
     if isinstance(content, str) and content=="":
         return True
-    if isinstance(content, unicode) and content==u"":
-        return True
+
     else:
         return False
 
@@ -446,8 +445,9 @@ def encodeStringMD5(string=None):
     获取字符串的MD5值
     :return:MD5加密后的字符串
     """
+
     if string:
-        string = hashlib.md5(string).hexdigest()
+        string = hashlib.md5(string.encode("gbk")).hexdigest()
     return string
 
 def mailValid(mail):
@@ -815,7 +815,7 @@ def strQ2B(ustring):
         elif (inside_code >= 65281 and inside_code <= 65374): #全角字符（除空格）根据关系转化
             inside_code -= 65248
 
-        rstring += unichr(inside_code)
+        rstring += chr(inside_code)
     return rstring
 
 def strB2Q(ustring):
@@ -828,7 +828,7 @@ def strB2Q(ustring):
         elif inside_code >= 32 and inside_code <= 126:        #半角字符（除空格）根据关系转化
             inside_code += 65248
 
-        rstring += unichr(inside_code)
+        rstring += chr(inside_code)
     return rstring
 
 
@@ -1112,7 +1112,7 @@ def convertHalfAndFull(text, *maps, **ops):
 
     if "skip" in ops:
         skip = ops["skip"]
-        if isinstance(skip, basestring):
+        if isinstance(skip, str):
             skip = tuple(skip)
 
         def replace(text, fr, to):

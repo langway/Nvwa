@@ -13,8 +13,8 @@ from loongtian.util.helper import timeHelper
 
 from logging.handlers import SMTPHandler
 
-reload(sys)
-sys.setdefaultencoding('utf-8')
+# reload(sys)
+# sys.setdefaultencoding('utf-8')
 
 __settingFileName="logging.properties"
 #取得当前对象的真正的文件路径，非os.getcwd()
@@ -278,7 +278,7 @@ class __CommonLogger(object):
             start = datetime.datetime.now()
             self.timeMarks[timeStartMark]=start
         if timeEndMark:
-            if self.timeMarks.has_key(timeEndMark):
+            if timeEndMark in self.timeMarks:
                 end = datetime.datetime.now()
                 time_differ=timeHelper.get_time_difference(self.timeMarks[timeEndMark],end) # 精确秒数
                 msg += " total_seconds:" +str(time_differ)
@@ -506,7 +506,7 @@ class __EncodingFormatter(logging.Formatter):
 
     def format(self, record):
         result = logging.Formatter.format(self, record)
-        if isinstance(result, unicode):
+        if isinstance(result, str):
             result = result.encode(self.encoding or 'utf-8')
         return result
 

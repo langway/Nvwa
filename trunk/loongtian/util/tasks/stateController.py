@@ -46,7 +46,7 @@ class StateController(WorkStateRecordable):
         # 继承类停止线程循环的标记，设置一个flag信号，用来表示该线程是否已经正常执行完毕，需要complete
         self._completeEvent = Event()
         # 错误队列
-        self._exceptionQueue = Queue.Queue()
+        self._exceptionQueue = queue.Queue()
 
     def start(self):
         """

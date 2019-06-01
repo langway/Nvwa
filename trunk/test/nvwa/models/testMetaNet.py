@@ -124,7 +124,7 @@ class TestMetaNet(TestCase):
         mni=mni.getByIdInDB()
         mni.getChainItems()
         self.assertEqual(mni._word_t_chain,meta_chain1_value)
-        mni=MetaNet.getMetaNetByMetaChain(meta_chain1)
+        mni=MetaNet.getByObjectChain(meta_chain1)
         self.assertIsNotNone(mni)
         self.assertEqual(mni._word_t_chain,meta_chain1_value)
 
@@ -149,14 +149,14 @@ class TestMetaNet(TestCase):
         # 从数据库中取【T型条件】，查看结构
         meta_nets=[]
         unproceed=[]
-        mni=MetaNet.getMetaNetByMetaChain(meta_chain2,meta_nets,unproceed)
+        mni=MetaNet.getByObjectChain(meta_chain2,meta_nets,unproceed)
         self.assertIsNotNone(mni)
         self.assertEqual(mni._word_t_chain,meta_chain2_value)
 
         # 从数据库中取【线性条件】，查看结构
         meta_nets=[]
         unproceed=[]
-        mni=MetaNet.getMetaNetByMetaChain(meta_chain2_sequence,meta_nets,unproceed)
+        mni=MetaNet.getByObjectChain(meta_chain2_sequence,meta_nets,unproceed)
         self.assertIsNotNone(mni)
         self.assertEqual(mni._word_t_chain,meta_chain2_value)
 
@@ -178,12 +178,12 @@ class TestMetaNet(TestCase):
         self.assertEqual(mni._word_t_chain,meta_chain3_value)
 
         # 从数据库中取【T型条件】，查看结构
-        mni=MetaNet.getMetaNetByMetaChain(meta_chain3)
+        mni=MetaNet.getByObjectChain(meta_chain3)
         self.assertIsNotNone(mni)
         self.assertEqual(mni._word_t_chain,meta_chain3_value)
 
         # # 从数据库中取【线性条件】，查看结构
-        # mni=MetaNet.getMetaNetByMetaChain(meta_chain3_sequence)
+        # mni=MetaNet.getByObjectChain(meta_chain3_sequence)
         # self.assertIsNotNone(mni)
         # self.assertEqual(mni._t_chain_words,meta_chain3_value)
 
@@ -206,13 +206,13 @@ class TestMetaNet(TestCase):
         self.assertEqual(mni._word_t_chain,meta_chain4_value)
 
         # 从数据库中取【T型条件】，查看结构
-        mni=MetaNet.getMetaNetByMetaChain(meta_chain4)
+        mni=MetaNet.getByObjectChain(meta_chain4)
         self.assertIsNotNone(mni)
         self.assertEqual(mni._word_t_chain,meta_chain4_value)
 
 
         # # 从数据库中取【线性条件】，查看结构
-        # mni=MetaNet.getMetaNetByMetaChain(meta_chain4_sequence)
+        # mni=MetaNet.getByObjectChain(meta_chain4_sequence)
         # self.assertIsNotNone(mni)
         # self.assertEqual(mni._t_chain_words,meta_chain4_value)
 
@@ -235,12 +235,12 @@ class TestMetaNet(TestCase):
         self.assertEqual(mni._word_t_chain,meta_chain5_value)
 
         # 从数据库中取【T型条件】，查看结构
-        mni=MetaNet.getMetaNetByMetaChain(meta_chain5)
+        mni=MetaNet.getByObjectChain(meta_chain5)
         self.assertIsNotNone(mni)
         self.assertEqual(mni._word_t_chain,meta_chain5_value)
 
         # # 从数据库中取【线性条件】，查看结构
-        # mni=MetaNet.getMetaNetByMetaChain(meta_chain5_sequence)
+        # mni=MetaNet.getByObjectChain(meta_chain5_sequence)
         # self.assertIsNotNone(mni)
         # self.assertEqual(mni._t_chain_words,meta_chain5_value)
 
@@ -263,12 +263,12 @@ class TestMetaNet(TestCase):
         self.assertEqual(mni._word_t_chain,meta_chain6_value)
 
         # 从数据库中取【T型条件】，查看结构
-        mni=MetaNet.getMetaNetByMetaChain(meta_chain6)
+        mni=MetaNet.getByObjectChain(meta_chain6)
         self.assertIsNotNone(mni)
         self.assertEqual(mni._word_t_chain,meta_chain6_value)
 
         # # 从数据库中取【线性条件】，查看结构
-        # mni=MetaNet.getMetaNetByMetaChain(meta_chain6_sequence)
+        # mni=MetaNet.getByObjectChain(meta_chain6_sequence)
         # self.assertIsNotNone(mni)
         # self.assertEqual(mni._t_chain_words,meta_chain6_value)
 
@@ -299,7 +299,7 @@ class TestMetaNet(TestCase):
         mni=mni.getByIdInDB()
         mni.getChainItems()
         self.assertEqual(mni._word_t_chain,meta_chain1_value)
-        mni=MetaNet.getMetaNetLikeMetaChain(meta_chain1)
+        mni=MetaNet.getLikeObjChain(meta_chain1)
         self.assertIsNotNone(mni)
         self.assertEqual(mni._word_t_chain,meta_chain1_value)
 
@@ -324,12 +324,12 @@ class TestMetaNet(TestCase):
         # 从数据库中取【T型条件】，查看结构
         meta_nets=[]
         unproceed=[]
-        mni=MetaNet.getMetaNetByMetaChain(meta_chain2,meta_nets,unproceed)
+        mni=MetaNet.getByObjectChain(meta_chain2,meta_nets,unproceed)
         self.assertIsNotNone(mni)
         self.assertEqual(mni._word_t_chain,meta_chain2_value)
 
         # 从数据库中取【线性条件】，查看结构
-        mni=MetaNet.getMetaNetLikeMetaChain(meta_chain2_sequence)
+        mni=MetaNet.getLikeObjChain(meta_chain2_sequence)
         self.assertIsNotNone(mni)
         self.assertEqual(mni._word_t_chain,meta_chain2_value)
 
@@ -351,12 +351,12 @@ class TestMetaNet(TestCase):
         self.assertEqual(mni._word_t_chain,meta_chain3_value)
 
         # 从数据库中取【T型条件】，查看结构
-        mni=MetaNet.getMetaNetByMetaChain(meta_chain3)
+        mni=MetaNet.getByObjectChain(meta_chain3)
         self.assertIsNotNone(mni)
         self.assertEqual(mni._word_t_chain,meta_chain3_value)
 
         # 从数据库中取【线性条件】，查看结构
-        mni=MetaNet.getMetaNetLikeMetaChain(meta_chain3_sequence)
+        mni=MetaNet.getLikeObjChain(meta_chain3_sequence)
         self.assertIsNotNone(mni)
         self.assertEqual(mni._word_t_chain,meta_chain3_value)
 
@@ -379,13 +379,13 @@ class TestMetaNet(TestCase):
         self.assertEqual(mni._word_t_chain,meta_chain4_value)
 
         # 从数据库中取【T型条件】，查看结构
-        mni=MetaNet.getMetaNetByMetaChain(meta_chain4)
+        mni=MetaNet.getByObjectChain(meta_chain4)
         self.assertIsNotNone(mni)
         self.assertEqual(mni._word_t_chain,meta_chain4_value)
 
 
         # 从数据库中取【线性条件】，查看结构
-        mni=MetaNet.getMetaNetLikeMetaChain(meta_chain4_sequence)
+        mni=MetaNet.getLikeObjChain(meta_chain4_sequence)
         self.assertIsNotNone(mni)
         self.assertEqual(mni._word_t_chain,meta_chain4_value)
 
@@ -408,12 +408,12 @@ class TestMetaNet(TestCase):
         self.assertEqual(mni._word_t_chain,meta_chain5_value)
 
         # 从数据库中取【T型条件】，查看结构
-        mni=MetaNet.getMetaNetByMetaChain(meta_chain5)
+        mni=MetaNet.getByObjectChain(meta_chain5)
         self.assertIsNotNone(mni)
         self.assertEqual(mni._word_t_chain,meta_chain5_value)
 
         # 从数据库中取【线性条件】，查看结构
-        mni=MetaNet.getMetaNetLikeMetaChain(meta_chain5_sequence)
+        mni=MetaNet.getLikeObjChain(meta_chain5_sequence)
         self.assertIsNotNone(mni)
         self.assertEqual(mni._word_t_chain,meta_chain5_value)
 
@@ -436,12 +436,12 @@ class TestMetaNet(TestCase):
         self.assertEqual(mni._word_t_chain,meta_chain6_value)
 
         # 从数据库中取【T型条件】，查看结构
-        mni=MetaNet.getMetaNetByMetaChain(meta_chain6)
+        mni=MetaNet.getByObjectChain(meta_chain6)
         self.assertIsNotNone(mni)
         self.assertEqual(mni._word_t_chain,meta_chain6_value)
 
         # 从数据库中取【线性条件】，查看结构
-        mni=MetaNet.getMetaNetLikeMetaChain(meta_chain6_sequence)
+        mni=MetaNet.getLikeObjChain(meta_chain6_sequence)
         self.assertIsNotNone(mni)
         self.assertEqual(mni._word_t_chain,meta_chain6_value)
 
@@ -483,7 +483,7 @@ class TestMetaNet(TestCase):
         segment_result=self.textEngine.segmentInputWithChainCharMetaDict("我知道中国人民解放军是最棒的！")
         for meta_chain,unknown_metas_index in self.textEngine.getCurMetaChainBySegmentResults(segment_result):
             MetaNet.createMetaNetByMetaChain(meta_chain)
-            mni=MetaNet.getMetaNetByMetaChain(meta_chain)
+            mni=MetaNet.getByObjectChain(meta_chain)
             # self.assertIsNotNone(mni)
 
         allMetaNet= self.memoryCentral.WorkingMemory.MetaNetEngine.loadNgramDictFromDB()
@@ -499,7 +499,7 @@ class TestMetaNet(TestCase):
         meta_chain=[[self.meta_wo,self.meta_zhidao],
                     [[self.meta_zhongguo,self.meta_renmin,self.meta_jiefangjun],self.meta_shi,[self.meta_zuibang,self.meta_de]]]
         MetaNet.createMetaNetByMetaChain(meta_chain)
-        mni=MetaNet.getMetaNetByMetaChain(meta_chain)
+        mni=MetaNet.getByObjectChain(meta_chain)
         self.assertIsNotNone(mni)
 
         allMetaNet= self.memoryCentral.WorkingMemory.MetaNetEngine.loadNgramDictFromDB()
@@ -531,35 +531,35 @@ class TestMetaNet(TestCase):
         self.assertEqual(len(meta_nets),7)
 
         MetaNet.deleteByEnd(self.meta_zuibang) # 应该逻辑删除[最棒,的]
-        mni=MetaNet.getMetaNetsByEndInDB(self.meta_zuibang)
+        mni=MetaNet.getByEndInDB(self.meta_zuibang)
         mni.getChainItems()
-        self.assertEqual(mni.isdel,True)
-        mni=MetaNet.getMetaNetsByStartInDB(self.meta_zhongguo)
+        self.assertEqual(mni.status,0)
+        mni=MetaNet.getByStartInDB(self.meta_zhongguo)
         self.assertIsNone(mni)
-        mni=MetaNet.getMetaNetsByStartInDB(self.meta_wo)
-        self.assertEqual(mni.isdel,False)
+        mni=MetaNet.getByStartInDB(self.meta_wo)
+        self.assertEqual(mni.status,200)
 
         MetaNet.deleteByEnd(self.meta_shi) # 应该逻辑删除[MN1,是]。MN1:[我,知道,中国,人民,解放军]不会删除，不是整个链
-        mni=MetaNet.getMetaNetsByEndInDB(self.meta_shi)
-        self.assertEqual(mni.isdel,True)
-        mni=MetaNet.getMetaNetsByEndInDB(self.meta_zhongguo)
-        self.assertEqual(mni.isdel,False)
-        mni=MetaNet.getMetaNetsByStartInDB(self.meta_wo)
-        self.assertEqual(mni.isdel,False)
+        mni=MetaNet.getByEndInDB(self.meta_shi)
+        self.assertEqual(mni.status,0)
+        mni=MetaNet.getByEndInDB(self.meta_zhongguo)
+        self.assertEqual(mni.status,200)
+        mni=MetaNet.getByStartInDB(self.meta_wo)
+        self.assertEqual(mni.status,200)
 
         MetaNet.deleteByStart(self.meta_zhongguo) # 没有删除
-        mni=MetaNet.getMetaNetsByEndInDB(self.meta_zhongguo)
-        self.assertEqual(mni.isdel,False)
-        mni=MetaNet.getMetaNetsByStartInDB(self.meta_wo)
-        self.assertEqual(mni.isdel,False)
+        mni=MetaNet.getByEndInDB(self.meta_zhongguo)
+        self.assertEqual(mni.status,200)
+        mni=MetaNet.getByStartInDB(self.meta_wo)
+        self.assertEqual(mni.status,200)
 
         # 在此创建，将进行逻辑恢复
         mni=MetaNet.createMetaNetByMetaChain(meta_chain1)
-        self.assertEqual(mni.isdel,False)
+        self.assertEqual(mni.status,200)
 
         MetaNet.deleteByStart(self.meta_wo) # 全链删除
-        mni=MetaNet.getMetaNetsByEndInDB(self.meta_zhongguo)
-        self.assertEqual(mni.isdel,True)
+        mni=MetaNet.getByEndInDB(self.meta_zhongguo)
+        self.assertEqual(mni.status,0)
 
         MetaNet._physicalDeleteAll()
 
@@ -572,47 +572,47 @@ class TestMetaNet(TestCase):
 
 
         MetaNet.deleteByEnd(self.meta_de) # 应该删除Mn1::[最棒,的] ,[Mn0,Mn1] Mn0:[[我,知道],[[中国,人民,解放军]],是]]不会删除
-        mni=MetaNet.getMetaNetsByEndInDB(self.meta_de)
-        self.assertEqual(mni.isdel,True)
-        mni=MetaNet.getMetaNetByStartAndEnd(self.meta_wo,self.meta_zhidao)
-        self.assertEqual(mni.isdel,False)
-        mni=MetaNet.getMetaNetByMetaChain([self.meta_zhongguo,self.meta_renmin,self.meta_jiefangjun])
-        self.assertEqual(mni.isdel,False)
-        mni=MetaNet.getMetaNetByMetaChain([self.meta_zhongguo,self.meta_renmin,self.meta_jiefangjun,self.meta_shi])
-        self.assertEqual(mni.isdel,False)
+        mni=MetaNet.getByEndInDB(self.meta_de)
+        self.assertEqual(mni.status,0)
+        mni=MetaNet.getByStartAndEnd(self.meta_wo,self.meta_zhidao)
+        self.assertEqual(mni.status,200)
+        mni=MetaNet.getByObjectChain([self.meta_zhongguo,self.meta_renmin,self.meta_jiefangjun])
+        self.assertEqual(mni.status,200)
+        mni=MetaNet.getByObjectChain([self.meta_zhongguo,self.meta_renmin,self.meta_jiefangjun,self.meta_shi])
+        self.assertEqual(mni.status,200)
 
         MetaNet.deleteByStart(self.meta_wo) # 应该删除Mn2:[我,知道]，Mn3:[[中国,人民,解放军],是]不会删除
-        mni=MetaNet.getMetaNetsByEndInDB(self.meta_zhidao)
-        self.assertEqual(mni.isdel,True)
-        mni=MetaNet.getMetaNetByMetaChain([self.meta_zhongguo,self.meta_renmin,self.meta_jiefangjun])
-        self.assertEqual(mni.isdel,False)
-        mni=MetaNet.getMetaNetByMetaChain([self.meta_zhongguo,self.meta_renmin,self.meta_jiefangjun,self.meta_shi])
-        self.assertEqual(mni.isdel,False)
+        mni=MetaNet.getByEndInDB(self.meta_zhidao)
+        self.assertEqual(mni.status,0)
+        mni=MetaNet.getByObjectChain([self.meta_zhongguo,self.meta_renmin,self.meta_jiefangjun])
+        self.assertEqual(mni.status,200)
+        mni=MetaNet.getByObjectChain([self.meta_zhongguo,self.meta_renmin,self.meta_jiefangjun,self.meta_shi])
+        self.assertEqual(mni.status,200)
 
         MetaNet.deleteByStart(self.meta_zhongguo) # [[中国,人民,解放军],是]全部删除
-        mni=MetaNet.getMetaNetByMetaChain([self.meta_zhongguo,self.meta_renmin,self.meta_jiefangjun])
-        self.assertEqual(mni.isdel,True)
-        mni=MetaNet.getMetaNetByMetaChain([self.meta_zhongguo,self.meta_renmin,self.meta_jiefangjun,self.meta_shi])
-        self.assertEqual(mni.isdel,True)
+        mni=MetaNet.getByObjectChain([self.meta_zhongguo,self.meta_renmin,self.meta_jiefangjun])
+        self.assertEqual(mni.status,0)
+        mni=MetaNet.getByObjectChain([self.meta_zhongguo,self.meta_renmin,self.meta_jiefangjun,self.meta_shi])
+        self.assertEqual(mni.status,0)
 
         MetaNet._physicalDeleteAll()
 
         mni=MetaNet.createMetaNetByMetaChain(meta_chain2)
         self.assertEqual(len(MetaNet.getAllInDB()),7)
 
-        mni=MetaNet.getMetaNetByMetaChain([self.meta_zhongguo,self.meta_renmin,self.meta_jiefangjun,self.meta_shi])
-        self.assertEqual(mni.isdel,False)
+        mni=MetaNet.getByObjectChain([self.meta_zhongguo,self.meta_renmin,self.meta_jiefangjun,self.meta_shi])
+        self.assertEqual(mni.status,200)
         mni.delete() # 这里仅仅逻辑删除最后一个
-        self.assertEqual(mni.isdel,True)
-        mni=MetaNet.getMetaNetByMetaChain([self.meta_zhongguo,self.meta_renmin,self.meta_jiefangjun])
-        self.assertEqual(mni.isdel,False)
-        mni=MetaNet.getMetaNetByMetaChain([self.meta_zhongguo,self.meta_renmin,self.meta_jiefangjun,self.meta_shi])
-        self.assertEqual(mni.isdel,True)
+        self.assertEqual(mni.status,0)
+        mni=MetaNet.getByObjectChain([self.meta_zhongguo,self.meta_renmin,self.meta_jiefangjun])
+        self.assertEqual(mni.status,200)
+        mni=MetaNet.getByObjectChain([self.meta_zhongguo,self.meta_renmin,self.meta_jiefangjun,self.meta_shi])
+        self.assertEqual(mni.status,0)
 
-        mni=MetaNet.deleteByMetaChain([self.meta_zhongguo,self.meta_renmin,self.meta_jiefangjun])
-        self.assertEqual(mni.isdel,True)
-        mni=MetaNet.getMetaNetByMetaChain([self.meta_zhongguo,self.meta_renmin,self.meta_jiefangjun,self.meta_shi])
-        self.assertEqual(mni.isdel,True)
+        mni=MetaNet.deleteByObjChain([self.meta_zhongguo,self.meta_renmin,self.meta_jiefangjun])
+        self.assertEqual(mni.status,0)
+        mni=MetaNet.getByObjectChain([self.meta_zhongguo,self.meta_renmin,self.meta_jiefangjun,self.meta_shi])
+        self.assertEqual(mni.status,0)
 
 
 

@@ -35,10 +35,23 @@ class GeneralCharacter(object):
 
         self.Misunderstood_Rethink_Depth = 8 # 避免无限制思考一个理解不了的输入，要考虑重新思考的次数
 
+        self.Focus=GeneralCharacter._Focus() # 关于关注点的参数
         self.Search=GeneralCharacter._Search() # 关于数据库查找的参数
         self.Humor = GeneralCharacter._Humor() # 女娲系统对幽默参数的定义。
         self.RecognizedRatio = GeneralCharacter._RecognizedRatio() # 用来计算实际对象已被识别的比率
         self.Association = GeneralCharacter._Association() # 对一个实际对象进行联想的参数
+
+    class _Focus(object):
+        """
+        关于关注点的参数
+        """
+        def __init__(self):
+            """
+            关于关注点的参数
+            """
+            self.Ratio = 3.0 # 向上提交关注点的比率，事不过三
+
+
 
     class _Search(object):
         """
@@ -48,6 +61,9 @@ class GeneralCharacter(object):
             """
             关于数据库查找的参数
             """
+            self.TGraphEntity_Forwards_Depth = 3  # 向前查找知识链的层深，数值越大，查找到的知识链越多，但需要处理的也越多，系统耗时越长
+            self.TGraphEntity_Backwards_Depth = 3  # 向后查找知识链的层深，数值越大，查找到的知识链越多，但需要处理的也越多，系统耗时越长
+
             self.Knowledge_Forwards_Depth = 3  # 向前查找知识链的层深，数值越大，查找到的知识链越多，但需要处理的也越多，系统耗时越长
             self.Knowledge_Backwards_Depth = 3  # 向后查找知识链的层深，数值越大，查找到的知识链越多，但需要处理的也越多，系统耗时越长
 

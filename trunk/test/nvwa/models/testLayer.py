@@ -23,70 +23,74 @@ class TestLayer(TestCase):
         self.layers=[]
         for i in range(5):
             # 创建MetaData
-            temp_meta=MetaData(str(i),mvalue = str(i))
+            temp_meta=MetaData(str(i),mvalue = str(i),memory=self.memoryCentral).create()
             # temp_meta=temp_meta.create()
             self.metas.append(temp_meta)
-            self.memoryCentral.addMetaInMemory(temp_meta)
+
 
             # 创建MetaNet
             if i>0:
                 last_meta=self.metas[i - 1]
-                temp_metanet=MetaNet.createMetaNetByStartEnd(last_meta,temp_meta,mnid=last_meta.mvalue+","+temp_meta.mvalue)
+                temp_metanet=MetaNet.createByStartEnd(last_meta,temp_meta,
+                                                      id=last_meta.mvalue+","+temp_meta.mvalue,
+                                                      memory = self.memoryCentral)
                 self.metanets.append(temp_metanet)
-                temp_layer=Layer.createLayerByUpperAndLowerInDB(temp_metanet,last_meta)
+                temp_layer=Layer.createByStartAndEnd(temp_metanet,last_meta,
+                                                     memory=self.memoryCentral)
                 self.layers.append(temp_layer)
 
             # 创建MetaData关联的RealObject
             for j in range(4):
-                temp_real=RealObject(stringHelper.arabicNumeral_to_chineseNumeral(j))
+                temp_real=RealObject(stringHelper.arabicNumeral_to_chineseNumeral(j),
+                                     memory=self.memoryCentral).create()
                 # temp_real=temp_real.create()
                 self.reals.append(temp_real)
-                self.memoryCentral.WorkingMemory.addInMemory(temp_real)
 
-                temp_layer=Layer.createLayerByUpperAndLowerInDB(temp_meta,temp_real,weight=i*j)
+                temp_layer=Layer.createByStartAndEnd(temp_meta,temp_real,weight=i*j,
+                                                     memory=self.memoryCentral)
                 self.layers.append(temp_layer)
                 self.assertIsNotNone(temp_layer)
 
 
-    def testCreateLayerByUpperLower(self):
-        print("——testCreateLayerByUpperLower——")
-        layer=Layer.createLayerByUpperAndLowerInDB(self.metas[0],self.reals[0])
+    def testCreateLayerByStartEnd(self):
+        print("——testCreateLayerByStartEnd——")
+        layer=Layer.createByStartAndEndInDB(self.metas[0],self.reals[0])
         self.assertIsNotNone(layer)
 
-    def testGetUpperItem(self):
-        print("——testGetUpperItem——")
+    def testGetStartItem(self):
+        print("——testGetStartItem——")
         layer=Layer(self.metas[0],self.reals[0])
-        upper=layer.getUpperItem()
+        upper=layer.getStartItem()
         self.assertIsNotNone(upper)
 
-    def testGetLowerItem(self):
-        print("——testGetLowerItem——")
+    def testGetEndItem(self):
+        print("——testGetEndItem——")
         layer=Layer(self.metas[0],self.reals[0])
-        lower=layer.getLowerItem()
+        lower=layer.getEndItem()
         self.assertIsNotNone(lower)
 
-    def testGetLayerByUpperAndLower(self):
-        print("——testGetLayerByUpperAndLower——")
-        layer=Layer.getLayerByUpperAndLower(self.metas[0],self.reals[0],self.memoryCentral)
+    def testGetLayerByStartAndEnd(self):
+        print("——testGetLayerByStartAndEnd——")
+        layer=Layer.getByStartAndEnd(self.metas[0],self.reals[0],self.memoryCentral)
         self.assertIsNotNone(layer)
 
-    def testGetLowersByUpperInDB(self):
-        print("——testGetLowersByUpperInDB——")
+    def testGetEndsByStartInDB(self):
+        print("——testGetEndsByStartInDB——")
 
-        lowers=Layer.getLowersByUpperInDB(self.metas[0])
+        lowers=Layer.getEndsByStartInDB(self.metas[0])
         self.assertIsNotNone(lowers)
         self.assertEqual(len(lowers),4)
 
-    def testGetUppersByLowerInDB(self):
-        print("——testGetUppersByLowerInDB——")
+    def testGetStartsByEndInDB(self):
+        print("——testGetStartsByEndInDB——")
 
-        uppers=Layer.getUppersByLowerInDB(self.reals[0])
+        uppers=Layer.getStartsByEndInDB(self.reals[0])
         self.assertIsNotNone(uppers)
         self.assertEqual(len(uppers),5)
 
 
-    def test_getUpperEntities(self):
-        print("——testGetLowersByUpperInDB——")
+    def test_getStartEntities(self):
+        print("——testGetEndsByStartInDB——")
 
         uppers=self.reals[2].Layers.getUpperEntities()
         self.assertIsNotNone(uppers)
@@ -101,19 +105,19 @@ class TestLayer(TestCase):
         self.assertEqual(len(lowers),4)
         self.assertEqual(lowers[u"三"].weight, 9.0)
 
-    def testGetTypedUppersByLowerInDB(self):
-        print("——testGetUppersByLowerInDB——")
-        typed_uppers=Layer.getTypedUppersByLowerInDB(self.reals[0], ObjType.META_DATA)
+    def testGetTypedStartsByEndInDB(self):
+        print("——testGetStartsByEndInDB——")
+        typed_uppers=Layer.getTypedStartsByEndInDB(self.reals[0], ObjType.META_DATA)
         self.assertEqual(len(typed_uppers),5)
 
-        typed_uppers=Layer.getTypedUppersByLowerInDB(self.reals[0], ObjType.META_NET)
+        typed_uppers=Layer.getTypedStartsByEndInDB(self.reals[0], ObjType.META_NET)
         self.assertIsNone(typed_uppers)
 
-        typed_uppers=Layer.getTypedUppersByLowerInDB(self.metas[0], ObjType.META_NET)
+        typed_uppers=Layer.getTypedStartsByEndInDB(self.metas[0], ObjType.META_NET)
         self.assertEqual(type(typed_uppers),Layer)
 
-    def test_getUpperEntitiesByType(self):
-        print("——test_getUpperEntitiesByType——")
+    def test_getStartEntitiesByType(self):
+        print("——test_getStartEntitiesByType——")
         typed_uppers=self.reals[2].Layers.getUpperEntitiesByType(ObjType.META_DATA)
         self.assertEqual(len(typed_uppers),5)
 
@@ -122,7 +126,7 @@ class TestLayer(TestCase):
 
         typed_uppers=self.metas[2].Layers.getUpperEntitiesByType(ObjType.META_NET)
         self.assertIsNotNone(typed_uppers)
-        self.assertEqual(typed_uppers.values()[0].obj,self.metanets[2])
+        self.assertEqual(list(typed_uppers.values())[0].obj,self.metanets[2])
 
     def test_getLowerEntitiesByType(self):
         print("——test_getLowerEntitiesByType——")
@@ -134,91 +138,91 @@ class TestLayer(TestCase):
 
         typed_lowers=self.metas[2].Layers.getLowerEntitiesByType(ObjType.REAL_OBJECT)
         self.assertIsNotNone(typed_lowers)
-        self.assertEqual(typed_lowers[u"一"].obj.rid,self.reals[1].rid)
+        self.assertEqual(typed_lowers[u"一"].obj.id,self.reals[1].id)
 
-    def testGetTypedLowersByUpperInDB(self):
-        print("——testGetTypedLowersByUpperInDB——")
-        typed_lowers=Layer.getTypedLowersByUpperInDB(self.metanets[0], ObjType.META_DATA)
+    def testGetTypedEndsByStartInDB(self):
+        print("——testGetTypedEndsByStartInDB——")
+        typed_lowers=Layer.getTypedEndsByStartInDB(self.metanets[0], ObjType.META_DATA)
         self.assertEqual(type(typed_lowers),Layer)
 
-        typed_lowers=Layer.getTypedLowersByUpperInDB(self.metas[0], ObjType.META_NET)
+        typed_lowers=Layer.getTypedEndsByStartInDB(self.metas[0], ObjType.META_NET)
         self.assertIsNone(typed_lowers)
 
-        typed_lowers=Layer.getTypedLowersByUpperInDB(self.metas[0], ObjType.REAL_OBJECT)
+        typed_lowers=Layer.getTypedEndsByStartInDB(self.metas[0], ObjType.REAL_OBJECT)
         self.assertEqual(len(typed_lowers),4)
 
     def test_getAllRelatedRealObjsInMetaChain(self):
         print("——test_getAllRelatedRealObjsInMetaChain——")
         meta_chain=[self.metas[1],self.metas[2],self.metas[3]]
-        realLowerObjs, sorted_realsChain=MetaData.getAllRelatedRealObjsInMetaChain(meta_chain)
-        self.assertIsNotNone(realLowerObjs)
+        realEndObjs, sorted_realsChain=MetaData.getAllRelatedRealObjsInMetaChain(meta_chain)
+        self.assertIsNotNone(realEndObjs)
         self.assertIsNotNone(sorted_realsChain)
         # 未排序状态，是个dict
-        self.assertEqual(realLowerObjs[0][u'三'].weight,3.0)
+        self.assertEqual(realEndObjs[0][u'三'].weight,3.0)
         # 排序状态，根据权重，最大值
         self.assertEqual(sorted_realsChain[0][0].weight, 3.0)
 
 
 
-    def testDeleteByUpper(self):
-        print("——testDeleteByUpper——")
+    def testDeleteByStart(self):
+        print("——testDeleteByStart——")
 
-        affectedRowsNum=Layer.deleteByUpper(self.metas[0])
-        layers=Layer.getAllByConditionsInDB(memory=self.memoryCentral,isdel=True)
+        affectedRowsNum=Layer.deleteByStart(self.metas[0])
+        layers=Layer.getAllByConditionsInDB(memory=self.memoryCentral,status=0)
         self.   assertEqual(affectedRowsNum,4)
         self.assertEqual(len(layers),4)
 
 
-    def testDeleteByLower(self):
-        print("——testDeleteByLower——")
+    def testDeleteByEnd(self):
+        print("——testDeleteByEnd——")
 
-        affectedRowsNum=Layer.deleteByLower(self.metas[0]) # 根据metadata删除metanet
-        layers=Layer.getAllByConditionsInDB(memory=self.memoryCentral,isdel=True)
+        affectedRowsNum=Layer.deleteByEnd(self.metas[0]) # 根据metadata删除metanet
+        layers=Layer.getAllByConditionsInDB(memory=self.memoryCentral,status=0)
         self.assertEqual(affectedRowsNum,1)
         self.assertIs(type(layers),Layer)
 
-        affectedRowsNum=Layer.deleteByLower(self.metanets[0])
-        layers=Layer.getAllByConditionsInDB(memory=self.memoryCentral,isdel=True)
+        affectedRowsNum=Layer.deleteByEnd(self.metanets[0])
+        layers=Layer.getAllByConditionsInDB(memory=self.memoryCentral,status=0)
         self.assertEqual(affectedRowsNum,0)
         self.assertIs(type(layers),Layer)
 
-        affectedRowsNum=Layer.deleteByLower(self.reals[0])
-        layers=Layer.getAllByConditionsInDB(memory=self.memoryCentral,isdel=True)
+        affectedRowsNum=Layer.deleteByEnd(self.reals[0])
+        layers=Layer.getAllByConditionsInDB(memory=self.memoryCentral,status=0)
         self.assertEqual(affectedRowsNum,5)
         self.assertEqual(len(layers),6)
 
 
-    def testDeleteByUpperAndLower(self):
-        print("——testDeleteByLower——")
+    def testDeleteByStartAndEnd(self):
+        print("——testDeleteByEnd——")
 
-        affectedRowsNum=Layer.deleteByUpperAndLower(self.metas[0],self.reals[0])
+        affectedRowsNum=Layer.deleteByStartAndEnd(self.metas[0],self.reals[0])
         self.assertEqual(affectedRowsNum,1)
 
 
-    def test_physicalDeleteByUpper(self):
-        print("——test_physicalDeleteByUpper——")
+    def test_physicalDeleteByStart(self):
+        print("——test_physicalDeleteByStart——")
 
-        affectedRowsNum=Layer._physicalDeleteByUpper(self.metas[0])
+        affectedRowsNum=Layer._physicalDeleteByStart(self.metas[0])
         self.assertEqual(affectedRowsNum,4)
 
 
-    def test_physicalDeleteByLower(self):
-        print("——test_physicalDeleteByLower——")
+    def test_physicalDeleteByEnd(self):
+        print("——test_physicalDeleteByEnd——")
 
-        affectedRowsNum=Layer._physicalDeleteByLower(self.metas[0]) # 根据metadata删除metanet
+        affectedRowsNum=Layer._physicalDeleteByEnd(self.metas[0]) # 根据metadata删除metanet
         self.assertEqual(affectedRowsNum,1)
 
-        affectedRowsNum=Layer._physicalDeleteByLower(self.metanets[0])
-        self.assertEqual(affectedRowsNum,0)
+        affectedRowsNum=Layer._physicalDeleteByEnd(self.metanets[0]) # 已经删除过了
+        self.assertEqual(affectedRowsNum,-1)
 
-        affectedRowsNum=Layer._physicalDeleteByLower(self.reals[0])
+        affectedRowsNum=Layer._physicalDeleteByEnd(self.reals[0])
         self.assertEqual(affectedRowsNum,5)
 
 
-    def test_physicalDeleteByUpperAndLower(self):
-        print("——test_physicalDeleteByLower——")
+    def test_physicalDeleteByStartAndEnd(self):
+        print("——test_physicalDeleteByEnd——")
 
-        affectedRowsNum=Layer._physicalDeleteByUpperAndLower(self.metas[0],self.reals[0])
+        affectedRowsNum=Layer._physicalDeleteByStartAndEnd(self.metas[0],self.reals[0])
         self.assertEqual(affectedRowsNum,1)
 
 

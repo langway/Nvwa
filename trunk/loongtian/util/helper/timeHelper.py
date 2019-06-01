@@ -5,7 +5,7 @@ __author__ = 'Leon'
 
 import time
 from datetime import datetime
-import httplib as client
+from http import client
 import os
 from loongtian.util.common.enum import Enum
 
@@ -161,7 +161,7 @@ def is_between(time_str, start_str=None, end_str=None):
     :param end_str:
     :return:
     """
-    if not time_str or not isinstance(time_str, str) or not isinstance(time_str, unicode):
+    if not time_str or not isinstance(time_str, str):
         return False
 
     return start_str <= time_str <= end_str

@@ -34,7 +34,7 @@ class DoubleKeyDict(object):
         if self.key2_name and not hasattr(obj, self.key2_name):
             raise Exception("双键值词典存储对象必须具有%s属性!" % self.key2_name)
 
-        if self.id_dict.has_key(id): # 如果已经有了，直接返回
+        if id in self.id_dict: # 如果已经有了，直接返回
             return
         key2_dict = self.double_key_obj_dict.get(key1)
         if key2_dict:
@@ -108,6 +108,6 @@ class DoubleKeyDict(object):
         清除内存数据
         :return:
         """
-        self.id_dict = {}
-        self.double_key_obj_dict = {}
-        self.id_keys_dict ={}
+        self.id_dict.clear()
+        self.double_key_obj_dict.clear()
+        self.id_keys_dict.clear()

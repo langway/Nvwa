@@ -110,33 +110,33 @@ class TestKnowledgeChain(TestCase):
                 exec("self.meta%02d.addRelationWithRealObjInDB(self.r%02d%d)" % (i, i, j))
 
         self.domain1 = Knowledge(self.r101).saveChain()
-        print("Domain1<%s> = [情人节]" % self.domain1.rid)
+        print("Domain1<%s> = [情人节]" % self.domain1.id)
         self.domain2 = Knowledge([self.r031, self.r071, self.r131]).saveChain()
-        print("Domain2<%s> = [小丽, 的, 生日]" % self.domain2.kid)
+        print("Domain2<%s> = [小丽, 的, 生日]" % self.domain2.id)
         self.chain1 = Knowledge(
             [self.r011, self.r021, self.r031,[[self.r041, self.r051], [self.r061, self.r072,[self.r081, self.r091]]]]
         ).saveChain()
-        print("Chain1<%s> = [小明, 给, 小丽, [[一, 朵], [红色, 的, [玫瑰, 花]]]]" % self.chain1.kid)
+        print("Chain1<%s> = [小明, 给, 小丽, [[一, 朵], [红色, 的, [玫瑰, 花]]]]" % self.chain1.id)
         self.chain2 = Knowledge(
             [self.r011, self.r021, self.r031,[[self.r041, self.r111], self.r121]]
         ).saveChain()
-        print("Chain2<%s> = [小明, 给, 小丽, [[一, 块], 巧克力]]" % self.chain2.kid)
+        print("Chain2<%s> = [小明, 给, 小丽, [[一, 块], 巧克力]]" % self.chain2.id)
         self.chain3 = Knowledge(
             [self.r011, self.r021, self.r141,[[self.r041, self.r111], self.r121]]
         ).saveChain()
-        print("Chain3<%s> = [小明, 给, 小刚, [[一, 块], 巧克力]]" % self.chain3.kid)
+        print("Chain3<%s> = [小明, 给, 小刚, [[一, 块], 巧克力]]" % self.chain3.id)
 
         self.chain4 = Knowledge(
             [self.r161, [self.r171, [self.r181, self.r191]]]
         ).saveChain()
-        print("Chain4<%s> = [中国, [人民，[建设, 银行]]]" % self.chain4.kid)
+        print("Chain4<%s> = [中国, [人民，[建设, 银行]]]" % self.chain4.id)
 
         # Instinct.getAllByInDB(alias= "parent")
         # Instinct.getAllByInDB(alias= "coll")
         self.chain5 = Knowledge(
             [[self.r201, self.r211], self.i221, self.i231]
         ).saveChain()
-        print("Chain5<%s> = [['甲', '乙'], '父对象', '集合']" % self.chain5.kid)
+        print("Chain5<%s> = [['甲', '乙'], '父对象', '集合']" % self.chain5.id)
 
     def testSaveChain(self):
         print("----testSaveChain----")
@@ -147,16 +147,16 @@ class TestKnowledgeChain(TestCase):
         self.chain1.addDomain(self.domain1)
         self.chain1.addDomain(self.domain2)
         self.chain1.getAllBackwardsInDB()
-        print("{t_graph:%s, domain:%s}" % (self.chain1.kid, self.chain1.domains))
+        print("{t_graph:%s, domain:%s}" % (self.chain1.id, self.chain1.domains))
         self.chain1.removeDomain(self.domain1)
         self.chain1.removeDomain(self.domain2)
-        DbPools["nvwa"].executeSQL("delete from Domain where isdel = true")
+        DbPools["nvwa"].executeSQL("delete from Domain where status = 0")
         self.domain1.addDomainedChain(self.chain1)
         self.domain1.addDomainedChain(self.chain2)
         self.domain1.refreshChains()
         self.assertTrue(len(self.domain1.chains) > 0)
-        for temp in self.domain1.chains.values():
-            print("{doamin:%s, t_graph:%s}" % (self.domain1.rid, temp.chain))
+        for id,temp in self.domain1.chains.items():
+            print("{doamin:%s, t_graph:%s}" % (self.domain1.id, temp.chain))
 
     def testFindChain(self):
         print("----testFindChain----")
@@ -164,7 +164,7 @@ class TestKnowledgeChain(TestCase):
         print("<%s>:[情人节]" % find1)
         self.assertIsNone(find1)
         find2 = Knowledge([self.r061, self.r072,[self.r081, self.r091]]).findChain()
-        print("<%s>:[红色, 的, [玫瑰, 花]]" % find2.kid)
+        print("<%s>:[红色, 的, [玫瑰, 花]]" % find2.id)
         self.assertIsNotNone(find2)
         find3 = Knowledge([[self.r041, self.r051], [self.r081, self.r091]]).findChain()
         print("<%s>:[[一, 朵], [玫瑰, 花]]" % find3)
@@ -235,7 +235,7 @@ class TestKnowledgeChain(TestCase):
         self.chainTail = Knowledge(
             [[self.r041, self.r051], [self.r151, self.r072, self.r091]]
         ).saveChain()
-        print("ChainTail<%s> = [[一, 朵], [蓝色, 的, 花]]" % self.chainTail.kid)
+        print("ChainTail<%s> = [[一, 朵], [蓝色, 的, 花]]" % self.chainTail.id)
         tail1 = [self.r091]
         find1 = Knowledge.findTail(tail1)
         Knowledge.forwardToRealObjects(find1)
@@ -277,11 +277,11 @@ class TestKnowledgeChain(TestCase):
         self.chainHeadTail1 = Knowledge(
             [self.r011, self.r021, self.r031, self.r091]
         ).saveChain()
-        print("ChainHeadTail1<%s> = [小明, 给, 小丽, 花]" % self.chainHeadTail1.kid)
+        print("ChainHeadTail1<%s> = [小明, 给, 小丽, 花]" % self.chainHeadTail1.id)
         self.chainHeadTail2 = Knowledge(
             [self.r011, self.r021, self.r031, [self.r151, self.r072, self.r091]]
         ).saveChain()
-        print("ChainHeadTail2<%s> = [小明, 给, 小丽, [蓝色, 的, 花]]" % self.chainHeadTail2.kid)
+        print("ChainHeadTail2<%s> = [小明, 给, 小丽, [蓝色, 的, 花]]" % self.chainHeadTail2.id)
         head1 = [self.r011, self.r021, self.r031]
         tail1 = [self.r091]
         find1 = Knowledge.findHeadAndTail(head1, tail1)

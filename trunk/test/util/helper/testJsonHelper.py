@@ -36,10 +36,10 @@ class TestJsonHelper(TestCase):
         # sys.setdefaultencoding('utf-8')
         ttt = 'asd中国是我家！'
         print('type(\'asd中国是我家！\'):',type(ttt))
-        ttt=unicode(ttt)
-        print('type(unicode(\'asd中国是我家！\'))',type(ttt))
+        ttt=str(ttt)
+        print('type(str(\'asd中国是我家！\'))',type(ttt))
         ttt=ttt.encode('utf-8')
-        print('type(unicode(\'asd中国是我家！\').encode(\'utf-8\'))',type(ttt))
+        print('type(str(\'asd中国是我家！\').encode(\'utf-8\'))',type(ttt))
         print('\u6211\u662f\u4e2d\u56fd\u4eba decode raw_unicode_escape:',('\u6211\u662f\u4e2d\u56fd\u4eba').decode('raw_unicode_escape'))
 
 

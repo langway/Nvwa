@@ -30,7 +30,7 @@ def readLines(filename):
                 try:
                     eachLine=eachLine.decode("utf-8")
                 except UnicodeDecodeError as e:
-                    print(u"UnicodeDecodeError:" + e.message + u"  filename:" + filename +u"  eachLine:" )
+                    print(u"UnicodeDecodeError:" + str(e) + u"  filename:" + filename +u"  eachLine:" )
                     print(eachLine)
                     hasError=True
                     # raise e
@@ -168,7 +168,7 @@ def getFilesInPath(curPath,startswith=None,extension=None,endswith=None,contains
                 subFiles=getFilesInPath(curItem,startswith,extension,endswith,contains)
                 files.extend(subFiles )
             except ImportError as e:
-                print('error:'+e.message)
+                print('error:'+str(e))
 
 
     return files
@@ -188,7 +188,7 @@ def loadPythonModules(files):
                 modules[curfile]=loadedMod
         except ImportError as e:
             loadedMod = None
-            print('error:'+e.message)
+            print('error:'+str(e))
 
     return modules
 
@@ -217,7 +217,7 @@ def getPathList(curPath,startswith,extension,endswith,contains):
                 subModules=getFilesInPath(curItem,startswith,extension,endswith,contains)
             except ImportError as e:
                 subModules = None
-                print('error:'+e.message)
+                print('error:'+str(e))
             if subModules:
                 path_list.append({'path': curItem, 'mod': subModules})
 

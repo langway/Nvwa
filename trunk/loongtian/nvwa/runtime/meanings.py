@@ -82,7 +82,7 @@ class Meaning(Workflow, BaseMeaning):
         :param placeholder_obj_dict:使用placeholder_dict对status中的obj_chain中的对象进行替换（如果有的话）
         :return:
         """
-        if meaning_knowledge.getType() != ObjType.EXE_INFO:
+        if meaning_knowledge.getType() != ObjType.LINEAR_EXE_INFO:
             raise Exception("意义必须标记为可执行性信息！")
         # 意义包装类
         _meaning = Meaning(memory=memory)
@@ -95,7 +95,7 @@ class Meaning(Workflow, BaseMeaning):
         for step in _meaning_knowledge_components:  # 步骤知识链（可能有多个，代表不同的步骤）
             step_obj_chain = step
             if isinstance(step, Knowledge):
-                if step.getType() != ObjType.EXE_INFO:
+                if step.getType() != ObjType.LINEAR_EXE_INFO:
                     raise Exception("意义的步骤必须标记为可执行性信息！")
                 # 取得实际元素
                 step_obj_chain = step.getSequenceComponents()
@@ -109,7 +109,7 @@ class Meaning(Workflow, BaseMeaning):
             for status in step_obj_chain:
                 status_obj_chain = status
                 if isinstance(status, Knowledge):
-                    # if step.getType() != ObjType.EXE_INFO: # 2019-02-14 状态不再检查类型，因为完全可能被其他对象复用，例如：小明打小丽中的“小明抬手、小明手落下”
+                    # if step.getType() != ObjType.LINEAR_EXE_INFO: # 2019-02-14 状态不再检查类型，因为完全可能被其他对象复用，例如：小明打小丽中的“小明抬手、小明手落下”
                     #     raise Exception("意义的每一个步骤的每一个状态必须标记为可执行性信息！")
                     status_obj_chain = status.getSequenceComponents()
 
@@ -142,7 +142,7 @@ class Meaning(Workflow, BaseMeaning):
         :return:
         """
         # 检查类型标记
-        if step_knowledge.getType() != ObjType.EXE_INFO:
+        if step_knowledge.getType() != ObjType.LINEAR_EXE_INFO:
             raise Exception("意义的步骤必须标记为可执行性信息！")
 
         # 意义包装类
@@ -160,7 +160,7 @@ class Meaning(Workflow, BaseMeaning):
         for status in step_obj_chain:
             status_obj_chain = status
             if isinstance(status, Knowledge):
-                # if step.getType() != ObjType.EXE_INFO: # 2019-02-14 状态不再检查类型，因为完全可能被其他对象复用，例如：小明打小丽中的“小明抬手、小明手落下”
+                # if step.getType() != ObjType.LINEAR_EXE_INFO: # 2019-02-14 状态不再检查类型，因为完全可能被其他对象复用，例如：小明打小丽中的“小明抬手、小明手落下”
                 #     raise Exception("意义的每一个步骤的每一个状态必须标记为可执行性信息！")
                 status_obj_chain = status.getSequenceComponents()
 
@@ -177,7 +177,7 @@ class Meaning(Workflow, BaseMeaning):
         _meaning.addStep(_step)
 
         # 记录到已经生成的知识链
-        _meaning.createKnowledge(recordInDB=False)
+        _meaning.createKnowledge(recordInDB=False,memory=memory)
 
         return _meaning
 
@@ -189,14 +189,17 @@ class Meaning(Workflow, BaseMeaning):
         :param placeholder_obj_dict:使用placeholder_dict对status中的obj_chain中的对象进行替换（如果有的话）
         :return:
         """
-
+        if not status_knowledge:
+            return None
+        if not memory:
+            memory=status_knowledge.MemoryCentral
         # 意义包装类
         _meaning = Meaning(memory=memory)
         # 步骤
         _step = Step(memory=memory)
         from loongtian.nvwa.models.knowledge import Knowledge
         # 状态
-        # if status_knowledge.getType() != ObjType.EXE_INFO: # 2019-02-14 状态不再检查类型，因为完全可能被其他对象复用，例如：小明打小丽中的“小明抬手、小明手落下”
+        # if status_knowledge.getType() != ObjType.LINEAR_EXE_INFO: # 2019-02-14 状态不再检查类型，因为完全可能被其他对象复用，例如：小明打小丽中的“小明抬手、小明手落下”
         #     raise Exception("意义的每一个步骤的每一个状态必须标记为可执行性信息！")
         status_obj_chain = status_knowledge.getSequenceComponents()
 
@@ -236,7 +239,7 @@ class Meaning(Workflow, BaseMeaning):
             for i in range(len(obj_chain)):
                 cur_obj = obj_chain[i]
                 if isinstance(cur_obj, RealObject):
-                    if placeholder_dict.has_key(cur_obj):
+                    if cur_obj in placeholder_dict:
                         obj_chain[i] = placeholder_dict[cur_obj]
                 elif isinstance(cur_obj, Knowledge):
                     child_realChain = Meaning._replace_obj_with_placeholder_dict(cur_obj, placeholder_dict)
@@ -275,7 +278,7 @@ class ExecutionInfoCreatedMeaning(BaseMeaning):
 
     def __init__(self, action=None, left=None, right=None,newCreated=False,memory=None):
         """
-        [运行时对象]自己解释自己。例如：牛有腿意义牛有腿，只是起强调作用，对注意力引擎有作用。
+        [运行时对象]建立意义。根据意义标记，建立了左右两侧对象的意义关联。
         :param action:
         :param left:
         :param right:
@@ -298,6 +301,15 @@ class ExecutionInfoCreatedMeaning(BaseMeaning):
                                                                   memory=self.memory)
             return self._knowledge
 
+class ExecutionInfoCreatedMeanings(GenericsList):
+    """
+    [运行时对象]建立意义。根据意义标记，建立了左右两侧对象的意义关联的包装类的列表。
+    """
+    def __init__(self,memory=None):
+        """
+        [运行时对象]建立意义。根据意义标记，建立了左右两侧对象的意义关联的包装类的列表。
+        """
+        super(ExecutionInfoCreatedMeanings, self).__init__(ExecutionInfoCreatedMeaning)
 
 class Meanings(GenericsList):
     """
@@ -332,7 +344,7 @@ class Meanings(GenericsList):
             self.meaningsKnowledges.append(cur_klg)
         return self.meaningsKnowledges
 
-    def getMeaningsKnowledge(self):
+    def getMeaningsKnowledge(self,recordInDB=False):
         """
         （注意与getMeaningsKnowledges的区别）取得列表中所有的意义创建的知识链（一个）
         :return:
@@ -343,5 +355,7 @@ class Meanings(GenericsList):
         from loongtian.nvwa.models.knowledge import Knowledge
         cur_klgs = self.getMeaningsKnowledges()
         if cur_klgs:
-            self.meaningsKnowledge = Knowledge.createKnowledgeByObjChain(cur_klgs,memory=self.memory)
+            self.meaningsKnowledge = Knowledge.createKnowledgeByObjChain(cur_klgs,
+                                                                         recordInDB=recordInDB,
+                                                                         memory=self.memory)
         return self.meaningsKnowledge

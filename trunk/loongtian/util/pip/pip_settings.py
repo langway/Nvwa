@@ -6,7 +6,7 @@ pip的参数类。
 
 
 # 是否使用douban等的国内镜像（默认为True）
-useImageAddress=False
+useImageAddress=True
 
 
 # pipy国内镜像

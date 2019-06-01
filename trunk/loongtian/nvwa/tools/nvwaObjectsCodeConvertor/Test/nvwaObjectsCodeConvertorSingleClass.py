@@ -441,7 +441,7 @@ class Person(Substances):
             self.Mouth.Open()
             self.Mouth.Close()
 
-        print self.name+'说：'+content.encode('utf-8')
+        print (self.name+'说：'+content.encode('utf-8'))
 
     def Walk(self,distance):
         """

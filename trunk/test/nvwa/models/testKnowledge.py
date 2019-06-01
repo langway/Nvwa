@@ -9,93 +9,143 @@ from loongtian.nvwa.models.enum import ObjType
 from loongtian.nvwa.models.knowledge import Knowledge
 from loongtian.nvwa.models.realObject import RealObject
 from loongtian.nvwa.models.metaData import MetaData
+from loongtian.nvwa.centrals.memoryCentral import MemoryCentral
+
 class TestKnowledge(TestCase):
 
     def setUp(self):
         print("----setUp----")
+        self.memoryCentral = MemoryCentral(None)
 
     def test_createKnowledgeByObjChain(self):
         print("----test_createKnowledgeByObjChain----")
         # 一个对象
         # [a]
-        real_a = RealObject.createMetaRealByValue("a")
-        obj_chain =[real_a[1]]
-        klg = Knowledge.createKnowledgeByObjChain(obj_chain)
+        meta_a,real_a = RealObject.createMetaRealByValue("a",memory=self.memoryCentral)
+        obj_chain =[real_a]
+        klg = Knowledge.createKnowledgeByObjChain(obj_chain,memory=self.memoryCentral)
         components = klg.getSequenceComponents()
-        print (components)
+        self.assertEqual (len(components),1)
+        self.assertEqual(components[0].remark, "a")
 
         # [[a]]
-        obj_chain =[[real_a[1]]]
-        klg = Knowledge.createKnowledgeByObjChain(obj_chain)
+        obj_chain =[[real_a]]
+        klg = Knowledge.createKnowledgeByObjChain(obj_chain,memory=self.memoryCentral)
         components = klg.getSequenceComponents()
-        print (components)
+        self.assertEqual(len(components), 1)
+        self.assertEqual(len(components[0]), 1)
+        self.assertEqual(components[0][0].remark, "a")
 
         # [a,None]
-        obj_chain = [real_a[1], None]
+        obj_chain = [real_a, None]
         klg = Knowledge.createKnowledgeByObjChain(obj_chain)
         components = klg.getSequenceComponents()
-        print (components)
+        self.assertEqual(len(components), 2)
+        self.assertEqual(components[0].remark, "a")
+        self.assertEqual(components[1].remark, "无")
+        
 
         # [[a,None]]
-        obj_chain = [[real_a[1], None]]
-        klg = Knowledge.createKnowledgeByObjChain(obj_chain)
+        obj_chain = [[real_a, None]]
+        klg = Knowledge.createKnowledgeByObjChain(obj_chain,memory=self.memoryCentral)
         components = klg.getSequenceComponents()
-        print (components)
+        self.assertEqual(len(components), 1)
+        self.assertEqual(len(components[0]), 2)
+        self.assertEqual(components[0][0].remark, "a")
+        self.assertEqual(components[0][1].remark, "无")
 
         # [a,b]
-        real_b = RealObject.createMetaRealByValue("b")
-        obj_chain = [real_a[1],real_b[1]]
-        klg = Knowledge.createKnowledgeByObjChain(obj_chain)
+        meta_b,real_b = RealObject.createMetaRealByValue("b",memory=self.memoryCentral)
+        obj_chain = [real_a,real_b]
+        klg = Knowledge.createKnowledgeByObjChain(obj_chain,memory=self.memoryCentral)
         components = klg.getSequenceComponents()
-        print (components)
+        self.assertEqual(len(components), 2)
+        self.assertEqual(components[0].remark, "a")
+        self.assertEqual(components[1].remark, "b")
 
         # [a,b,c]
-        real_c = RealObject.createMetaRealByValue("c")
-        obj_chain = [real_a[1], real_b[1], real_c[1]]
-        klg = Knowledge.createKnowledgeByObjChain(obj_chain)
+        meta_c,real_c = RealObject.createMetaRealByValue("c",memory=self.memoryCentral)
+        obj_chain = [real_a, real_b, real_c]
+        klg = Knowledge.createKnowledgeByObjChain(obj_chain,memory=self.memoryCentral)
         components=klg.getSequenceComponents()
-        print (components)
+        self.assertEqual(len(components), 3)
+        self.assertEqual(components[0].remark, "a")
+        self.assertEqual(components[1].remark, "b")
+        self.assertEqual(components[2].remark, "c")
 
         # [[a,b],c]
-        obj_chain = [[real_a[1], real_b[1]], real_c[1]]
-        klg = Knowledge.createKnowledgeByObjChain(obj_chain)
+        obj_chain = [[real_a, real_b], real_c]
+        klg = Knowledge.createKnowledgeByObjChain(obj_chain,memory=self.memoryCentral)
         components = klg.getSequenceComponents()
-        print (components)
+        self.assertEqual(len(components), 2)
+        self.assertEqual(len(components[0]), 2)
+        self.assertEqual(components[0][0].remark, "a")
+        self.assertEqual(components[0][1].remark, "b")
+        self.assertEqual(components[1].remark, "c")
 
         # [a,[b,c]]
-        obj_chain = [real_a[1], [real_b[1], real_c[1]]]
-        klg = Knowledge.createKnowledgeByObjChain(obj_chain)
+        obj_chain = [real_a, [real_b, real_c]]
+        klg = Knowledge.createKnowledgeByObjChain(obj_chain,memory=self.memoryCentral)
         components = klg.getSequenceComponents()
-        print (components)
+        self.assertEqual(len(components), 2)
+        self.assertEqual(len(components[1]), 2)
+        self.assertEqual(components[0].remark, "a")
+        self.assertEqual(components[1][0].remark, "b")
+        self.assertEqual(components[1][1].remark, "c")
 
         # [[a,b],[c,d]]
-        real_d = RealObject.createMetaRealByValue("d")
-        obj_chain = [[real_a[1], real_b[1]], [real_c[1],real_d[1]]]
-        klg = Knowledge.createKnowledgeByObjChain(obj_chain)
+        meta_d,real_d = RealObject.createMetaRealByValue("d",memory=self.memoryCentral)
+        obj_chain = [[real_a, real_b], [real_c,real_d]]
+        klg = Knowledge.createKnowledgeByObjChain(obj_chain,memory=self.memoryCentral)
         components = klg.getSequenceComponents()
-        print (components)
+        self.assertEqual(len(components), 2)
+        self.assertEqual(len(components[0]), 2)
+        self.assertEqual(len(components[1]), 2)
+        self.assertEqual(components[0][0].remark, "a")
+        self.assertEqual(components[0][1].remark, "b")
+        self.assertEqual(components[1][0].remark, "c")
+        self.assertEqual(components[1][1].remark, "d")
 
         # [[a,b],e,[c,d]]
-        real_e = RealObject.createMetaRealByValue("e")
-        obj_chain = [[real_a[1], real_b[1]],real_e[1], [real_c[1],real_d[1]]]
-        klg = Knowledge.createKnowledgeByObjChain(obj_chain)
+        meta_e,real_e = RealObject.createMetaRealByValue("e",memory=self.memoryCentral)
+        obj_chain = [[real_a, real_b],real_e, [real_c,real_d]]
+        klg = Knowledge.createKnowledgeByObjChain(obj_chain,memory=self.memoryCentral)
+        components = klg.getSequenceComponents()
+        self.assertEqual(len(components), 3)
+        self.assertEqual(len(components[0]), 2)
+        self.assertEqual(len(components[2]), 2)
+        self.assertEqual(components[0][0].remark, "a")
+        self.assertEqual(components[0][1].remark, "b")
+        self.assertEqual(components[1].remark, "e")
+        self.assertEqual(components[2][0].remark, "c")
+        self.assertEqual(components[2][1].remark, "d")
+
+        # [None,[a,b],e,[c,d],e]
+        obj_chain = [None,[real_a, real_b], real_e, [real_c, real_d],real_e]
+        klg = Knowledge.createKnowledgeByObjChain(obj_chain,memory=self.memoryCentral)
         components = klg.getSequenceComponents()
         print (components)
+        self.assertEqual(len(components), 5)
+        self.assertEqual(len(components[1]), 2)
+        self.assertEqual(len(components[3]), 2)
 
-        obj_chain = [None,[real_a[1], real_b[1]], real_e[1], [real_c[1], real_d[1]],real_e[1]]
-        klg = Knowledge.createKnowledgeByObjChain(obj_chain)
-        components = klg.getSequenceComponents()
-        print (components)
+        self.assertEqual(components[0].remark, "无")
+        self.assertEqual(components[1][0].remark, "a")
+        self.assertEqual(components[1][1].remark, "b")
+        self.assertEqual(components[2].remark, "e")
+        self.assertEqual(components[3][0].remark, "c")
+        self.assertEqual(components[3][1].remark, "d")
+        self.assertEqual(components[4].remark, "e")
 
-        self.meta_xiaoming = MetaData(mvalue=u"小明").create()
-        self.meta_da = MetaData(mvalue=u"打").create()
-        self.meta_xiaoli = MetaData(mvalue=u"小丽").create()
+        self.meta_xiaoming = MetaData(mvalue=u"小明",memory=self.memoryCentral).create()
+        self.meta_da = MetaData(mvalue=u"打",memory=self.memoryCentral).create()
+        self.meta_xiaoli = MetaData(mvalue=u"小丽",memory=self.memoryCentral).create()
 
-        self.meta_shouluo = MetaData(mvalue=u"手落").create()
-        self.meta_taishou = MetaData(mvalue=u"抬手").create()
+        self.meta_shouluo = MetaData(mvalue=u"手落",memory=self.memoryCentral).create()
+        self.meta_taishou = MetaData(mvalue=u"抬手",memory=self.memoryCentral).create()
 
-        self.meta_shouteng = MetaData(mvalue=u"手疼").create()
-        self.meta_ku = MetaData(mvalue=u"哭").create()
+        self.meta_shouteng = MetaData(mvalue=u"手疼",memory=self.memoryCentral).create()
+        self.meta_ku = MetaData(mvalue=u"哭",memory=self.memoryCentral).create()
         self.real_xiaoming = RealObject.createRealByMeta(self.meta_xiaoming, realType=ObjType.VIRTUAL)
         self.real_da = RealObject.createRealByMeta(self.meta_da, realType=ObjType.ACTION)
         self.real_xiaoli = RealObject.createRealByMeta(self.meta_xiaoli, realType=ObjType.VIRTUAL)
@@ -114,7 +164,7 @@ class TestKnowledge(TestCase):
             ],
         ]
 
-        klg = Knowledge.createKnowledgeByObjChain(obj_chain)
+        klg = Knowledge.createKnowledgeByObjChain(obj_chain,memory=self.memoryCentral)
         components = klg.getSequenceComponents()
         print (components)
 

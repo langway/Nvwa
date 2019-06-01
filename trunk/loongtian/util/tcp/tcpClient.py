@@ -18,7 +18,7 @@ class TcpClient(object):
             self._client.connect((self.__host, self.__port))
             self.is_connected = True
             print('Connect to {0}'.format((self.__host, self.__port)))
-        except Exception, e:
+        except Exception as e:
             print('Can not connect to {0}[{1}]'.format((self.__host, self.__port), e.args[0]))
 
     def send(self, msg):
@@ -29,12 +29,12 @@ class TcpClient(object):
                     self._client.connect((self.__host, self.__port))
                     self.is_connected = True
                     print('Reconnect to {0}'.format((self.__host, self.__port)))
-                except Exception, e:
+                except Exception as  e:
                     print('Can not connect to {0}[{1}]'.format((self.__host, self.__port), e.args[0]))
                     self.is_connected = False
                     return
             self._client.send(msg)
-        except Exception, e:
+        except Exception as e:
             print('Lost connection {0}[{1}]'.format((self.__host, self.__port), e.args[0]))
             self.is_connected = False
 
@@ -45,7 +45,7 @@ class TcpClient(object):
             else:
                 time.sleep(0.001)
                 return ''
-        except Exception, e:
+        except Exception as e:
             print('Lost connection {0}[{1}]'.format((self.__host, self.__port), e.args[0]))
             self.is_connected = False
             raise e

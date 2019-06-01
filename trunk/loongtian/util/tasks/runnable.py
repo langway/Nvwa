@@ -111,8 +111,8 @@ def handle_exception(request, exc_info):
     '''
     if not isinstance(exc_info, tuple):
         # Something is seriously wrong...
-        print request
-        print exc_info
+        print (request)
+        print (exc_info)
         raise SystemExit
     # print "**** Exception occured in request #%s: %s" % \
     # (request.requestID, exc_info)

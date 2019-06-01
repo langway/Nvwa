@@ -24,14 +24,37 @@ class Focus(SequencedObj):
     [运行时对象]nvwa的注意力模型的封装类（实际对象、知识链）
     """
 
-    def __init__(self):
+    def __init__(self,obj):
         """
         [运行时对象]nvwa的注意力模型的封装类（实际对象、知识链）
         """
         super(Focus, self).__init__()
-        self.obj = None  # 被关注的实际对象、知识链
+        self.obj = obj  # 被关注的实际对象、知识链
+        self.positions=[] # 注意的位置，例如：牛有腿牛是动物，这里的牛，positions=[0,3]
         self.weight = 0.0
         self.targetEmotion = None  # 目标情感
 
         self.starttime = datetime.utcnow()
         self.endtime = datetime.utcnow()
+
+    def increase(self,times):
+        """
+        增加指定次数的关注
+        :param times: 指定次数
+        :return:
+        """
+
+    def decrease(self,times):
+        """
+        减少指定次数的关注
+        :param times: 指定次数
+        :return:
+        """
+
+
+    def calculateWeight(self):
+        """
+        计算关注点的权重
+        :return:
+        """
+

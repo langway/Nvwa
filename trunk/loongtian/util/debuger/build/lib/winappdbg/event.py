@@ -1395,7 +1395,7 @@ class EventHandler (object):
         # A new dictionary must be instanced, otherwise we could also be
         #  affecting all other instances of the EventHandler.
         apiHooks = dict()
-        for lib, hooks in self.apiHooks.iteritems():
+        for lib, hooks in self.apiHooks.items():
             hook_objs = []
             for proc, args in hooks:
                 if type(args) in (int, long):
@@ -1417,7 +1417,7 @@ class EventHandler (object):
             path = event.get_module().get_filename()
             if path:
                 lib_name = PathOperations.pathname_to_filename(path).lower()
-                for hook_lib, hook_api_list in self.__apiHooks.iteritems():
+                for hook_lib, hook_api_list in self.__apiHooks.items():
                     if hook_lib == lib_name:
                         result.extend(hook_api_list)
         return result

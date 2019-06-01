@@ -75,7 +75,7 @@ def __getTime(proxyurl):
             timesec = end - start
             succeed+=1
         except IOError as e:
-            print ("IOError:" + e.message)
+            print ("IOError:" + str(e))
 
         timetotal += int(timesec * 1000)
 

@@ -37,6 +37,9 @@ class _InnerOperations():
         # 创建实际对象的可执行信息
         self.operation_CreateExcutionInfo = None
 
+        # 保证同一性的操作（两个对象变一个对象，同步Id）
+        self.operation_realSynchronization = None
+
     def createMeta(self, memory=None):
         """
         加载元数据
@@ -56,11 +59,20 @@ class _InnerOperations():
                                                           weight=Character.System_Obj_Weight * 10,
                                                           memory=memory).create()
 
+        # 保证同一性的操作（两个对象变一个对象，同步Id）
+        self.meta_operation_realSynchronization = MetaData(mvalue=InstinctsText.inner_operation_Synchronization,
+                                                           weight=Character.System_Obj_Weight * 10,
+                                                           memory=memory).create()
+
         self.mvalue_metas_dict = {
             # 女娲系统内部操作的标记符
             self.meta_operation_mark.mvalue: self.meta_operation_mark,
             # 创建实际对象的可执行信息
-            self.meta_operation_createExcutionInfo.mvalue: self.meta_operation_createExcutionInfo
+            self.meta_operation_createExcutionInfo.mvalue: self.meta_operation_createExcutionInfo,
+
+            # 保证同一性的操作（两个对象变一个对象，同步Id）
+            self.meta_operation_realSynchronization.mvalue: self.meta_operation_realSynchronization,
+
         }
 
     def createInnerOperationByMeta(self, meta):
@@ -94,18 +106,24 @@ class _InnerOperations():
             self.operation_CreateExcutionInfo = self.createInnerOperationByMeta(
                 self.meta_operation_createExcutionInfo)
 
+            # 保证同一性的操作（两个对象变一个对象，同步Id）
+            self.operation_realSynchronization = self.createInnerOperationByMeta(
+                self.meta_operation_realSynchronization)
+
             # 添加到直觉对象列表
             self.InnerOperations.extend([
                 # 女娲系统内部操作的标记符
                 self.operation_mark,
                 # 元对象（基础对象）
                 self.operation_CreateExcutionInfo,
+                # 保证同一性的操作（两个对象变一个对象，同步Id）
+                self.operation_realSynchronization,
 
             ])
 
             return self.InnerOperations
         except Exception as e:
-            raise Exception(InnerOperationsErrors.Can_Not_Create_InnerOperation % e.message)
+            raise Exception(InnerOperationsErrors.Can_Not_Create_InnerOperation % str(e))
 
     def checkInnerOperations(self):
         """
@@ -126,7 +144,7 @@ class _InnerOperations():
         """
         # 从内存加载
         if not forceToReload and len(self.InnerOperationsIdDict) > 0:
-            return self.InnerOperationsIdDict.values()
+            return list(self.InnerOperationsIdDict.values())
 
         # 加载元数据
         self.createMeta(memory=memory)
@@ -156,11 +174,12 @@ class _InnerOperations():
                 SystemInfo.InnerOperationInfo.Intersection: Collection.intersection,
 
                 self.operation_CreateExcutionInfo: InnerOperation_CreateExcutionInfo,
+                self.operation_realSynchronization: InnerOperation_RealSynchronization,
             }
 
             return Operations
         except Exception as e:
-            raise Exception(InnerOperationsErrors.Load_InnerOperations_Failure + e.message)
+            raise Exception(InnerOperationsErrors.Load_InnerOperations_Failure + str(e))
 
     def setInnerOperation(self, Operation):
         """
@@ -181,6 +200,11 @@ class _InnerOperations():
         elif Operation.remark == self.meta_operation_createExcutionInfo.mvalue:
             self.operation_CreateExcutionInfo = Operation
             self.meta_operation_createExcutionInfo.Layers.addLower(Operation, recordInDB=False)  # 关联meta和real
+
+        # 保证同一性的操作（两个对象变一个对象，同步Id）
+        elif Operation.remark == self.meta_operation_realSynchronization.mvalue:
+            self.operation_realSynchronization = Operation
+            self.meta_operation_realSynchronization.Layers.addLower(Operation, recordInDB=False)  # 关联meta和real
 
     @property
     def InnerOperationMap(self):
@@ -210,18 +234,18 @@ class _InnerOperations():
             return None
 
         # 如果已经存在，直接返回
-        meaning_real_exeinfo = meaning_real.getSelfExecutionInfo()
+        meaning_real_exeinfo = meaning_real.ExecutionInfo.getSelfLinearExecutionInfo()
         if meaning_real_exeinfo and meaning_real_exeinfo.isExecutable():
             return meaning_real_exeinfo
 
         # 左占位符
-        left_placeholder = RealObject(remark="placeholder", realType=ObjType.PLACEHOLDER, memory=memory).create(
+        left_placeholder = RealObject(remark="placeholder", type=ObjType.PLACEHOLDER, memory=memory).create(
             recordInDB=True)
         # 对占位符的父对象进行限定-知识链（实际对象列表）
         left_placeholder.Constitutions.addParent(Instincts.instinct_original_knowledge, recordInDB=True,
                                                  weight=Character.Inner_Instinct_Link_Weight)
         # 右占位符
-        right_placeholder = RealObject(remark="placeholder", realType=ObjType.PLACEHOLDER, memory=memory).create(
+        right_placeholder = RealObject(remark="placeholder", type=ObjType.PLACEHOLDER, memory=memory).create(
             recordInDB=True)
         # 对占位符的父对象进行限定-知识链（实际对象列表）
         right_placeholder.Constitutions.addParent(Instincts.instinct_original_knowledge, recordInDB=True,
@@ -229,22 +253,24 @@ class _InnerOperations():
 
         from loongtian.nvwa.models.knowledge import Knowledge
         pattern_klg = Knowledge.createKnowledgeByObjChain([left_placeholder, meaning_real, right_placeholder],
-                                                          type=ObjType.EXE_INFO,
+                                                          type=ObjType.LINEAR_EXE_INFO,
                                                           understood_ratio=Character.Inner_Instinct_Link_Weight,
                                                           recordInDB=True,
                                                           memory=memory)
         # 关联可执行对象及其pattern
-        meaning_real.Layers.addLower(pattern_klg, recordInDB=True, weight=Character.Inner_Instinct_Link_Weight)
+        meaning_real.Layers.addLower(pattern_klg, recordInDB=True,
+                                     weight=Character.Inner_Instinct_Link_Weight)
 
         # 对应到内部操作（为保证一致性(有强制检查)，使用Workflow）：
         from loongtian.nvwa.runtime.meanings import Meaning
         meaning = Meaning.createByStepsObjChain(
             [[[InnerOperations.operation_mark, InnerOperations.operation_CreateExcutionInfo]]])
-        meaning_klg = meaning.createKnowledge(type=ObjType.EXE_INFO, recordInDB=True,
-                                              understood_ratio=Character.Inner_Instinct_Link_Weight)
+        meaning_klg = meaning.createKnowledge(type=ObjType.LINEAR_EXE_INFO, recordInDB=True,
+                                              understood_ratio=Character.Inner_Instinct_Link_Weight,
+                                              memory=memory)
         pattern_klg.Layers.addLower(meaning_klg, recordInDB=True, weight=Character.Inner_Instinct_Link_Weight)
 
-        meaning_real.ExecutionInfo.add(pattern_klg, meaning_klg, value_placeholder=None)
+        meaning_real.ExecutionInfo.LinearExecutionInfo.add(pattern_klg, meaning_klg, value_placeholder=None)
 
     @staticmethod
     def createTopRelationExecutionInfo(memory=None):
@@ -261,13 +287,13 @@ class _InnerOperations():
             # if top_real is Instincts.instinct_parent:
             #     a=1
             # 如果已经存在，直接返回
-            top_real_exeinfo = top_real.getSelfExecutionInfo()
+            top_real_exeinfo = top_real.ExecutionInfo.getSelfLinearExecutionInfo()
             if top_real_exeinfo and top_real_exeinfo.isExecutable():
                 continue
 
             # 左占位符
             left_placeholder = RealObject(remark="placeholder",
-                                          realType=ObjType.PLACEHOLDER,
+                                          type=ObjType.PLACEHOLDER,
                                           memory=memory).create(recordInDB=True)
             # 对占位符的父对象进行限定-实际对象/知识链（实际对象列表），这个地方应该很灵活
             left_placeholder.Constitutions.addParent(Instincts.instinct_original_object, recordInDB=True,
@@ -275,7 +301,7 @@ class _InnerOperations():
 
             # 右占位符
             right_placeholder = RealObject(remark="placeholder",
-                                           realType=ObjType.PLACEHOLDER,
+                                           type=ObjType.PLACEHOLDER,
                                            memory=memory).create(recordInDB=True)
             # 对占位符的父对象进行限定-实际对象/知识链（实际对象列表），这个地方应该很灵活
             right_placeholder.Constitutions.addParent(Instincts.instinct_original_object, recordInDB=True,
@@ -284,7 +310,7 @@ class _InnerOperations():
 
             from loongtian.nvwa.models.knowledge import Knowledge
             pattern_components = [left_placeholder, top_real, right_placeholder]
-            pattern_klg = Knowledge.createKnowledgeByObjChain(pattern_components, ObjType.EXE_INFO,
+            pattern_klg = Knowledge.createKnowledgeByObjChain(pattern_components, ObjType.LINEAR_EXE_INFO,
                                                               understood_ratio=Character.Inner_Instinct_Link_Weight,
                                                               recordInDB=True,
                                                               memory=memory)  # ,recordRelationInFirstReal=True)
@@ -295,7 +321,7 @@ class _InnerOperations():
             # （为保证一致性(有强制检查)，使用Meaning）
             from loongtian.nvwa.runtime.meanings import Meaning
             meaning = Meaning.createByStepsObjChain([[pattern_components]])
-            meaning_klg = meaning.createKnowledge(type=ObjType.EXE_INFO, recordInDB=True,
+            meaning_klg = meaning.createKnowledge(type=ObjType.LINEAR_EXE_INFO, recordInDB=True,
                                                   understood_ratio=Character.Inner_Instinct_Link_Weight,
                                                   memory=memory)
             pattern_klg.Layers.addLower(meaning_klg, recordInDB=True, weight=Character.Inner_Instinct_Link_Weight)
@@ -304,14 +330,65 @@ class _InnerOperations():
             value_placeholder = None
             if Instincts.hasConstituentValue(top_real):
                 value_placeholder = RealObject(remark="placeholder",
-                                               realType=ObjType.PLACEHOLDER,
+                                               type=ObjType.PLACEHOLDER,
                                                memory=memory).create(recordInDB=True)
                 # 关联值到意义，对占位符的父对象进行限定-实际对象/知识链（实际对象列表），这个地方应该很灵活
                 # value_placeholder.Constitutions.addParent(right_placeholder,recordInDB=True, weight=Character.Inner_Instinct_Link_Weight)
-                meaning_klg.Layers.addLower(value_placeholder, ltype=ObjType.EXE_MEANING_VALUE,
+                meaning_klg.Layers.addLower(value_placeholder, ltype=ObjType.LINEAR_EXE_MEANING_VALUE,
                                             weight=Character.Inner_Instinct_Link_Weight, recordInDB=True)
 
-            top_real.ExecutionInfo.add(pattern_klg, meaning_klg, value_placeholder)
+            top_real.ExecutionInfo.LinearExecutionInfo.add(pattern_klg, meaning_klg, value_placeholder)
+
+    @staticmethod
+    def createRealsSynchronizer(memory=None):
+        """
+        保证对象同一性的操作（两个对象变一个对象，同步Id）执行信息
+        :return:
+        """
+        from loongtian.nvwa.models.realObject import RealObject
+        Instincts.loadAllInstincts(memory=memory)
+        _real = Instincts.instinct_realSynchronizer
+        if not _real or not isinstance(_real, RealObject):
+            return None
+
+        # 如果已经存在，直接返回
+        meaning_real_exeinfo = _real.ExecutionInfo.getSelfLinearExecutionInfo()
+        if meaning_real_exeinfo and meaning_real_exeinfo.isExecutable():
+            return meaning_real_exeinfo
+
+        # 左占位符
+        left_placeholder = RealObject(remark="placeholder", type=ObjType.PLACEHOLDER, memory=memory).create(
+            recordInDB=True)
+        # 对占位符的父对象进行限定-实际对象
+        left_placeholder.Constitutions.addParent(Instincts.instinct_original_object, recordInDB=True,
+                                                 weight=Character.Inner_Instinct_Link_Weight)
+        # 右占位符
+        right_placeholder = RealObject(remark="placeholder", type=ObjType.PLACEHOLDER, memory=memory).create(
+            recordInDB=True)
+        # 对占位符的父对象进行限定-实际对象
+        right_placeholder.Constitutions.addParent(Instincts.instinct_original_object, recordInDB=True,
+                                                  weight=Character.Inner_Instinct_Link_Weight)
+
+        from loongtian.nvwa.models.knowledge import Knowledge
+        pattern_klg = Knowledge.createKnowledgeByObjChain([left_placeholder, _real, right_placeholder],
+                                                          type=ObjType.LINEAR_EXE_INFO,
+                                                          understood_ratio=Character.Inner_Instinct_Link_Weight,
+                                                          recordInDB=True,
+                                                          memory=memory)
+        # 关联可执行对象及其pattern
+        _real.Layers.addLower(pattern_klg, recordInDB=True,
+                              weight=Character.Inner_Instinct_Link_Weight)
+
+        # 对应到内部操作（为保证一致性(有强制检查)，使用Meaning/Workflow）：
+        from loongtian.nvwa.runtime.meanings import Meaning
+        meaning = Meaning.createByStepsObjChain(
+            [[[InnerOperations.operation_mark, InnerOperations.operation_realSynchronization]]])
+        meaning_klg = meaning.createKnowledge(type=ObjType.LINEAR_EXE_INFO, recordInDB=True,
+                                              understood_ratio=Character.Inner_Instinct_Link_Weight,
+                                              memory=memory)
+        pattern_klg.Layers.addLower(meaning_klg, recordInDB=True, weight=Character.Inner_Instinct_Link_Weight)
+
+        _real.ExecutionInfo.LinearExecutionInfo.add(pattern_klg, meaning_klg, value_placeholder=None)
 
 
 # 向外部显现内部操作
@@ -357,6 +434,7 @@ def InnerOperation_CreateExcutionInfo(pattern, meaning, memory=None):
     for meaning_component in meaning_components:
         if isinstance(meaning_component, RealObject) and meaning_component.isTopRelation():
             hasTopRelation = True
+            break
 
     if hasTopRelation and len(pattern_components) < 3:
         raise Exception("参数错误！“意义”的的右边具有顶级关系，左边pattern至少是个三元组，例如：牛-组件-腿。目前是：%s" % pattern_components)
@@ -370,7 +448,7 @@ def InnerOperation_CreateExcutionInfo(pattern, meaning, memory=None):
         # todo 由于尚未建立时间概念，这里是临时替代方案
         # from loongtian.nvwa.runtime.meanings import Meaning
         meaning_components = [[meaning_components]]  # 三层嵌套(本身已经有一层了)
-        meaning_value=None
+        meaning_value = None
 
     else:  # 没能找到action。这里有第二种情况，要创建的意义左边对象（将其作为一个整体）就是意义右边要输出的对象，
         # 例如：小明的手机意义real-（小明的手机）是手机小明有real-（小明的手机）
@@ -381,21 +459,61 @@ def InnerOperation_CreateExcutionInfo(pattern, meaning, memory=None):
         if meaning_components is None:
             raise Exception("未能根据左边的模式重新构建（分组）意义！")
 
+        # todo 这里应区分实体的“头”（例如：牛有头）和做成动作的“头”-例如：“四头牛”
         action = ModelingEngine.getAction(pattern_components, meaning_components)
         if not action:
             raise Exception("未能根据左边的模式及重新构建（分组）意义取得动作！")
         meaning_components = [[meaning_components]]  # 三层嵌套(本身已经有一层了)
 
     # 创建模式、意义、意义值的关联。
-    exe_info, new_created = ModelingEngine.createExcutionInfo(action,
-                                                              pattern_components,
-                                                              meaning_components,
-                                                              meaning_value=meaning_value,
-                                                              recordInDB=True,
-                                                              memory=memory)
-    if exe_info:
-        from loongtian.nvwa.runtime.meanings import ExecutionInfoCreatedMeaning
-        return ExecutionInfoCreatedMeaning(action, pattern, meaning, new_created)
+    if isinstance(action,list) and len(action)>1: # 多动作
+        result = ModelingEngine.createExcutionInfo(action,
+                                                   pattern_components,
+                                                   meaning_components,
+                                                   meaning_value=meaning_value,
+                                                   pattern_type=ObjType.CONJUGATED_EXE_INFO,
+                                                   meaning_type=ObjType.CONJUGATED_EXE_INFO,
+                                                   meaning_value_type=ObjType.CONJUGATED_EXE_MEANING_VALUE,
+                                                   recordInDB=True,
+                                                   memory=memory)
+    else: # 单动作
+        result = ModelingEngine.createExcutionInfo(action,
+                                                   pattern_components,
+                                                   meaning_components,
+                                                   meaning_value=meaning_value,
+                                                   pattern_type=ObjType.LINEAR_EXE_INFO,
+                                                   meaning_type=ObjType.LINEAR_EXE_INFO,
+                                                   meaning_value_type=ObjType.LINEAR_EXE_MEANING_VALUE,
+                                                   recordInDB=True,
+                                                   memory=memory)
+    if result:
+        from loongtian.nvwa.runtime.meanings import ExecutionInfoCreatedMeaning,ExecutionInfoCreatedMeanings
+        if len(result)==1:
+            exe_info, new_created =result[action]
+            return ExecutionInfoCreatedMeaning(action, pattern, meaning, new_created)
+        else:
+            _ExecutionInfoCreatedMeanings=ExecutionInfoCreatedMeanings()
+            for _action in action:
+                exe_info, new_created=result[_action]
+                exe_info.restoreCurObjIndex()
+                cur_pattern,cur_meaning,cur_meaning_value=exe_info.getCur()
+                exe_info.restoreCurObjIndex()
+                _result= ExecutionInfoCreatedMeaning(_action, cur_pattern, cur_meaning, new_created)
+                _ExecutionInfoCreatedMeanings.append(_result)
+            return _ExecutionInfoCreatedMeanings
+
+
+def InnerOperation_RealSynchronization(obj1, obj2, memory=None):
+    """
+    保证同一性的操作（两个对象变一个对象，同步Id）
+    :param obj1:
+    :param obj2:
+    :param memory:
+    :return:
+    """
+    if obj1.id == obj2.id:
+        return True
+    # TODO 同步两个对象
 
 
 """

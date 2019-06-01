@@ -7,8 +7,10 @@ import copy
 from loongtian.nvwa import settings
 from loongtian.nvwa.models.baseEntity import BaseEntity, LayerLimitation
 from loongtian.nvwa.models.enum import ObjType
+from loongtian.nvwa.models.executionInfo import LinearExecutionInfo,ConjugatedExecutionInfo
+
 from loongtian.nvwa.runtime.collection import Collection
-from loongtian.nvwa.runtime.relatedObjects import RelatedObj, LowerObjs
+from loongtian.nvwa.runtime.relatedObjects import RelatedObj
 from loongtian.nvwa.organs.character import Character
 
 
@@ -27,7 +29,7 @@ class RealObject(BaseEntity):
     # pattern RealObject的模式（Id）,当RealObject为动词或修限词时。
     # meaning 含义（指的是）（Id），当RealObject为动词或修限词时时。
     remark 备注，一般用于显示。
-    WordFrequncyDict 实际对象对应的元数据的集合。格式为：{mid:(MetaData,threshhold)}，一个RealObjectEntity对应多个MetaDataEntity。
+    WordFrequncyDict 实际对象对应的元数据的集合。格式为：{id:(MetaData,threshhold)}，一个RealObjectEntity对应多个MetaDataEntity。
         eg：RealObject:牛 ==> Meta:[牛, cow, 声音牛, 图像牛]
     chains 该标签的被域知识链
     type 实际对象的类型，
@@ -42,7 +44,7 @@ class RealObject(BaseEntity):
     __databasename__ = settings.db.db_nvwa  # 所在数据库。
     __tablename__ = settings.db.tables.tbl_realObject  # 所在表。与Flask统一
     primaryKey = copy.copy(BaseEntity.primaryKey)
-    primaryKey.append("rid")
+    primaryKey.append("id")
     columns = copy.copy(BaseEntity.columns)
     columns.extend(["type", "remark", "uratio"])
     upperLimitation = LayerLimitation()
@@ -55,23 +57,23 @@ class RealObject(BaseEntity):
     lowerLimitation = LayerLimitation()
     lowerLimitation.update({
         # ObjType.REALOBJECT: 1,
-        ObjType.EXE_INFO: -1,  # 有多个模式
+        ObjType.LINEAR_EXE_INFO: -1,  # 有多个模式
         # ObjType.MEANING: 1,
     })  # 在下一层其他对象的分层中，包含的对象类型、数量限制，
 
     # RealObject只能有一个下层对象RealObject，两个下层对象Knowledge（一个是meaning的头，一个是pattern）
     # RealObject和Knowledge的下一层对象可以解析为：意义为、意思为、指的是、含义为、meaning等
 
-    def __init__(self, rid=None, remark=None, realType=ObjType.REAL_OBJECT,
+    def __init__(self, id=None, remark=None, type=ObjType.REAL_OBJECT,
                  createrid='',
                  createtime=None, updatetime=None, lasttime=None,
                  status=200,  # 状态; 0-不可用(逻辑删除);200-正常;800-不可遗忘
                  memory=None):
         """
         实际对象实体。
-        :param rid:
+        :param id:
         :param remark:
-        :param realType:
+        :param type:
         :param createrid: 添加人; 格式：(user_id)中文名
         :param createrip: 添加人IP
         :param createtime: 添加时间;
@@ -79,18 +81,14 @@ class RealObject(BaseEntity):
         :param lasttime: 最近访问时间
         :param status: 状态; 0-不可用(逻辑删除);200-正常;800-不可遗忘
         """
-        super(RealObject, self).__init__(rid,
+        super(RealObject, self).__init__(id,
                                          createrid,
                                          createtime, updatetime, lasttime,
                                          status, memory=memory)
-        if rid is None:
-            self.rid = self.id
-        else:
-            self.rid = rid
-            self._id = rid
+
+        self.type = type # 类型根据外部设置
 
         self.remark = remark
-        self.type = realType
         self._got_realType = False  # 是否已经取得了realType的标记。如果是UNKNOWN，试图查询数据库取得实际对象类型
 
         self.uratio = 0.0  # 实际对象已被识别的比率。
@@ -109,12 +107,7 @@ class RealObject(BaseEntity):
         # 实际对象的关系的前、后约束，例如：手机不能进水。牛 - 有 - 腿，腿的前约束，就是组件，便于系统查找和处理关系，避免出现马云 - 有 - 钱，将其处理成马云 - 组件 - 钱的情况。
         self.Connstrains = Connstrains(self)
 
-        # 当前realobject的可执行的信息(executionInfo)，包括：模式（左右、左右定义）及意义（对左右对象的构成进行更改）
-        # 模式、意义可能有多个（代表不同的执行步骤），与realobject的关系是1:n,n:n
-        # 其中pattern和meaning均为特殊格式的knowledge
-        self.ExecutionInfo = ExecutionInfo(self)  # 格式为：{pattern_knowledge:[meaning_knowledges]}
-
-        # self._got_executionInfo = False  # 是否已经取得了executionInfos的标记。
+        self.ExecutionInfo = ExecutionInfo(self)
 
         # 2018-12-06:所有上下层对象一律在Layers中处理
         # # 从数据库中取得的关联的元数据（可能有多个可能有多个，例如：r:苹果<——m:字符串苹果，m:字符串Apple，m:声音的苹果）
@@ -127,21 +120,40 @@ class RealObject(BaseEntity):
 
         self._isSingularity = None  # 一个实际对象是否是奇点对象（孤儿对象。没有任何构成、知识链、动作定义或是在知识链中引用。只在realobject表中，不是知识链、没有以其为start的知识链、不是动作）
 
-        # def create(self):
-
-    #     """
-    #     CRUD - Create
-    #     :return: 返回建立的Entity。
-    #     """
-    #     # realobject的创建不用检查是否存在，其删除是由比较器比较相同后操作的。
-    #     return self._create(False)
-
-    def getType(self):
+    def create(self, checkExist=True, recordInDB=True):
         """
-        判断当前的RealObject的类型。
-        :return: ObjType
+        CRUD - Create
+        :return: 返回建立的Entity。
         """
-        return self.type
+        RealObject.getRealType(self)
+        return super(RealObject,self).create(checkExist,recordInDB)
+
+
+    @staticmethod
+    def getRealType(real):
+        """
+        取得realObject对象的类型。包括：实对象、虚对象、动作、修限符、直觉等。
+        如果是UNKNOWN，试图查询数据库取得实际对象类型
+        :param real:
+        :return:
+        """
+        # 如果已经判断了实际对象的类型，直接返回该类型
+        if real._got_realType == True:
+            return real.type
+
+        # 试着通过pattern和meaning定义判断对象类型
+        real.ExecutionInfo.getSelfLinearExecutionInfo()
+
+        real._got_realType = True
+        return real.type
+
+    # def getType(self):
+    #     """
+    #     [重载函数]取得当前实际对象的类型。
+    #     :return: 当前实际对象的类型。
+    #     """
+    #     return RealObject.getRealType(self)
+
 
     @property
     def Remark(self):
@@ -180,7 +192,7 @@ class RealObject(BaseEntity):
                 return reals.sorted_typed_objects[ObjType.REAL_OBJECT][0].obj
 
         real = RealObject(remark=meta.mvalue,
-                          realType=realType, status=status,
+                          type=realType, status=status,
                           memory=meta.MemoryCentral).create(recordInDB=recordInDB)
         RealObject.addMetaRealRelation(meta, real, weight, recordInDB=recordInDB)
         return real
@@ -229,45 +241,17 @@ class RealObject(BaseEntity):
 
         return meta, real
 
-    @property
-    def realType(self):
-        """
-        取得realObject对象的类型。包括：实对象、虚对象、动作、修限符、直觉等。
-        如果是UNKNOWN，试图查询数据库取得实际对象类型
-        :return:
-        """
-        return RealObject.getRealType(self)
 
-    @staticmethod
-    def getRealType(real):
-        """
-        取得realObject对象的类型。包括：实对象、虚对象、动作、修限符、直觉等。
-        如果是UNKNOWN，试图查询数据库取得实际对象类型
-        :param real:
-        :return:
-        """
-        # 如果已经判断了实际对象的类型，直接返回该类型
-        if real._got_realType == True:
-            return real.type
-        # # 如果是已知类型，直接返回该类型
-        # if not real.type==ObjType.REALOBJECT:
-        #     return real.type
-
-        # 试着通过pattern和meaning定义判断对象类型
-        real.getSelfExecutionInfo()
-
-        real._got_realType = True
-        return real.type
 
     def isExecutable(self):
         """
         当前实际对象是否是可执行性的实际对象（包括Instinct\Action）。
         :return:
         """
-        if ObjType.isExecutable(self.realType):
+        if ObjType.isExecutable(self.getType()):
             return True
         # 取得模式
-        executionInfo = self.getSelfExecutionInfo()
+        executionInfo = self.ExecutionInfo.getSelfLinearExecutionInfo()
         if executionInfo and executionInfo.isExecutable():
             return True
         return False
@@ -280,7 +264,7 @@ class RealObject(BaseEntity):
         from loongtian.nvwa.models.knowledge import Knowledge
 
         self_klg = Knowledge.getOneInDB(memory=self.MemoryCentral,
-                                        kid=self.id)  # self.Layers.getUpperEntitiesByType(type=ObjType.KNOWLEDGE)
+                                        id=self.id)  # self.Layers.getUpperEntitiesByType(type=ObjType.KNOWLEDGE)
         return not self_klg is None, self_klg
 
     def getSequenceComponents(self):
@@ -456,11 +440,11 @@ class RealObject(BaseEntity):
         if top_relations:
             self.uratio += len(top_relations) * Character.RecognizedRatio.toprelation_ratio
         from loongtian.nvwa.models.knowledge import Knowledge
-        link_others = Knowledge.getKnowledgesByStartInDB(self, memory=self.MemoryCentral)
+        link_others = Knowledge.getByStartInDB(self, memory=self.MemoryCentral)
         if link_others:
             self.uratio += len(link_others) * Character.RecognizedRatio.link_others_ratio
 
-        other_links = Knowledge.getKnowledgesByEndInDB(self, memory=self.MemoryCentral)
+        other_links = Knowledge.getByEndInDB(self, memory=self.MemoryCentral)
         if other_links:
             self.uratio += len(other_links) * Character.RecognizedRatio.other_links_ratio
 
@@ -486,7 +470,7 @@ class RealObject(BaseEntity):
             temp_klg = Knowledge.createKnowledgeByObjChain(sequence_components, memory=self.MemoryCentral)
             # 同步id
             temp_klg.id = self.id
-            temp_klg.updateAttributeValues(kid=self.id)
+            temp_klg.updateAttributeValues(id=self.id)
             self._self_knowledge = temp_klg
 
         return self._self_knowledge
@@ -522,7 +506,7 @@ class RealObject(BaseEntity):
             self.updateAttributeValues(type=self.type)
 
     def __repr__(self):
-        return "{RealObject:{rid:%s,remark:%s}}" % (self.rid, self.remark)
+        return "{RealObject:{rid:%s,remark:%s}}" % (self.id, self.remark)
 
     def addExecutionInfo(self, pattern_klg, meaning_klg, value_placeholder):
         """
@@ -531,64 +515,27 @@ class RealObject(BaseEntity):
         :param meaning_klg: 意义知识链
         :return:
         """
-        if not self.ExecutionInfo:
-            self.ExecutionInfo = ExecutionInfo(self)
-        return self.ExecutionInfo.add(pattern_klg, meaning_klg, value_placeholder)
+        if not self.LinearExecutionInfo:
+            self.LinearExecutionInfo = LinearExecutionInfo(self)
+        return self.LinearExecutionInfo.add(pattern_klg, meaning_klg, value_placeholder)
 
-    def getSelfExecutionInfo(self):
+
+    @staticmethod
+    def hasAnything(objs):
         """
-        取得当前realobject的可执行的信息，包括：模式（左右、左右定义）及意义（对左右对象的构成进行更改）[多模式，多意义]
-        :return:self._executionInfos
+        判断实际对象链中是否有Instincts.instinct_original_anything
+        :param objs:
+        :return:
         """
-        # 如果已经取得了，直接返回
-        if self.ExecutionInfo and self.ExecutionInfo.isExecutable():
-            return self.ExecutionInfo
-
-        # 取得模式
-        cur_patterns = self.Layers.getLowerEntitiesByType(ObjType.EXE_INFO)
-
-        if cur_patterns:
-            if isinstance(cur_patterns, RelatedObj):  # 可能有多个
-                cur_patterns = [cur_patterns]
-            if not self.ExecutionInfo:
-                self.ExecutionInfo = ExecutionInfo(self)
-            self.ExecutionInfo.pattern_knowledges = cur_patterns
-
-            for id, cur_pattern in cur_patterns.iteritems():
-                cur_pattern = cur_pattern.obj
-                cur_pattern.getChainItems()
-
-                # 取得意义
-                # 在深度语义网中，意义可能会有不同程度的递进，这里只递进到第一层，以待后续处理
-                cur_meanings = cur_pattern.Layers.getLowerEntitiesByType(ObjType.EXE_INFO)
-                if not cur_meanings:
-                    raise Exception("当前实际对象“%s”有pattern，但没有意义！" % self.remark)
-                self.ExecutionInfo.meaning_knowledges[cur_pattern.id] = cur_meanings
-
-                # 取得值
-                from loongtian.nvwa.runtime.instinct import Instincts
-                if Instincts.hasConstituentValue(self):  # 目前只能有顶级关系才能有值（内部值）的概念
-                    from loongtian.nvwa.models.knowledge import Knowledge
-                    for id, cur_meaning in cur_meanings.iteritems():
-                        cur_meaning = cur_meaning.obj
-                        if not isinstance(cur_meaning, Knowledge):
-                            raise Exception("当前实际对象的意义不是Knowledge类型！")
-                        meaning_value = cur_meaning.Layers.getLowerEntitiesByType(ObjType.EXE_MEANING_VALUE)
-                        if meaning_value:
-                            meaning_value = self.ExecutionInfo.get_meaning_value(meaning_value)
-                            if meaning_value:
-                                self.ExecutionInfo.meaning_value_dict[cur_meaning.id] = meaning_value
-            # 除了顶级关系、意义之外，明确实际对象的子类型为：动作
-            if len(
-                    self.ExecutionInfo.meaning_knowledges) > 0 and not self.isTopRelation() and not self.isInstinctMeaning():
-                self.setType(type=ObjType.ACTION)
-
-        # else:
-        #     self.ExecutionInfo = None
-        #     # # 明确实际对象的子类型为：虚对象:2019-1-28 不能直接设置，类型不一定
-        #     # self.setType(type=ObjType.VIRTUAL)
-
-        return self.ExecutionInfo
+        for real in objs:
+            if isinstance(real, list):
+                child_has_anything = RealObject.hasAnything(real)
+                if child_has_anything:
+                    return True
+            elif isinstance(real, RealObject):
+                if real.isAnything():
+                    return True
+        return False
 
 
 class Constitutions():
@@ -684,7 +631,7 @@ class Constitutions():
         from loongtian.nvwa.models.knowledge import Knowledge
         if isinstance(obj, RealObject) or isinstance(obj, Knowledge):
             return obj
-        if isinstance(obj, str) or isinstance(obj, unicode):
+        if isinstance(obj, str):
             # 取得字符串对应的的元数据、实际对象
             meta, obj = RealObject.createMetaRealByValue(mvalue=obj, memory=memory)
             return obj
@@ -709,8 +656,8 @@ class Constitutions():
                                                                        memory=self.real.MemoryCentral)
 
         from loongtian.nvwa.models.knowledge import Knowledge
-        return Knowledge.getKnowledgeByObjectChain([self.real, relation, relatedObj],
-                                                   memory=self.real.MemoryCentral)
+        return Knowledge.getByObjectChain([self.real, relation, relatedObj],
+                                          memory=self.real.MemoryCentral)
 
     def getRelations(self, relatedObj):
         """
@@ -737,15 +684,15 @@ class Constitutions():
         取得当前实际对象关联的知识（可能有多个，例如：牛-父对象-动物、牛-父对象-反刍动物）。
         :return:
         """
-        if self._constitute_knowledges.has_key(relation):
+        if relation in self._constitute_knowledges:
             return self._constitute_knowledges.get(relation)
 
         from loongtian.nvwa.models.knowledge import Knowledge
 
         # 取得以当前对象开头，以instinct(例如，父对象）为结尾的一条Knowledge
-        cur_k = Knowledge.getKnowledgeByStartAndEnd(self.real,
-                                                    relation,
-                                                    memory=self.real.MemoryCentral)
+        cur_k = Knowledge.getByStartAndEnd(self.real,
+                                           relation,
+                                           memory=self.real.MemoryCentral)
         if not cur_k:
             self._constitute_knowledges[relation] = None
             return None
@@ -767,7 +714,7 @@ class Constitutions():
                                                                       recordInDB=True,
                                                                       memory=self.real.MemoryCentral)
 
-        if self._constitute_reals.has_key(relation):
+        if relation in self._constitute_reals:
             return self._constitute_reals.get(relation), self._constitute_knowledges.get(relation)
 
         # 取得当前实际对象关联的知识（例如：牛 - 父对象 - 动物,牛 - 父对象 - 哺乳动物）。
@@ -781,6 +728,11 @@ class Constitutions():
                 last_item = componets[-1]
                 if not isinstance(last_item, BaseEntity):  # 抛弃那些不是女娲对象的item，例如：list等
                     continue
+                from loongtian.nvwa.runtime.instinct import Instincts
+                if relation.id == Instincts.instinct_parent.id and \
+                        isinstance(last_item, RealObject) and \
+                        last_item.isPlaceHolder():  # 实际对象父对象不能是placeholder，这种情况发生在创建意义时，例如：牛是动物意义牛父对象动物
+                    return None, None
                 related_objs.append(last_item)
             self._constitute_reals[relation] = related_objs
             self._constitute_knowledges[relation] = related_ks
@@ -798,6 +750,13 @@ class Constitutions():
         """
         from loongtian.nvwa.runtime.instinct import Instincts
         return self.getRelatedObjects(Instincts.instinct_parent)
+
+    def getSelfChildren(self):
+        """
+        取得当前实际对象的所有子对象
+        :return:
+        """
+        # todo 未完成
 
     def getSelfIngredientObjects(self):
         """
@@ -874,6 +833,8 @@ class Constitutions():
         :param forceToReload: 是否强制重新加载
         :return:
         """
+        from loongtian.nvwa.runtime.instinct import Instincts
+
         # 如果已经取得当前实际对象所有父对象的继承关系，直接返回
         if self._got_inherit_relation and not forceToReload:
             return self._inherit_relation, self._all_parents_relation
@@ -889,8 +850,8 @@ class Constitutions():
                     if len(parent_inherit_relation) > 0:
                         self._inherit_relation[parent] = parent_inherit_relation  # 这是与对象最紧密的继承关系
                         self._all_parents_relation.update(parent_inherit_relation)  # 这是所有父对象的列表
+                        # self._all_parents_relation.update(self._inherit_relation)
         else:
-            from loongtian.nvwa.runtime.instinct import Instincts
             self._inherit_relation[Instincts.instinct_original_object] = None  # 所有对象都有一个最终的父对象：元对象
             self._all_parents_relation.update(self._inherit_relation)
 
@@ -915,7 +876,9 @@ class Constitutions():
 
         # 取得所有父对象的继承关系
         inherit_relation, all_parents_relation = self.getInheritRelation()
-        return all_parents_relation.has_key(parent)
+        if parent in inherit_relation:
+            return True
+        return parent in all_parents_relation
 
     def getParentsIngredientObjects(self):
         """
@@ -1020,7 +983,7 @@ class Constitutions():
         """
         # 如果已经取得过了，直接返回结果
         from loongtian.nvwa.runtime.instinct import Instincts
-        if self._all_constitute_objs.has_key(Instincts.instinct_attribute):
+        if Instincts.instinct_attribute in self._all_constitute_objs:
             return self._all_constitute_objs[Instincts.instinct_attribute]
 
         self_attributes, self_attributes_ks = self.getSelfAttributeObjects()
@@ -1040,7 +1003,7 @@ class Constitutions():
         """
         # 如果已经取得过了，直接返回结果
         from loongtian.nvwa.runtime.instinct import Instincts
-        if self._all_constitute_objs.has_key(Instincts.instinct_action):
+        if Instincts.instinct_action in self._all_constitute_objs:
             return self._all_constitute_objs[Instincts.instinct_action]
 
         self_actions, self_actions_ks = self.getSelfActionObjects()
@@ -1061,7 +1024,7 @@ class Constitutions():
         """
         # 如果已经取得过了，直接返回结果
         from loongtian.nvwa.runtime.instinct import Instincts
-        if self._all_constitute_objs.has_key(Instincts.instinct_component):
+        if Instincts.instinct_component in self._all_constitute_objs:
             return self._all_constitute_objs[Instincts.instinct_component]
 
         self_components, self_components_ks = self.getSelfComponentObjects()
@@ -1081,7 +1044,7 @@ class Constitutions():
         """
         # 如果已经取得过了，直接返回结果
         from loongtian.nvwa.runtime.instinct import Instincts
-        if self._all_constitute_objs.has_key(Instincts.instinct_belongs):
+        if Instincts.instinct_belongs in self._all_constitute_objs:
             return self._all_constitute_objs[Instincts.instinct_belongs]
 
         self_belongss, self_belongss_ks = self.getSelfBelongsObjects()
@@ -1126,6 +1089,11 @@ class Constitutions():
                                                                        recordInDB=recordInDB,
                                                                        memory=self.real.MemoryCentral)
 
+        if RealObject.hasAnything([self.real, relation, relatedObj]):  # 构成关系中不能有anything
+            return None
+        from loongtian.nvwa.runtime.instinct import Instincts
+        if relation.id == Instincts.instinct_parent.id and relatedObj.isPlaceHolder():  # 父对象不能是placeholder，这种情况发生在创建意义时，例如：牛是动物意义牛父对象动物
+            return None
         # 首先查看内存、数据库是否存在
         cur_k = self.getRelatedKnowledges(relation, relatedObj)
         if cur_k:
@@ -1164,7 +1132,7 @@ class Constitutions():
                                                                        recordInDB=True,
                                                                        memory=self.real.MemoryCentral)
 
-        if not self._constitute_reals.has_key(relation):
+        if not relation in self._constitute_reals:
             self._constitute_reals[relation] = [relatedObj]
         else:
             relatedObjs = self._constitute_reals.get(relation)
@@ -1175,7 +1143,7 @@ class Constitutions():
             else:
                 self._constitute_reals[relation] = [relatedObj]
 
-        if not self._constitute_knowledges.has_key(relation):
+        if not relation in self._constitute_knowledges:
             self._constitute_knowledges[relation] = {knowledge.id: knowledge}
         else:
             related_klgs = self._constitute_knowledges.get(relation)
@@ -1194,6 +1162,8 @@ class Constitutions():
         if not isinstance(obj, RealObject):
             raise Exception("当前实际对象的父对象应为实际对象！")
 
+        if obj.isPlaceHolder():  # 父对象不能是placeholder，这种情况发生在创建意义时，例如：牛是动物意义牛父对象动物
+            return None
         from loongtian.nvwa.runtime.instinct import Instincts
         return self.addRelatedObject(Instincts.instinct_parent, obj, recordInDB=recordInDB, weight=weight)
 
@@ -1491,8 +1461,8 @@ class Constitutions():
 
         from loongtian.nvwa.models.knowledge import Knowledge
         # 根据散列化的实际对象或知识链取得Knowledge（顺序不一定相同）
-        self._sequence_components_sequence_klg = Knowledge.getKnowledgeByObjs(related_ks,
-                                                                              memory=self.real.MemoryCentral)
+        self._sequence_components_sequence_klg = Knowledge.getByObjs(related_ks,
+                                                                     memory=self.real.MemoryCentral)
         if not self._sequence_components_sequence_klg:
             # 没有找到，应该是一个没有顺序的集合，直接返回None
             self._sequence_components = None
@@ -1507,137 +1477,160 @@ class Constitutions():
 
         return self._sequence_components
 
-
 class ExecutionInfo():
     """
-    动作对象的可执行信息（多模式，多意义）
+    对象可执行信息的包装类
     """
 
-    def __init__(self, real):
-        self.real = real
-        self.pattern_knowledges = None  # (LowerObjs)从数据库中取得的模式知识链（ObjType.EXEINFO类型的LowerObjs）
-        self.meaning_knowledges = {}  # （{pattern.id:LowerObjs}）从数据库中取得的意义知识链
+    def __init__(self,real):
 
-        self.meaning_value_dict = {}  # {meaning.id:realobject} # 值（实际对象，父对象构成没有值）
-        # ####################################
-        #      下面为运行时数据
-        # ####################################
-        self.cur_pattern = None
+        self.real=real
 
-    def isExecutable(self):
-        """
-        动作对象是否可执行（必须至少有一个pattern及其对应的meaning）
-        :return:
-        """
-        if self.meaning_knowledges:
-            return True
-        return False
+        # 当前realobject的可执行的信息(executionInfo)，包括：模式（左右、左右定义）及意义（对左右对象的构成进行更改）
+        # 模式、意义可能有多个（代表不同的执行步骤），与realobject的关系是1:n,n:n
+        # 其中pattern和meaning均为特殊格式的knowledge
+        self.LinearExecutionInfo = LinearExecutionInfo(
+            self.real)  # 线性执行信息，例如：牛-有-腿格式为：{pattern_knowledge:[meaning_knowledges]}
 
-    def getCur(self):
-        """
-        取得当前的模式及意义知识链、意义值（顺序下一个）。
-        :return:cur_pattern, cur_meaning,cur_meaning_value
-        """
-        if not self.cur_pattern and self.pattern_knowledges: # 模式
-            self.cur_pattern = self.pattern_knowledges.getCurObj()
+        self.ConjugatedExecutionInfo = ConjugatedExecutionInfo(
+            self.real)  # 共轭执行信息，例如：因为...所以...格式为：{pattern_knowledge:[meaning_knowledges]}
 
-        if not self.cur_pattern:  # 没有pattern了，直接返回
-            return None, None,None
+        # self._got_executionInfo = False  # 是否已经取得了executionInfos的标记。
 
-        cur_meanings = self.meaning_knowledges.get(self.cur_pattern.id)
-        if cur_meanings: # 意义
-            cur_meaning = cur_meanings.getCurObj()
-            if cur_meaning:
-                # 意义的值
-                cur_meaning_value = self.meaning_value_dict.get(cur_meaning.id)
-                return self.cur_pattern, cur_meaning,cur_meaning_value
-            else:  # 如果没取到，已经是最后一个了，递归取下一个,直到没有pattern
-                self.cur_pattern = None
-                return self.getCur()
-        else:
-            # return self.cur_pattern,None
-            raise Exception("可执行的实际对象有模式，但没有对应的意义！")
 
-    def restoreCurObjIndex(self):
-        """
-        将当前可执行信息所处的位置重置为0（模式及模式的意义）
-        :return:
-        """
-        self.pattern_knowledges.restoreCurObjIndex()
-        for meaning_knowledge in self.meaning_knowledges.values():
-            meaning_knowledge.restoreCurObjIndex()
 
-    def add(self, pattern_klg, meaning_klg, value_placeholder=None, pattern_weight=Character.Original_Link_Weight,
-            meaning_weight=Character.Original_Link_Weight):
+    def getSelfLinearExecutionInfo(self):
         """
-        添加可执行性信息
-        :param pattern_klg: 模式知识链
-        :param meaning_klg: 意义知识链
-        :return:
+        取得当前realobject的线性可执行的信息，如：牛-有-腿。包括：模式（左右、左右定义）及意义（对左右对象的构成进行更改）[多模式，多意义]
+        :return:self.LinearExecutionInfo
         """
-        # 检查参数
+        # 如果已经取得了，直接返回
+        if self.LinearExecutionInfo and self.LinearExecutionInfo.isExecutable():
+            return self.LinearExecutionInfo
+
+        # 取得模式
+        cur_patterns = self.real.Layers.getLowerEntitiesByType(ObjType.LINEAR_EXE_INFO)
+
+        if not cur_patterns: # 没有模式，不是线性结构可执行性对象
+            return self.LinearExecutionInfo
+
+        if isinstance(cur_patterns, RelatedObj):  # 可能有多个
+            cur_patterns = {cur_patterns.id:cur_patterns}
+        if not self.LinearExecutionInfo:
+            self.LinearExecutionInfo = LinearExecutionInfo(self)
+        self.LinearExecutionInfo.pattern_knowledges = cur_patterns
+
         from loongtian.nvwa.models.knowledge import Knowledge
-        if not pattern_klg or not isinstance(pattern_klg, Knowledge):
-            raise Exception("应提供模式知识链！")
-        if not meaning_klg or not isinstance(meaning_klg, Knowledge):
-            raise Exception("应提供意义知识链！")
-        if self.pattern_knowledges is None:
-            self.pattern_knowledges = LowerObjs()
-        self.pattern_knowledges.add(pattern_klg, pattern_weight, source=self.real)
+        for id, cur_pattern in cur_patterns.items():
+            if isinstance(cur_patterns, RelatedObj):
+                cur_pattern = cur_pattern.obj
+            if not isinstance(cur_pattern,Knowledge):
+                raise Exception("当前实际对象的模式不是知识链！")
+            cur_pattern.getChainItems()
 
-        if self.meaning_knowledges is None:
-            self.meaning_knowledges = {}
+            # 取得意义
+            # 在深度语义网中，意义可能会有不同程度的递进，这里只递进到第一层，以待后续处理
+            cur_meanings = cur_pattern.Layers.getLowerEntitiesByType(ObjType.LINEAR_EXE_INFO)
+            if not cur_meanings:
+                raise Exception("当前实际对象“%s”有pattern，但没有意义！" % self.real.remark)
+            self.LinearExecutionInfo.meaning_knowledges[cur_pattern.id] = cur_meanings
 
-        cur_meaning_knowledges = self.meaning_knowledges.get(pattern_klg.id)
-        if cur_meaning_knowledges:
-            cur_meaning_knowledges.add(meaning_klg)
-        else:
-            cur_meaning_knowledges = LowerObjs()
-            cur_meaning_knowledges.add(meaning_klg, meaning_weight, pattern_klg)
-            self.meaning_knowledges[pattern_klg.id] = cur_meaning_knowledges
+            # 取得值
+            from loongtian.nvwa.runtime.instinct import Instincts
+            if Instincts.hasConstituentValue(self):  # 目前只能有顶级关系才能有值（内部值）的概念
+                from loongtian.nvwa.models.knowledge import Knowledge
+                for id, cur_meaning in cur_meanings.items():
+                    cur_meaning = cur_meaning.obj
+                    if not isinstance(cur_meaning, Knowledge):
+                        raise Exception("当前实际对象的意义不是Knowledge类型！")
+                    meaning_value = cur_meaning.Layers.getLowerEntitiesByType(ObjType.LINEAR_EXE_MEANING_VALUE)
+                    if meaning_value:
+                        meaning_value = self.LinearExecutionInfo.get_meaning_value(meaning_value)
+                        if meaning_value:
+                            self.LinearExecutionInfo.meaning_value_dict[cur_meaning.id] = meaning_value
+        # 除了顶级关系、意义之外，明确实际对象的子类型为：动作
+        if len(self.LinearExecutionInfo.meaning_knowledges) > 0 \
+                and not self.real.isTopRelation() and not self.real.isInstinctMeaning():
+            self.real.setType(type=ObjType.ACTION)
 
-        # 检查可执行信息的值
-        if not value_placeholder is None:
-            value_placeholder = self.get_meaning_value(value_placeholder)
-        self.meaning_value_dict[meaning_klg.id] = value_placeholder
+        # else:
+        #     self.LinearExecutionInfo = None
+        #     # # 明确实际对象的子类型为：虚对象:2019-1-28 不能直接设置，类型不一定
+        #     # self.setType(type=ObjType.VIRTUAL)
 
-    def get_meaning_value(self, value_placeholder):
+        return self.LinearExecutionInfo
+
+
+
+    def getSelfConjugatedExecutionInfo(self):
         """
-        检查可执行信息的值
-        :param value_placeholder:
-        :return:
+        取得当前realobject的共轭结构可执行的信息，例如：因为...所以...包括：模式（左右、左右定义）及意义（对左右对象的构成进行更改）[多模式，多意义]
+        :return:self.ConjugatedExecutionInfo
         """
-        if isinstance(value_placeholder, LowerObjs):
-            if not len(value_placeholder) == 1:
-                raise Exception("女娲系统的意义的值只能有一个实际对象，或为一个表示集合的实际对象！")
-            meaning_value = value_placeholder.getCurObj()
-            if isinstance(meaning_value, RelatedObj):
-                meaning_value = meaning_value.obj
-            value_placeholder = meaning_value
+        # 如果已经取得了，直接返回
+        if self.ConjugatedExecutionInfo and self.ConjugatedExecutionInfo.isExecutable():
+            return self.ConjugatedExecutionInfo
 
-        if not isinstance(value_placeholder, RealObject):
-            raise Exception("可执行信息的值必须是一个实际对象！")
-        if not value_placeholder.isPlaceHolder():
-            raise Exception("可执行信息的值必须是一个占位符！")
+        # 取得模式
+        cur_patterns = self.real.Layers.getLowerEntitiesByType(ObjType.CONJUGATED_EXE_INFO)
+        if not cur_patterns: # 没有模式，不是线性结构可执行性对象
+            return self.ConjugatedExecutionInfo
 
-        return value_placeholder
+        if isinstance(cur_patterns, RelatedObj):  # 可能有多个
+            cur_patterns = {cur_patterns.id:cur_patterns}
+        if not self.ConjugatedExecutionInfo:
+            self.ConjugatedExecutionInfo = ConjugatedExecutionInfo(self)
+        self.ConjugatedExecutionInfo.pattern_knowledges = cur_patterns
 
-    def getSelfChildren(self):
-        """
-        取得当前实际对象的所有子对象
-        :return:
-        """
-        # todo 未完成
+        from loongtian.nvwa.models.knowledge import Knowledge
+        for id, cur_pattern in cur_patterns.items():
+            if isinstance(cur_patterns, RelatedObj):
+                cur_pattern = cur_pattern.obj
+            if not isinstance(cur_pattern,Knowledge):
+                raise Exception("当前实际对象的模式不是知识链！")
+            cur_pattern.getChainItems()
+
+            # 取得意义
+            # 在深度语义网中，意义可能会有不同程度的递进，这里只递进到第一层，以待后续处理
+            cur_meanings = cur_pattern.Layers.getLowerEntitiesByType(ObjType.CONJUGATED_EXE_INFO)
+            if not cur_meanings:
+                raise Exception("当前实际对象“%s”有pattern，但没有意义！" % self.real.remark)
+            self.ConjugatedExecutionInfo.meaning_knowledges[cur_pattern.id] = cur_meanings
+
+            # 取得值
+            from loongtian.nvwa.runtime.instinct import Instincts
+            if Instincts.hasConstituentValue(self):  # 目前只能有顶级关系才能有值（内部值）的概念
+                from loongtian.nvwa.models.knowledge import Knowledge
+                for id, cur_meaning in cur_meanings.items():
+                    cur_meaning = cur_meaning.obj
+                    if not isinstance(cur_meaning, Knowledge):
+                        raise Exception("当前实际对象的意义不是Knowledge类型！")
+                    meaning_value = cur_meaning.Layers.getLowerEntitiesByType(ObjType.CONJUGATED_EXE_MEANING_VALUE)
+                    if meaning_value:
+                        meaning_value = self.ConjugatedExecutionInfo.get_meaning_value(meaning_value)
+                        if meaning_value:
+                            self.ConjugatedExecutionInfo.meaning_value_dict[cur_meaning.id] = meaning_value
+        # 除了顶级关系、意义之外，明确实际对象的子类型为：动作
+        if len(self.ConjugatedExecutionInfo.meaning_knowledges) > 0 \
+                and not self.real.isTopRelation() and not self.real.isInstinctMeaning():
+            self.real.setType(type=ObjType.ACTION)
+
+        # else:
+        #     self.LinearExecutionInfo = None
+        #     # # 明确实际对象的子类型为：虚对象:2019-1-28 不能直接设置，类型不一定
+        #     # self.setType(type=ObjType.VIRTUAL)
+
+        return self.ConjugatedExecutionInfo
 
 
 class Connstrains():
     """
-    实际对象的关系的前、后约束，例如：手机不能进水。牛-有-腿，腿的前约束，就是组件，便于系统查找和处理关系，避免出现马云-有-钱，将其处理成马云-组件-钱的情况。
+    实际对象的关系的前、后约束，相当于词向量的距离。例如：手机不能进水。牛-有-腿，腿的前约束，就是组件，便于系统查找和处理关系，避免出现马云-有-钱，将其处理成马云-组件-钱的情况。
     """
 
     def __init__(self, real):
         """
-        实际对象的关系的前、后约束，例如：手机不能进水。牛-有-腿，腿的前约束，就是组件，便于系统查找和处理关系，避免出现马云-有-钱，将其处理成马云-组件-钱的情况。
+        实际对象的关系的前、后约束，相当于词向量的距离。例如：手机不能进水。牛-有-腿，腿的前约束，就是组件，便于系统查找和处理关系，避免出现马云-有-钱，将其处理成马云-组件-钱的情况。
         :param real:
         """
         self.real = real

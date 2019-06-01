@@ -7,10 +7,8 @@ import copy
 from loongtian.nvwa import settings
 from loongtian.nvwa.models.baseEntity import BaseEntity, LayerLimitation
 from loongtian.nvwa.models.enum import ObjType
-
 from loongtian.nvwa.organs.character import Character
-from loongtian.nvwa.runtime.specialList import RelatedRealObjs,RelatedRealChain
-
+from loongtian.nvwa.runtime.specialList import RelatedRealObjs, RelatedRealChain
 
 
 class MetaData(BaseEntity):
@@ -18,7 +16,7 @@ class MetaData(BaseEntity):
     Meta元数据。
     :parameter
     :attribute
-    mid MetaID，UUID。
+    id MetaID，UUID。
     type 资源类型，使用MetaDataEntity.TypeEnum枚举。
     mvalue 资源，文字直接存String，声音或图像存地址。
     frequency 优先级(int，使用次数)。
@@ -34,9 +32,9 @@ class MetaData(BaseEntity):
         eg：Meta:牛 ==> RealObject:[动物牛, 形容词牛(厉害)]
     """
     __databasename__ = settings.db.db_nvwa  # 所在数据库。
-    __tablename__ = settings.db.tables.tbl_metaData # 所在表。与Flask统一
+    __tablename__ = settings.db.tables.tbl_metaData  # 所在表。与Flask统一
     primaryKey = copy.copy(BaseEntity.primaryKey)
-    primaryKey.append("mid")
+    primaryKey.append("id")
     columns = copy.copy(BaseEntity.columns)
     columns.extend(["type", "mvalue", "weight", "recognized"])
     retrieveColumns = copy.copy(BaseEntity.retrieveColumns)  # 查询时需要使用的字段
@@ -50,15 +48,15 @@ class MetaData(BaseEntity):
     lowerLimitation.update({ObjType.REAL_OBJECT: -1})  # MetaData 的下一层对象为RealObject[可能有多个]
 
     # 例如：牛-realobject:R1:动物牛、R2:很牛的牛
-    def __init__(self, mid=None, type=ObjType.WORD, mvalue=None,
+    def __init__(self, id=None, type=ObjType.WORD, mvalue=None,
                  weight=Character.Original_Link_Weight, recognized=True,
                  createrid='',
                  createtime=None, updatetime=None, lasttime=None,
-                 status=200, # 状态; 0-不可用(逻辑删除);200-正常;800-不可遗忘
+                 status=200,  # 状态; 0-不可用(逻辑删除);200-正常;800-不可遗忘
                  memory=None):
         """
         Meta元数据。
-        :param mid:
+        :param id:
         :param type:
         :param mvalue:
         :param weight:
@@ -70,19 +68,15 @@ class MetaData(BaseEntity):
         :param lasttime: 最近访问时间
         :param status: 状态; 0-不可用(逻辑删除);200-正常;800-不可遗忘
         """
-        super(MetaData, self).__init__(mid,
+        super(MetaData, self).__init__(id,
                                        createrid,
                                        createtime, updatetime, lasttime,
-                                       status,memory=memory)
-        if mid is None:
-            self.mid = self.id
-        else:
-            self.mid = mid
-            self._id = mid
+                                       status, memory=memory)
 
-        self.type = type
-        if not isinstance(mvalue,unicode):
-            mvalue=unicode(mvalue)
+        self.type = type  # 类型根据外部设置
+
+        if not isinstance(mvalue, str):
+            mvalue = str(mvalue)
         self.mvalue = mvalue
         self.weight = weight
         self.recognized = recognized
@@ -100,7 +94,7 @@ class MetaData(BaseEntity):
         # self.gotRelatedRealObjsInDB = False  # 是否已经取得元数据对应实际对象的的集合的标记
 
     @staticmethod
-    def retrieveByMvalue(mvalue,memory=None):
+    def retrieveByMvalue(mvalue, memory=None):
         """
         CRUD - Retrieve
         根据元字符串，查找库中是否存在此Entity，不比较PrimaryKey。
@@ -116,12 +110,12 @@ class MetaData(BaseEntity):
                 return result
 
         # 未取到，查询数据库
-        result = MetaData.getAllByConditionsInDB(memory=memory,limit=1, mvalue=mvalue)
+        result = MetaData.getAllByConditionsInDB(memory=memory, limit=1, mvalue=mvalue)
         if result is None:
             return None
-        elif isinstance(result,BaseEntity):
+        elif isinstance(result, BaseEntity):
             return result
-        elif isinstance(result,list):
+        elif isinstance(result, list):
             if len(result) == 0:
                 return None
             elif len(result) == 1:
@@ -135,7 +129,7 @@ class MetaData(BaseEntity):
     # #####################################################
 
     @staticmethod
-    def getAllRelatedRealObjsInMetaChain(metaChain,createNewReal=True,recordInDB =True):
+    def getAllRelatedRealObjsInMetaChain(metaChain, createNewReal=True, recordInDB=True):
         """
         取得metaChain中metaData对应的realObjects，排序
         :param metaChain: [metaData]
@@ -144,7 +138,7 @@ class MetaData(BaseEntity):
         :return:
         """
         if not metaChain:
-            return None,None
+            return None, None
 
         realLowerObjs = []
         sorted_realsChain = RelatedRealChain()
@@ -153,15 +147,16 @@ class MetaData(BaseEntity):
             if isinstance(meta, MetaData):
                 reals = meta.Layers.getLowerEntitiesByType(ObjType.REAL_OBJECT)  # 取得相关的实际对象
                 # 按相关性排序
-                if not reals and createNewReal:# 如果没找到，创建新的对象
+                if not reals and createNewReal:  # 如果没找到，创建新的对象
                     from loongtian.nvwa.models.realObject import RealObject
-                    real = RealObject.createRealByMeta(meta,checkExist=False,recordInDB=recordInDB) # checkExist=False，上面已经找过了
+                    real = RealObject.createRealByMeta(meta, checkExist=False,
+                                                       recordInDB=recordInDB)  # checkExist=False，上面已经找过了
                     real._isFromDB = recordInDB
                     real._isNewCreated = True
                     # 下面对meta的realObjs进行排序（这里只有一个，是从内存中取得的，目的是产生sorted_typed_objects）
                     reals = meta.Layers.getLowerEntitiesByType(ObjType.REAL_OBJECT)
 
-                if reals and len(reals)>0:
+                if reals and len(reals) > 0:
                     # 下面对meta的realObjs进行排序
                     sorted_reals = reals.sort()
                     relatedRealObjs = RelatedRealObjs()
@@ -169,7 +164,8 @@ class MetaData(BaseEntity):
                     realLowerObjs.append(reals)
                     sorted_realsChain.append(relatedRealObjs)
             elif isinstance(meta, list):
-                temp_realLowerObjs, temp_realChain = MetaData.getAllRelatedRealObjsInMetaChain(meta,recordInDB=recordInDB)
+                temp_realLowerObjs, temp_realChain = MetaData.getAllRelatedRealObjsInMetaChain(meta,
+                                                                                               recordInDB=recordInDB)
                 realLowerObjs.append(temp_realLowerObjs)
                 sorted_realsChain.append(temp_realChain)
             else:
@@ -177,12 +173,8 @@ class MetaData(BaseEntity):
 
         return realLowerObjs, sorted_realsChain
 
-    def getType(self):
-        """
-        取得当前对象的类型（MetaData的类型）。
-        :return: MetaData的类型。
-        """
-        return self.type
+
 
     def __repr__(self):
-        return "{MetaData:{mid:%s,mvalue:%s,type:%s,recognized:%s}}" % (self.mid, self.mvalue, ObjType.getName(self.type),self.recognized)
+        return "{MetaData:{id:%s,mvalue:%s,type:%s,recognized:%s}}" % (
+            self.id, self.mvalue, ObjType.getName(self.type), self.recognized)

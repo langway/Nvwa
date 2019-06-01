@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c5f95b2c-ecbb-4eeb-ae11-513b256e9e0f" name="Default Changelist" comment="" />
+    <list default="true" id="fd997f4e-dd50-4de5-9693-3fab544ecccc" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -9,58 +9,218 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/trunk$adminConsoleRunner.coverage" NAME="adminConsoleRunner Coverage Results" MODIFIED="1559204920692" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/loongtian/nvwa" />
-    <SUITE FILE_PATH="coverage/trunk$centralBrainRuner.coverage" NAME="centralBrainRuner Coverage Results" MODIFIED="1559204899001" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/loongtian/nvwa" />
+    <SUITE FILE_PATH="coverage/trunk$adminConsoleRunner.coverage" NAME="adminConsoleRunner Coverage Results" MODIFIED="1552495653268" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/loongtian/nvwa" />
+    <SUITE FILE_PATH="coverage/trunk$Nosetests_for_testBaseEntity_TestBaseEntity_test__getId.coverage" NAME="Nosetests for testBaseEntity.TestBaseEntity.test__getId Coverage Results" MODIFIED="1553509262007" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/nvwa/models" />
+    <SUITE FILE_PATH="coverage/trunk$email.coverage" NAME="email Coverage Results" MODIFIED="1559058190029" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/loongtian/fuxi/utils" />
+    <SUITE FILE_PATH="coverage/trunk$Nosetests_in_testBaseEntity_py.coverage" NAME="Nosetests in testBaseEntity.py Coverage Results" MODIFIED="1551725267656" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/nvwa/models" />
+    <SUITE FILE_PATH="coverage/trunk$Nosetests_for_testLayer_TestLayer_testDeleteByEnd.coverage" NAME="Nosetests for testLayer.TestLayer.testDeleteByEnd Coverage Results" MODIFIED="1553580781569" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/nvwa/models" />
+    <SUITE FILE_PATH="coverage/trunk$Nosetests_for_testBrain_TestBrain_testMeaning.coverage" NAME="Nosetests for testBrain.TestBrain.testMeaning Coverage Results" MODIFIED="1554815593297" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/nvwa" />
+    <SUITE FILE_PATH="coverage/trunk$Nosetests_for_testBaseEntity_TestBaseEntity.coverage" NAME="Nosetests for testBaseEntity.TestBaseEntity Coverage Results" MODIFIED="1553781507104" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/nvwa/models" />
+    <SUITE FILE_PATH="coverage/trunk$docReplace.coverage" NAME="docReplace Coverage Results" MODIFIED="1559059102777" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/loongtian/nvwa/tools/cidian" />
+    <SUITE FILE_PATH="coverage/trunk$Nosetests_for_testBaseEntity_TestBaseEntity_test_getAllLikeByInDB.coverage" NAME="Nosetests for testBaseEntity.TestBaseEntity.test_getAllLikeByInDB Coverage Results" MODIFIED="1553520153080" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/nvwa/models" />
+    <SUITE FILE_PATH="coverage/trunk$centralBrainRuner.coverage" NAME="centralBrainRuner Coverage Results" MODIFIED="1559130960389" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/loongtian/nvwa" />
+    <SUITE FILE_PATH="coverage/trunk$Nosetests_for_testDbPool_TestDbConnection.coverage" NAME="Nosetests for testDbPool.TestDbConnection Coverage Results" MODIFIED="1551778047327" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/util/db" />
+    <SUITE FILE_PATH="coverage/trunk$Nosetests_for_testBaseEntity_TestBaseEntity_test_getByColumnsInDB.coverage" NAME="Nosetests for testBaseEntity.TestBaseEntity.test_getByColumnsInDB Coverage Results" MODIFIED="1551677146580" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/nvwa/models" />
+    <SUITE FILE_PATH="coverage/trunk$searchGateway.coverage" NAME="searchGateway Coverage Results" MODIFIED="1559092146773" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/loongtian/fuxi/vie" />
+    <SUITE FILE_PATH="coverage/trunk$Nosetests_for_testBaseEntity_TestBaseEntity_testDelete.coverage" NAME="Nosetests for testBaseEntity.TestBaseEntity.testDelete Coverage Results" MODIFIED="1553517017490" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/nvwa/models" />
+    <SUITE FILE_PATH="coverage/trunk$runHttpServer.coverage" NAME="runHttpServer Coverage Results" MODIFIED="1551184552522" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/loongtian/fuxi" />
+    <SUITE FILE_PATH="coverage/trunk$Nosetests_for_testMetaEnginet_TestTextEngine_testLearnFiles.coverage" NAME="Nosetests for testMetaEnginet.TestTextEngine.testLearnFiles Coverage Results" MODIFIED="1551237838610" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/nvwa/engines" />
+    <SUITE FILE_PATH="coverage/trunk$httpServerRunner.coverage" NAME="httpServerRunner Coverage Results" MODIFIED="1552579020549" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/loongtian/fuxi" />
+    <SUITE FILE_PATH="coverage/trunk$Nosetests_for_testBaseEntity_TestBaseEntity_test_id.coverage" NAME="Nosetests for testBaseEntity.TestBaseEntity.test_id Coverage Results" MODIFIED="1553509247742" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/nvwa/models" />
+    <SUITE FILE_PATH="coverage/trunk$runserver.coverage" NAME="runserver Coverage Results" MODIFIED="1551184512713" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/loongtian/fuxi" />
+    <SUITE FILE_PATH="coverage/trunk$Nosetests_for_testLayer_TestLayer_testCreateLayerByStartEnd.coverage" NAME="Nosetests for testLayer.TestLayer.testCreateLayerByStartEnd Coverage Results" MODIFIED="1553775925659" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/nvwa/models" />
+    <SUITE FILE_PATH="coverage/trunk$tree.coverage" NAME="tree Coverage Results" MODIFIED="1554396977610" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/loongtian/util/common" />
+    <SUITE FILE_PATH="coverage/trunk$runFuxi.coverage" NAME="runFuxi Coverage Results" MODIFIED="1551049501393" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/loongtian/fuxi" />
+    <SUITE FILE_PATH="coverage/trunk$file.coverage" NAME="file Coverage Results" MODIFIED="1559058414524" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/loongtian/fuxi/utils" />
+    <SUITE FILE_PATH="coverage/trunk$Nosetests_for_testBaseEntity_TestBaseEntity_test_getIdAndType.coverage" NAME="Nosetests for testBaseEntity.TestBaseEntity.test_getIdAndType Coverage Results" MODIFIED="1553509267556" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/nvwa/models" />
+    <SUITE FILE_PATH="coverage/trunk$mind.coverage" NAME="mind Coverage Results" MODIFIED="1554075627405" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/loongtian/nvwa/organs" />
+    <SUITE FILE_PATH="coverage/trunk$Nosetests_for_testBaseEntity_TestBaseEntity_test_getById.coverage" NAME="Nosetests for testBaseEntity.TestBaseEntity.test_getById Coverage Results" MODIFIED="1551677256333" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/nvwa/models" />
+    <SUITE FILE_PATH="coverage/trunk$Nosetests_for_testKnowledge_TestKnowledge_test_createKnowledgeByObjChain.coverage" NAME="Nosetests for testKnowledge.TestKnowledge.test_createKnowledgeByObjChain Coverage Results" MODIFIED="1554008120594" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/nvwa/models" />
+    <SUITE FILE_PATH="coverage/trunk$Nosetests_for_testLayer_TestLayer.coverage" NAME="Nosetests for testLayer.TestLayer Coverage Results" MODIFIED="1554003427965" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/nvwa/models" />
+    <SUITE FILE_PATH="coverage/trunk$Nosetests_for_testLayer_TestLayer_test_getAllRelatedRealObjsInMetaChain.coverage" NAME="Nosetests for testLayer.TestLayer.test_getAllRelatedRealObjsInMetaChain Coverage Results" MODIFIED="1553782603137" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/nvwa/models" />
+    <SUITE FILE_PATH="coverage/trunk$Nosetests_for_testBaseEntity_TestBaseEntity_test_create.coverage" NAME="Nosetests for testBaseEntity.TestBaseEntity.test_create Coverage Results" MODIFIED="1553515956320" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/nvwa/models" />
+    <SUITE FILE_PATH="coverage/trunk$Nosetests_for_testLayer_TestLayer_test_physicalDeleteByEnd.coverage" NAME="Nosetests for testLayer.TestLayer.test_physicalDeleteByEnd Coverage Results" MODIFIED="1554003405620" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/nvwa/models" />
+    <SUITE FILE_PATH="coverage/trunk$runserver__1_.coverage" NAME="runserver (1) Coverage Results" MODIFIED="1551119916699" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/loongtian/testflask" />
+    <SUITE FILE_PATH="coverage/trunk$config.coverage" NAME="config Coverage Results" MODIFIED="1559059652033" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/loongtian/nvwa/tools" />
+    <SUITE FILE_PATH="coverage/trunk$pipInstall.coverage" NAME="pipInstall Coverage Results" MODIFIED="1559027313573" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/loongtian/util/pip" />
+    <SUITE FILE_PATH="coverage/trunk$pipInstallAll.coverage" NAME="pipInstallAll Coverage Results" MODIFIED="1559023209574" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/loongtian/util/pip" />
+    <SUITE FILE_PATH="coverage/trunk$test.coverage" NAME="test Coverage Results" MODIFIED="1552183741935" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/util/helper/json" />
+    <SUITE FILE_PATH="coverage/trunk$models.coverage" NAME="models Coverage Results" MODIFIED="1551815650953" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/loongtian/fuxi/mod" />
+    <SUITE FILE_PATH="coverage/trunk$Nosetests_for_testBaseEntity_TestBaseEntity_test_createNewUuid.coverage" NAME="Nosetests for testBaseEntity.TestBaseEntity.test_createNewUuid Coverage Results" MODIFIED="1553509280376" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/nvwa/models" />
+    <SUITE FILE_PATH="coverage/trunk$Nosetests_for_testLayer_TestLayer_testGetTypedEndsByStartInDB.coverage" NAME="Nosetests for testLayer.TestLayer.testGetTypedEndsByStartInDB Coverage Results" MODIFIED="1553581092362" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/nvwa/models" />
+    <SUITE FILE_PATH="coverage/trunk$codeChecker.coverage" NAME="codeChecker Coverage Results" MODIFIED="1559091980208" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/loongtian/util/codeCheck" />
+    <SUITE FILE_PATH="coverage/trunk$xml_cidian_to_sql_postgresql.coverage" NAME="xml_cidian_to_sql_postgresql Coverage Results" MODIFIED="1551823373060" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/loongtian/nvwa/tools/cidian" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/loongtian/nvwa/models/baseEntity.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="42540">
+              <caret line="1428" selection-start-line="1428" selection-end-line="1428" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/loongtian/nvwa/centralBrainRuner.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="16" column="23" lean-forward="true" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+            <state relative-caret-position="480">
+              <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/loongtian/nvwa/adminConsoleRunner.py">
+        <entry file="file://$PROJECT_DIR$/loongtian/nvwa/models/executionInfo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="10" column="26" lean-forward="true" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+            <state relative-caret-position="210">
+              <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/loongtian/util/log/logger.py">
+        <entry file="file://$PROJECT_DIR$/loongtian/nvwa/runtime/innerOperation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="55" column="24" lean-forward="true" selection-start-line="55" selection-start-column="24" selection-end-line="55" selection-end-column="24" />
+            <state relative-caret-position="11610">
+              <caret line="393" column="11" selection-start-line="393" selection-start-column="11" selection-end-line="393" selection-end-column="11" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/loongtian/util/pip/pipInstallAll.py">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/loongtian/util/helper/stringHelper.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="13380">
+              <caret line="449" selection-start-line="449" selection-end-line="449" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/loongtian/util/tcp/tcpServer.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="510">
+              <caret line="18" column="23" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/loongtian/nvwa/organs/centralBrain.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2610">
+              <caret line="106" selection-start-line="106" selection-end-line="106" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/loongtian/nvwa/settings.py">
+        <entry file="file://$PROJECT_DIR$/loongtian/util/tasks/runnable.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="53" column="21" lean-forward="true" selection-start-line="53" selection-start-column="21" selection-end-line="53" selection-end-column="21" />
+            <state relative-caret-position="268">
+              <caret line="46" column="33" lean-forward="true" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://D:/Python37/Lib/site-packages/threadpool.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="9150">
+              <caret line="307" column="44" selection-start-line="307" selection-start-column="44" selection-end-line="307" selection-end-column="44" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/loongtian/nvwa/models/realObject.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="44490">
+              <caret line="1491" column="35" selection-start-line="1491" selection-start-column="35" selection-end-line="1491" selection-end-column="35" />
+              <folding>
+                <element signature="e#68#79#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>186401</find>
+      <find>instinct_original_anything</find>
+      <find>IPAddress</find>
+      <find>Object(</find>
+      <find>根据已经理解的片段生成新的realChain理解错误</find>
+      <find>createKnowledge(</find>
+      <find>问</find>
+      <find>, search=False</find>
+      <find>DeepMeaning</find>
+      <find>未能取得知识链开始对象</find>
+      <find>未能取得</find>
+      <find>meta_net_matched_knowledges_meaning_klgs</find>
+      <find>self.getNatureLanguage</find>
+      <find>EntityReal:</find>
+      <find>rid</find>
+      <find>kid</find>
+      <find>mid</find>
+      <find>ExecutionInfoCreatedMeaning</find>
+      <find>5500</find>
+      <find>ExecutionInfoCreatedMeanings</find>
+      <find>正在查询本机需要更新的组件</find>
+      <find>pytz</find>
+      <find>getMessage</find>
+      <find>.iteritems()</find>
+      <find>Queue.Queue()</find>
+      <find>unicode</find>
+      <find>.has_key(</find>
+      <find>str(e)</find>
+      <find>.message</find>
+      <find>e.message</find>
+      <find>.values()</find>
     </findStrings>
+    <replaceStrings>
+      <replace>tgraph</replace>
+      <replace>createrid</replace>
+      <replace>.id</replace>
+      <replace>MetaData/RealObject</replace>
+      <replace>MetaData/</replace>
+      <replace>有向图</replace>
+      <replace>start</replace>
+      <replace>end</replace>
+      <replace>etype</replace>
+      <replace>_EndItem</replace>
+      <replace>id</replace>
+      <replace>始端</replace>
+      <replace>Digraph</replace>
+      <replace>End</replace>
+      <replace>digraph</replace>
+      <replace>Start</replace>
+      <replace>startid</replace>
+      <replace>endid</replace>
+      <replace>status=0</replace>
+      <replace>createByStartEnd</replace>
+      <replace>getByObjectChain</replace>
+      <replace>getLikeObjChain</replace>
+      <replace>getByEndInDB</replace>
+      <replace>getLowerEntities</replace>
+      <replace>real_e</replace>
+      <replace>Node(value='</replace>
+      <replace>entityHelper.getNatureLanguage</replace>
+      <replace>.items()</replace>
+      <replace>queue.Queue()</replace>
+      <replace>str(e)</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/loongtian/util/debuger/winappdbg" />
@@ -68,9 +228,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="D:/Python27/Lib/logging/__init__.py" />
-        <option value="$PROJECT_DIR$/loongtian/nvwa/settings.py" />
-        <option value="$PROJECT_DIR$/loongtian/util/db/postgres/db_postgres_settings.py" />
+        <option value="$PROJECT_DIR$/loongtian/util/tcp/tcpClient.py" />
+        <option value="$PROJECT_DIR$/loongtian/fuxi/utils/BeautifulSoup.py" />
+        <option value="$PROJECT_DIR$/loongtian/fuxi/utils/captcha.py" />
+        <option value="$PROJECT_DIR$/loongtian/util/tcp/tcpClientReceiveListener.py" />
+        <option value="$PROJECT_DIR$/loongtian/nvwa/organs/console.py" />
+        <option value="$PROJECT_DIR$/loongtian/fuxi/utils/file.py" />
+        <option value="$PROJECT_DIR$/loongtian/nvwa/tools/cidian/docReplace.py" />
+        <option value="$PROJECT_DIR$/loongtian/nvwa/tools/cidian/BeautifulSoup.py" />
+        <option value="$PROJECT_DIR$/loongtian/nvwa/tools/config.py" />
+        <option value="$PROJECT_DIR$/loongtian/util/codeCheck/codeChecker.py" />
+        <option value="$PROJECT_DIR$/loongtian/nvwa/tools/nvwaObjectsCodeConvertor/sourceCodeHelper.py" />
+        <option value="$PROJECT_DIR$/loongtian/fuxi/vie/views.py" />
+        <option value="$PROJECT_DIR$/loongtian/nvwa/organs/centralManager.py" />
+        <option value="$PROJECT_DIR$/loongtian/util/db/postgres/dbPool.py" />
+        <option value="$PROJECT_DIR$/loongtian/util/log/logger.py" />
+        <option value="$PROJECT_DIR$/loongtian/nvwa/managers/inputsManager.py" />
+        <option value="$PROJECT_DIR$/loongtian/nvwa/models/metaData.py" />
+        <option value="$PROJECT_DIR$/loongtian/nvwa/organs/brain.py" />
+        <option value="$PROJECT_DIR$/loongtian/nvwa/centrals/perceptionCentral.py" />
+        <option value="$PROJECT_DIR$/loongtian/nvwa/centrals/thinkingCentral.py" />
+        <option value="$PROJECT_DIR$/loongtian/nvwa/models/metaNet.py" />
+        <option value="$PROJECT_DIR$/loongtian/nvwa/models/tGraphEntity.py" />
+        <option value="$PROJECT_DIR$/loongtian/nvwa/organs/mind.py" />
+        <option value="$PROJECT_DIR$/test/util/helper/testJsonHelper.py" />
+        <option value="$PROJECT_DIR$/test/util/helper/json/test.py" />
+        <option value="$PROJECT_DIR$/loongtian/nvwa/organs/userDispenser.py" />
+        <option value="$PROJECT_DIR$/loongtian/util/common/doubleKeyDict.py" />
+        <option value="$PROJECT_DIR$/loongtian/nvwa/managers/attentionManager.py" />
+        <option value="$PROJECT_DIR$/loongtian/nvwa/runtime/meanings.py" />
+        <option value="$PROJECT_DIR$/loongtian/nvwa/runtime/thinkResult/realLevelResult.py" />
+        <option value="$PROJECT_DIR$/loongtian/nvwa/runtime/thinkResult/fragments.py" />
+        <option value="$PROJECT_DIR$/loongtian/nvwa/models/realObject.py" />
+        <option value="$PROJECT_DIR$/test/nvwa/bof/testCollection.py" />
+        <option value="$PROJECT_DIR$/loongtian/nvwa/organs/memory.py" />
+        <option value="D:/Python37/Lib/logging/__init__.py" />
+        <option value="$PROJECT_DIR$/loongtian/util/helper/jsonHelper.py" />
+        <option value="$PROJECT_DIR$/test/util/tasks/Example/pausableThread.py" />
+        <option value="$PROJECT_DIR$/loongtian/nvwa/runtime/relatedObjects.py" />
+        <option value="$PROJECT_DIR$/loongtian/nvwa/runtime/instinct.py" />
+        <option value="$PROJECT_DIR$/loongtian/nvwa/engines/evaluateEngine.py" />
+        <option value="$PROJECT_DIR$/loongtian/nvwa/models/baseEntity.py" />
+        <option value="$PROJECT_DIR$/loongtian/nvwa/engines/groupEngine.py" />
+        <option value="$PROJECT_DIR$/loongtian/nvwa/runtime/workflow.py" />
+        <option value="$PROJECT_DIR$/loongtian/nvwa/models/executionInfo.py" />
+        <option value="$PROJECT_DIR$/loongtian/nvwa/engines/metaEngine.py" />
+        <option value="$PROJECT_DIR$/test/nvwa/models/testKnowledgeChain.py" />
+        <option value="$PROJECT_DIR$/test/nvwa/models/testLayer.py" />
+        <option value="$PROJECT_DIR$/loongtian/nvwa/models/knowledge.py" />
+        <option value="$PROJECT_DIR$/loongtian/nvwa/runtime/innerOperation.py" />
+        <option value="$PROJECT_DIR$/loongtian/util/helper/stringHelper.py" />
+        <option value="$PROJECT_DIR$/loongtian/util/tcp/tcpServer.py" />
       </list>
     </option>
   </component>
@@ -79,9 +287,11 @@
     <option name="width" value="1935" />
     <option name="height" value="1040" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
+      <showMembers ProjectPane="true" />
+      <autoscrollToSource ProjectPane="true" />
+      <autoscrollFromSource ProjectPane="true" />
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
@@ -101,19 +311,6 @@
               <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
               <item name="trunk" type="462c0819:PsiDirectoryNode" />
               <item name="loongtian" type="462c0819:PsiDirectoryNode" />
-              <item name="auth" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="trunk" type="462c0819:PsiDirectoryNode" />
-              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
-              <item name="auth" type="462c0819:PsiDirectoryNode" />
-              <item name="logon.py" type="8704e2dd:PyFileNode" />
-            </path>
-            <path>
-              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="trunk" type="462c0819:PsiDirectoryNode" />
-              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
               <item name="nvwa" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -121,23 +318,320 @@
               <item name="trunk" type="462c0819:PsiDirectoryNode" />
               <item name="loongtian" type="462c0819:PsiDirectoryNode" />
               <item name="nvwa" type="462c0819:PsiDirectoryNode" />
-              <item name="settings.py" type="8704e2dd:PyFileNode" />
+              <item name="engines" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
               <item name="trunk" type="462c0819:PsiDirectoryNode" />
               <item name="loongtian" type="462c0819:PsiDirectoryNode" />
               <item name="nvwa" type="462c0819:PsiDirectoryNode" />
-              <item name="settings.py" type="8704e2dd:PyFileNode" />
-              <item name="auth" type="dd8bbb05:PyElementNode" />
+              <item name="engines" type="462c0819:PsiDirectoryNode" />
+              <item name="evaluateEngine.py" type="8704e2dd:PyFileNode" />
             </path>
             <path>
               <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
               <item name="trunk" type="462c0819:PsiDirectoryNode" />
               <item name="loongtian" type="462c0819:PsiDirectoryNode" />
               <item name="nvwa" type="462c0819:PsiDirectoryNode" />
-              <item name="settings.py" type="8704e2dd:PyFileNode" />
-              <item name="db" type="dd8bbb05:PyElementNode" />
+              <item name="engines" type="462c0819:PsiDirectoryNode" />
+              <item name="evaluateEngine.py" type="8704e2dd:PyFileNode" />
+              <item name="EvaluateEngine" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="engines" type="462c0819:PsiDirectoryNode" />
+              <item name="groupEngine.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="engines" type="462c0819:PsiDirectoryNode" />
+              <item name="groupEngine.py" type="8704e2dd:PyFileNode" />
+              <item name="GroupEngine" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="engines" type="462c0819:PsiDirectoryNode" />
+              <item name="metaEngine.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="engines" type="462c0819:PsiDirectoryNode" />
+              <item name="metaEngine.py" type="8704e2dd:PyFileNode" />
+              <item name="TextEngine" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="baseEntity.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="baseEntity.py" type="8704e2dd:PyFileNode" />
+              <item name="BaseEntity" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="baseEntity.py" type="8704e2dd:PyFileNode" />
+              <item name="Layers" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="diGraphEntity.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="diGraphEntity.py" type="8704e2dd:PyFileNode" />
+              <item name="DiGraphEntity" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="executionInfo.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="executionInfo.py" type="8704e2dd:PyFileNode" />
+              <item name="LinearExecutionInfo" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="knowledge.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="knowledge.py" type="8704e2dd:PyFileNode" />
+              <item name="Knowledge" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="realObject.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="realObject.py" type="8704e2dd:PyFileNode" />
+              <item name="ExecutionInfo" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="realObject.py" type="8704e2dd:PyFileNode" />
+              <item name="RealObject" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="organs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="organs" type="462c0819:PsiDirectoryNode" />
+              <item name="centralBrain.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="organs" type="462c0819:PsiDirectoryNode" />
+              <item name="centralBrain.py" type="8704e2dd:PyFileNode" />
+              <item name="CentralBrain" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="organs" type="462c0819:PsiDirectoryNode" />
+              <item name="memory.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="organs" type="462c0819:PsiDirectoryNode" />
+              <item name="memory.py" type="8704e2dd:PyFileNode" />
+              <item name="BaseMemory" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="organs" type="462c0819:PsiDirectoryNode" />
+              <item name="memory.py" type="8704e2dd:PyFileNode" />
+              <item name="GeneralMemoryBase" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="runtime" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="runtime" type="462c0819:PsiDirectoryNode" />
+              <item name="thinkResult" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="runtime" type="462c0819:PsiDirectoryNode" />
+              <item name="thinkResult" type="462c0819:PsiDirectoryNode" />
+              <item name="realLevelResult.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="runtime" type="462c0819:PsiDirectoryNode" />
+              <item name="thinkResult" type="462c0819:PsiDirectoryNode" />
+              <item name="realLevelResult.py" type="8704e2dd:PyFileNode" />
+              <item name="RealLevelResult" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="runtime" type="462c0819:PsiDirectoryNode" />
+              <item name="innerOperation.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="runtime" type="462c0819:PsiDirectoryNode" />
+              <item name="innerOperation.py" type="8704e2dd:PyFileNode" />
+              <item name="_InnerOperations" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="runtime" type="462c0819:PsiDirectoryNode" />
+              <item name="instinct.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="runtime" type="462c0819:PsiDirectoryNode" />
+              <item name="instinct.py" type="8704e2dd:PyFileNode" />
+              <item name="_Instincts" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="runtime" type="462c0819:PsiDirectoryNode" />
+              <item name="relatedObjects.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="runtime" type="462c0819:PsiDirectoryNode" />
+              <item name="relatedObjects.py" type="8704e2dd:PyFileNode" />
+              <item name="_RelatedObjsWithDirection" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="runtime" type="462c0819:PsiDirectoryNode" />
+              <item name="workflow.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="runtime" type="462c0819:PsiDirectoryNode" />
+              <item name="workflow.py" type="8704e2dd:PyFileNode" />
+              <item name="Status" type="dd8bbb05:PyElementNode" />
             </path>
             <path>
               <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
@@ -150,7 +644,366 @@
               <item name="trunk" type="462c0819:PsiDirectoryNode" />
               <item name="loongtian" type="462c0819:PsiDirectoryNode" />
               <item name="util" type="462c0819:PsiDirectoryNode" />
-              <item name="pip" type="462c0819:PsiDirectoryNode" />
+              <item name="helper" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="tasks" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="tasks" type="462c0819:PsiDirectoryNode" />
+              <item name="runnable.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="tasks" type="462c0819:PsiDirectoryNode" />
+              <item name="runnable.py" type="8704e2dd:PyFileNode" />
+              <item name="Runnable" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="tcp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="tcp" type="462c0819:PsiDirectoryNode" />
+              <item name="tcpServer.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="tcp" type="462c0819:PsiDirectoryNode" />
+              <item name="tcpServer.py" type="8704e2dd:PyFileNode" />
+              <item name="TcpServer" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="testKnowledgeChain.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="testKnowledgeChain.py" type="8704e2dd:PyFileNode" />
+              <item name="TestKnowledgeChain" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="testLayer.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="testLayer.py" type="8704e2dd:PyFileNode" />
+              <item name="TestLayer" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="testRealObject.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="testRealObject.py" type="8704e2dd:PyFileNode" />
+              <item name="TestRealObject" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="tasks" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="tasks" type="462c0819:PsiDirectoryNode" />
+              <item name="Example" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="tasks" type="462c0819:PsiDirectoryNode" />
+              <item name="Example" type="462c0819:PsiDirectoryNode" />
+              <item name="pausableThread.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="1201333238" type="70582d5e:PySkeletonsNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="1201333238" type="70582d5e:PySkeletonsNode" />
+              <item name="builtins.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="1201333238" type="70582d5e:PySkeletonsNode" />
+              <item name="builtins.py" type="8704e2dd:PyFileNode" />
+              <item name="Exception" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="1201333238" type="70582d5e:PySkeletonsNode" />
+              <item name="builtins.py" type="8704e2dd:PyFileNode" />
+              <item name="str" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="Python37" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="Python37" type="462c0819:PsiDirectoryNode" />
+              <item name="Lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="Python37" type="462c0819:PsiDirectoryNode" />
+              <item name="Lib" type="462c0819:PsiDirectoryNode" />
+              <item name="logging" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="Python37" type="462c0819:PsiDirectoryNode" />
+              <item name="Lib" type="462c0819:PsiDirectoryNode" />
+              <item name="logging" type="462c0819:PsiDirectoryNode" />
+              <item name="__init__.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="Python37" type="462c0819:PsiDirectoryNode" />
+              <item name="Lib" type="462c0819:PsiDirectoryNode" />
+              <item name="logging" type="462c0819:PsiDirectoryNode" />
+              <item name="__init__.py" type="8704e2dd:PyFileNode" />
+              <item name="LogRecord" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="Python37" type="462c0819:PsiDirectoryNode" />
+              <item name="Lib" type="462c0819:PsiDirectoryNode" />
+              <item name="site-packages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="Python37" type="462c0819:PsiDirectoryNode" />
+              <item name="Lib" type="462c0819:PsiDirectoryNode" />
+              <item name="site-packages" type="462c0819:PsiDirectoryNode" />
+              <item name="threadpool.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="Python37" type="462c0819:PsiDirectoryNode" />
+              <item name="Lib" type="462c0819:PsiDirectoryNode" />
+              <item name="site-packages" type="462c0819:PsiDirectoryNode" />
+              <item name="threadpool.py" type="8704e2dd:PyFileNode" />
+              <item name="ThreadPool" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="Python37" type="462c0819:PsiDirectoryNode" />
+              <item name="Lib" type="462c0819:PsiDirectoryNode" />
+              <item name="codecs.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="Python37" type="462c0819:PsiDirectoryNode" />
+              <item name="Lib" type="462c0819:PsiDirectoryNode" />
+              <item name="codecs.py" type="8704e2dd:PyFileNode" />
+              <item name="BufferedIncrementalDecoder" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="Lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="Lib" type="462c0819:PsiDirectoryNode" />
+              <item name="logging" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="Lib" type="462c0819:PsiDirectoryNode" />
+              <item name="logging" type="462c0819:PsiDirectoryNode" />
+              <item name="__init__.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="Lib" type="462c0819:PsiDirectoryNode" />
+              <item name="logging" type="462c0819:PsiDirectoryNode" />
+              <item name="__init__.py" type="8704e2dd:PyFileNode" />
+              <item name="LogRecord" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="Lib" type="462c0819:PsiDirectoryNode" />
+              <item name="site-packages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="Lib" type="462c0819:PsiDirectoryNode" />
+              <item name="site-packages" type="462c0819:PsiDirectoryNode" />
+              <item name="threadpool.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="Lib" type="462c0819:PsiDirectoryNode" />
+              <item name="site-packages" type="462c0819:PsiDirectoryNode" />
+              <item name="threadpool.py" type="8704e2dd:PyFileNode" />
+              <item name="ThreadPool" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="Lib" type="462c0819:PsiDirectoryNode" />
+              <item name="codecs.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="Lib" type="462c0819:PsiDirectoryNode" />
+              <item name="codecs.py" type="8704e2dd:PyFileNode" />
+              <item name="BufferedIncrementalDecoder" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="site-packages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="site-packages" type="462c0819:PsiDirectoryNode" />
+              <item name="threadpool.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="site-packages" type="462c0819:PsiDirectoryNode" />
+              <item name="threadpool.py" type="8704e2dd:PyFileNode" />
+              <item name="ThreadPool" type="dd8bbb05:PyElementNode" />
             </path>
           </expand>
           <select />
@@ -160,10 +1013,23 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
-    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="last_opened_file_path" value="E:/nvwa-run/trunk" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\0-nvwa\trunk\loongtian\testflask\app" />
+      <recent name="E:\0-nvwa\trunk\loongtian\test_flask\app" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\0-nvwa\trunk\test\util\helper\json" />
+      <recent name="E:\0-nvwa\trunk\loongtian\util\helper" />
+      <recent name="E:\0-nvwa\trunk\loongtian\fuxi\vie" />
+      <recent name="E:\0-nvwa\trunk\loongtian\fuxi\templates" />
+      <recent name="E:\0-nvwa\trunk\loongtian\testflask\app" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -177,29 +1043,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.adminConsoleRunner">
-    <configuration name="adminConsoleRunner" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="trunk" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/loongtian/nvwa" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/loongtian/nvwa/adminConsoleRunner.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.centralBrainRuner">
     <configuration name="centralBrainRuner" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="trunk" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -222,121 +1066,1076 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="codeChecker" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="trunk" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/loongtian/util/codeCheck" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/loongtian/util/codeCheck/codeChecker.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="config" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="trunk" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/loongtian/nvwa/tools" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/loongtian/nvwa/tools/config.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="docReplace" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="trunk" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/loongtian/nvwa/tools/cidian" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/loongtian/nvwa/tools/cidian/docReplace.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="searchGateway" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="trunk" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/loongtian/fuxi/vie" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/loongtian/fuxi/vie/searchGateway.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.adminConsoleRunner" />
         <item itemvalue="Python.centralBrainRuner" />
+        <item itemvalue="Python.searchGateway" />
+        <item itemvalue="Python.codeChecker" />
+        <item itemvalue="Python.config" />
+        <item itemvalue="Python.docReplace" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SvnConfiguration">
-    <configuration />
+  <component name="SvnConfiguration" cleanupOnStartRun="true">
+    <configuration>C:\Users\Leon\AppData\Roaming\Subversion</configuration>
+    <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="SvnFileUrlMappingImpl">
+    <option name="myMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\0-nvwa\trunk" />
+          <option name="myCopyRoot" value="E:\0-nvwa\trunk" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+    <option name="myMoreRealMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\0-nvwa\trunk" />
+          <option name="myCopyRoot" value="E:\0-nvwa\trunk" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c5f95b2c-ecbb-4eeb-ae11-513b256e9e0f" name="Default Changelist" comment="" />
-      <created>1559203724031</created>
+      <changelist id="fd997f4e-dd50-4de5-9693-3fab544ecccc" name="Default Changelist" comment="" />
+      <created>1550940558457</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1559203724031</updated>
-      <workItem from="1559203730227" duration="3141000" />
+      <updated>1550940558457</updated>
+      <workItem from="1550940560145" duration="93000" />
+      <workItem from="1550940692545" duration="91000" />
+      <workItem from="1550990213110" duration="11255000" />
+      <workItem from="1551044313835" duration="5658000" />
+      <workItem from="1551053739304" duration="217000" />
+      <workItem from="1551054472222" duration="164000" />
+      <workItem from="1551086747665" duration="207000" />
+      <workItem from="1551087127106" duration="28438000" />
+      <workItem from="1551126886164" duration="551000" />
+      <workItem from="1551169050100" duration="5867000" />
+      <workItem from="1551175196875" duration="1479000" />
+      <workItem from="1551176750760" duration="8745000" />
+      <workItem from="1551235370968" duration="4232000" />
+      <workItem from="1551273857030" duration="14541000" />
+      <workItem from="1551470411292" duration="70000" />
+      <workItem from="1551470935838" duration="75000" />
+      <workItem from="1551471234137" duration="60000" />
+      <workItem from="1551494869354" duration="4340000" />
+      <workItem from="1551499835713" duration="3572000" />
+      <workItem from="1551503540736" duration="3251000" />
+      <workItem from="1551506938692" duration="11899000" />
+      <workItem from="1551526094030" duration="4952000" />
+      <workItem from="1551539377412" duration="6069000" />
+      <workItem from="1551592840452" duration="7248000" />
+      <workItem from="1551670414461" duration="6846000" />
+      <workItem from="1551677445557" duration="859000" />
+      <workItem from="1551686699733" duration="16274000" />
+      <workItem from="1551718767960" duration="6229000" />
+      <workItem from="1551755024652" duration="5956000" />
+      <workItem from="1551764215308" duration="23174000" />
+      <workItem from="1551796262705" duration="7992000" />
+      <workItem from="1551815122649" duration="7537000" />
+      <workItem from="1551822961898" duration="766000" />
+      <workItem from="1551841915789" duration="7649000" />
+      <workItem from="1551849631330" duration="72000" />
+      <workItem from="1551858300561" duration="1051000" />
+      <workItem from="1551874031293" duration="92000" />
+      <workItem from="1551874510343" duration="3542000" />
+      <workItem from="1551882167088" duration="12462000" />
+      <workItem from="1551926875793" duration="21840000" />
+      <workItem from="1552015843589" duration="17675000" />
+      <workItem from="1552044806404" duration="1218000" />
+      <workItem from="1552061549478" duration="5591000" />
+      <workItem from="1552097543737" duration="11985000" />
+      <workItem from="1552117566697" duration="9592000" />
+      <workItem from="1552136520002" duration="6811000" />
+      <workItem from="1552180271652" duration="25216000" />
+      <workItem from="1552227598144" duration="5346000" />
+      <workItem from="1552270509134" duration="8495000" />
+      <workItem from="1552282052793" duration="13418000" />
+      <workItem from="1552311426621" duration="8976000" />
+      <workItem from="1552324615095" duration="655000" />
+      <workItem from="1552359107354" duration="25951000" />
+      <workItem from="1552400878888" duration="3430000" />
+      <workItem from="1552440912503" duration="19984000" />
+      <workItem from="1552468285231" duration="3758000" />
+      <workItem from="1552487163043" duration="5594000" />
+      <workItem from="1552495387179" duration="710000" />
+      <workItem from="1552528664105" duration="33788000" />
+      <workItem from="1552624151405" duration="14371000" />
+      <workItem from="1552657778287" duration="4794000" />
+      <workItem from="1552703972786" duration="9195000" />
+      <workItem from="1552730437015" duration="1322000" />
+      <workItem from="1553307438178" duration="6350000" />
+      <workItem from="1553399144711" duration="12450000" />
+      <workItem from="1553427590106" duration="9591000" />
+      <workItem from="1553487191473" duration="6530000" />
+      <workItem from="1553496396622" duration="15810000" />
+      <workItem from="1553522228906" duration="7741000" />
+      <workItem from="1553561330139" duration="6611000" />
+      <workItem from="1553573487445" duration="1423000" />
+      <workItem from="1553579330724" duration="5340000" />
+      <workItem from="1553597202930" duration="629000" />
+      <workItem from="1553652404728" duration="1289000" />
+      <workItem from="1553771046004" duration="7029000" />
+      <workItem from="1553781661850" duration="1749000" />
+      <workItem from="1554002699232" duration="9885000" />
+      <workItem from="1554015380640" duration="1277000" />
+      <workItem from="1554021178249" duration="10465000" />
+      <workItem from="1554039768245" duration="3696000" />
+      <workItem from="1554075468271" duration="4217000" />
+      <workItem from="1554082869183" duration="3254000" />
+      <workItem from="1554086743787" duration="9440000" />
+      <workItem from="1554107904531" duration="4695000" />
+      <workItem from="1554119863375" duration="1778000" />
+      <workItem from="1554173888726" duration="11117000" />
+      <workItem from="1554201986036" duration="2614000" />
+      <workItem from="1554256387493" duration="10962000" />
+      <workItem from="1554282469257" duration="5111000" />
+      <workItem from="1554345443415" duration="10479000" />
+      <workItem from="1554375142033" duration="9549000" />
+      <workItem from="1554432657153" duration="13936000" />
+      <workItem from="1554513841497" duration="5704000" />
+      <workItem from="1554529458687" duration="1384000" />
+      <workItem from="1554547557097" duration="3640000" />
+      <workItem from="1554564744023" duration="626000" />
+      <workItem from="1554595710909" duration="1858000" />
+      <workItem from="1554603031766" duration="16031000" />
+      <workItem from="1554701850936" duration="3026000" />
+      <workItem from="1554714453986" duration="4345000" />
+      <workItem from="1554739170617" duration="597000" />
+      <workItem from="1554776404439" duration="12425000" />
+      <workItem from="1554814622664" duration="924000" />
+      <workItem from="1554815981391" duration="73000" />
+      <workItem from="1554866653221" duration="8948000" />
+      <workItem from="1554952405409" duration="307000" />
+      <workItem from="1555815489991" duration="159000" />
+      <workItem from="1555815810081" duration="1411000" />
+      <workItem from="1555824312774" duration="5907000" />
+      <workItem from="1555899791793" duration="151000" />
+      <workItem from="1555908879331" duration="674000" />
+      <workItem from="1556343970006" duration="5227000" />
+      <workItem from="1556458331993" duration="782000" />
+      <workItem from="1556797100248" duration="2263000" />
+      <workItem from="1558583602013" duration="1893000" />
+      <workItem from="1559014582475" duration="92000" />
+      <workItem from="1559015453423" duration="8194000" />
+      <workItem from="1559026537890" duration="1065000" />
+      <workItem from="1559057090313" duration="3163000" />
+      <workItem from="1559090030596" duration="3975000" />
+      <workItem from="1559094926579" duration="7475000" />
+      <workItem from="1559203087248" duration="382000" />
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="Nosetests_for_testBrain_TestBrain_testMeaning - 2019.04.01 at 12h 32m 25s.xml">
+      <configuration name="Nosetests for testBrain.TestBrain.testMeaning" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_for_testBrain_TestBrain_testMeaning - 2019.04.01 at 12h 46m 52s.xml">
+      <configuration name="Nosetests for testBrain.TestBrain.testMeaning" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_for_testBrain_TestBrain_testMeaning - 2019.04.01 at 12h 47m 18s.xml">
+      <configuration name="Nosetests for testBrain.TestBrain.testMeaning" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_for_testBrain_TestBrain_testMeaning - 2019.04.02 at 11h 07m 22s.xml">
+      <configuration name="Nosetests for testBrain.TestBrain.testMeaning" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_for_testBrain_TestBrain_testMeaning - 2019.04.03 at 12h 32m 13s.xml">
+      <configuration name="Nosetests for testBrain.TestBrain.testMeaning" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_for_testBrain_TestBrain_testMeaning - 2019.04.03 at 13h 49m 44s.xml">
+      <configuration name="Nosetests for testBrain.TestBrain.testMeaning" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_for_testBrain_TestBrain_testMeaning - 2019.04.03 at 13h 54m 55s.xml">
+      <configuration name="Nosetests for testBrain.TestBrain.testMeaning" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_for_testBrain_TestBrain_testMeaning - 2019.04.05 at 14h 53m 22s.xml">
+      <configuration name="Nosetests for testBrain.TestBrain.testMeaning" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_for_testBrain_TestBrain_testMeaning - 2019.04.06 at 20h 08m 08s.xml">
+      <configuration name="Nosetests for testBrain.TestBrain.testMeaning" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_for_testBrain_TestBrain_testMeaning - 2019.04.09 at 13h 56m 17s.xml">
+      <configuration name="Nosetests for testBrain.TestBrain.testMeaning" configurationId="tests" />
+    </history-entry>
+  </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3141000" />
+    <option name="totallyTimeSpent" value="781008000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25201073" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Python Console" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32991204" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.09824047" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.26099706" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3900293" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.40029326" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="SciView" />
-      <window_info anchor="right" id="Database" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32991204" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32991204" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32991204" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32991204" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" weight="0.3297587" />
+      <window_info anchor="right" id="Database" order="4" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.conf" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/loongtian/testflask/app/models.py</url>
+          <line>138</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/loongtian/testflask/runserver.py</url>
+          <line>16</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/loongtian/testflask/app/models.py</url>
+          <line>15</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test/nvwa/engines/testMetaEnginet.py</url>
+          <line>322</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/loongtian/nvwa/engines/executeEngine.py</url>
+          <line>35</line>
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test/nvwa/models/testBaseEntity.py</url>
+          <line>223</line>
+          <option name="timeStamp" value="66" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test/nvwa/models/testBaseEntity.py</url>
+          <line>148</line>
+          <option name="timeStamp" value="105" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test/nvwa/models/testBaseEntity.py</url>
+          <line>162</line>
+          <option name="timeStamp" value="106" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test/nvwa/models/testBaseEntity.py</url>
+          <line>161</line>
+          <option name="timeStamp" value="107" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test/util/db/testDbPool.py</url>
+          <line>12</line>
+          <option name="timeStamp" value="109" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/loongtian/nvwa/runtime/reals.py</url>
+          <line>115</line>
+          <option name="timeStamp" value="114" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/loongtian/nvwa/organs/memory.py</url>
+          <line>370</line>
+          <option name="timeStamp" value="116" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/loongtian/nvwa/organs/memory.py</url>
+          <line>226</line>
+          <option name="timeStamp" value="202" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/loongtian/nvwa/runtime/instinct.py</url>
+          <line>608</line>
+          <option name="timeStamp" value="216" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/loongtian/util/tcp/baseStreamHandler.py</url>
+          <line>15</line>
+          <option name="timeStamp" value="271" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/loongtian/util/tcp/baseHandler.py</url>
+          <line>12</line>
+          <option name="timeStamp" value="272" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/loongtian/util/tcp/baseHandler.py</url>
+          <line>16</line>
+          <option name="timeStamp" value="273" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test/util/helper/json/test.py</url>
+          <line>4</line>
+          <option name="timeStamp" value="368" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/loongtian/nvwa/models/baseEntity.py</url>
+          <line>384</line>
+          <option name="timeStamp" value="372" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/loongtian/nvwa/models/realObject.py</url>
+          <line>1202</line>
+          <option name="timeStamp" value="484" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/loongtian/nvwa/runtime/innerOperation.py</url>
+          <line>419</line>
+          <option name="timeStamp" value="526" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/loongtian/nvwa/organs/mind.py</url>
+          <line>2313</line>
+          <option name="timeStamp" value="563" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/loongtian/nvwa/runtime/relatedObjects.py</url>
+          <line>237</line>
+          <option name="timeStamp" value="607" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/loongtian/nvwa/organs/centralBrain.py</url>
+          <line>190</line>
+          <option name="timeStamp" value="625" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test/nvwa/models/testKnowledge.py</url>
+          <line>23</line>
+          <option name="timeStamp" value="751" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test/nvwa/models/testBaseEntity.py</url>
+          <line>293</line>
+          <option name="timeStamp" value="766" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test/nvwa/models/testBaseEntity.py</url>
+          <line>214</line>
+          <option name="timeStamp" value="773" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test/nvwa/models/testLayer.py</url>
+          <line>179</line>
+          <option name="timeStamp" value="783" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test/nvwa/models/testLayer.py</url>
+          <line>144</line>
+          <option name="timeStamp" value="785" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test/nvwa/models/testLayer.py</url>
+          <line>56</line>
+          <option name="timeStamp" value="787" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test/nvwa/models/testLayer.py</url>
+          <line>156</line>
+          <option name="timeStamp" value="796" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test/nvwa/models/testKnowledge.py</url>
+          <line>123</line>
+          <option name="timeStamp" value="804" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test/nvwa/models/testKnowledge.py</url>
+          <line>137</line>
+          <option name="timeStamp" value="805" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/loongtian/nvwa/models/tGraphEntity.py</url>
+          <line>255</line>
+          <option name="timeStamp" value="820" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/loongtian/nvwa/models/baseEntity.py</url>
+          <line>768</line>
+          <option name="timeStamp" value="940" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test/nvwa/testBrain.py</url>
+          <line>281</line>
+          <option name="timeStamp" value="962" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/loongtian/nvwa/runtime/innerOperation.py</url>
+          <line>464</line>
+          <option name="timeStamp" value="963" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/loongtian/nvwa/models/tGraphEntity.py</url>
+          <line>350</line>
+          <option name="timeStamp" value="979" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/loongtian/nvwa/organs/mind.py</url>
+          <line>1114</line>
+          <option name="timeStamp" value="1015" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test/nvwa/testBrain.py</url>
+          <line>412</line>
+          <option name="timeStamp" value="1025" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/loongtian/nvwa/models/tGraphEntity.py</url>
+          <line>259</line>
+          <option name="timeStamp" value="1026" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/loongtian/nvwa/models/tGraphEntity.py</url>
+          <line>283</line>
+          <option name="timeStamp" value="1027" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/loongtian/nvwa/organs/mind.py</url>
+          <line>2859</line>
+          <option name="timeStamp" value="1032" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/loongtian/nvwa/models/knowledge.py</url>
+          <line>365</line>
+          <option name="timeStamp" value="1033" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test/nvwa/testBrain.py</url>
+          <line>413</line>
+          <option name="timeStamp" value="1034" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/loongtian/nvwa/organs/mind.py</url>
+          <line>2561</line>
+          <option name="timeStamp" value="1035" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/loongtian/nvwa/runtime/innerOperation.py</url>
+          <line>515</line>
+          <option name="timeStamp" value="1036" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test/nvwa/testBrain.py</url>
+          <line>396</line>
+          <option name="timeStamp" value="1040" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/loongtian/nvwa/engines/modelingEngine.py</url>
+          <line>111</line>
+          <option name="timeStamp" value="1049" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test/nvwa/testBrain.py</url>
+          <line>398</line>
+          <option name="timeStamp" value="1056" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/loongtian/nvwa/engines/evaluateEngine.py</url>
+          <line>219</line>
+          <option name="timeStamp" value="1072" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/loongtian/nvwa/tools/nvwaObjectsCodeConvertor/sourceCodeHelper.py</url>
+          <line>7</line>
+          <option name="timeStamp" value="1073" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/loongtian/nvwa/runtime/instinct.py</url>
+          <line>511</line>
+          <option name="timeStamp" value="1074" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/loongtian/nvwa/organs/centralBrain.py</url>
+          <line>106</line>
+          <option name="timeStamp" value="1085" />
+        </line-breakpoint>
+      </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="evaluateCodeFragment">
+      <expression>
+        <expression-string>self._getNatureLanguage(
+                        metaLevelResult.meta_net_matched_knowledges_meaning_klgs)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>&quot;我记得“%s”这句话,记得意义为：%s&quot; % (self._getNatureLanguage(
+                        metaLevelResult.meta_chain))</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>&quot;我记得“%s”这句话,记得意义为：%s&quot; % (self._getNatureLanguage(
+                        metaLevelResult.meta_chain), self._getNatureLanguage(
+                        metaLevelResult.meta_net_matched_knowledges_meaning_klgs))</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>&quot;我记得“%s”这句话,记得意义为：%s&quot; % self._getNatureLanguage(
+                        metaLevelResult.meta_chain), self._getNatureLanguage(
+                        metaLevelResult.meta_net_matched_knowledges_meaning_klgs)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>self._getNatureLanguage(
+                        metaLevelResult.meta_chain)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>object_need_match.Constitutions.isChild(
+                            pattern_component_need_match_parent)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+    </expressions>
+    <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>hashlib.md5(string.encode(&quot;gbk&quot;)).hexdigest()</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>list(objs)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>self.getObjsByType(type)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>result[_action]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>result[action]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>self.brain.PerceptionCentral.receive(&quot;小丽有钱意义小丽有钱&quot;)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>matched_knowledges_meaning_klgs.values()</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>matched_knowledges_meaning_klgs.values</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>matched_knowledges_meaning_klgs.values[0]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://D:/Python27/Lib/logging/__init__.py">
+    <entry file="file://D:/Python37/Lib/site-packages/flask/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="332" column="18" lean-forward="true" selection-start-line="332" selection-start-column="18" selection-end-line="332" selection-end-column="18" />
+        <state relative-caret-position="129">
+          <caret line="1221" selection-start-line="1221" selection-end-line="1221" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/loongtian/util/text/edit_distance.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/loongtian/util/language/chinese/text.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/loongtian/util/language/chinese/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/centralBrainRuner.py">
+    <entry file="file://$PROJECT_DIR$/loongtian/fuxi/vie/searchGateway.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="16" column="23" lean-forward="true" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+        <state relative-caret-position="248">
+          <caret line="19" column="23" lean-forward="true" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/loongtian/util/db/postgres/db_postgres_settings.py">
+    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/organs/centralManager.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="7" column="32" lean-forward="true" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
+        <state relative-caret-position="279">
+          <caret line="91" column="31" lean-forward="true" selection-start-line="91" selection-start-column="31" selection-end-line="91" selection-end-column="31" />
+          <folding>
+            <element signature="e#68#91#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/loongtian/auth/logon.py">
+    <entry file="file://$PROJECT_DIR$/loongtian/util/db/postgres/dbPool.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="28" column="9" lean-forward="true" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/loongtian/auth/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/adminConsoleRunner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="10" column="26" lean-forward="true" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+        <state relative-caret-position="189">
+          <caret line="81" column="27" selection-start-line="81" selection-start-column="27" selection-end-line="81" selection-end-column="27" />
+          <folding>
+            <element signature="e#64#76#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/loongtian/util/log/logger.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="55" column="24" lean-forward="true" selection-start-line="55" selection-start-column="24" selection-end-line="55" selection-end-column="24" />
+        <state relative-caret-position="249">
+          <caret line="277" column="56" lean-forward="true" selection-start-line="277" selection-start-column="56" selection-end-line="277" selection-end-column="56" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/loongtian/util/pip/pipInstallAll.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/settings.py">
+    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/managers/inputsManager.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="53" column="21" lean-forward="true" selection-start-line="53" selection-start-column="21" selection-end-line="53" selection-end-column="21" />
+        <state relative-caret-position="147">
+          <caret line="18" column="55" selection-start-line="18" selection-start-column="52" selection-end-line="18" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/models/metaData.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="79" column="28" lean-forward="true" selection-start-line="79" selection-start-column="28" selection-end-line="79" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/organs/brain.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="119" column="24" lean-forward="true" selection-start-line="119" selection-start-column="24" selection-end-line="119" selection-end-column="24" />
+          <folding>
+            <element signature="e#68#91#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/centrals/perceptionCentral.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="44" column="15" lean-forward="true" selection-start-line="44" selection-start-column="15" selection-end-line="44" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/centrals/thinkingCentral.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="61" column="54" lean-forward="true" selection-start-line="61" selection-start-column="54" selection-end-line="61" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/win32/kernel32.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6870">
+          <caret line="234" column="27" selection-start-line="234" selection-start-column="27" selection-end-line="234" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/organs/mind.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1200">
+          <caret line="71" column="18" selection-start-line="71" selection-start-column="18" selection-end-line="71" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/nvwa/models/testBaseEntity.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2220">
+          <caret line="79" column="46" selection-start-line="79" selection-start-column="46" selection-end-line="79" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/util/helper/testJsonHelper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1200">
+          <caret line="45" column="27" selection-start-line="45" selection-start-column="27" selection-end-line="45" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/models/metaNet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4740">
+          <caret line="169" column="39" selection-start-line="169" selection-start-column="39" selection-end-line="169" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/models/tGraphEntity.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4590">
+          <caret line="166" column="42" selection-start-line="166" selection-start-column="42" selection-end-line="166" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/util/helper/json/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="5" column="40" lean-forward="true" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/organs/userDispenser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="80" column="25" lean-forward="true" selection-start-line="80" selection-start-column="25" selection-end-line="80" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/util/common/doubleKeyDict.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="37" column="18" lean-forward="true" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/managers/attentionManager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="37" column="30" lean-forward="true" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/runtime/meanings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="243" column="52" lean-forward="true" selection-start-line="243" selection-start-column="52" selection-end-line="243" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/runtime/thinkResult/fragments.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="578" column="13" lean-forward="true" selection-start-line="578" selection-start-column="13" selection-end-line="578" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/nvwa/bof/testCollection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2310">
+          <caret line="77" column="34" lean-forward="true" selection-start-line="77" selection-start-column="34" selection-end-line="77" selection-end-column="34" />
+          <folding>
+            <element signature="e#47#76#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Python37/Lib/logging/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="383" column="18" lean-forward="true" selection-start-line="383" selection-start-column="18" selection-end-line="383" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/util/helper/jsonHelper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="418" column="1" lean-forward="true" selection-start-line="418" selection-start-column="1" selection-end-line="418" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/util/tasks/Example/pausableThread.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="142" column="14" lean-forward="true" selection-start-line="142" selection-start-column="14" selection-end-line="142" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/engines/evaluateEngine.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="162" column="25" lean-forward="true" selection-start-line="162" selection-start-column="25" selection-end-line="162" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/runtime/thinkResult/realLevelResult.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="440" column="33" lean-forward="true" selection-start-line="440" selection-start-column="33" selection-end-line="440" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/engines/groupEngine.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="122" column="36" lean-forward="true" selection-start-line="122" selection-start-column="36" selection-end-line="122" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/runtime/workflow.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="91" column="21" lean-forward="true" selection-start-line="91" selection-start-column="21" selection-end-line="91" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/nvwa/models/testRealObject.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/engines/metaEngine.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="661" column="29" lean-forward="true" selection-start-line="661" selection-start-column="29" selection-end-line="661" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/nvwa/models/testKnowledgeChain.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4410">
+          <caret line="161" column="38" lean-forward="true" selection-start-line="161" selection-start-column="38" selection-end-line="161" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/nvwa/models/testLayer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52">
+          <caret line="131" column="48" lean-forward="true" selection-start-line="131" selection-start-column="48" selection-end-line="131" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/models/diGraphEntity.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="185" selection-start-line="185" selection-end-line="185" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/runtime/relatedObjects.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="221" selection-start-line="221" selection-end-line="221" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Python37/Lib/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="311" selection-start-line="311" selection-end-line="311" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/models/knowledge.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="181" column="36" lean-forward="true" selection-start-line="181" selection-start-column="36" selection-end-line="181" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/organs/memory.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="769" selection-start-line="769" selection-end-line="769" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/runtime/instinct.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="509" selection-start-line="509" selection-end-line="509" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.3/system/python_stubs/1201333238/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="4755" column="12" lean-forward="true" selection-start-line="4755" selection-start-column="12" selection-end-line="4755" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/models/baseEntity.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42540">
+          <caret line="1428" selection-start-line="1428" selection-end-line="1428" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/centralBrainRuner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/models/executionInfo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/runtime/innerOperation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11610">
+          <caret line="393" column="11" selection-start-line="393" selection-start-column="11" selection-end-line="393" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/util/helper/stringHelper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13380">
+          <caret line="449" selection-start-line="449" selection-end-line="449" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/util/tcp/tcpServer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="18" column="23" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/organs/centralBrain.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2610">
+          <caret line="106" selection-start-line="106" selection-end-line="106" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Python37/Lib/site-packages/threadpool.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9150">
+          <caret line="307" column="44" selection-start-line="307" selection-start-column="44" selection-end-line="307" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/models/realObject.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44490">
+          <caret line="1491" column="35" selection-start-line="1491" selection-start-column="35" selection-end-line="1491" selection-end-column="35" />
+          <folding>
+            <element signature="e#68#79#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/util/tasks/runnable.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="46" column="33" lean-forward="true" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
         </state>
       </provider>
     </entry>

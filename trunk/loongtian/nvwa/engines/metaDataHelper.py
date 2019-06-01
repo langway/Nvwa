@@ -221,11 +221,11 @@ def createDoubleFrequancyDict2(rawInputs, unknowns_tolerate_dgree=1.0):
         elif stringHelper.is_stopmark(rawinput):
             rawinpt_num -= 1
             continue
-    for rawinput, doubleFrequancyDict_in_rawInput in doubleFrequancyDict_in_rawInputs.iteritems():
-        for word, freq in doubleFrequancyDict_in_rawInput.iteritems():
+    for rawinput, doubleFrequancyDict_in_rawInput in doubleFrequancyDict_in_rawInputs.items():
+        for word, freq in doubleFrequancyDict_in_rawInput.items():
             tf = freq * unknowns_tolerate_dgree / len(rawinput)
             word_in_rawiput_num = 0
-            for other_rawinput, other_doubleFrequancyDict_in_rawInput in doubleFrequancyDict_in_rawInputs.iteritems():
+            for other_rawinput, other_doubleFrequancyDict_in_rawInput in doubleFrequancyDict_in_rawInputs.items():
                 if other_doubleFrequancyDict_in_rawInput.has_key(word):
                     word_in_rawiput_num += 1
 
@@ -1339,18 +1339,18 @@ def __resegmentChainBlocksWithUnknowns(chain_blocks, unknowns_dict,memory=None):
     """
     import copy
     resegmented_chain_blocks = copy.copy(chain_blocks)  # 复制一个
-    for i,cur_unknowns_dict in unknowns_dict.iteritems():
+    for i,cur_unknowns_dict in unknowns_dict.items():
         if not cur_unknowns_dict:  # 如果没有未知的，继续下一个
             continue
         cur_resegmented_chain_block = resegmented_chain_blocks[i]
-        for j,cur_unknown in cur_unknowns_dict.iteritems():
+        for j,cur_unknown in cur_unknowns_dict.items():
 
             # 如果只有一个字符(无需再分)，直接略过
             if len(cur_unknown[1]) == 1:
                 continue
 
             other_unknown_list = []
-            for k,other_unknown in cur_unknowns_dict.iteritems():  # 找到其他的未知元数据（不能用自身分割自身）
+            for k,other_unknown in cur_unknowns_dict.items():  # 找到其他的未知元数据（不能用自身分割自身）
                 if j == k:
                     continue
 

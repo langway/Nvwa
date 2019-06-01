@@ -20,7 +20,7 @@ try:
     currentFolder = os.path.split(os.path.realpath(__file__))[0]
     currentJsonPath = os.path.join(currentFolder, __settingFileName)
     if os.path.isfile(currentJsonPath):
-        f = file(currentJsonPath)
+        f = open(currentJsonPath,encoding="utf-8")
         globalSetting = json.load(f)
 except:
     print (u'加载全局配置字典错误！')

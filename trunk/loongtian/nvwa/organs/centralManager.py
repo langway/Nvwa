@@ -3,7 +3,7 @@
 
 __author__ = 'Leon'
 
-from Queue import Queue
+from queue import Queue
 from loongtian.util.common.priorityQueue import PriorityQueue
 from loongtian.util.common.singleton import *
 
@@ -84,10 +84,10 @@ class _centralManager(object):
         """
         do_clean = False
         if wait_for_command:
-            if raw_input("危险警告：本操作将完全删除数据库中的所有记录！！！\r\n" +
+            if input("危险警告：本操作将完全删除数据库中的所有记录！！！\r\n" +
                          "继续操作将使本Nvwa智能不再具有既往知识！！！\r\n" +
                          "Warning:This Operation will DELETE all records in DB!\r\n " +
-                         "Continue will take any meta_net_matched_knowledges away from NVWA AI!\r\n" +
+                         "Continue will take any knowledges away from NVWA AI!\r\n" +
                          "请输入：yes 继续！no/quit退出！！\r\n>>").lower() == "yes":
                 do_clean = True
         else:

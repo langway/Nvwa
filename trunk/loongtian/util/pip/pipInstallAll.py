@@ -43,6 +43,8 @@ COMPONENTS=[
     "pymongo", # MongoDB的数据库连接
 
     "lxml",
+    "simplejson",
+    "jsonplus",
 
     # ——科学计算计算部分——
     "numpy",  # （numpy+mkl 见support文件夹）MKL：Intel Math Kernel Library
@@ -103,6 +105,7 @@ COMPONENTS=[
     "Flask-SQLAlchemy",  #flask-sqlalchemy  用来管理数据库的工具，支持多种数据库后台
     "flask-migrate", # 数据库迁移工具，该工具命令集成到 flask-script 中，方便在命令行中进行操作。
     "Flask-MySQLdb",  #
+    "flask_paginate",
     "tweepy",# for Twitter support.
     # Flask 常用库详情
     # flask-script
@@ -154,7 +157,7 @@ COMPONENTS=[
     # 为Flask应用添加语言包，与flask-babel类似。
 
     "itchat", # itchat 是 A complete and graceful API for Wechat . 微信个人号接口、微信机器人及命令行微信，三十行即可自定义个人号机器人。了解更多使用方法，可以阅读使用
-    "pillow", # Python图像处理库:Pillow
+    "Pillow", # Python图像处理库:Pillow
     # "tesseract-ocr", # Tesseract OCR  下载地址：Home · UB-Mannheim/tesseract Wiki · GitHub https://github.com/UB-Mannheim/tesseract/wiki
     #                     # 1、下载Tesseract-OCR引擎，注意要3.0以上才支持中文哦，按照提示安装就行。
     #                     # 2、设置环境变量path：d:\Program Files (x86)\Tesseract-OCR
@@ -173,6 +176,9 @@ COMPONENTS=[
 
     #再重新安装一遍numpy+mkl，因为有的安装会卸载numpy+mkl，只安装numpy
     "numpy",  # （numpy+mkl 见support文件夹）MKL：Intel Math Kernel Library
+
+    "treelib",
+    "SocketServer",
 
 ]
 

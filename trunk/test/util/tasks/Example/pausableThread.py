@@ -136,8 +136,8 @@ if __name__=='__main__':
     #这个地方会报错，因为线程只能执行一次
     try:
         t1.start()
-    except Exception,e:
-        print(e.message )
+    except Exception as e:
+        print(str(e) )
 
     t2 = MyThread(None,'2')
     t2.start()

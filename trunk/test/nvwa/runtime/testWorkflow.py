@@ -39,5 +39,5 @@ class TestWorkflow(TestCase):
 
         workflow =Workflow.createByStepsObjChain([[[1, 2, 3], ['a', 'b', 'c']], [[u'A', u'B', u'C']]])
         print (workflow.toObjChain())
-        klg = workflow.createKnowledge(recordInDB=False)
+        klg = workflow.createKnowledge(recordInDB=False,memory=workflow.Memory)
         print (klg.getSequenceComponents())

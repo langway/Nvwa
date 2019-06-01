@@ -154,7 +154,7 @@ class TransitionEngine(ThinkEngineBase):
                 if self.MemoryCentral and self.MemoryCentral.Brain:
                     self.MemoryCentral.Brain.ThinkingCentral.thinkParentsConfusion(parentsConfusions)
 
-        _meaning = Meaning.createByFullKnowledge(meaning_knowledge, placeholder_obj_dict)
+        _meaning = Meaning.createByFullKnowledge(meaning_knowledge, placeholder_obj_dict,memory=self.MemoryCentral)
         return _meaning
 
     def _createdMeaningValueObj(self,meaning_value):
@@ -201,7 +201,7 @@ class TransitionEngine(ThinkEngineBase):
     #         if isinstance(item, MetaData):
     #             remark.append("%s," % item.mvalue)
     #         elif isinstance(item, RealObject):
-    #             remark.append("<%s>:%s," % (item.rid, item.remark))
+    #             remark.append("<%s>:%s," % (item.id, item.remark))
     #         else:
     #             raise Exception("%s类型错误。" % item)
     #     remark = "[" + "".join(remark)[:-1] + "]"

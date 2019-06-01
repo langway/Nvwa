@@ -1,4 +1,5 @@
-# coding=utf-8
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import json
 import os
 from os.path import exists, normpath, join, splitext
@@ -19,7 +20,7 @@ def getFilePath(file_name=None, type='users', obj_id='0'):
     文件名规则：根据类型设计， type=user时文件名为用户id
     :rawParam：file_name 原始文件名, type 上传头像类型也是目录名, obj_id对象id（需要id生成名字时用）
     :return：文件名，存储目录名，存储目录名路径+文件名
-    example：('141832183000.bmp', 'D:\susers', 'D:\users\141832183000.bmp')
+    example：('141832183000.bmp', 'D:\susers', 'D:\susers\141832183000.bmp')
     """
     if file_name:
         res = file_name.split('.')
@@ -59,7 +60,7 @@ def uploadImageFile():
                 files.save(os.path.join(path_name[1], fname))
 
                 json_r = json.dumps({'success': True, 'file_name': path_name[0]})
-            except Exception , e:
+            except Exception as e:
                 json_r = json.dumps({'error': True, 'file_name': ''})
             return Response(json_r)
         else:

@@ -1049,7 +1049,7 @@ class Crash (object):
         """
         msg = ''
         if self.environment:
-            for key, value in self.environment.iteritems():
+            for key, value in self.environment.items():
                 msg += '  %s=%s\n' % (key, value)
         return msg
 

@@ -12,7 +12,7 @@ class TestRealObject(TestCase):
     def setUp(self):
         print("----setUp----")
 
-        self.real_niu=RealObject(remark ="牛", realType = ObjType.VIRTUAL).create()
+        self.real_niu=RealObject(remark ="牛", type= ObjType.VIRTUAL).create()
         for i in range(0, 10):
             meta = MetaData(type = ObjType.WORD, mvalue = "牛%d" % i).create()
             meta.Layers.addLower(self.real_niu)
@@ -51,13 +51,13 @@ class TestRealObject(TestCase):
         self.assertEqual(False,meta_cool.Layers.hasRelation(meta_cool,real_niu))
 
         reals=meta_niu.Layers.getLowerEntitiesByType(ObjType.REAL_OBJECT)
-        print ("字符串‘牛’有两个realObject，分别是({0})".format([x.obj.rid + x.obj.remark for x in reals.values()]))
+        print ("字符串‘牛’有两个realObject，分别是({0})".format([x.obj.id + x.obj.remark for x in reals.values()]))
 
         reals = meta_cow.Layers.getLowerEntitiesByType(ObjType.REAL_OBJECT)
-        print ("字符串‘cow’有一个realObject，是({0})".format([x.obj.rid + x.obj.remark for x in reals.values()]))
+        print ("字符串‘cow’有一个realObject，是({0})".format([x.obj.id + x.obj.remark for x in reals.values()]))
 
         reals = meta_cool.Layers.getLowerEntitiesByType(ObjType.REAL_OBJECT)
-        print ("字符串‘cool’有一个realObject，是({0})".format([x.obj.rid + x.obj.remark for x in reals.values()]))
+        print ("字符串‘cool’有一个realObject，是({0})".format([x.obj.id + x.obj.remark for x in reals.values()]))
 
         # 应该是['cow', '\xe7\x89\x9b'：牛]
         metas = real_niu.Layers.getUpperEntitiesByType(ObjType.META_DATA)

@@ -16,5 +16,5 @@ class InputsManager(SequencedObjs):
         元输入信息管理器（上下文），用以记录系统的输入信息
         """
         # 限定被管理对象的类型
-        super(InputsManager, self).__init__(objType=unicode)
+        super(InputsManager, self).__init__(objType=str)
 

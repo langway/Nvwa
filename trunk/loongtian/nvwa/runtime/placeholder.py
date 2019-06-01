@@ -80,17 +80,26 @@ class Placeholder(object):
                             executable=None,
                             checkExist=False,
                             recordInDB=False,
-                            memory=None):
+                            memory=None,
+                            addParent=False,
+                            other_executables=None):
         """
         根据对象链创建pattern
         :param objs:
         :param executable:可执行性的实际对象（包括Instinct\Action\Modifier\Knowledge[因为...所以...]\List）
+        :param checkExist:
+        :param recordInDB:
+        :param memory:
+        :param addParent: 是否将模式的父对象添加到占位符的父对象（默认False），例如根据“牛有腿”生成“有”，牛是动物，是否将动物添加到左占位符
         :return:
         """
         pattern_objs = []
         pattern_dict = {}
         splits = []
         cur_split = []
+        if other_executables:
+            other_executables.append(executable)
+            executable = other_executables
         for i in range(len(objs)):
             obj = objs[i]
             if isinstance(obj, list):
@@ -102,7 +111,8 @@ class Placeholder(object):
                 pattern_dict.update(child_pattern_dict)
                 splits.append(tuple(child_splits))
                 continue
-            if executable:  # 把executable剔除，并把前面的链打包，例如：
+
+            if executable:  # 把executable及other_executables剔除，并把前面的链打包，例如：
                 if isinstance(executable, list):
                     objExecutable = False
                     for exe in executable:
@@ -147,7 +157,7 @@ class Placeholder(object):
 
             # 剩下的应该是不可执行的RealObject、knowledge，创建占位符
             placeholder = RealObject(remark=_remark,
-                                     realType=ObjType.PLACEHOLDER,
+                                     type=ObjType.PLACEHOLDER,
                                      memory=memory).create(checkExist=checkExist,
                                                            recordInDB=recordInDB)
             pattern_objs.append(placeholder)
@@ -158,13 +168,14 @@ class Placeholder(object):
             if isinstance(obj, Knowledge):
                 placeholder.Constitutions.addParent(Instincts.instinct_original_knowledge,recordInDB=recordInDB)
 
-            elif isinstance(obj, RealObject):
+            elif isinstance(obj, RealObject) and addParent:
                 # 首先取得obj的父对象
                 parents, parents_ks = obj.Constitutions.getSelfParentObjects()
                 if parents:
                     # 逐个添加父对象
                     for parent in parents:
                         placeholder.Constitutions.addParent(parent,recordInDB=recordInDB)
+
             if i == len(objs) - 1:  # 如果是最后一个，直接添加到splits
                 splits.append(tuple(cur_split))
 

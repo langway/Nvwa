@@ -42,13 +42,13 @@ class TestMetaData(TestCase):
         self.meta.Layers.addLower(real)
         self.meta.Layers.addLower(real)
         self.assertTrue(len(self.meta.Layers.getLowerEntitiesByType(ObjType.REAL_OBJECT)) == 11)
-        m = MetaData.getOneInDB(mid = self.meta.mid)
+        m = MetaData.getOneInDB(id = self.meta.id)
         reals=m.Layers.getLowerEntitiesByType(ObjType.REAL_OBJECT)
         self.assertEqual(11, len(reals))
 
         self.meta.Layers.removeLower(real)
         self.assertEqual(10, len(self.meta.Layers.getLowerEntitiesByType(ObjType.REAL_OBJECT)))
-        m = MetaData.getOneInDB(mid = self.meta.mid)
+        m = MetaData.getOneInDB(id = self.meta.id)
         reals=m.Layers.getLowerEntitiesByType(ObjType.REAL_OBJECT)
         self.assertTrue(len(reals) > 0)
         # todo Json.obj2json出错

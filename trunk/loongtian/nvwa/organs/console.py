@@ -3,7 +3,7 @@
 
 __author__ = 'Leon'
 
-import Queue
+import queue
 import threading
 import time
 from loongtian.util.tcp.tcpClient import TcpClient
@@ -105,7 +105,7 @@ class HttpConsole(Console):
     def __init__(self, server_ip, server_port):
         super(HttpConsole, self).__init__(server_ip, server_port, prompt="")
 
-        self.input_queue = Queue.Queue()
+        self.input_queue = queue.Queue()
         self._lock = threading.Lock()
         self._msgInfo.facility = 200  # 100-输入输出面板；200-webpage；300-Android；400-iOS
 

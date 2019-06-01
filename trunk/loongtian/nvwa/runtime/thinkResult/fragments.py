@@ -86,7 +86,7 @@ class BaseFragment(object):
                     self._frag_reals.append(matched_real)
         return self._frag_reals
 
-    def getFragmentedRealsKnowledge(self, memory=None):
+    def getFragmentedRealsKnowledge(self, recordInDB=False,memory=None):
         """
         取得当前片段在reals中所有元素组成的知识链。
         :return:
@@ -96,7 +96,7 @@ class BaseFragment(object):
             if frag_reals:
                 from loongtian.nvwa.models.knowledge import Knowledge
                 self._frag_klg = Knowledge.createKnowledgeByObjChain(frag_reals,
-                                                                     recordInDB=False,
+                                                                     recordInDB=recordInDB,
                                                                      memory=memory)  # 不记录在数据库中
 
         return self._frag_klg
@@ -255,6 +255,14 @@ class CollectionFragment(BaseFragment):
     def __init__(self, realLevelResult, reals,
                  frag_start_pos_in_reals, frag_end_pos_in_reals,
                  memory=None):
+        """
+        [运行时对象]实际对象链中已经被当做集合理解的部分片段
+        :param realLevelResult:
+        :param reals:
+        :param frag_start_pos_in_reals:
+        :param frag_end_pos_in_reals:
+        :param memory:
+        """
         super(CollectionFragment, self).__init__(realLevelResult, reals,
                                                  frag_start_pos_in_reals,
                                                  frag_end_pos_in_reals,
@@ -282,6 +290,33 @@ class CollectionFragments(GenericsList):
         super(CollectionFragments, self).__init__(CollectionFragment)
         self.realLevelResult = realLevelResult
 
+
+class ModificationFragment(BaseFragment):
+    """
+    [运行时对象]实际对象链中已经被当做修限关系对象理解的部分片段
+    """
+
+    def __init__(self, realLevelResult, reals,
+                 frag_start_pos_in_reals, frag_end_pos_in_reals,
+                 memory=None):
+        """
+        [运行时对象]实际对象链中已经被当做集合理解的部分片段
+        :param realLevelResult:
+        :param reals:
+        :param frag_start_pos_in_reals:
+        :param frag_end_pos_in_reals:
+        :param memory:
+        """
+        super(ModificationFragment, self).__init__(realLevelResult, reals,
+                                                 frag_start_pos_in_reals,
+                                                 frag_end_pos_in_reals,
+                                                 cur_exe_pos=None,
+                                                 exe_pattern=None,
+                                                 exe_meaning=None,
+                                                 exe_meaning_value=None,
+                                                 memory=memory)
+
+        self.entity_real = None  # 根据多个对象生成的实际对象，例如：中华-人民-共和国==》中华人民共和国
 
 class UnsatisfiedFragment(BaseFragment):
     """
@@ -539,7 +574,7 @@ class UnknownMetas(GenericsList):
         :param unknown_meta:
         :return:
         """
-        if self.meta_times_dict.has_key(unknown_meta.id):
+        if unknown_meta.id in self.meta_times_dict:
             self.meta_times_dict[unknown_meta.id] += 1
         else:
             self.meta_times_dict[unknown_meta.id] = 1
@@ -627,7 +662,7 @@ class ProceedUnknownMetas(UnknownMetas):
         return "[ProceedUnknownMetas]{%s}" % (_str)
 
 
-class ConjugatedAction(object):
+class LinkedAction(object):
     """
     交联的两个动作的包装类
     """
@@ -646,7 +681,7 @@ class ConjugatedAction(object):
         self.first_pos = first_pos
 
 
-class ConjugatedActions(GenericsList):
+class LinkedActions(GenericsList):
     """
     在一个realObject链（笛卡尔积）中交联的两个动作的包装类的列表
     """
@@ -655,12 +690,12 @@ class ConjugatedActions(GenericsList):
         """
         在一个realObject链（笛卡尔积）中交联的两个动作的包装类的列表
         """
-        super(ConjugatedActions, self).__init__(ConjugatedAction)
+        super(LinkedActions, self).__init__(LinkedAction)
         self.realLevelResult = realLevelResult
 
     def add(self, first_pos, *actions):
-        _conjugatedAction = ConjugatedAction(self.realLevelResult, first_pos, *actions)
-        return self.append(_conjugatedAction)
+        _linkedAction = LinkedAction(self.realLevelResult, first_pos, *actions)
+        return self.append(_linkedAction)
 
 
 class JoinedUnderstoodFragments():
@@ -688,7 +723,7 @@ class JoinedUnderstoodFragments():
         self._meanings_klgs = None  # 列表中所有的意义取得的知识链（多个）
         self._meanings_klg = None  # 根据列表中所有的意义创建的知识链（一个）
 
-    def getMeaningsKnowledges(self):
+    def getMeaningsKnowledges(self,recordInDB=False, memory=None):
         """
         （注意与getMeaningsKnowledge的区别）取得列表中所有的意义取得的知识链（多个）
         :return:
@@ -697,11 +732,11 @@ class JoinedUnderstoodFragments():
             return self._meanings_klgs
         self._meanings_klgs = []
         for understoodFragment in self.understood_fragment_list:
-            cur_meaning_klg = understoodFragment.meanings.getMeaningsKnowledge()
+            cur_meaning_klg = understoodFragment.meanings.getMeaningsKnowledge(recordInDB=recordInDB)
             self._meanings_klgs.append(cur_meaning_klg)
         return self._meanings_klgs
 
-    def getMeaningsKnowledge(self):
+    def getMeaningsKnowledge(self,recordInDB=False):
         """
         （注意与getMeaningsKnowledges的区别）取得根据列表中所有的意义创建的知识链（一个）
         :return:
@@ -711,7 +746,8 @@ class JoinedUnderstoodFragments():
         _meanings_klgs = self.getMeaningsKnowledges()
         if _meanings_klgs:
             from loongtian.nvwa.models.knowledge import Knowledge
-            self._meanings_klg = Knowledge.createKnowledgeByObjChain(_meanings_klgs)
+            self._meanings_klg = Knowledge.createKnowledgeByObjChain(_meanings_klgs,
+                                                                     recordInDB=recordInDB)
 
         return self._meanings_klg
 

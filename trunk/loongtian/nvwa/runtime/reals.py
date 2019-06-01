@@ -116,7 +116,7 @@ class RealUser(BaseEntity):
         _real_user = RealUser(username=username, password=password).create()
         user_real = None
         if _real_user:
-            user_real = RealObject(rid=_real_user.id).create()
+            user_real = RealObject(id=_real_user.id).create()
         if user_real:
             return user_real
 
@@ -139,7 +139,7 @@ class RealUser(BaseEntity):
         _real_user = RealUser(phone=phone, password=password).create()
         user_real = None
         if _real_user:
-            user_real = RealObject(rid=_real_user.id).create()
+            user_real = RealObject(id=_real_user.id).create()
         if user_real:
             return user_real
 
@@ -160,7 +160,7 @@ class RealUser(BaseEntity):
         _real_user = RealUser(email=email, password=password).create()
         user_real = None
         if _real_user:
-            user_real = RealObject(rid=_real_user.id).create()
+            user_real = RealObject(id=_real_user.id).create()
         if user_real:
             return user_real
 
@@ -185,7 +185,7 @@ class RealUser(BaseEntity):
 
         else:
             for real_user in user_reals:
-                if real_user.realType == ObjType.USER:
+                if real_user.getType() == ObjType.USER:
                     return real_user
 
             raise Exception(UserErrors.Multi_Results_And_ObjType_Is_Not_USER)
@@ -218,7 +218,7 @@ class RealUser(BaseEntity):
 
         else:
             for real_assistant in real_assistants:
-                if real_assistant.realType == ObjType.ASSISTANT or \
+                if real_assistant.getType() == ObjType.ASSISTANT or \
                         real_assistant.getType() == ObjType.INSTINCT:  # 普通用户-个人助理类型，超级用户直接使用女娲AI:
                     return real_assistant
 
@@ -251,9 +251,9 @@ class RealUser(BaseEntity):
                          ismanager=ismanager, photo=photo,
                          assistantid=assistantid,
                          status=status, memory=memory).create(recordInDB=recordInDB)
-        _user_real = RealObject(rid=_real_user.id,
+        _user_real = RealObject(id=_real_user.id,
                                 remark=username,
-                                realType=ObjType.USER,
+                                type=ObjType.USER,
                                 status=status,
                                 memory=memory).create(recordInDB=recordInDB)
         real_assistant = None
@@ -324,7 +324,7 @@ class RealUser(BaseEntity):
         else:
             # 创建一个新的
             assistant_real = RealObject(remark=user_real.remark + "的助理",
-                                        realType=ObjType.ASSISTANT,
+                                        type=ObjType.ASSISTANT,
                                         createrid=user_real.id).create(recordInDB=recordInDB)
 
         user_real.Constitutions.addRelatedObject(UserTags.assistant, assistant_real, recordInDB=recordInDB)

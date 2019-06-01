@@ -37,6 +37,24 @@ class MindsManager(SequencedObjs):
         self.add(mind)
         return mind
 
+    def groupMinds(self,start=None,end=None):
+        """
+        根据各Mind的关注点不同，对各Mind进行分组
+        :param start:
+        :param end:
+        :return:
+        """
+        if not start:
+            start=0
+        if not end:
+            end= len(self._id_obj_dict)
+        if start<end:
+            raise Exception("起始点不能小于终点！")
+
+        minds=self._sequence_obj_list[start:end] # 切片
+
+
+
 
 
 

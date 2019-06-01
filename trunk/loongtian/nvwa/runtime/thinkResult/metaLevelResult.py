@@ -43,9 +43,9 @@ class MetaLevelResult(GenericsList):
 
         self.meta_reals={} # 取得的元数据-实际对象（多个） {metadata:related_reals}
 
-        self._meta_net = None # 根据meta_chain取得的元数据网
-        self._meta_net_matched_knowledges = None
-        self._meta_net_matched_knowledges_meaning_klgs = None
+        self._meta_nets = [] # 根据meta_chain取得的元数据网
+        self._meta_net_matched_knowledges = {}
+        self._meta_net_matched_knowledges_meaning_klgs = {}
 
         self.unknownMetas = UnknownMetas()  # 未知的元数据 {mvalue:meta}。等待进一步开启新的Mind处理
         self.proceedUnknownMetas = ProceedUnknownMetas() # 在一个元数据链（笛卡尔积子集）中，已经经过处理的未能正确理解的元数据对象列表
@@ -82,14 +82,14 @@ class MetaLevelResult(GenericsList):
     #     self.meta_chain = meta_chain
 
     @property
-    def meta_net(self):
+    def meta_nets(self):
         """
         根据字符串或元数据链匹配的meta_net(函数内会设置其执行状态及匹配状态)
         :return:
         """
-        return self._meta_net
-    @meta_net.setter
-    def meta_net(self,value):
+        return self._meta_nets
+
+    def set_meta_net(self,value):
         """
         根据字符串或元数据链匹配的meta_net(函数内会设置其执行状态及匹配状态)
         :param value:
@@ -111,7 +111,7 @@ class MetaLevelResult(GenericsList):
             self.metaLevelThinkingRecords.setMetaLevelMatchRecord(ThinkingInfo.MetaLevelInfo.MatchInfo.METANET_UNMATCHED,
                                                                   None)
 
-        self._meta_net = value
+        self._meta_nets.append(value)
 
 
     @property
@@ -122,27 +122,27 @@ class MetaLevelResult(GenericsList):
         """
         return self._meta_net_matched_knowledges
 
-    @meta_net_matched_knowledges.setter
-    def meta_net_matched_knowledges(self,value):
+
+    def set_meta_net_matched_knowledges(self, meta_net, matched_knowledges):
         """
         根据meta_net匹配的knowledges(函数内会设置其执行状态及匹配状态)
-        :param value:
+        :param matched_knowledges:
         :return:
         """
         # 设置ObjectsExecuteRecord执行状态
         self.metaLevelThinkingRecords.setMetaLevelExecuteRecord(
-            ThinkingInfo.MetaLevelInfo.ExecuteInfo.Processing_MetaNet_Matched_Knowledges, value)
+            ThinkingInfo.MetaLevelInfo.ExecuteInfo.Processing_MetaNet_Matched_Knowledges, (meta_net,matched_knowledges))
 
-        if value:
+        if matched_knowledges:
             # 设置匹配状态为KNOWLEDGE_MATCHED
             self.metaLevelThinkingRecords.setMetaLevelMatchRecord(ThinkingInfo.MetaLevelInfo.MatchInfo.METANET_KNOWLEDGE_MATCHED,
-                                                                  value)
+                                                                  (meta_net,matched_knowledges))
         else:
             # 设置匹配状态为KNOWLEDGE_UNMATCHED
             self.metaLevelThinkingRecords.setMetaLevelMatchRecord(ThinkingInfo.MetaLevelInfo.MatchInfo.METANET_KNOWLEDGE_UNMATCHED,
                                                                   None)
 
-        self._meta_net_matched_knowledges = value
+        self._meta_net_matched_knowledges[meta_net] = matched_knowledges
 
     @property
     def meta_net_matched_knowledges_meaning_klgs(self):
@@ -152,21 +152,45 @@ class MetaLevelResult(GenericsList):
         """
         return self._meta_net_matched_knowledges_meaning_klgs
 
-    @meta_net_matched_knowledges_meaning_klgs.setter
-    def meta_net_matched_knowledges_meaning_klgs(self, value):
+
+    def get_meta_net_matched_knowledges_meaning_klgs(self):
+        """
+        取得元数据网匹配到的知识链的意义。
+        :return:
+        """
+        if not self.meta_nets:
+            return None
+        total_meaning_klgs=[]
+        for meta_net in self.meta_nets:
+            matched_knowledges_meaning_klgs=self.meta_net_matched_knowledges_meaning_klgs[meta_net]
+            cur_meaning_klgs=[]
+            for matched_knowledge, meaning_klgs in matched_knowledges_meaning_klgs.items():
+                if isinstance(meaning_klgs,list) or isinstance(meaning_klgs,tuple):
+                    cur_meaning_klgs.extend(meaning_klgs)
+                else:
+                    cur_meaning_klgs.append(meaning_klgs)
+            total_meaning_klgs.append(cur_meaning_klgs)
+        final_meaning_klgs=[]
+        import itertools
+        for meaning_klgs in itertools.product(*total_meaning_klgs):
+            final_meaning_klgs.append(meaning_klgs)
+
+        return final_meaning_klgs
+
+    def set_meta_net_matched_knowledges_meaning_klgs(self, meta_net, matched_knowledges_meaning_klgs):
         """
         根据meta_net匹配的knowledges向下一层取得的意义知识链(函数内会设置其执行、匹配及理解状态)
-        :param value:{meta_net_matched_knowledge:meaning_klgs}
+        :param matched_knowledges_meaning_klgs:{meta_net_matched_knowledge:meaning_klgs}
         :return:
         """
         # 设置ObjectsExecuteRecord执行状态
         self.metaLevelThinkingRecords.setMetaLevelExecuteRecord(
-            ThinkingInfo.MetaLevelInfo.ExecuteInfo.Processing_MetaNet_Matched_Knowledges_Meaning, value)
+            ThinkingInfo.MetaLevelInfo.ExecuteInfo.Processing_MetaNet_Matched_Knowledges_Meaning, (meta_net,matched_knowledges_meaning_klgs))
 
-        if value:
+        if matched_knowledges_meaning_klgs:
             # 设置匹配状态为MEANING_MATCHED
             self.metaLevelThinkingRecords.setMetaLevelMatchRecord(ThinkingInfo.MetaLevelInfo.MatchInfo.METANET_KNOWLEDGE_MEANING_MATCHED,
-                                                                  value)
+                                                                  (meta_net,matched_knowledges_meaning_klgs))
 
         else:
             # 设置匹配状态为MEANING_UNMATCHED
@@ -174,7 +198,7 @@ class MetaLevelResult(GenericsList):
                                                                   None)
             # 不设置其理解状态（等待后续进一步处理）
 
-        self._meta_net_matched_knowledges_meaning_klgs = value
+        self._meta_net_matched_knowledges_meaning_klgs[meta_net] = matched_knowledges_meaning_klgs
 
     def createNewRealLevelResult(self, reals):
         """
@@ -224,7 +248,10 @@ class MetaLevelResult(GenericsList):
         元数据级别对思考结果进行判断，是否已经理解（匹配了元数据网-知识链-意义）
         :return:
         """
-        if self.metaLevelThinkingRecords.curMetaLevelMatchInfo == ThinkingInfo.MetaLevelInfo.MatchInfo.METANET_KNOWLEDGE_MEANING_MATCHED:
+        # 单元数据
+        if self.metaLevelThinkingRecords.curMetaLevelMatchInfo == ThinkingInfo.MetaLevelInfo.MatchInfo.SINGLE_META_RELATED_REALS_MATCHED:
+            return True
+        elif self.metaLevelThinkingRecords.curMetaLevelMatchInfo == ThinkingInfo.MetaLevelInfo.MatchInfo.METANET_KNOWLEDGE_MEANING_MATCHED:
             return True
 
         return False

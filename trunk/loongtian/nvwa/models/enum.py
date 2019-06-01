@@ -3,7 +3,6 @@
 
 __author__ = 'Leon'
 
-
 from loongtian.util.common.enum import Enum
 
 
@@ -38,9 +37,9 @@ class ObjType(Enum):
     REAL_OBJECT = 3  # 实际对象的总类（未分类的实际对象类型）
     # UNCLASSIFIED_REALOBJECT = 30 # 未分类的实际对象类型
     EXISTENCE = 30  # 实对象（可以通过感知器感知的实际存在的对象，
-                    # 例如“爱因斯坦”，“这头牛”，“曹操”,“天安门”可以理解为类的实例。
-                    # 特别需要注意的是：实对象也可以由虚对象构成，
-                    # 但需要实对象的值进行填充【这时需要引入值、值域的概念】）
+    # 例如“爱因斯坦”，“这头牛”，“曹操”,“天安门”可以理解为类的实例。
+    # 特别需要注意的是：实对象也可以由虚对象构成，
+    # 但需要实对象的值进行填充【这时需要引入值、值域的概念】）
     VIRTUAL = 31  # 虚对象（不可以通过感知器感知的不实际存在的对象，例如“牛”，“人类”,是大脑经过抽象提炼出的对象，可以理解为类）在人类的语言中，大部分为虚对象
     ACTION = 32  # 动作类实际对象
 
@@ -53,8 +52,10 @@ class ObjType(Enum):
 
     PLACEHOLDER = 36  # 占位符类型实际对象，模式生成中使用
     # MODIFIER =37 # 修限对象（目前未使用）
-    EMOTION = 38 # 情感实际对象
-    EXE_MEANING_VALUE = 37  # 意义的值（女娲系统的意义的值只能有一个实际对象，或为一个表示集合的实际对象！）
+    EMOTION = 38  # 情感实际对象
+    LINEAR_EXE_MEANING_VALUE = 370  # 意义的值（女娲系统的意义的值只能有一个实际对象，或为一个表示集合的实际对象！）
+    CONJUGATED_EXE_MEANING_VALUE=371
+    CONTEXT_EXE_MEANING_VALUE = 372
 
     # 用户管理部分
     USER = 39  # 作为用户的实际对象
@@ -67,7 +68,9 @@ class ObjType(Enum):
     KNOWLEDGE = 4  # 真正的知识\实际对象链（不作为模式或意义的知识链）
     # REAL_KNOWLEDGE = 40
 
-    EXE_INFO = 41  # 作为可执行信息（模式和意义）的知识链（里面有placeholder）。RealObject的模式（kid）,当RealObject为动词或修限词时。
+    LINEAR_EXE_INFO = 41  # 作为可执行信息（模式和意义）的知识链（里面有placeholder）。RealObject的模式（kid）,当RealObject为动词或修限词时。
+    CONJUGATED_EXE_INFO = 42  # 作为线性结构的可执行信息（模式和意义）的知识链（里面有placeholder）。
+    CONTEXT_EXE_INFO = 43  # 作为上下文结构的可执行信息（模式和意义）的知识链（里面有placeholder）。
 
     # 模式的知识链只有一个。
     # 意义的知识链（应该看做集合，每个元素看做一步，哪怕只有一个元素）
@@ -80,7 +83,6 @@ class ObjType(Enum):
     # MEANING_STEP = 421  # 意义对应的每一步知识链:step1-step2...
     # MEANING_STATUS = 422  # 每一步知识链的的转换模式（一个状态集合，可以有多个状态转换）：status1,status2...
 
-    # RETURN = 43 # 作为返回结果的实际对象（应该看做集合，每个元素看做一步，哪怕只有一个元素）。
     # COLLECTION = 5  # 集合对象类型
     # DOMAIN = 0x0400
 
@@ -88,6 +90,7 @@ class ObjType(Enum):
     #      分层对象。
     # ####################################
     LAYER = 9  # 分层对象类型，例如：MetaData-RealObject
+    OBSERVER = 10  # 观察者-观察的知识关联关系
 
     @staticmethod
     def getSubTypes(type):
@@ -127,7 +130,7 @@ class ObjType(Enum):
 
         if type == ObjType.KNOWLEDGE:
             return [
-                ObjType.EXE_INFO,
+                ObjType.LINEAR_EXE_INFO,
                 # ObjType.MEANING,
                 # ObjType.MEANING_STEP,
                 # ObjType.MEANING_STATUS,
@@ -370,7 +373,7 @@ class ObjType(Enum):
         :param type:
         :return:
         """
-        return type == ObjType.EXE_INFO
+        return type == ObjType.LINEAR_EXE_INFO
 
     # @staticmethod
     # def isMeaning(type):
@@ -389,6 +392,15 @@ class ObjType(Enum):
         :return:
         """
         return type == ObjType.LAYER
+
+    @staticmethod
+    def isObserver(type):
+        """
+        是否是观察者对象类型，例如：Observer-RealObject
+        :param type:
+        :return:
+        """
+        return type == ObjType.OBSERVER
 
     @staticmethod
     def getTypeNames(type):
@@ -433,7 +445,7 @@ class ObjType(Enum):
         elif ObjType.isKnowledge(type):
             return "KNOWLEDGE"
         elif ObjType.isExeInfo(type):
-            return "EXE_INFO"
+            return "LINEAR_EXE_INFO"
         # if ObjType.isMeaning(type):
         #     return "MEANING"
 
@@ -443,6 +455,20 @@ class ObjType(Enum):
             return "LAYER"
 
         return "UNKNOWN"
+
+    def isInstance(self, type, parent_type):
+        """
+        判断一个对象类型是否是父对象类型或其的子类型
+        :param type:
+        :param parent_type:
+        :return:
+        """
+        if type == parent_type:
+            return True
+        sub_types = ObjType.getSubTypes(parent_type)
+        if sub_types and type in sub_types:
+            return True
+        return False
 
 
 ObjType = ObjType()
@@ -520,11 +546,11 @@ class DBValueType(Enum):
     # ######################
     # 布尔类型
     # ######################
-    boolean = 41 #它指定true或false的状态。	1字节
+    boolean = 41  # 它指定true或false的状态。	1字节
     # ######################
     # 货币类型
     # ######################
-    money =51 #货币金额 8 字节 - 92233720368547758.08 至 + 92233720368547758.07
+    money = 51  # 货币金额 8 字节 - 92233720368547758.08 至 + 92233720368547758.07
     # ######################
     # 几何类型
     # ######################
@@ -539,9 +565,9 @@ class DBValueType(Enum):
     # ######################
     # 数据类型
     # ######################
-    bit = 71 # 定长位串
-    bit_varying = 72 #变长位串
-    bytea = 73 # 二进制数据（"字节数组"）
+    bit = 71  # 定长位串
+    bit_varying = 72  # 变长位串
+    bytea = 73  # 二进制数据（"字节数组"）
 
     # ######################
     # 文档级别的数据类型
@@ -550,9 +576,9 @@ class DBValueType(Enum):
     tsvector = 82  # 全文检索文档
     txid_snapshot = 83  # 用户级别事务ID快照
     uuid = 84  # 通用唯一标识符 PostgreSQL还接受下面几种格式，其中的十六进制位可以是大写的：
-                    # （1）A0EEBC99-9C0B-4EF8-BB6D-6BB9BD380A11
-                    # （2）{a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11}
-                    # （3）a0eebc999c0b4ef8bb6d6bb9bd380a11
+    # （1）A0EEBC99-9C0B-4EF8-BB6D-6BB9BD380A11
+    # （2）{a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11}
+    # （3）a0eebc999c0b4ef8bb6d6bb9bd380a11
     xml = 85  # XML数据
 
     # ######################
@@ -569,6 +595,3 @@ class WhereRelation(Enum):
     """
     AND = 0
     OR = 1
-
-
-

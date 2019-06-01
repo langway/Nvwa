@@ -30,20 +30,20 @@ class PerceptionCentral(CentralBase):
 
     def receive(self,raw_input):
         """
-        接收不同感知器官的输入，分别进行处理
+        接收不同感知器官的输入，分别进行处理 todo 需防sql注入
         :param input:可以包括文本、声音、图像等
         :return:
         """
         if not raw_input:
             return None
         if isinstance(raw_input, str):
-            raw_input=unicode(raw_input)
+            raw_input=str(raw_input)
 
         # 记录系统的输入信息
         self.Brain.MemoryCentral.InputsManager.add(raw_input)
 
         # 送入思维中枢，开始思考
-        if isinstance(raw_input,unicode):
+        if isinstance(raw_input,str):
             return self.Brain.ThinkingCentral.thinkStringInput(raw_input)
         else:
             raise Exception("当前程序不能处理其他类型的数据！")

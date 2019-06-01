@@ -464,34 +464,34 @@ class TestMetaNetEngine(TestCase):
     def testCreateMetaNetByStartEnd(self):
         print("----testCreateMetaNetByStartEnd----")
 
-        metaNetItem1 = MetaNet.createMetaNetByStartEnd(self.meta_zhongguo, self.meta_renmin)  # "中国-人民"
-        metaNetItem2 = MetaNet.createMetaNetByStartEnd(metaNetItem1, self.meta_jiefangjun)  # "中国-人民"-"解放军"
-        metaNetItem3 = MetaNet.createMetaNetByStartEnd(metaNetItem2, self.meta_shi)  # "中国-人民"-"解放军" -"是"
-        metaNetItem4 = MetaNet.createMetaNetByStartEnd(self.meta_zuibang, self.meta_de)  # 最棒-的
-        metaNetItem5 = MetaNet.createMetaNetByStartEnd(metaNetItem3, metaNetItem4)  # 中国-人民"-"解放军" -"是"--最棒-的
-        metaNetItem6 = MetaNet.createMetaNetByStartEnd(self.meta_wo, self.meta_zhidao)  # 我-知道
-        metaNetItem7 = MetaNet.createMetaNetByStartEnd(metaNetItem6, metaNetItem5)
+        metaNetItem1 = MetaNet.createByStartEnd(self.meta_zhongguo, self.meta_renmin)  # "中国-人民"
+        metaNetItem2 = MetaNet.createByStartEnd(metaNetItem1, self.meta_jiefangjun)  # "中国-人民"-"解放军"
+        metaNetItem3 = MetaNet.createByStartEnd(metaNetItem2, self.meta_shi)  # "中国-人民"-"解放军" -"是"
+        metaNetItem4 = MetaNet.createByStartEnd(self.meta_zuibang, self.meta_de)  # 最棒-的
+        metaNetItem5 = MetaNet.createByStartEnd(metaNetItem3, metaNetItem4)  # 中国-人民"-"解放军" -"是"--最棒-的
+        metaNetItem6 = MetaNet.createByStartEnd(self.meta_wo, self.meta_zhidao)  # 我-知道
+        metaNetItem7 = MetaNet.createByStartEnd(metaNetItem6, metaNetItem5)
 
-        self.assertEqual(metaNetItem1.startid, self.meta_zhongguo.mid)
-        self.assertEqual(metaNetItem1.endid, self.meta_renmin.mid)
+        self.assertEqual(metaNetItem1.startid, self.meta_zhongguo.id)
+        self.assertEqual(metaNetItem1.endid, self.meta_renmin.id)
 
-        self.assertEqual(metaNetItem2.startid, metaNetItem1.mnid)
-        self.assertEqual(metaNetItem2.endid, self.meta_jiefangjun.mid)
+        self.assertEqual(metaNetItem2.startid, metaNetItem1.id)
+        self.assertEqual(metaNetItem2.endid, self.meta_jiefangjun.id)
 
-        self.assertEqual(metaNetItem3.startid, metaNetItem2.mnid)
-        self.assertEqual(metaNetItem3.endid, self.meta_shi.mid)
+        self.assertEqual(metaNetItem3.startid, metaNetItem2.id)
+        self.assertEqual(metaNetItem3.endid, self.meta_shi.id)
 
-        self.assertEqual(metaNetItem4.startid, self.meta_zuibang.mid)
-        self.assertEqual(metaNetItem4.endid, self.meta_de.mid)
+        self.assertEqual(metaNetItem4.startid, self.meta_zuibang.id)
+        self.assertEqual(metaNetItem4.endid, self.meta_de.id)
 
-        self.assertEqual(metaNetItem5.startid, metaNetItem3.mnid)
-        self.assertEqual(metaNetItem5.endid, metaNetItem4.mnid)
+        self.assertEqual(metaNetItem5.startid, metaNetItem3.id)
+        self.assertEqual(metaNetItem5.endid, metaNetItem4.id)
 
-        self.assertEqual(metaNetItem6.startid, self.meta_wo.mid)
-        self.assertEqual(metaNetItem6.endid, self.meta_zhidao.mid)
+        self.assertEqual(metaNetItem6.startid, self.meta_wo.id)
+        self.assertEqual(metaNetItem6.endid, self.meta_zhidao.id)
 
-        self.assertEqual(metaNetItem7.startid, metaNetItem6.mnid)
-        self.assertEqual(metaNetItem7.endid, metaNetItem5.mnid)
+        self.assertEqual(metaNetItem7.startid, metaNetItem6.id)
+        self.assertEqual(metaNetItem7.endid, metaNetItem5.id)
 
     def testCreateMetaNetByChainItems(self):
         print("----testCreateMetaNetByChainItems----")
@@ -508,13 +508,13 @@ class TestMetaNetEngine(TestCase):
 
     def testGetChainItems(self):
         print("----testGetChainItems----")
-        metaNetItem1 = MetaNet.createMetaNetByStartEnd(self.meta_zhongguo, self.meta_renmin)  # "中国-人民"
-        metaNetItem2 = MetaNet.createMetaNetByStartEnd(metaNetItem1, self.meta_jiefangjun)  # "中国-人民"-"解放军"
-        metaNetItem3 = MetaNet.createMetaNetByStartEnd(metaNetItem2, self.meta_shi)  # "中国-人民"-"解放军" -"是"
-        metaNetItem4 = MetaNet.createMetaNetByStartEnd(self.meta_zuibang, self.meta_de)  # 最棒-的
-        metaNetItem5 = MetaNet.createMetaNetByStartEnd(metaNetItem3, metaNetItem4)  # 中国-人民"-"解放军" -"是"--最棒-的
-        metaNetItem6 = MetaNet.createMetaNetByStartEnd(self.meta_wo, self.meta_zhidao)  # 我-知道
-        metaNetItem7 = MetaNet.createMetaNetByStartEnd(metaNetItem6, metaNetItem5)
+        metaNetItem1 = MetaNet.createByStartEnd(self.meta_zhongguo, self.meta_renmin)  # "中国-人民"
+        metaNetItem2 = MetaNet.createByStartEnd(metaNetItem1, self.meta_jiefangjun)  # "中国-人民"-"解放军"
+        metaNetItem3 = MetaNet.createByStartEnd(metaNetItem2, self.meta_shi)  # "中国-人民"-"解放军" -"是"
+        metaNetItem4 = MetaNet.createByStartEnd(self.meta_zuibang, self.meta_de)  # 最棒-的
+        metaNetItem5 = MetaNet.createByStartEnd(metaNetItem3, metaNetItem4)  # 中国-人民"-"解放军" -"是"--最棒-的
+        metaNetItem6 = MetaNet.createByStartEnd(self.meta_wo, self.meta_zhidao)  # 我-知道
+        metaNetItem7 = MetaNet.createByStartEnd(metaNetItem6, metaNetItem5)
         print(metaNetItem1)
         metaNetItem5.getChainItems()
         metaNetItem7.getChainItems()

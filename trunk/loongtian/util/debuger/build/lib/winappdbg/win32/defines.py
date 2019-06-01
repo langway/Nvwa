@@ -243,7 +243,7 @@ class GuessStringType(object):
 
         # Get the types of all arguments for the function
         v_types   = [ type(item) for item in argv ]
-        v_types.extend( [ type(value) for (key, value) in argd.iteritems() ] )
+        v_types.extend( [ type(value) for (key, value) in argd.items() ] )
 
         # Get the appropriate function for the default type
         if self.t_default == t_ansi:
@@ -338,7 +338,7 @@ def MakeANSIVersion(fn):
         t_ansi    = GuessStringType.t_ansi
         t_unicode = GuessStringType.t_unicode
         v_types   = [ type(item) for item in argv ]
-        v_types.extend( [ type(value) for (key, value) in argd.iteritems() ] )
+        v_types.extend( [ type(value) for (key, value) in argd.items() ] )
         if t_ansi in v_types:
             argv = list(argv)
             for index in xrange(len(argv)):
@@ -362,7 +362,7 @@ def MakeWideVersion(fn):
         t_ansi    = GuessStringType.t_ansi
         t_unicode = GuessStringType.t_unicode
         v_types   = [ type(item) for item in argv ]
-        v_types.extend( [ type(value) for (key, value) in argd.iteritems() ] )
+        v_types.extend( [ type(value) for (key, value) in argd.items() ] )
         if t_unicode in v_types:
             argv = list(argv)
             for index in xrange(len(argv)):

@@ -365,7 +365,7 @@ _decode_handlers = {
     'set': set,
     'frozenset': frozenset,
     'complex': kwargified(complex),
-    'unicode':unicode,
+    'unicode':str,
     'Decimal': Decimal,
     'Fraction': kwargified(Fraction),
     'UUID': kwargified(uuid.UUID)

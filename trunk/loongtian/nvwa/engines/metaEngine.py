@@ -40,7 +40,7 @@ class MetaNetEngine(EngineBase):
         :param meta_chain:[MetaData,[MetaData]]
         :return:
         """
-        return MetaNet.createMetaNetByMetaChain(metaChain)
+        return MetaNet._createByObjChain(metaChain)
 
     def createMetaNetBySequnceWords(self, s_chain):
         """
@@ -66,7 +66,7 @@ class MetaNetEngine(EngineBase):
             import uuid
             _uuid = str(uuid.uuid1())
             logger.info("开始从MetaNet数据库加载NgramDict", timeStartMark=_uuid)
-            allMetaNet = NgramEngine.loadNgramDictFromDB(self.MemoryCentral.PersistentMemory.NgramDict, NgramNum)
+            allMetaNet = NgramEngine.loadNgramDictFromDB(self.MemoryCentral.PersistentMemory.NgramDict, NgramNum,memory=self.MemoryCentral)
             self._allNgramDictFromDBLoaded = True
             msg="从MetaNet数据库加载NgramDict完毕"
             if not allMetaNet:
@@ -221,7 +221,7 @@ class TextEngine(EngineBase):
     #     # 检查参数
     #     if singleFrequancyDict is None or len(singleFrequancyDict)==0:
     #         return False
-    #     for k,v in singleFrequancyDict.iteritems():
+    #     for k,v in singleFrequancyDict.items():
     #         if self.SingleFrequancyDict.has_key(k):
     #             self.SingleFrequancyDict[k] += v
     #         else:
@@ -650,12 +650,12 @@ class TextEngine(EngineBase):
         将所有记忆中的的元数据创建（更新）到数据库中
         :return:
         """
-        for meta in self.MemoryCentral.PersistentMemory.MetaDataIdDict.values():
+        for id,meta in self.MemoryCentral.PersistentMemory.MetaDataIdDict.items():
             if attributeValues:
                 meta.updateAttributeValues(**attributeValues)
             else:
                 meta.update()
-        for meta in self.MemoryCentral.WorkingMemory.MetaDataIdDict.values():
+        for id,meta in self.MemoryCentral.WorkingMemory.MetaDataIdDict.items():
             if attributeValues:
                 meta.updateAttributeValues(**attributeValues)
             else:

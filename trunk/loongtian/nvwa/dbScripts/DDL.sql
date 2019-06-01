@@ -21,7 +21,7 @@ COMMENT ON DATABASE "Nvwa"
 
 CREATE TABLE public."tbl_metaData"
 (
-    mid character(32) COLLATE pg_catalog."default" NOT NULL,
+    id character(32) COLLATE pg_catalog."default" NOT NULL,
     type integer,
     mvalue text COLLATE pg_catalog."default" NOT NULL,
     weight double precision,
@@ -33,7 +33,7 @@ CREATE TABLE public."tbl_metaData"
     createtime timestamp with time zone,
     updatetime timestamp with time zone,
     lasttime timestamp with time zone DEFAULT now(),
-    CONSTRAINT metadata_pkey PRIMARY KEY (mid),
+    CONSTRAINT metadata_pkey PRIMARY KEY (id),
     CONSTRAINT metadata_mvalue_key UNIQUE (mvalue)
 )
 WITH (
@@ -47,7 +47,7 @@ COMMENT ON TABLE public."tbl_metaData"
     IS '女娲中的MetaData输入
 语义载体经过《MetaData网》进行分词，分词之后的词组存入到MetaData表中。';
 
-COMMENT ON COLUMN public."tbl_metaData".mid
+COMMENT ON COLUMN public."tbl_metaData".id
     IS '词组ID';
 
 COMMENT ON COLUMN public."tbl_metaData".type

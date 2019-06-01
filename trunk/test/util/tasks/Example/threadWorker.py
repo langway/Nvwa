@@ -289,7 +289,7 @@ if __name__ == "__main__":
     # try:
     #     t1.start()
     # except Exception,e:
-    #     print(e.message )
+    #     print(str(e) )
     #
     # t2 = MyThread(None,'2')
     # t2.start()

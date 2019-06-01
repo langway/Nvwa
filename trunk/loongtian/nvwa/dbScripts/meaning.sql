@@ -22,7 +22,7 @@ COMMENT ON TABLE public.tbl_meaning
   IS '上一层(知识链/动作对象)与下一层(一定是知识链)在意义上的关联关系';
 COMMENT ON COLUMN public.tbl_meaning.uid IS '上一层(知识链/动作对象)的ID';
 COMMENT ON COLUMN public.tbl_meaning.utype IS '上一层(知识链/动作对象)的类型';
-COMMENT ON COLUMN public.tbl_meaning.kid IS '下一层(一定是知识链)的ID';
+COMMENT ON COLUMN public.tbl_meaning.id IS '下一层(一定是知识链)的ID';
 COMMENT ON COLUMN public.tbl_meaning.threshold IS '阀值，表示上一层(知识链/动作对象)与下一层(一定是知识链)的紧密关系程度。
 例如：
     [牛-有-腿] --0.1-- [牛-所属物-腿]

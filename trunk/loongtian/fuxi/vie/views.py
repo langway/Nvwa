@@ -8,7 +8,7 @@ DateTime: 2015/6/10
 import json
 
 import loongtian.util.helper.stringHelper as stringHelper
-from loongtian.fuxi.utils.email import send_email
+from loongtian.fuxi.utils.emailHelper import send_email
 from loongtian.fuxi.utils.gateway import verifyValid
 
 __author__ = 'js'
@@ -18,7 +18,6 @@ from loongtian.fuxi import app
 from loongtian.fuxi.mod.models import User, db, SearchRecord
 
 
-@app.route('/')
 @app.route('/index', methods=['GET'])
 def index():
     """
@@ -38,7 +37,7 @@ def index():
 def indexChat():
     """
     聊天模式首页页面
-    :return:pattern 判断不同参数显示不同规格的页面， 值['small', 'mid', 'max']
+    :return:pattern 判断不同参数显示不同规格的页面， 值['small', 'id', 'max']
     """
     try:
         mine = session['user']
@@ -56,7 +55,7 @@ def indexChat():
 
 
     if request.method == 'GET' and 'pattern' in request.args:
-        if request.args['pattern'] in ['small', 'mid', 'max']:
+        if request.args['pattern'] in ['small', 'id', 'max']:
             pattern = request.args['pattern']
     if request.method == 'GET' and 'keyword' in request.args:
         keyword = request.args.get('keyword', '')

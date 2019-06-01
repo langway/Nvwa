@@ -11,11 +11,11 @@ UpdateLog:
 """
 __author__ = 'Leon'
 
-import Queue
+import queue
 import itertools
 
 
-class PriorityQueue(Queue.PriorityQueue):
+class PriorityQueue(queue.PriorityQueue):
     '''
     为直观，相比PriorityQueue修改参数
     添加计数器，由于PriorityQueue为heapq实现，排序是不完全的，不能保证相同优先级的fifo。
@@ -23,7 +23,7 @@ class PriorityQueue(Queue.PriorityQueue):
     '''
 
     def __init__(self):
-        Queue.PriorityQueue.__init__(self)
+        queue.PriorityQueue.__init__(self)
 
         self.counter = itertools.count()
 
@@ -34,13 +34,13 @@ class PriorityQueue(Queue.PriorityQueue):
         if not self._qsize():
             self.counter = itertools.count()
 
-        Queue.PriorityQueue.put(self, (priority, self.counter.next(), item), block=True, timeout=None)
+        queue.PriorityQueue.put(self, (priority, self.counter.next(), item), block=True, timeout=None)
 
     def get(self, block=True, timeout=None):
         '''
         出队列
         '''
-        return Queue.PriorityQueue.get(self)[-1]
+        return queue.PriorityQueue.get(self)[-1]
 
 
 if __name__ == '__main__':
