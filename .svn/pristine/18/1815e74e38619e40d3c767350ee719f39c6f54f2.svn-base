@@ -1,6 +1,0 @@
-
-
-建立一个tensorflow的运行环境
-conda create -n tensorflow python=2.7
-
-activate tensorflow

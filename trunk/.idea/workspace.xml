@@ -69,11 +69,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/nvwa/testBrain.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="143">
-              <caret line="297" selection-start-line="297" selection-end-line="297" />
+              <caret line="295" column="16" lean-forward="true" selection-start-line="295" selection-start-column="16" selection-end-line="295" selection-end-column="16" />
               <folding>
                 <element signature="e#759#11840#0" />
               </folding>
@@ -93,8 +93,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/loongtian/nvwa/organs/mind.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="1145" selection-start-line="1145" selection-end-line="1145" />
+            <state relative-caret-position="104">
+              <caret line="113" selection-start-line="113" selection-end-line="113" />
             </state>
           </provider>
         </entry>
@@ -117,7 +117,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/loongtian/nvwa/organs/brain.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="263">
@@ -1033,14 +1033,11 @@
       <workItem from="1559203087248" duration="382000" />
       <workItem from="1559446956340" duration="644000" />
       <workItem from="1559447821835" duration="2556000" />
-      <workItem from="1559450639711" duration="9328000" />
+      <workItem from="1559450639711" duration="9645000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Nosetests_for_testBrain_TestBrain_testMeaning - 2019.04.03 at 13h 49m 44s.xml">
-      <configuration name="Nosetests for testBrain.TestBrain.testMeaning" configurationId="tests" />
-    </history-entry>
     <history-entry file="Nosetests_for_testBrain_TestBrain_testMeaning - 2019.04.03 at 13h 54m 55s.xml">
       <configuration name="Nosetests for testBrain.TestBrain.testMeaning" configurationId="tests" />
     </history-entry>
@@ -1068,9 +1065,12 @@
     <history-entry file="Nosetests_for_testBrain_TestBrain_testMeaning - 2019.06.02 at 13h 35m 48s.xml">
       <configuration name="Nosetests for testBrain.TestBrain.testMeaning" configurationId="tests" />
     </history-entry>
+    <history-entry file="Nosetests_for_testBrain_TestBrain_testMeaning - 2019.06.02 at 16h 07m 23s.xml">
+      <configuration name="Nosetests for testBrain.TestBrain.testMeaning" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="793536000" />
+    <option name="totallyTimeSpent" value="793853000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1083,7 +1083,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26206434" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1091,7 +1090,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.26099706" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3900293" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.42375368" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.42375368" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32991204" />
@@ -1338,11 +1337,6 @@
           <option name="timeStamp" value="1085" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/test/nvwa/testBrain.py</url>
-          <line>290</line>
-          <option name="timeStamp" value="1097" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/loongtian/nvwa/organs/mind.py</url>
           <line>113</line>
           <option name="timeStamp" value="1101" />
@@ -1354,18 +1348,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/test/nvwa/testBrain.py</url>
-          <line>291</line>
-          <option name="timeStamp" value="1105" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/test/nvwa/testBrain.py</url>
-          <line>292</line>
-          <option name="timeStamp" value="1106" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/test/nvwa/testBrain.py</url>
           <line>297</line>
           <option name="timeStamp" value="1107" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test/nvwa/testBrain.py</url>
+          <line>281</line>
+          <option name="timeStamp" value="1108" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -1783,23 +1772,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/organs/mind.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="1145" selection-start-line="1145" selection-end-line="1145" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/nvwa/testBrain.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="297" selection-start-line="297" selection-end-line="297" />
-          <folding>
-            <element signature="e#759#11840#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/loongtian/nvwa/runtime/placeholder.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="211">
@@ -1818,6 +1790,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="263">
           <caret line="126" column="38" lean-forward="true" selection-start-line="126" selection-start-column="38" selection-end-line="126" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/organs/mind.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="113" selection-start-line="113" selection-end-line="113" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/nvwa/testBrain.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="295" column="16" lean-forward="true" selection-start-line="295" selection-start-column="16" selection-end-line="295" selection-end-column="16" />
+          <folding>
+            <element signature="e#759#11840#0" />
+          </folding>
         </state>
       </provider>
     </entry>
