@@ -367,8 +367,6 @@ class TextEngine(EngineBase):
             return
         if type(rawInput) is str:
             rawInput = stringHelper.converStringToUnicode(rawInput)
-        if not type(rawInput) is unicode:
-            return
 
         # elif type(rawInput) is types.ListType:
         #     if not type(rawInput) is str:
@@ -549,7 +547,7 @@ class TextEngine(EngineBase):
         :return:
         """
         articleSegmentResult = ArticleSegmentResult(filename)
-        if not isinstance(filename, unicode) or not filename.endswith(u".txt"):
+        if not isinstance(filename, str) or not filename.endswith(u".txt"):
             return None
 
         from loongtian.util.helper import fileHelper

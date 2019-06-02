@@ -2,25 +2,25 @@
 # -*- coding: utf-8 -*-
 
 import re
-import urllib
-import urllib2
+import urllib as urllib
+# import urllib2
 import shelve
 
 
 db = shelve.open('pinyin.db', 'c')
 
 def lookup_pinyin(words):
-    assert isinstance(words, unicode)
+    assert isinstance(words, str)
     if all(map(lambda w: w.encode('utf-8') in db, words)):
         return {char: db[char.encode('utf-8')] for char in words}
     url = "http://www.51windows.net/pages/pinyin.asp?"
     params = dict(txt=words.encode('gbk'),
                   pincolor='blue')
-    req = urllib2.Request(url, urllib.urlencode(params))
-    resp = urllib2.urlopen(req)
-    html = unicode(resp.read(), 'gbk').split('table')[1]
+    req = urllib.request(url, urllib.urlencode(params))
+    resp = urllib.request.urlopen(req)
+    html = str(resp.read(), 'gbk').split('table')[1]
     html = re.sub(r'(<span class="h">.*?</span>)', '', html, flags=re.U)
-    pattern = re.compile(ur'<nobr>(.*?)</nobr><br>(.*?)</span>', re.U)
+    pattern = re.compile('<nobr>(.*?)</nobr><br>(.*?)</span>', re.U)
     matches = re.findall(pattern, html)
     ret = {k: v for v, k in matches}
     for k in ret:
@@ -46,5 +46,5 @@ def to_ping_ze(words):
 
 
 if __name__ == '__main__':
-    print lookup_pinyin(u'你好啊')
-    print to_ping_ze(u'旧事凭谁诉')
+    print (lookup_pinyin(u'你好啊'))
+    print (to_ping_ze(u'旧事凭谁诉'))

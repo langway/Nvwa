@@ -2,341 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fd997f4e-dd50-4de5-9693-3fab544ecccc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/loongtian/nvwa/engines/metaDataHelper.py" beforeDir="false" afterPath="$PROJECT_DIR$/loongtian/nvwa/engines/metaDataHelper.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/loongtian/nvwa/engines/metaEngine.py" beforeDir="false" afterPath="$PROJECT_DIR$/loongtian/nvwa/engines/metaEngine.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/nvwa/engines/ngramEngine.py" beforeDir="false" afterPath="$PROJECT_DIR$/loongtian/nvwa/engines/ngramEngine.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/nvwa/runtime/ipAddress.py" beforeDir="false" afterPath="$PROJECT_DIR$/loongtian/nvwa/runtime/ipAddress.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/nvwa/runtime/sequencedObjs.py" beforeDir="false" afterPath="$PROJECT_DIR$/loongtian/nvwa/runtime/sequencedObjs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/nvwa/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/loongtian/nvwa/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/nvwa/tools/cidian/xml_cidian_to_sql_postgresql.py" beforeDir="false" afterPath="$PROJECT_DIR$/loongtian/nvwa/tools/cidian/xml_cidian_to_sql_postgresql.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/nvwa/tools/nvwaObjectsCodeConvertor/nvwaObjectsCodeConvertor.py" beforeDir="false" afterPath="$PROJECT_DIR$/loongtian/nvwa/tools/nvwaObjectsCodeConvertor/nvwaObjectsCodeConvertor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/Deviare" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/Deviare/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/breakpoint.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/crash.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/debug.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/disasm.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/event.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/interactive.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/module.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/plugins" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/plugins/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/plugins/do_example.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/plugins/do_exchain.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/plugins/do_exploitable.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/plugins/do_symfix.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/process.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/registry.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/search.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/sql.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/system.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/textio.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/thread.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/util.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/win32" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/win32/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/win32/advapi32.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/win32/context_amd64.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/win32/context_i386.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/win32/dbghelp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/win32/defines.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/win32/gdi32.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/win32/kernel32.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/win32/ntdll.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/win32/peb_teb.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/win32/psapi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/win32/shell32.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/win32/shlwapi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/win32/user32.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/win32/version.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/win32/wtsapi32.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/window.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/scripts-2.7" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/scripts-2.7/SelectMyParent.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/scripts-2.7/crash_logger.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/scripts-2.7/crash_report.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/scripts-2.7/hexdump.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/scripts-2.7/pdebug.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/scripts-2.7/pfind.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/scripts-2.7/pinject.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/scripts-2.7/pkill.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/scripts-2.7/plist.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/scripts-2.7/pmap.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/scripts-2.7/pread.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/scripts-2.7/pstrings.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/scripts-2.7/ptrace.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/scripts-2.7/pwrite.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/build/scripts-2.7/service.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/hookHelper.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/pydbg" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/pydbg/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/pydbg/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/pydbg/breakpoint.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/pydbg/defines.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/pydbg/hardware_breakpoint.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/pydbg/memory_breakpoint.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/pydbg/memory_snapshot_block.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/pydbg/memory_snapshot_context.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/pydbg/my_ctypes.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/pydbg/pdx.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/pydbg/pydbg.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/pydbg/pydbg_client.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/pydbg/system_dll.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/pydbg/windows_h.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/test" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/test/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/test/keyboardHook.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/test/messageBoxAHook.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/test/minHook" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/test/minHook/MinHook.x64.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/test/minHook/MinHook.x86.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/test/minHook/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/test/minHook/minHookTest.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/test/mouseHook.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/test/processScan.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/test/pyhooktest.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/test/pypdgTest.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/test/screenCalibrator.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/test/screenTextCapture.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/test/textOutHook.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/test/winappdbgTest.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/FETCH_HEAD" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/HEAD" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/config" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/description" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/hooks" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/hooks/applypatch-msg.sample" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/hooks/commit-msg.sample" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/hooks/post-update.sample" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/hooks/pre-applypatch.sample" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/hooks/pre-commit.sample" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/hooks/pre-push.sample" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/hooks/pre-rebase.sample" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/hooks/pre-receive.sample" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/hooks/prepare-commit-msg.sample" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/hooks/update.sample" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/index" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/info" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/info/exclude" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/logs" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/logs/HEAD" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/logs/refs" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/logs/refs/heads" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/logs/refs/heads/master" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/logs/refs/remotes" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/logs/refs/remotes/origin" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/logs/refs/remotes/origin/HEAD" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/objects" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/objects/info" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/objects/pack" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/objects/pack/pack-bbd241a5ae13376e805a8cdc005e427c2081ac6b.idx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/objects/pack/pack-bbd241a5ae13376e805a8cdc005e427c2081ac6b.pack" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/packed-refs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/refs" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/refs/heads" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/refs/heads/master" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/refs/remotes" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/refs/remotes/origin" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/refs/remotes/origin/HEAD" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.git/refs/tags" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/MANIFEST.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/distro.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/make.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/AdvancedTopics.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/Debugging.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/Downloads.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/Helpers.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/HowBreakpointsWork.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/HowLabelsWork.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/Instrumentation.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/MoreExamples.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/ProgrammingGuide.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/Redistribution.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/Screenshots.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/Signature.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/Tools.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/Win32APIWrappers.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/_images" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/_images/api_hooks.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/_images/color.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/_images/crash_logger.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/_images/crash_logger_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/_images/dep.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/_images/disasm.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/_images/find_alnum.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/_images/memory_dump.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/_images/pdebug.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/_images/platform.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/_images/plist.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/_images/pmap.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/_images/ptrace.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/_images/registry_search.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/_images/screenshot.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/_static" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/_static/bsd.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/_static/crash_logger.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/_static/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/_static/labels-syntax.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/conf.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/doc/source/index.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/epydoc.cfg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/160069" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/debugging" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/debugging/01_start.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/debugging/02_attach.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/debugging/03_find_and_attach.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/debugging/04_kill_on_exit.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/debugging/05_interactive.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/debugging/06_debug_events.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/debugging/07_crash_dump.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/debugging/08_tracing.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/debugging/09_api_hook.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/debugging/10_event_sifting.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/debugging/11_breakpoint.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/debugging/12_hook_function.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/debugging/13_watch_variable.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/debugging/14_watch_buffer.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/debugging/15_get_label.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/debugging/160069" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/debugging/16_resolve_label.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/debugging/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/extextout_hook.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/helpers" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/helpers/01_colors.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/helpers/02_table.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/helpers/03_debug_log.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/helpers/04_dump.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/helpers/05_path.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/instrumentation" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/instrumentation/01_platform.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/instrumentation/02_show_processes.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/instrumentation/03_start.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/instrumentation/04_show_threads_and_modules.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/instrumentation/05_kill.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/instrumentation/06_read_memory.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/instrumentation/07_command_line.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/instrumentation/08_environment.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/instrumentation/09_inject_dll.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/instrumentation/10_memory_map.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/instrumentation/11_memory_search.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/instrumentation/12_strings.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/instrumentation/13_freeze.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/instrumentation/14_registers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/instrumentation/15_disassemble.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/instrumentation/16_resolve_api.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/instrumentation/17_list_windows.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/instrumentation/18_minimize_all.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/instrumentation/19_show_window_tree.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/instrumentation/20_get_window_at.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/instrumentation/21_find_window.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/instrumentation/22_kill.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/instrumentation/23_registry_export.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/instrumentation/24_registry_search.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/instrumentation/25_services.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/instrumentation/26_service_restart.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/miscellaneous" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/miscellaneous/01_debug_timeout.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/miscellaneous/02_memory_dump.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/miscellaneous/03_find_alnum.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/miscellaneous/04_dep.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/miscellaneous/05_disasm.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/miscellaneous/06_atoms.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/redrawWindow.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/textout_hook.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/textout_hook2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/win32_api_wrappers" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/win32_api_wrappers/01_search_path.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/win32_api_wrappers/02_kill.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/win32_api_wrappers/03_heap_walking.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/win32_api_wrappers/04_show_dlls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/win32_api_wrappers/05_show_drivers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/examples/win32_api_wrappers/160069" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/install.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/install.cfg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/setup.cfg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/setup.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/tools" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/tools/SelectMyParent.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/tools/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/tools/crash_logger.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/tools/crash_report.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/tools/example.cfg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/tools/hexdump.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/tools/pdebug.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/tools/pfind.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/tools/pinject.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/tools/pkill.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/tools/plist.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/tools/pmap.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/tools/pread.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/tools/pstrings.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/tools/ptrace.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/tools/pwrite.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/tools/service.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg.hhp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/breakpoint.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/crash.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/debug.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/disasm.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/event.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/interactive.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/module.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/plugins" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/plugins/README" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/plugins/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/plugins/do_example.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/plugins/do_exchain.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/plugins/do_exploitable.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/plugins/do_symfix.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/process.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/registry.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/search.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/sql.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/system.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/textio.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/thread.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/util.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/win32" beforeDir="true" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/win32/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/win32/advapi32.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/win32/context_amd64.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/win32/context_i386.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/win32/dbghelp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/win32/defines.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/win32/gdi32.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/win32/kernel32.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/win32/ntdll.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/win32/peb_teb.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/win32/psapi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/win32/shell32.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/win32/shlwapi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/win32/user32.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/win32/version.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/win32/wtsapi32.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/debuger/winappdbg/winappdbg/window.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/helper/stringHelper.py" beforeDir="false" afterPath="$PROJECT_DIR$/loongtian/util/helper/stringHelper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loongtian/util/log/logger.py" beforeDir="false" afterPath="$PROJECT_DIR$/loongtian/util/log/logger.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/3.5/DButils4Python3/DBUtils/Examples/DBUtilsExample.py" beforeDir="false" afterPath="$PROJECT_DIR$/support/3.5/DButils4Python3/DBUtils/Examples/DBUtilsExample.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/nvwa/engines/testGroupEngine.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/nvwa/engines/testGroupEngine.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/nvwa/models/testKnowledgeChain.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/nvwa/models/testKnowledgeChain.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loongtian/nvwa/runtime/thinkResult/thinkResult.py" beforeDir="false" afterPath="$PROJECT_DIR$/loongtian/nvwa/runtime/thinkResult/thinkResult.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/code4fun/songci/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/code4fun/songci/utils.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -350,7 +18,7 @@
     <SUITE FILE_PATH="coverage/trunk$email.coverage" NAME="email Coverage Results" MODIFIED="1559058190029" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/loongtian/fuxi/utils" />
     <SUITE FILE_PATH="coverage/trunk$Nosetests_in_testBaseEntity_py.coverage" NAME="Nosetests in testBaseEntity.py Coverage Results" MODIFIED="1551725267656" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/nvwa/models" />
     <SUITE FILE_PATH="coverage/trunk$Nosetests_for_testLayer_TestLayer_testDeleteByEnd.coverage" NAME="Nosetests for testLayer.TestLayer.testDeleteByEnd Coverage Results" MODIFIED="1553580781569" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/nvwa/models" />
-    <SUITE FILE_PATH="coverage/trunk$Nosetests_for_testBrain_TestBrain_testMeaning.coverage" NAME="Nosetests for testBrain.TestBrain.testMeaning Coverage Results" MODIFIED="1559450723883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/nvwa" />
+    <SUITE FILE_PATH="coverage/trunk$Nosetests_for_testBrain_TestBrain_testMeaning.coverage" NAME="Nosetests for testBrain.TestBrain.testMeaning Coverage Results" MODIFIED="1559451289813" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/nvwa" />
     <SUITE FILE_PATH="coverage/trunk$Nosetests_for_testBaseEntity_TestBaseEntity.coverage" NAME="Nosetests for testBaseEntity.TestBaseEntity Coverage Results" MODIFIED="1553781507104" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/nvwa/models" />
     <SUITE FILE_PATH="coverage/trunk$docReplace.coverage" NAME="docReplace Coverage Results" MODIFIED="1559059102777" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/loongtian/nvwa/tools/cidian" />
     <SUITE FILE_PATH="coverage/trunk$Nosetests_for_testBaseEntity_TestBaseEntity_test_getAllLikeByInDB.coverage" NAME="Nosetests for testBaseEntity.TestBaseEntity.test_getAllLikeByInDB Coverage Results" MODIFIED="1553520153080" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/nvwa/models" />
@@ -388,7 +56,39 @@
     <SUITE FILE_PATH="coverage/trunk$xml_cidian_to_sql_postgresql.coverage" NAME="xml_cidian_to_sql_postgresql Coverage Results" MODIFIED="1551823373060" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/loongtian/nvwa/tools/cidian" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test/nvwa/testBrain.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="263">
+              <caret line="295" column="16" lean-forward="true" selection-start-line="295" selection-start-column="16" selection-end-line="295" selection-end-column="16" />
+              <folding>
+                <element signature="e#455#716#0" />
+                <element signature="e#759#11840#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/loongtian/nvwa/runtime/thinkResult/thinkResult.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="151">
+              <caret line="70" column="34" lean-forward="true" selection-start-line="70" selection-start-column="34" selection-end-line="70" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/loongtian/nvwa/engines/metaEngine.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="263">
+              <caret line="560" column="21" lean-forward="true" selection-start-line="560" selection-start-column="21" selection-end-line="560" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -424,12 +124,12 @@
       <find>getMessage</find>
       <find>.iteritems()</find>
       <find>Queue.Queue()</find>
-      <find>unicode</find>
       <find>str(e)</find>
       <find>.message</find>
       <find>e.message</find>
       <find>.values()</find>
       <find>.has_key(</find>
+      <find>unicode</find>
     </findStrings>
     <replaceStrings>
       <replace>tgraph</replace>
@@ -474,8 +174,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/loongtian/fuxi/vie/views.py" />
-        <option value="$PROJECT_DIR$/loongtian/nvwa/organs/centralManager.py" />
         <option value="$PROJECT_DIR$/loongtian/util/db/postgres/dbPool.py" />
         <option value="$PROJECT_DIR$/loongtian/nvwa/managers/inputsManager.py" />
         <option value="$PROJECT_DIR$/loongtian/nvwa/models/metaData.py" />
@@ -513,7 +211,6 @@
         <option value="$PROJECT_DIR$/loongtian/nvwa/settings.py" />
         <option value="$PROJECT_DIR$/loongtian/util/log/logger.py" />
         <option value="$PROJECT_DIR$/loongtian/nvwa/runtime/sequencedObjs.py" />
-        <option value="$PROJECT_DIR$/loongtian/nvwa/engines/metaEngine.py" />
         <option value="$PROJECT_DIR$/test/nvwa/models/testKnowledgeChain.py" />
         <option value="$PROJECT_DIR$/test/nvwa/engines/testGroupEngine.py" />
         <option value="$PROJECT_DIR$/loongtian/nvwa/tools/cidian/xml_cidian_to_sql_postgresql.py" />
@@ -525,6 +222,9 @@
         <option value="$PROJECT_DIR$/loongtian/util/helper/stringHelper.py" />
         <option value="$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/registry.py" />
         <option value="$PROJECT_DIR$/loongtian/util/uiautomation/pydotdll/pydotdll.py" />
+        <option value="$PROJECT_DIR$/loongtian/nvwa/runtime/thinkResult/thinkResult.py" />
+        <option value="$PROJECT_DIR$/loongtian/nvwa/engines/metaEngine.py" />
+        <option value="$PROJECT_DIR$/test/code4fun/songci/utils.py" />
       </list>
     </option>
   </component>
@@ -533,6 +233,7 @@
     <option name="width" value="1935" />
     <option name="height" value="1040" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <showMembers ProjectPane="true" />
@@ -541,6 +242,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -553,11 +255,200 @@
               <item name="trunk" type="462c0819:PsiDirectoryNode" />
               <item name="loongtian" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="engines" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="engines" type="462c0819:PsiDirectoryNode" />
+              <item name="metaEngine.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="engines" type="462c0819:PsiDirectoryNode" />
+              <item name="metaEngine.py" type="8704e2dd:PyFileNode" />
+              <item name="TextEngine" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="runtime" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="runtime" type="462c0819:PsiDirectoryNode" />
+              <item name="thinkResult" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="runtime" type="462c0819:PsiDirectoryNode" />
+              <item name="thinkResult" type="462c0819:PsiDirectoryNode" />
+              <item name="thinkResult.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="loongtian" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="runtime" type="462c0819:PsiDirectoryNode" />
+              <item name="thinkResult" type="462c0819:PsiDirectoryNode" />
+              <item name="thinkResult.py" type="8704e2dd:PyFileNode" />
+              <item name="ThinkResult" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="code4fun" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="code4fun" type="462c0819:PsiDirectoryNode" />
+              <item name="songci" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="code4fun" type="462c0819:PsiDirectoryNode" />
+              <item name="songci" type="462c0819:PsiDirectoryNode" />
+              <item name="utils.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="testBrain.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="nvwa" type="462c0819:PsiDirectoryNode" />
+              <item name="testBrain.py" type="8704e2dd:PyFileNode" />
+              <item name="TestBrain" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="Python37" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="Python37" type="462c0819:PsiDirectoryNode" />
+              <item name="Lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="Python37" type="462c0819:PsiDirectoryNode" />
+              <item name="Lib" type="462c0819:PsiDirectoryNode" />
+              <item name="unittest" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="Python37" type="462c0819:PsiDirectoryNode" />
+              <item name="Lib" type="462c0819:PsiDirectoryNode" />
+              <item name="unittest" type="462c0819:PsiDirectoryNode" />
+              <item name="case.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="Python37" type="462c0819:PsiDirectoryNode" />
+              <item name="Lib" type="462c0819:PsiDirectoryNode" />
+              <item name="unittest" type="462c0819:PsiDirectoryNode" />
+              <item name="case.py" type="8704e2dd:PyFileNode" />
+              <item name="TestCase" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="Lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="Lib" type="462c0819:PsiDirectoryNode" />
+              <item name="unittest" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="Lib" type="462c0819:PsiDirectoryNode" />
+              <item name="unittest" type="462c0819:PsiDirectoryNode" />
+              <item name="case.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="trunk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; Python 3.7 (trunk) &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="Lib" type="462c0819:PsiDirectoryNode" />
+              <item name="unittest" type="462c0819:PsiDirectoryNode" />
+              <item name="case.py" type="8704e2dd:PyFileNode" />
+              <item name="TestCase" type="dd8bbb05:PyElementNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -859,13 +750,11 @@
       <workItem from="1559203087248" duration="382000" />
       <workItem from="1559446956340" duration="644000" />
       <workItem from="1559447821835" duration="2556000" />
+      <workItem from="1559450639711" duration="737000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Nosetests_for_testBrain_TestBrain_testMeaning - 2019.04.02 at 11h 07m 22s.xml">
-      <configuration name="Nosetests for testBrain.TestBrain.testMeaning" configurationId="tests" />
-    </history-entry>
     <history-entry file="Nosetests_for_testBrain_TestBrain_testMeaning - 2019.04.03 at 12h 32m 13s.xml">
       <configuration name="Nosetests for testBrain.TestBrain.testMeaning" configurationId="tests" />
     </history-entry>
@@ -893,9 +782,12 @@
     <history-entry file="Nosetests_for_testBrain_TestBrain_testMeaning - 2019.06.02 at 12h 11m 50s.xml">
       <configuration name="Nosetests for testBrain.TestBrain.testMeaning" configurationId="tests" />
     </history-entry>
+    <history-entry file="Nosetests_for_testBrain_TestBrain_testMeaning - 2019.06.02 at 12h 48m 12s.xml">
+      <configuration name="Nosetests for testBrain.TestBrain.testMeaning" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="784208000" />
+    <option name="totallyTimeSpent" value="784945000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -908,14 +800,15 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25871313" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26206434" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.26099706" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3900293" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.42375368" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.42375368" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32991204" />
@@ -1281,23 +1174,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/runtime/thinkResult/fragments.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="578" column="13" lean-forward="true" selection-start-line="578" selection-start-column="13" selection-end-line="578" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/nvwa/bof/testCollection.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2310">
-          <caret line="77" column="34" lean-forward="true" selection-start-line="77" selection-start-column="34" selection-end-line="77" selection-end-column="34" />
-          <folding>
-            <element signature="e#47#76#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/Python37/Lib/logging/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="249">
@@ -1497,24 +1373,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/nvwa/testBrain.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="284" column="16" selection-start-line="284" selection-start-column="16" selection-end-line="284" selection-end-column="16" />
-          <folding>
-            <element signature="e#455#716#0" />
-            <element signature="e#759#11840#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/Python37/Lib/unittest/case.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="662" selection-start-line="662" selection-end-line="662" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/Python37/Lib/site-packages/nose/case.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="127">
@@ -1554,13 +1412,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
           <caret line="154" column="17" lean-forward="true" selection-start-line="154" selection-start-column="17" selection-end-line="154" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/engines/metaEngine.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="225" column="50" lean-forward="true" selection-start-line="225" selection-start-column="50" selection-end-line="225" selection-end-column="50" />
         </state>
       </provider>
     </entry>
@@ -1620,20 +1471,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/registry.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="671" column="35" lean-forward="true" selection-start-line="671" selection-start-column="35" selection-end-line="671" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/crash.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="1351" column="27" lean-forward="true" selection-start-line="1351" selection-start-column="27" selection-end-line="1351" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/registry.py" />
+    <entry file="file://$PROJECT_DIR$/loongtian/util/debuger/build/lib/winappdbg/crash.py" />
     <entry file="file://$PROJECT_DIR$/loongtian/util/helper/stringHelper.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="233">
@@ -1645,6 +1484,48 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="121">
           <caret line="48" column="40" selection-start-line="48" selection-start-column="40" selection-end-line="48" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/runtime/thinkResult/thinkResult.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="70" column="34" lean-forward="true" selection-start-line="70" selection-start-column="34" selection-end-line="70" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/code4fun/songci/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="19" column="38" lean-forward="true" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
+          <folding>
+            <element signature="e#43#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loongtian/nvwa/engines/metaEngine.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="560" column="21" lean-forward="true" selection-start-line="560" selection-start-column="21" selection-end-line="560" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Python37/Lib/unittest/case.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="617" column="35" lean-forward="true" selection-start-line="617" selection-start-column="35" selection-end-line="617" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/nvwa/testBrain.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="295" column="16" lean-forward="true" selection-start-line="295" selection-start-column="16" selection-end-line="295" selection-end-column="16" />
+          <folding>
+            <element signature="e#455#716#0" />
+            <element signature="e#759#11840#0" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -62,12 +62,12 @@ class ThinkResult(GenericsList):
         2、MetaLevelResults 记录元数据级别的思考结果（其中MetaLevelResult包含RealLevelResult）
         """
         if not rawInput or \
-                (not isinstance(rawInput, str) and not isinstance(rawInput, unicode)) or \
+                not isinstance(rawInput, str)or \
                 len(rawInput.strip()) == 0:
             raise Exception("必须提供元输入，才能创建ThinkResult！")
         super(ThinkResult, self).__init__(MetaLevelResult)  # 是一个MetaLevelResult的列表
         self.mind = mind
-        self.rawInput = unicode(rawInput.strip())  # 元输入
+        self.rawInput = rawInput.strip()  # 元输入
         self.segment_result = None
         self.mindExecutingRecords = MindExecutingRecords()  # [(状态的枚举信息,实施的对象)]
 

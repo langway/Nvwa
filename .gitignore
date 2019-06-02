@@ -1,5 +1,6 @@
 .svn/
 *.svn-base
+*.pyc
 *.mp4
 *.pdf
 *.whl
