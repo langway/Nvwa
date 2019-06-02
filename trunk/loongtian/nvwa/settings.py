@@ -46,7 +46,7 @@ class db():
     db_yiya = "yiya"
     postgres={
         db_auth:PostgresSetting(Host="localhost", Port=5432, Database="auth", User="postgres", Password="123456qaz"),
-        db_nvwa:PostgresSetting(Host="localhost", Port=5432, Database="nvwa2", User="postgres", Password="123456qaz"),
+        db_nvwa:PostgresSetting(Host="localhost", Port=5432, Database="nvwa", User="postgres", Password="123456qaz"),
         db_yiya: PostgresSetting(Host="localhost", Port=5432, Database="yiya", User="postgres", Password="123456qaz"),
     }
 

@@ -85,10 +85,11 @@ class __CommonLogger(object):
                         # 例如：logger.debug("程序1开始",timeStartMark="程序1")——logger.debug("程序1结束",timeEndMark="程序1")
                         # 将记录以"程序1"为标记的两段时间的差值。这里可以使用不同的日志级别。
                         # 注意：当系统完成一对的时差计算时，将会删除该时间对，所以这里要注意不能多次出现相同的timeEndMark
-        if __debug__: # debug状态下最好跟踪内部数据
-            self.logInnerStackTrace =True
-        else:
-            self.logInnerStackTrace = False
+        # if __debug__: # debug状态下最好跟踪内部数据
+        #     self.logInnerStackTrace =True
+        # else:
+        #     self.logInnerStackTrace = False
+        self.logInnerStackTrace = False
     @property
     def handlers(self):
         """

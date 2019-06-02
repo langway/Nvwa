@@ -57,7 +57,7 @@ class IPAddressList(GenericsList):
         :return:
         """
         _IPAddress=IPAddress(host,port)
-        if self.ip_address_dict.has_key(_IPAddress.getAddress()):
+        if _IPAddress.getAddress() in self.ip_address_dict:
             return
         self.ip_address_dict[_IPAddress.getAddress()]=_IPAddress
         self.append(_IPAddress)
@@ -70,6 +70,6 @@ class IPAddressList(GenericsList):
         :return:
         """
         _IPAddress = IPAddress(host, port)
-        if self.ip_address_dict.has_key(_IPAddress.getAddress()):
+        if _IPAddress.getAddress() in self.ip_address_dict:
             return self.ip_address_dict[_IPAddress.getAddress()]
         return None

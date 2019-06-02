@@ -151,7 +151,7 @@ class NgramEngine(EngineBase):
                 # 计算二元关系的关联度
                 # bigram.setdefault(second,1.0/chain_length)
                 # bigram[second]=(bigram[second]+1.0/chain_length)/2
-                if bigram.has_key(second):
+                if second in bigram:
                     bigram[second] += biweight
                 else:
                     bigram[second]=biweight
@@ -164,8 +164,8 @@ class NgramEngine(EngineBase):
                     ngramRelation[3]=trigram
                 # trigram.setdefault(second,{third:1.0/chain_length})
                 # trigram.setdefault(second,{third:0})
-                if trigram.has_key(second) :
-                    if trigram[second].has_key(third):
+                if second in trigram :
+                    if third in trigram[second]:
                         # trigram[second][third]=(trigram[second][third]+1.0/chain_length)/2
                         trigram[second][third] += triweight
                     # trigram[second][third]=1.0/chain_length
@@ -246,7 +246,7 @@ class NgramEngine(EngineBase):
 #             # 计算二元关系的关联度
 #             # bigram.setdefault(next_chars,1.0/chain_length)
 #             # bigram[next_chars]=(bigram[next_chars]+1.0/chain_length)/2
-#             if bigram.has_key(ngramItem.second):
+#             if ngramItem.second in bigram:
 #                 bigram[ngramItem.second] +=ngramItem.biweight
 #             else:
 #                 bigram[ngramItem.second]=ngramItem.biweight
@@ -257,7 +257,7 @@ class NgramEngine(EngineBase):
 #                     ngramRelation[3]=trigram
 #                 # trigram.setdefault(next_chars,{next_next_chars:1.0/chain_length})
 #                 # trigram.setdefault(next_chars,{next_next_chars:0})
-#                 if not trigram[ngramItem.second].has_key(ngramItem.third):
+#                 if not ngramItem.third in trigram[ngramItem.second]:
 #                     # trigram[next_chars][next_next_chars]=1.0/chain_length
 #                     trigram[ngramItem.second][ngramItem.third]=ngramItem.triweight
 #                 else:

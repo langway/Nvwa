@@ -90,20 +90,20 @@ class TestKnowledgeChain(TestCase):
         for meta in self.data:
             i += 1
             exec("self.meta%02d = MetaData(mvalue = '%s')" % (i, meta["mvalue"]))
-            if meta.has_key("frequency"):
+            if "frequency" in meta:
                 exec("self.meta%02d.frequency = %d" % (i, meta["frequency"]))
             exec("self.meta%02d = self.meta%02d.create()" % (i, i))
             j = 0
             for real in meta["relatedRealObjs"]:
                 j += 1
                 exec("self.r%02d%d = RealObject(remark='%s')" % (i, j, real["remark"]))
-                if real.has_key("pattern"):
+                if "pattern" in real:
                     exec("self.r%02d%d.pattern = '%s'" % (i, j, real["pattern"]))
-                if real.has_key("meaning"):
+                if "meaning" in real:
                     exec("self.r%02d%d.meaning = '%s'" % (i, j, real["meaning"]))
-                if real.has_key("weight"):
+                if "weight" in real:
                     exec("self.r%02d%d.weight = %f" % (i, j, real["weight"]))
-                if real.has_key("type"):
+                if "type" in real:
                     exec("self.r%02d%d.type = %d" % (i, j, real["type"]))
                 exec("self.r%02d%d = self.r%02d%d.create()" % (i, j, i, j))
                 exec("self.meta%02d.addRelatedRealObject(self.r%02d%d)" % (i, i, j))

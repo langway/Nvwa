@@ -46,10 +46,10 @@ class DBUtilsExample(ExamplePage):
     dbapi_name = config.pop('dbapi', 'pg')
     if dbapi_name == 'pg': # use the PyGreSQL classic DB API
         dbmod_name += 'Pg'
-        if config.has_key('database'):
+        if 'database' in config:
             config['dbname'] = config['database']
             del config['database']
-        if config.has_key('password'):
+        if 'password' in config:
             config['passwd'] = config['password']
             del config['password']
     else: # use a DB-API 2 compliant module
@@ -63,7 +63,7 @@ class DBUtilsExample(ExamplePage):
                 if dbapi_name != 'pg':
                     config['creator'] = dbapi
                 dbclass = getattr(dbmod, dbmod_name)(**config)
-            except dbapi.Error, error:
+            except dbapi.Error as error:
                 dbstatus = str(error)
             except Exception:
                 dbstatus = 'Could not connect to the database.'
@@ -147,7 +147,7 @@ class DBUtilsExample(ExamplePage):
                 else:
                     db.cursor().execute(ddl)
                     db.commit()
-            except self.dbapi.Error, error:
+            except self.dbapi.Error as error:
                 if self.dbapi_name != 'pg':
                     db.rollback()
                 self.outputMsg(error, True)
@@ -173,7 +173,7 @@ class DBUtilsExample(ExamplePage):
                 else:
                     db.cursor().execute(cmd)
                     db.commit()
-            except self.dbapi.Error, error:
+            except self.dbapi.Error as error:
                 try:
                     if self.dbapi_name == 'pg':
                         db.query('end')
@@ -198,7 +198,7 @@ class DBUtilsExample(ExamplePage):
                 cursor.execute(query)
                 result = cursor.fetchall()
                 cursor.close()
-        except self.dbapi.Error, error:
+        except self.dbapi.Error as error:
             self.outputMsg(error, True)
             return
         if not result:
@@ -231,7 +231,7 @@ class DBUtilsExample(ExamplePage):
             places = {}
             for i in id:
                 i = i[:4].rstrip()
-                if places.has_key(i):
+                if i in places:
                     places[i] += 1
                 else:
                     places[i] = 1
@@ -251,7 +251,7 @@ class DBUtilsExample(ExamplePage):
                     for cmd in cmds:
                         db.cursor().execute(cmd)
                     db.commit()
-            except self.dbapi.Error, error:
+            except self.dbapi.Error as error:
                 if self.dbapi_name == 'pg':
                     db.query('end')
                 else:
@@ -275,7 +275,7 @@ class DBUtilsExample(ExamplePage):
                 cursor.execute(query)
                 result = cursor.fetchall()
                 cursor.close()
-        except self.dbapi.Error, error:
+        except self.dbapi.Error as error:
             self.outputMsg(error, True)
             return
         if not result:
@@ -335,7 +335,7 @@ class DBUtilsExample(ExamplePage):
             else:
                 db.cursor().execute(cmd)
                 db.commit()
-        except self.dbapi.Error, error:
+        except self.dbapi.Error as error:
             if self.dbapi_name == 'pg':
                 db.query('end')
             else:
@@ -359,7 +359,7 @@ class DBUtilsExample(ExamplePage):
                 cursor.execute(query)
                 result = cursor.fetchall()
                 cursor.close()
-        except self.dbapi.Error, error:
+        except self.dbapi.Error as error:
             self.outputMsg(error, True)
             return
         if not result:
@@ -422,7 +422,7 @@ class DBUtilsExample(ExamplePage):
                 db.cursor().execute(cmd)
                 cursor.close()
                 db.commit()
-        except self.dbapi.Error, error:
+        except self.dbapi.Error as error:
             if self.dbapi_name == 'pg':
                 db.query('end')
             else:

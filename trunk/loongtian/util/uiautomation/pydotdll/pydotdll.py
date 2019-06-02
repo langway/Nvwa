@@ -46,7 +46,7 @@ def PYdotDLL_HOOK_Decorator(where, functype=ctypes.WINFUNCTYPE, **kw):
         if origin:
             origin = ftype(origin)
         global PYdotDLL_GLOBAL
-        if not PYdotDLL_GLOBAL.has_key('hook'):
+        if not 'hook' in PYdotDLL_GLOBAL:
             PYdotDLL_GLOBAL['hook'] = {}
         PYdotDLL_GLOBAL['hook'][f.__name__] = [origin, fake]
 

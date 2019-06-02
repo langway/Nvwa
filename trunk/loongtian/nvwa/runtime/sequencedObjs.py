@@ -150,7 +150,7 @@ class SequencedObjs(object):
         # 如果添加的对象不是SequencedObj类型，将SequencedObj作为装载车厢
         if not isinstance(obj, SequencedObj):
             obj = SequencedObj(containedObj=obj)
-            if not self._containedObj_sequenceObjs_dict.has_key(obj.containedObj):
+            if not obj.containedObj in self._containedObj_sequenceObjs_dict:
                 self._containedObj_sequenceObjs_dict[obj.containedObj] =[obj]
             else:
                 self._containedObj_sequenceObjs_dict[obj.containedObj].append(obj)

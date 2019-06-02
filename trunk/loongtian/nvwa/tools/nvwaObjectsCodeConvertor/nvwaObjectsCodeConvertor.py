@@ -555,7 +555,7 @@ class ReflectedInfo(object):
         """
         反射对象的源代码
         """
-        # if self._SourceCode is None:#not vars().has_key("_SourceCode"):
+        # if self._SourceCode is None:#not "_SourceCode" in vars():
         #     self._SourceCode=SourceCode()
         return self._SourceCode
 
@@ -573,7 +573,7 @@ class ReflectedInfo(object):
         """
         反射后经处理的对象列表（包括：空白行、注释、Doc、类、函数等）
         """
-        # if self._SourceCode is None:#not vars().has_key("_SourceCode"):
+        # if self._SourceCode is None:#not "_SourceCode" in vars():
         #     self._SourceCode=SourceCode()
         return self._ProceedCodeList
 
@@ -1220,10 +1220,10 @@ class NvwaObjectsCodeConvertor(object):
                 #根据Type中的__doc__取得NvwaObject
                 aNvwaObject=NvwaObjectsCodeConvertor.GetNvwaObjectByXmlDocInType(aType)
                 code=aType.__code__
-                print str(code)
-                print dir(code)
-                print code.co_code.encode('utf-8')
-                print code.co_lnotab.encode('utf-8')
+                print (str(code))
+                print (dir(code))
+                print (code.co_code.encode('utf-8'))
+                print (code.co_lnotab.encode('utf-8'))
 
                 _functionInfo.NvwaObjectDefinition=aNvwaObject#这里可能没取到（没有__doc__或__doc__中没有NvwaObject定义）
 
@@ -1253,15 +1253,15 @@ class NvwaObjectsCodeConvertor(object):
                 pass
 
             else:
-                print u'未处理的类型名称为：',tempName
-                print u'未处理的类型：',type(aType)
+                print (u'未处理的类型名称为：%s'% tempName)
+                print (u'未处理的类型：%s' % type(aType))
 
 
 
 
 
         for item in reflectedInfo.ChildClasses:
-            print item.NvwaObjectDefinitions
+            print (item.NvwaObjectDefinitions)
                         #print aType,NvwaObjectTagMatch#[1]
                         #取得ID
 

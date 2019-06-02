@@ -54,7 +54,7 @@ def __segmentWithStopMarks(rawInput, stopMarks, stopMarkLevel=3, keepStopMark=Tr
     cur_chars = u""
     while i < len(rawInput):
         cur_char = rawInput[i]
-        if stopMarks.has_key(cur_char) and stopMarks[cur_char][0] <= stopMarkLevel:
+        if cur_char in stopMarks and stopMarks[cur_char][0] <= stopMarkLevel:
             # 特殊处理小数点（跟英文句号区分）
             is_radix_point = False
             if cur_char == u'.':
@@ -156,7 +156,7 @@ def __createSingleFrequancyDict(rawInputs, CachedSingleFrequancyDict=None):
     total_length = 0
     for rawInput in rawInputs:
         for c in rawInput:
-            if _singleFrequancyDict.has_key(c):
+            if c in _singleFrequancyDict:
                 _singleFrequancyDict[c] += 1.0
             else:
                 _singleFrequancyDict[c] = 1.0
@@ -226,12 +226,12 @@ def createDoubleFrequancyDict2(rawInputs, unknowns_tolerate_dgree=1.0):
             tf = freq * unknowns_tolerate_dgree / len(rawinput)
             word_in_rawiput_num = 0
             for other_rawinput, other_doubleFrequancyDict_in_rawInput in doubleFrequancyDict_in_rawInputs.items():
-                if other_doubleFrequancyDict_in_rawInput.has_key(word):
+                if word in other_doubleFrequancyDict_in_rawInput:
                     word_in_rawiput_num += 1
 
             idf = math.log( rawinpt_num/ (word_in_rawiput_num + num_base), 10)
 
-            if not isinstance(word,unicode):
+            if not isinstance(word,str):
                 word=stringHelper.converStringToUnicode(word)
             doubleFrequancyDict[word] = tf * idf
 
@@ -293,7 +293,7 @@ def __createDoubleFrequancyDictByRawInput(rawInput,
     # OTHER=9 # 其他
 
     # 0、如果是标点符号，不进行处理，继续下一个，标点符号不参与总频率计算
-    if stringHelper.StopMarks.has_key(rawInput):
+    if rawInput in stringHelper.StopMarks:
         return doubleFrequancyDict, 0
     if stringHelper.is_all_alphabet(rawInput):  # 如果是英文（包含空格、标点等）
         engs = rawInput.split(u" ")  # 使用空格分割英文
@@ -302,15 +302,15 @@ def __createDoubleFrequancyDictByRawInput(rawInput,
                 continue
             # 过滤掉前后的标点符号
             if len(eng) > 0:
-                while stringHelper.StopMarks.has_key(eng[0]):
+                while eng[0] in stringHelper.StopMarks:
                     eng = eng[1::]
-                while stringHelper.StopMarks.has_key(eng[-1]):
+                while eng[-1] in stringHelper.StopMarks:
                     eng = eng[:-1:]
 
             # 过滤掉数字、空格、需要忽略的首字（例如：的）、标点符号，在理解过程中，将优先处理数字
             if stringHelper.is_number(eng) or eng in IgnorChars:
                 continue
-            if doubleFrequancyDict.has_key(eng):
+            if eng in doubleFrequancyDict:
                 doubleFrequancyDict[eng] += 1.0
             else:
                 doubleFrequancyDict[eng] = 1.0
@@ -323,16 +323,16 @@ def __createDoubleFrequancyDictByRawInput(rawInput,
             cur_char = rawInput[i]
             # 过滤掉数字、空格、需要忽略的首字（例如：的）、标点符号，在理解过程中，将优先处理数字
             if stringHelper.is_number(cur_char) or stringHelper.is_space(
-                    cur_char) or cur_char in IgnorChars or stringHelper.StopMarks.has_key(cur_char):
+                    cur_char) or cur_char in IgnorChars or cur_char in stringHelper.StopMarks:
                 continue
             next_char = rawInput[i + 1]
-            if stringHelper.is_number(next_char) or stringHelper.StopMarks.has_key(next_char):
+            if stringHelper.is_number(next_char) or next_char in stringHelper.StopMarks:
                 continue
             key = cur_char + next_char
             key = key.strip()  # 过滤掉空格
             if key == u"":
                 continue
-            if doubleFrequancyDict.has_key(key):
+            if key in doubleFrequancyDict:
                 doubleFrequancyDict[key] += 1.0
             else:
                 doubleFrequancyDict[key] = 1.0
@@ -366,7 +366,7 @@ def __createDoubleFrequancyDictByRawInput2(rawInput,
     # OTHER=9 # 其他
     doubleFrequancyDict_in_rawInput = {}
     # 0、如果是标点符号，不进行处理，继续下一个，标点符号不参与总频率计算
-    if stringHelper.StopMarks.has_key(rawInput):
+    if rawInput in stringHelper.StopMarks:
         return doubleFrequancyDict, 0, doubleFrequancyDict_in_rawInput
     if stringHelper.is_all_alphabet(rawInput):  # 如果是英文（包含空格、标点等）
         engs = rawInput.split(u" ")  # 使用空格分割英文
@@ -375,19 +375,19 @@ def __createDoubleFrequancyDictByRawInput2(rawInput,
                 continue
             # 过滤掉前后的标点符号
             if len(eng) > 0:
-                while stringHelper.StopMarks.has_key(eng[0]):
+                while eng[0] in stringHelper.StopMarks:
                     eng = eng[1::]
-                while stringHelper.StopMarks.has_key(eng[-1]):
+                while eng[-1] in stringHelper.StopMarks:
                     eng = eng[:-1:]
 
             # 过滤掉数字、空格、需要忽略的首字（例如：的）、标点符号，在理解过程中，将优先处理数字
             if stringHelper.is_number(eng) or eng in IgnorChars:
                 continue
-            if doubleFrequancyDict.has_key(eng):
+            if eng in doubleFrequancyDict:
                 doubleFrequancyDict[eng] += 1.0
             else:
                 doubleFrequancyDict[eng] = 1.0
-            if doubleFrequancyDict_in_rawInput.has_key(eng):
+            if eng in doubleFrequancyDict_in_rawInput:
                 doubleFrequancyDict_in_rawInput[eng] += 1.0
             else:
                 doubleFrequancyDict_in_rawInput[eng] = 1.0
@@ -399,21 +399,21 @@ def __createDoubleFrequancyDictByRawInput2(rawInput,
             cur_char = rawInput[i]
             # 过滤掉数字、空格、需要忽略的首字（例如：的）、标点符号，在理解过程中，将优先处理数字
             if stringHelper.is_number(cur_char) or stringHelper.is_space(
-                    cur_char) or cur_char in IgnorChars or stringHelper.StopMarks.has_key(cur_char):
+                    cur_char) or cur_char in IgnorChars or cur_char in stringHelper.StopMarks:
                 continue
             next_char = rawInput[i + 1]
-            if stringHelper.is_number(next_char) or stringHelper.StopMarks.has_key(next_char):
+            if stringHelper.is_number(next_char) or next_char in stringHelper.StopMarks:
                 continue
             key = cur_char + next_char
             key = key.strip()  # 过滤掉空格
             if key == u"":
                 continue
-            if doubleFrequancyDict.has_key(key):
+            if key in doubleFrequancyDict:
                 doubleFrequancyDict[key] += 1.0
             else:
                 doubleFrequancyDict[key] = 1.0
 
-            if doubleFrequancyDict_in_rawInput.has_key(key):
+            if key in doubleFrequancyDict_in_rawInput:
                 doubleFrequancyDict_in_rawInput[key] += 1.0
             else:
                 doubleFrequancyDict_in_rawInput[key] = 1.0
@@ -466,7 +466,7 @@ def extractRawMetaData(rawInputs, doubleFrequancyDict, threshold_ContinuousBlock
 
         if stringHelper.is_all_alphabet(rawinput):  # 特殊处理英文
             has_key = False
-            if candidates_continuous.has_key(rawinput):
+            if rawinput in candidates_continuous:
                 new_rawMetas[rawinput] = candidates_continuous[rawinput]
                 has_key = True
             if segment:
@@ -489,7 +489,7 @@ def extractRawMetaData(rawInputs, doubleFrequancyDict, threshold_ContinuousBlock
             # 如果是完整输入，相当于未识别，继续下一个
             if word == rawinput.strip():
                 continue
-            if not new_rawMetas.has_key(word):  # 这里面的frequncey只需要计算一次（其他循环都是相同的），所以不用考虑已经有该元数据的情况
+            if not word in new_rawMetas:  # 这里面的frequncey只需要计算一次（其他循环都是相同的），所以不用考虑已经有该元数据的情况
                 new_rawMetas[word] = frequncy
 
             # 取得输入字符串中包含的所有根据元数据分割后得到的字符串及其位置、是否是元数据
@@ -550,7 +550,7 @@ def __getWordPosition(candidateWords, rawInput):
         splits = segmentWithStopMarksAndNumbersAndEnglish(rawInput, stopMarks=None, splitWithSpace=True)
         for i in range(len(splits)):
             key = splits[i]
-            if candidateWords.has_key(key):
+            if key in candidateWords:
                 word_position_frequency_list.append([key, i, candidateWords[key]])
             else:
                 word_position_frequency_list.append([key, i, -1.0])
@@ -558,7 +558,7 @@ def __getWordPosition(candidateWords, rawInput):
     else:
         for i in range(len(rawInput) - 1):
             key = rawInput[i:i + 2]
-            if candidateWords.has_key(key):
+            if key in candidateWords:
                 word_position_frequency_list.append([key, i, candidateWords[key]])
 
     return word_position_frequency_list
@@ -811,7 +811,7 @@ def segmentInputWithChainCharMetaDict(rawInput,
             j = 0
             cur_meta_info = None
             for eng_char in eng_str:  # 对chainCharMetaDict进行完全遍历，找到完全匹配的元数据信息
-                if cur_dict.has_key(eng_char):
+                if eng_char in cur_dict:
                     cur_meta_info = cur_dict.get(eng_char)
                     if cur_meta_info:
                         cur_dict = cur_meta_info[3]
@@ -1407,7 +1407,7 @@ def __resegmentChainBlocksWithUnknowns(chain_blocks, unknowns_dict,memory=None):
     import itertools
     i=0
     for resegmented_chain_block in resegmented_chain_blocks:
-        if not unknowns_dict.has_key(i): # 全部已知，装箱，添加后直接返回
+        if not i in unknowns_dict: # 全部已知，装箱，添加后直接返回
             final_resegmented_chain_blocks.append([resegmented_chain_block])
             i+=1
             continue
@@ -1653,7 +1653,7 @@ def getStopMarksRexPattern(stopMarks, stopMarkLevel=3, StopMarksRexPattern=None)
     if stopMarkLevel > 2:  # 如果超过2，直接设为2：段落级别+句子级别+句内级别
         stopMarkLevel = 2
     # 查看是否已经完成了正则pattern的拼接，如果是，直接返回
-    if StopMarksRexPattern and StopMarksRexPattern.has_key(stopMarkLevel):
+    if StopMarksRexPattern and stopMarkLevel in StopMarksRexPattern:
         return StopMarksRexPattern[stopMarkLevel]
 
     pattern = u""
@@ -1755,7 +1755,7 @@ def loadFirstCharMetaDict(rawMetas, CachedFirstCharMetaDict=None):
 
     for raw_meta_chars, frequcy in rawMetas.items():
         first_char = raw_meta_chars[0]
-        if not __dict.has_key(first_char):
+        if not first_char in __dict:
             __dict.setdefault(first_char, [])
             __dict[first_char].append(raw_meta_chars)
         else:
@@ -1942,7 +1942,7 @@ def getUnknownBlock(currentMetaInput, cur_pos, curDict):
         cur_child = curDict.get(cur_char)
         if cur_child and cur_pos + 1 < len(currentMetaInput):
             next_char = currentMetaInput[cur_pos + 1]
-            if cur_child[3].has_key(next_char):
+            if next_char in cur_child[3]:
                 break
         unknownBlock += cur_char
         cur_pos += 1
@@ -2198,7 +2198,7 @@ def __match_word_with_firstChar(segmentedResult, currentLinkedWords, i, input, f
         currentLinkedWords.append([first_char, i, True])
         return
 
-    if not firstCharMetaDict.has_key(first_char):
+    if not first_char in firstCharMetaDict:
         curChar = first_char
         import string
         if first_char in string.ascii_letters:

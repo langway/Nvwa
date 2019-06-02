@@ -222,7 +222,7 @@ class TextEngine(EngineBase):
     #     if singleFrequancyDict is None or len(singleFrequancyDict)==0:
     #         return False
     #     for k,v in singleFrequancyDict.items():
-    #         if self.SingleFrequancyDict.has_key(k):
+    #         if k in self.SingleFrequancyDict:
     #             self.SingleFrequancyDict[k] += v
     #         else:
     #             self.SingleFrequancyDict[k]=v

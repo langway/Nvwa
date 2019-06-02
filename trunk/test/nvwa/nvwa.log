@@ -1,151 +1,52 @@
-[ INFO ]- 开始从MetaNet数据库加载NgramDict
-InnerTraceback (most recent call last):
-File "E:\nvwa-run\trunk\loongtian\util\log\logger.py", line 442, in info
-File "E:\nvwa-run\trunk\loongtian\nvwa\engines\metaEngine.py", line 68, in loadNgramDictFromDB
-File "E:\nvwa-run\trunk\loongtian\nvwa\organs\memory.py", line 783, in loadNgramDictFromDB
-File "E:\nvwa-run\trunk\loongtian\nvwa\organs\memory.py", line 747, in init
-File "E:\nvwa-run\trunk\loongtian\nvwa\organs\brain.py", line 63, in init
-File "E:\nvwa-run\trunk\test\nvwa\testBrain.py", line 23, in setUp - 2019-04-01 07:46:15,582 - nvwa - logger.py:442
-[ INFO ]- 从MetaNet数据库加载NgramDict完毕，没有可用的MetaNet
-InnerTraceback (most recent call last):
-File "E:\nvwa-run\trunk\loongtian\util\log\logger.py", line 442, in info
-File "E:\nvwa-run\trunk\loongtian\nvwa\engines\metaEngine.py", line 74, in loadNgramDictFromDB
-File "E:\nvwa-run\trunk\loongtian\nvwa\organs\memory.py", line 783, in loadNgramDictFromDB
-File "E:\nvwa-run\trunk\loongtian\nvwa\organs\memory.py", line 747, in init
-File "E:\nvwa-run\trunk\loongtian\nvwa\organs\brain.py", line 63, in init
-File "E:\nvwa-run\trunk\test\nvwa\testBrain.py", line 23, in setUp total_seconds:0.015 - 2019-04-01 07:46:15,596 - nvwa - logger.py:442
-[ INFO ]- 开始加载数据库元数据
-InnerTraceback (most recent call last):
-File "E:\nvwa-run\trunk\loongtian\util\log\logger.py", line 442, in info
-File "E:\nvwa-run\trunk\loongtian\nvwa\engines\metaEngine.py", line 159, in loadAllMetaFromDB
-File "E:\nvwa-run\trunk\loongtian\nvwa\organs\memory.py", line 758, in loadAllMetaFromDB
-File "E:\nvwa-run\trunk\loongtian\nvwa\organs\memory.py", line 746, in init
-File "E:\nvwa-run\trunk\loongtian\nvwa\organs\brain.py", line 63, in init
-File "E:\nvwa-run\trunk\test\nvwa\testBrain.py", line 23, in setUp - 2019-04-01 07:48:35,184 - nvwa - logger.py:442
-[ INFO ]- 加载数据库元数据完毕，没有可用的元数据
-InnerTraceback (most recent call last):
-File "E:\nvwa-run\trunk\loongtian\util\log\logger.py", line 442, in info
-File "E:\nvwa-run\trunk\loongtian\nvwa\engines\metaEngine.py", line 163, in loadAllMetaFromDB
-File "E:\nvwa-run\trunk\loongtian\nvwa\organs\memory.py", line 758, in loadAllMetaFromDB
-File "E:\nvwa-run\trunk\loongtian\nvwa\organs\memory.py", line 746, in init
-File "E:\nvwa-run\trunk\loongtian\nvwa\organs\brain.py", line 63, in init
-File "E:\nvwa-run\trunk\test\nvwa\testBrain.py", line 23, in setUp total_seconds:0.0 - 2019-04-01 07:48:35,184 - nvwa - logger.py:442
-[ INFO ]- 开始从MetaNet数据库加载NgramDict
-InnerTraceback (most recent call last):
-File "E:\nvwa-run\trunk\loongtian\util\log\logger.py", line 442, in info
-File "E:\nvwa-run\trunk\loongtian\nvwa\engines\metaEngine.py", line 68, in loadNgramDictFromDB
-File "E:\nvwa-run\trunk\loongtian\nvwa\organs\memory.py", line 783, in loadNgramDictFromDB
-File "E:\nvwa-run\trunk\loongtian\nvwa\organs\memory.py", line 747, in init
-File "E:\nvwa-run\trunk\loongtian\nvwa\organs\brain.py", line 63, in init
-File "E:\nvwa-run\trunk\test\nvwa\testBrain.py", line 23, in setUp - 2019-04-01 07:48:35,200 - nvwa - logger.py:442
-[ INFO ]- 从MetaNet数据库加载NgramDict完毕，没有可用的MetaNet
-InnerTraceback (most recent call last):
-File "E:\nvwa-run\trunk\loongtian\util\log\logger.py", line 442, in info
-File "E:\nvwa-run\trunk\loongtian\nvwa\engines\metaEngine.py", line 74, in loadNgramDictFromDB
-File "E:\nvwa-run\trunk\loongtian\nvwa\organs\memory.py", line 783, in loadNgramDictFromDB
-File "E:\nvwa-run\trunk\loongtian\nvwa\organs\memory.py", line 747, in init
-File "E:\nvwa-run\trunk\loongtian\nvwa\organs\brain.py", line 63, in init
-File "E:\nvwa-run\trunk\test\nvwa\testBrain.py", line 23, in setUp total_seconds:0.0 - 2019-04-01 07:48:35,200 - nvwa - logger.py:442
-[ INFO ]- 更改后受影响的条数(1)。
-InnerTraceback (most recent call last):
-File "E:\nvwa-run\trunk\loongtian\util\log\logger.py", line 442, in info
-File "E:\nvwa-run\trunk\loongtian\nvwa\models\baseEntity.py", line 1003, in updateAllInDB
-File "E:\nvwa-run\trunk\loongtian\nvwa\models\baseEntity.py", line 959, in updateAttributeValues
-File "E:\nvwa-run\trunk\loongtian\nvwa\models\realObject.py", line 522, in setType
-File "E:\nvwa-run\trunk\loongtian\nvwa\engines\modelingEngine.py", line 329, in _createNewPatternAndMeaning
-File "E:\nvwa-run\trunk\loongtian\nvwa\engines\modelingEngine.py", line 230, in _createRealObjectExecutionInfo - 2019-04-01 07:48:57,404 - nvwa - logger.py:442
-[ INFO ]- 更改后受影响的条数(1)。
-InnerTraceback (most recent call last):
-File "E:\nvwa-run\trunk\loongtian\util\log\logger.py", line 442, in info
-File "E:\nvwa-run\trunk\loongtian\nvwa\models\baseEntity.py", line 1003, in updateAllInDB
-File "E:\nvwa-run\trunk\loongtian\nvwa\models\baseEntity.py", line 959, in updateAttributeValues
-File "E:\nvwa-run\trunk\loongtian\nvwa\models\realObject.py", line 522, in setType
-File "E:\nvwa-run\trunk\loongtian\nvwa\engines\modelingEngine.py", line 329, in _createNewPatternAndMeaning
-File "E:\nvwa-run\trunk\loongtian\nvwa\engines\modelingEngine.py", line 230, in _createRealObjectExecutionInfo - 2019-04-01 07:48:59,374 - nvwa - logger.py:442
-[ INFO ]- 开始加载数据库元数据
-InnerTraceback (most recent call last):
-File "E:\nvwa-run\trunk\loongtian\util\log\logger.py", line 449, in info
-File "E:\nvwa-run\trunk\loongtian\nvwa\engines\metaEngine.py", line 159, in loadAllMetaFromDB
-File "E:\nvwa-run\trunk\loongtian\nvwa\organs\memory.py", line 758, in loadAllMetaFromDB
-File "E:\nvwa-run\trunk\loongtian\nvwa\organs\memory.py", line 746, in init
-File "E:\nvwa-run\trunk\loongtian\nvwa\organs\brain.py", line 63, in init
-File "E:\nvwa-run\trunk\test\nvwa\testBrain.py", line 23, in setUp - 2019-05-30 20:21:26,313 - nvwa - logger.py:449
-[ INFO ]- 加载数据库元数据完毕，没有可用的元数据
-InnerTraceback (most recent call last):
-File "E:\nvwa-run\trunk\loongtian\util\log\logger.py", line 449, in info
-File "E:\nvwa-run\trunk\loongtian\nvwa\engines\metaEngine.py", line 163, in loadAllMetaFromDB
-File "E:\nvwa-run\trunk\loongtian\nvwa\organs\memory.py", line 758, in loadAllMetaFromDB
-File "E:\nvwa-run\trunk\loongtian\nvwa\organs\memory.py", line 746, in init
-File "E:\nvwa-run\trunk\loongtian\nvwa\organs\brain.py", line 63, in init
-File "E:\nvwa-run\trunk\test\nvwa\testBrain.py", line 23, in setUp total_seconds:0.026 - 2019-05-30 20:21:26,339 - nvwa - logger.py:449
-[ INFO ]- 开始从MetaNet数据库加载NgramDict
-InnerTraceback (most recent call last):
-File "E:\nvwa-run\trunk\loongtian\util\log\logger.py", line 449, in info
-File "E:\nvwa-run\trunk\loongtian\nvwa\engines\metaEngine.py", line 68, in loadNgramDictFromDB
-File "E:\nvwa-run\trunk\loongtian\nvwa\organs\memory.py", line 783, in loadNgramDictFromDB
-File "E:\nvwa-run\trunk\loongtian\nvwa\organs\memory.py", line 747, in init
-File "E:\nvwa-run\trunk\loongtian\nvwa\organs\brain.py", line 63, in init
-File "E:\nvwa-run\trunk\test\nvwa\testBrain.py", line 23, in setUp - 2019-05-30 20:21:26,341 - nvwa - logger.py:449
-[ INFO ]- 从MetaNet数据库加载NgramDict完毕，没有可用的MetaNet
-InnerTraceback (most recent call last):
-File "E:\nvwa-run\trunk\loongtian\util\log\logger.py", line 449, in info
-File "E:\nvwa-run\trunk\loongtian\nvwa\engines\metaEngine.py", line 74, in loadNgramDictFromDB
-File "E:\nvwa-run\trunk\loongtian\nvwa\organs\memory.py", line 783, in loadNgramDictFromDB
-File "E:\nvwa-run\trunk\loongtian\nvwa\organs\memory.py", line 747, in init
-File "E:\nvwa-run\trunk\loongtian\nvwa\organs\brain.py", line 63, in init
-File "E:\nvwa-run\trunk\test\nvwa\testBrain.py", line 23, in setUp total_seconds:0.007 - 2019-05-30 20:21:26,348 - nvwa - logger.py:449
-[ INFO ]- 更改后受影响的条数(1)。
-InnerTraceback (most recent call last):
-File "E:\nvwa-run\trunk\loongtian\util\log\logger.py", line 449, in info
-File "E:\nvwa-run\trunk\loongtian\nvwa\models\baseEntity.py", line 1003, in updateAllInDB
-File "E:\nvwa-run\trunk\loongtian\nvwa\models\baseEntity.py", line 959, in updateAttributeValues
-File "E:\nvwa-run\trunk\loongtian\nvwa\models\realObject.py", line 522, in setType
-File "E:\nvwa-run\trunk\loongtian\nvwa\engines\modelingEngine.py", line 329, in _createNewPatternAndMeaning
-File "E:\nvwa-run\trunk\loongtian\nvwa\engines\modelingEngine.py", line 230, in _createRealObjectExecutionInfo - 2019-05-30 20:24:02,263 - nvwa - logger.py:449
-[ INFO ]- 更改后受影响的条数(1)。
-InnerTraceback (most recent call last):
-File "E:\nvwa-run\trunk\loongtian\util\log\logger.py", line 449, in info
-File "E:\nvwa-run\trunk\loongtian\nvwa\models\baseEntity.py", line 1003, in updateAllInDB
-File "E:\nvwa-run\trunk\loongtian\nvwa\models\baseEntity.py", line 959, in updateAttributeValues
-File "E:\nvwa-run\trunk\loongtian\nvwa\models\realObject.py", line 522, in setType
-File "E:\nvwa-run\trunk\loongtian\nvwa\engines\modelingEngine.py", line 329, in _createNewPatternAndMeaning
-File "E:\nvwa-run\trunk\loongtian\nvwa\engines\modelingEngine.py", line 230, in _createRealObjectExecutionInfo - 2019-05-30 20:24:11,207 - nvwa - logger.py:449
-[ INFO ]- 更改后受影响的条数(1)。
-InnerTraceback (most recent call last):
-File "E:\nvwa-run\trunk\loongtian\util\log\logger.py", line 449, in info
-File "E:\nvwa-run\trunk\loongtian\nvwa\models\baseEntity.py", line 1003, in updateAllInDB
-File "E:\nvwa-run\trunk\loongtian\nvwa\models\baseEntity.py", line 959, in updateAttributeValues
-File "E:\nvwa-run\trunk\loongtian\nvwa\models\realObject.py", line 522, in setType
-File "E:\nvwa-run\trunk\loongtian\nvwa\engines\modelingEngine.py", line 329, in _createNewPatternAndMeaning
-File "E:\nvwa-run\trunk\loongtian\nvwa\engines\modelingEngine.py", line 230, in _createRealObjectExecutionInfo - 2019-05-30 20:38:43,184 - nvwa - logger.py:449
-[ INFO ]- 更改后受影响的条数(1)。
-InnerTraceback (most recent call last):
-File "E:\nvwa-run\trunk\loongtian\util\log\logger.py", line 449, in info
-File "E:\nvwa-run\trunk\loongtian\nvwa\models\baseEntity.py", line 1003, in updateAllInDB
-File "E:\nvwa-run\trunk\loongtian\nvwa\models\baseEntity.py", line 959, in updateAttributeValues
-File "E:\nvwa-run\trunk\loongtian\nvwa\models\realObject.py", line 522, in setType
-File "E:\nvwa-run\trunk\loongtian\nvwa\engines\modelingEngine.py", line 329, in _createNewPatternAndMeaning
-File "E:\nvwa-run\trunk\loongtian\nvwa\engines\modelingEngine.py", line 230, in _createRealObjectExecutionInfo - 2019-05-30 20:38:50,013 - nvwa - logger.py:449
-[ INFO ]- 更改后受影响的条数(1)。
-InnerTraceback (most recent call last):
-File "E:\nvwa-run\trunk\loongtian\util\log\logger.py", line 449, in info
-File "E:\nvwa-run\trunk\loongtian\nvwa\models\baseEntity.py", line 1003, in updateAllInDB
-File "E:\nvwa-run\trunk\loongtian\nvwa\models\baseEntity.py", line 959, in updateAttributeValues
-File "E:\nvwa-run\trunk\loongtian\nvwa\models\realObject.py", line 522, in setType
-File "E:\nvwa-run\trunk\loongtian\nvwa\engines\modelingEngine.py", line 329, in _createNewPatternAndMeaning
-File "E:\nvwa-run\trunk\loongtian\nvwa\engines\modelingEngine.py", line 230, in _createRealObjectExecutionInfo - 2019-05-30 20:38:55,936 - nvwa - logger.py:449
-[ INFO ]- 更改后受影响的条数(1)。
-InnerTraceback (most recent call last):
-File "E:\nvwa-run\trunk\loongtian\util\log\logger.py", line 449, in info
-File "E:\nvwa-run\trunk\loongtian\nvwa\models\baseEntity.py", line 1003, in updateAllInDB
-File "E:\nvwa-run\trunk\loongtian\nvwa\models\baseEntity.py", line 959, in updateAttributeValues
-File "E:\nvwa-run\trunk\loongtian\nvwa\models\realObject.py", line 522, in setType
-File "E:\nvwa-run\trunk\loongtian\nvwa\engines\modelingEngine.py", line 329, in _createNewPatternAndMeaning
-File "E:\nvwa-run\trunk\loongtian\nvwa\engines\modelingEngine.py", line 230, in _createRealObjectExecutionInfo - 2019-05-30 20:39:11,569 - nvwa - logger.py:449
-[ INFO ]- “组件属性父对象成分”思考出现错误，原因：0
-InnerTraceback (most recent call last):
-File "E:\nvwa-run\trunk\loongtian\util\log\logger.py", line 449, in info
-File "E:\nvwa-run\trunk\loongtian\nvwa\organs\mind.py", line 109, in execute
-File "E:\nvwa-run\trunk\loongtian\nvwa\centrals\thinkingCentral.py", line 63, in thinkStringInput
-File "E:\nvwa-run\trunk\loongtian\nvwa\centrals\perceptionCentral.py", line 47, in receive
-File "E:\nvwa-run\trunk\test\nvwa\testBrain.py", line 380, in testMeaning - 2019-05-30 20:39:16,328 - nvwa - logger.py:449
+[ INFO ]- <bound method BaseEntity.create of <AdminUser nvwa>> - 2019-06-02 12:11:08,098 - nvwa - logger.py:450
+[ INFO ]- <bound method RealObject.create of {RealObject:{rid:729455fa84ec11e9b41840b89afe1ea2,remark:nvwa}}> - 2019-06-02 12:11:08,143 - nvwa - logger.py:450
+[ INFO ]- <bound method BaseEntity.create of {MetaData:{id:729c93e284ec11e98b4d40b89afe1ea2,mvalue:��������,type:WORD,recognized:True}}> - 2019-06-02 12:11:08,152 - nvwa - logger.py:450
+[ INFO ]- <bound method RealObject.create of {RealObject:{rid:72a2fcf684ec11e9b5c040b89afe1ea2,remark:��������}}> - 2019-06-02 12:11:08,197 - nvwa - logger.py:450
+[ INFO ]- <bound method BaseEntity.create of {Layer:{lid:72a4f8dc84ec11e9b9af40b89afe1ea2}}> - 2019-06-02 12:11:08,210 - nvwa - logger.py:450
+[ INFO ]- <bound method BaseEntity.create of {MetaData:{id:72a71bee84ec11e9822440b89afe1ea2,mvalue:��������,type:WORD,recognized:True}}> - 2019-06-02 12:11:08,222 - nvwa - logger.py:450
+[ INFO ]- <bound method BaseEntity.create of {MetaData:{id:72b378cc84ec11e9b0ce40b89afe1ea2,mvalue:�û���,type:WORD,recognized:True}}> - 2019-06-02 12:11:08,302 - nvwa - logger.py:450
+[ INFO ]- <bound method RealObject.create of {RealObject:{rid:72ba300084ec11e996d840b89afe1ea2,remark:�û���}}> - 2019-06-02 12:11:08,350 - nvwa - logger.py:450
+[ INFO ]- <bound method BaseEntity.create of {Layer:{lid:72bc535284ec11e9924a40b89afe1ea2}}> - 2019-06-02 12:11:08,363 - nvwa - logger.py:450
+[ INFO ]- <bound method BaseEntity.create of {MetaData:{id:72be00c684ec11e9974c40b89afe1ea2,mvalue:nvwa,type:WORD,recognized:True}}> - 2019-06-02 12:11:08,371 - nvwa - logger.py:450
+[ INFO ]- <bound method RealObject.create of {RealObject:{rid:72c46cac84ec11e990cb40b89afe1ea2,remark:nvwa}}> - 2019-06-02 12:11:08,416 - nvwa - logger.py:450
+[ INFO ]- <bound method BaseEntity.create of {Layer:{lid:72c6689c84ec11e99b5540b89afe1ea2}}> - 2019-06-02 12:11:08,429 - nvwa - logger.py:450
+[ INFO ]- <bound method BaseEntity.create of {MetaData:{id:72d4228084ec11e99d8340b89afe1ea2,mvalue:��ʵ����,type:WORD,recognized:True}}> - 2019-06-02 12:11:08,516 - nvwa - logger.py:450
+[ INFO ]- <bound method RealObject.create of {RealObject:{rid:72db279a84ec11e99c0f40b89afe1ea2,remark:��ʵ����}}> - 2019-06-02 12:11:08,566 - nvwa - logger.py:450
+[ INFO ]- <bound method BaseEntity.create of {Layer:{lid:72dde70c84ec11e9ba7540b89afe1ea2}}> - 2019-06-02 12:11:08,584 - nvwa - logger.py:450
+[ INFO ]- <bound method BaseEntity.create of {MetaData:{id:72dfbbd884ec11e9a2cf40b89afe1ea2,mvalue:Ů�AI,type:WORD,recognized:True}}> - 2019-06-02 12:11:08,592 - nvwa - logger.py:450
+[ INFO ]- <bound method BaseEntity.create of {MetaData:{id:72ed784284ec11e998fc40b89afe1ea2,mvalue:�ǳ�,type:WORD,recognized:True}}> - 2019-06-02 12:11:08,682 - nvwa - logger.py:450
+[ INFO ]- <bound method RealObject.create of {RealObject:{rid:72f5410284ec11e9bd3640b89afe1ea2,remark:�ǳ�}}> - 2019-06-02 12:11:08,737 - nvwa - logger.py:450
+[ INFO ]- <bound method BaseEntity.create of {Layer:{lid:72f8276884ec11e995a940b89afe1ea2}}> - 2019-06-02 12:11:08,756 - nvwa - logger.py:450
+[ INFO ]- <bound method BaseEntity.create of {MetaData:{id:72f9fc3484ec11e986d540b89afe1ea2,mvalue:Ů�,type:WORD,recognized:True}}> - 2019-06-02 12:11:08,765 - nvwa - logger.py:450
+[ INFO ]- <bound method RealObject.create of {RealObject:{rid:7302613a84ec11e9b20c40b89afe1ea2,remark:Ů�}}> - 2019-06-02 12:11:08,822 - nvwa - logger.py:450
+[ INFO ]- <bound method BaseEntity.create of {Layer:{lid:73045d3084ec11e9a94d40b89afe1ea2}}> - 2019-06-02 12:11:08,836 - nvwa - logger.py:450
+[ INFO ]- <bound method BaseEntity.create of {MetaData:{id:7312b5fa84ec11e9b0e440b89afe1ea2,mvalue:����,type:WORD,recognized:True}}> - 2019-06-02 12:11:08,926 - nvwa - logger.py:450
+[ INFO ]- <bound method RealObject.create of {RealObject:{rid:731aa5ba84ec11e9910f40b89afe1ea2,remark:����}}> - 2019-06-02 12:11:08,981 - nvwa - logger.py:450
+[ INFO ]- <bound method BaseEntity.create of {Layer:{lid:731cc8ca84ec11e99a3840b89afe1ea2}}> - 2019-06-02 12:11:08,996 - nvwa - logger.py:450
+[ INFO ]- <bound method BaseEntity.create of {MetaData:{id:731ea07084ec11e989b740b89afe1ea2,mvalue:d9b1d7db4cd6e70935368a1efb10e377,type:WORD,recognized:True}}> - 2019-06-02 12:11:09,005 - nvwa - logger.py:450
+[ INFO ]- <bound method RealObject.create of {RealObject:{rid:732554e684ec11e9a9aa40b89afe1ea2,remark:d9b1d7db4cd6e70935368a1efb10e377}}> - 2019-06-02 12:11:09,051 - nvwa - logger.py:450
+[ INFO ]- <bound method BaseEntity.create of {Layer:{lid:7327509484ec11e9acc240b89afe1ea2}}> - 2019-06-02 12:11:09,065 - nvwa - logger.py:450
+[ INFO ]- <bound method BaseEntity.create of {MetaData:{id:7334e61a84ec11e9b43f40b89afe1ea2,mvalue:�û�����,type:WORD,recognized:True}}> - 2019-06-02 12:11:09,150 - nvwa - logger.py:450
+[ INFO ]- <bound method RealObject.create of {RealObject:{rid:733d4b1084ec11e9b84740b89afe1ea2,remark:�û�����}}> - 2019-06-02 12:11:09,209 - nvwa - logger.py:450
+[ INFO ]- <bound method BaseEntity.create of {Layer:{lid:7340318884ec11e9bd0640b89afe1ea2}}> - 2019-06-02 12:11:09,229 - nvwa - logger.py:450
+[ INFO ]- <bound method BaseEntity.create of {MetaData:{id:7342a2e284ec11e9b38d40b89afe1ea2,mvalue:langway@163.com,type:WORD,recognized:True}}> - 2019-06-02 12:11:09,240 - nvwa - logger.py:450
+[ INFO ]- <bound method RealObject.create of {RealObject:{rid:734a444684ec11e9874840b89afe1ea2,remark:langway@163.com}}> - 2019-06-02 12:11:09,293 - nvwa - logger.py:450
+[ INFO ]- <bound method BaseEntity.create of {Layer:{lid:734c673884ec11e9aa4140b89afe1ea2}}> - 2019-06-02 12:11:09,311 - nvwa - logger.py:450
+[ INFO ]- <bound method BaseEntity.create of {MetaData:{id:735d0a3684ec11e98fee40b89afe1ea2,mvalue:�ֻ�,type:WORD,recognized:True}}> - 2019-06-02 12:11:09,413 - nvwa - logger.py:450
+[ INFO ]- <bound method RealObject.create of {RealObject:{rid:73660b7684ec11e9b33c40b89afe1ea2,remark:�ֻ�}}> - 2019-06-02 12:11:09,475 - nvwa - logger.py:450
+[ INFO ]- <bound method BaseEntity.create of {Layer:{lid:7368557a84ec11e986bb40b89afe1ea2}}> - 2019-06-02 12:11:09,490 - nvwa - logger.py:450
+[ INFO ]- <bound method BaseEntity.create of {MetaData:{id:736a2a5284ec11e9b66640b89afe1ea2,mvalue:15640193617,type:WORD,recognized:True}}> - 2019-06-02 12:11:09,499 - nvwa - logger.py:450
+[ INFO ]- <bound method RealObject.create of {RealObject:{rid:737156de84ec11e9a33740b89afe1ea2,remark:15640193617}}> - 2019-06-02 12:11:09,552 - nvwa - logger.py:450
+[ INFO ]- <bound method BaseEntity.create of {Layer:{lid:7374d96684ec11e98cf640b89afe1ea2}}> - 2019-06-02 12:11:09,573 - nvwa - logger.py:450
+[ INFO ]- <bound method BaseEntity.create of {MetaData:{id:7385071284ec11e99ade40b89afe1ea2,mvalue:�Ա�,type:WORD,recognized:True}}> - 2019-06-02 12:11:09,675 - nvwa - logger.py:450
+[ INFO ]- <bound method RealObject.create of {RealObject:{rid:738ccfd884ec11e9989440b89afe1ea2,remark:�Ա�}}> - 2019-06-02 12:11:09,730 - nvwa - logger.py:450
+[ INFO ]- <bound method BaseEntity.create of {Layer:{lid:738f19d284ec11e9aa4d40b89afe1ea2}}> - 2019-06-02 12:11:09,744 - nvwa - logger.py:450
+[ INFO ]- <bound method BaseEntity.create of {MetaData:{id:7390eed884ec11e9b06540b89afe1ea2,mvalue:Ů,type:WORD,recognized:True}}> - 2019-06-02 12:11:09,753 - nvwa - logger.py:450
+[ INFO ]- <bound method RealObject.create of {RealObject:{rid:7398906c84ec11e9b49840b89afe1ea2,remark:Ů}}> - 2019-06-02 12:11:09,808 - nvwa - logger.py:450
+[ INFO ]- <bound method BaseEntity.create of {Layer:{lid:739b4fd484ec11e9926440b89afe1ea2}}> - 2019-06-02 12:11:09,825 - nvwa - logger.py:450
+[ INFO ]- <bound method BaseEntity.create of {MetaData:{id:73b36d3084ec11e9a52b40b89afe1ea2,mvalue:�Ƿ����Ա,type:WORD,recognized:True}}> - 2019-06-02 12:11:09,979 - nvwa - logger.py:450
+[ INFO ]- <bound method RealObject.create of {RealObject:{rid:73ba729484ec11e9bbe640b89afe1ea2,remark:�Ƿ����Ա}}> - 2019-06-02 12:11:10,028 - nvwa - logger.py:450
+[ INFO ]- <bound method BaseEntity.create of {Layer:{lid:73bc957484ec11e9beee40b89afe1ea2}}> - 2019-06-02 12:11:10,042 - nvwa - logger.py:450
+[ INFO ]- <bound method BaseEntity.create of {MetaData:{id:73be434a84ec11e9813d40b89afe1ea2,mvalue:True,type:WORD,recognized:True}}> - 2019-06-02 12:11:10,050 - nvwa - logger.py:450
+[ INFO ]- <bound method RealObject.create of {RealObject:{rid:73c56f9e84ec11e9897b40b89afe1ea2,remark:True}}> - 2019-06-02 12:11:10,100 - nvwa - logger.py:450
+[ INFO ]- <bound method BaseEntity.create of {Layer:{lid:73c7447e84ec11e9a16c40b89afe1ea2}}> - 2019-06-02 12:11:10,112 - nvwa - logger.py:450

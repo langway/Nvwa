@@ -321,7 +321,7 @@ def is_all_chinese(ustr):
     :return:
     """
     for uchar in ustr:
-        if (uchar >= u'\u4e00' and uchar<=u'\u9fa5') or uchar==u" " or StopMarks.has_key(uchar):
+        if (uchar >= u'\u4e00' and uchar<=u'\u9fa5') or uchar==u" " or uchar in StopMarks:
             continue
         else:
             return False # 只要有一个不是，就返回
@@ -334,7 +334,7 @@ def is_stopmark(uchar):
     :param uchar:
     :return:
     """
-    return StopMarks.has_key(uchar)
+    return uchar in StopMarks
 
 def is_number(ustr):
     """
@@ -565,7 +565,7 @@ def contain_stopMark(value):
     try:
         value=value.decode("utf-8")
         for c in value:
-            if StopMarks.has_key(c):
+            if c in StopMarks:
                 return True
         return False
     except:

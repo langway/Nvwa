@@ -116,7 +116,7 @@ def hasStopMark(value):
     if mvalue == u'一…一…':
         a = 0
     for c in mvalue:
-        if stringHelper.StopMarks.has_key(c):
+        if c in stringHelper.StopMarks:
             return True
     return False
 
