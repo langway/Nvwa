@@ -1181,7 +1181,7 @@ class RealArea(SequencedObj):
                 if isinstance(realLevelResult, RegeneratedRealLevelResult):
                     a = 1
 
-                unsatisfied_poses = range(1, exe_pattern_check_result.nexts_num_needed + 1)
+                unsatisfied_poses = list(range(1, exe_pattern_check_result.nexts_num_needed + 1))
                 self._do_fragment_context_unsatisfied(realLevelResult,
                                                       frag,
                                                       exe_pattern_check_result.context_satisfaction_result,
@@ -1190,7 +1190,7 @@ class RealArea(SequencedObj):
             if isinstance(realLevelResult, RegeneratedRealLevelResult):
                 a = 1
 
-            unsatisfied_poses = range(-exe_pattern_check_result.aboves_num_needed, 0)  # 取得上文不满足的位置
+            unsatisfied_poses = list(range(-exe_pattern_check_result.aboves_num_needed, 0))  # 取得上文不满足的位置
             if not nexts_satisfied:  # 如果下文也不满足，同时记录下文不满足的位置
                 unsatisfied_poses.extend(range(1, exe_pattern_check_result.nexts_num_needed + 1))
 

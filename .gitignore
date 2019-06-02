@@ -1,5 +1,6 @@
 .svn/
 *.svn-base
+.idea/
 *.pyc
 *.mp4
 *.pdf
@@ -10,3 +11,10 @@
 *.log.3
 *.log.4
 *.log.5
+trunk/test/nvwa/nvwa.log
+trunk/test/nvwa/nvwa.log.1
+*.1
+*.log
+trunk/.idea/workspace.xml
+trunk/.idea/workspace.xml
+*.log

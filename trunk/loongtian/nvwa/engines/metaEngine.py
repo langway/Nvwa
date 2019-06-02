@@ -365,8 +365,8 @@ class TextEngine(EngineBase):
         # 检查参数
         if rawInput is None or rawInput == "" or rawInput == u"":
             return
-        if type(rawInput) is str:
-            rawInput = stringHelper.converStringToUnicode(rawInput)
+        if not type(rawInput) is str:
+            rawInput = str(rawInput)
 
         # elif type(rawInput) is types.ListType:
         #     if not type(rawInput) is str:

@@ -138,7 +138,7 @@ class Console():
 
         relogon = clientHandler.waitForReceive(returnMsgInfo=False)
         if relogon:
-            if isinstance(relogon, unicode) or isinstance(relogon, str):
+            if isinstance(relogon, str):
                 try:
                     relogon = int(relogon)
                 except:

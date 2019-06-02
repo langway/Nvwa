@@ -36,7 +36,7 @@ class PerceptionCentral(CentralBase):
         """
         if not raw_input:
             return None
-        if isinstance(raw_input, str):
+        if not isinstance(raw_input, str):
             raw_input=str(raw_input)
 
         # 记录系统的输入信息

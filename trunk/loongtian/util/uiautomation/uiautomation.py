@@ -3890,8 +3890,8 @@ def LogControl(control, depth = 0, showAllName = True, showMore = False):
             if not isinstance(value, str):
                 value = str(value)
         else:
-            if not isinstance(value, unicode):
-                value = unicode(value)
+            if not isinstance(value, str):
+                value = str(value)
         Logger.Write(value, ConsoleColor.DarkGreen)
     if ((isinstance(control, RangeValuePattern) and control.IsRangeValuePatternAvailable())):
         Logger.Write('    RangeValue: ')
@@ -3900,8 +3900,8 @@ def LogControl(control, depth = 0, showAllName = True, showMore = False):
             if not isinstance(value, str):
                 value = str(value)
         else:
-            if not isinstance(value, unicode):
-                value = unicode(value)
+            if not isinstance(value, str):
+                value = str(value)
         Logger.Write(value, ConsoleColor.DarkGreen)
     if isinstance(control, TogglePattern) and control.IsTogglePatternAvailable():
         Logger.Write('    CurrentToggleState: ')

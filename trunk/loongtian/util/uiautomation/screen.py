@@ -251,10 +251,7 @@ def get_handles_by_keywords_in_title(keywords):
     if keywords == None:
         return
 
-    if type(keywords) is str:
-        keywords = keywords.decode("utf-8")
-
-    if not type(keywords) is unicode:
+    if not type(keywords) is str:
         raise AttributeError("keywords: 窗体的标题中的关键字必须是unicode字符")
 
     handles = get_all_windows()

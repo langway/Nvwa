@@ -263,8 +263,6 @@ def createDoubleFrequancyDict(rawInputs,unknowns_tolerate_dgree =1.0):
     # 这里需要计算其占总字数的比率，作为最后取得的词频，其计算公式为：
     # 总出现次数*字数/总字数
     for word, freq in doubleFrequancyDict.items():
-        # if word == unicode("沈秀") or word == unicode("秀元") or word == unicode("奶奶"):
-        #     a=1
         freq = freq * unknowns_tolerate_dgree / total_length
         doubleFrequancyDict[word] = freq
 
@@ -763,8 +761,8 @@ def segmentInputWithChainCharMetaDict(rawInput,
     """
     if not rawInput:
         return None
-    if not isinstance(rawInput, unicode):
-        raise AttributeError("元输入必须是unicode类型！" + unicode(rawInput))
+    if not isinstance(rawInput, str):
+        raise AttributeError("元输入必须是string类型！" + str(rawInput))
     rawInput = rawInput.strip()
     if rawInput == u"" or len(rawInput) == 0:
         return SegmentedResult.createSingleWordResult(rawInput, 0, True, 1.0)

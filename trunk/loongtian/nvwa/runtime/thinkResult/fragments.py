@@ -361,7 +361,7 @@ class UnsatisfiedFragment(BaseFragment):
             unsatisfied_poses_add = False
 
         if not unsatisfied_poses_add:
-            raise Exception("必须提供未能匹配pattern的位置（unsatisfied_poses_add.可能有多个，负数为在前，正数为在后）！")
+            raise Exception("未能匹配pattern的位置（unsatisfied_poses_add.可能有多个，负数为在前，正数为在后）！")
 
         # 上下文满足、未满足的情况(是一个tuple)
         self.context_satisfaction_result = context_satisfaction_result

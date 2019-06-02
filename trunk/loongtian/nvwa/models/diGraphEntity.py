@@ -69,7 +69,7 @@ class DiGraphEntity(BaseEntity):
                                             status, memory=memory)
 
         if start:
-            if isinstance(start, str) or isinstance(start, unicode):
+            if isinstance(start, str):
                 self.startid = start
                 self._StartItem = None
             elif isinstance(start, BaseEntity):
@@ -81,13 +81,13 @@ class DiGraphEntity(BaseEntity):
         else:
             self._StartItem = None
         if stype:
-            if isinstance(stype, int) or isinstance(stype, str) or isinstance(stype, unicode):
+            if isinstance(stype, int) or isinstance(stype, str):
                 self.stype = stype
             elif isinstance(start, BaseEntity):
                 self.stype = start.getType()
 
         if end:
-            if isinstance(end, str) or isinstance(end, unicode):
+            if isinstance(end, str):
                 self.endid = end
                 self._StartItem = None
             elif isinstance(end, BaseEntity):
@@ -100,7 +100,7 @@ class DiGraphEntity(BaseEntity):
             self._EndItem = None
 
         if etype:
-            if isinstance(etype, int) or isinstance(etype, str) or isinstance(etype, unicode):
+            if isinstance(etype, int) or isinstance(etype, str):
                 self.etype = etype
             elif isinstance(end, BaseEntity):
                 self.etype = end.getType()

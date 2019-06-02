@@ -120,9 +120,12 @@ class Brain(Runnable):
             # 根据用户ip进行反馈
             from loongtian.nvwa.organs.centralManager import CentralManager
             CentralManager.response(output, self.client_address)
+            # if __debug__:
+            #     print(output)
         elif isinstance(output, list):
             for _output in output:
                 self.response(_output)
+
 
     def logThinkResult(self, inputs, result):
         """

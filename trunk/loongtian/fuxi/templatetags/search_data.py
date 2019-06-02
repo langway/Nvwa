@@ -16,7 +16,7 @@ def show_result(data, type='title'):
         data = eval(data)
         data_new = data[0][type]
         try:
-            return unicode(data_new, 'utf-8')
+            return str(data_new)
         except:
             return data_new
     except Exception as e:
@@ -33,7 +33,7 @@ def show_unicode(data):
     :return:返回处理后的结果
     """
     try:
-        return unicode(data, 'utf-8')
+        return str(data)
     except Exception as e:
         pass
     return ''

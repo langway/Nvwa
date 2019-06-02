@@ -57,8 +57,8 @@ def show(content,capital,style=win32con.MB_YESNO,playsound=True,sound="SystemHan
             IDYES 6 是
             IDNO 7 否
     """
-    content = unicode(content)
-    capital = unicode(capital)
+    content = str(content)
+    capital = str(capital)
     if playsound:
         if platform.uname()[0] == 'Windows':
             winsound.PlaySound(sound, soundStyle)
