@@ -515,9 +515,9 @@ class RealObject(BaseEntity):
         :param meaning_klg: 意义知识链
         :return:
         """
-        if not self.LinearExecutionInfo:
-            self.LinearExecutionInfo = LinearExecutionInfo(self)
-        return self.LinearExecutionInfo.add(pattern_klg, meaning_klg, value_placeholder)
+        if not self.ExecutionInfo.LinearExecutionInfo:
+            self.ExecutionInfo.LinearExecutionInfo = LinearExecutionInfo(self)
+        return self.ExecutionInfo.LinearExecutionInfo.add(pattern_klg, meaning_klg, value_placeholder)
 
 
     @staticmethod

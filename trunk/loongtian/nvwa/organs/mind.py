@@ -1774,9 +1774,9 @@ class RealArea(SequencedObj):
     #     for pos, executable in pos_executables:
     #         executable = executable.obj
     #         executable.getSelfExecutionInfo()  # 取得执行信息
-    #         for id, pattern in executable.LinearExecutionInfo.pattern_knowledges.items():
+    #         for id, pattern in executable.ExecutionInfo.LinearExecutionInfo.pattern_knowledges.items():
     #             pattern_klg = pattern.obj
-    #             meaning_klgs = executable.LinearExecutionInfo.meaning_knowledges[pattern.id]
+    #             meaning_klgs = executable.ExecutionInfo.LinearExecutionInfo.meaning_knowledges[pattern.id]
     #             if not meaning_klgs:
     #                 raise Exception("查找不到pattern的meaning！")
     #

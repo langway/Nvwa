@@ -18,3 +18,5 @@ trunk/test/nvwa/nvwa.log.1
 trunk/.idea/workspace.xml
 trunk/.idea/workspace.xml
 *.log
+*.log
+*.1
