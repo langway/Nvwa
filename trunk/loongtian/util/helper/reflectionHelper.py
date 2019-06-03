@@ -5,7 +5,6 @@
 """
 
 from __future__ import nested_scopes
-import new
 import sys, types
 
 
@@ -83,9 +82,9 @@ def enhance_method(klass, method_name, replacement):
 
 def method_logger(old_method, self, *args, **kwds):
     '给方法添加调用执行日志'
-    print '*** calling: %s%s, kwds=%s' % (old_method.__name__, args, kwds)
+    print ('*** calling: %s%s, kwds=%s' % (old_method.__name__, args, kwds))
     return_value = old_method(self, *args, **kwds) # call the original method
-    print '*** %s returns: %s' % (old_method.__name__, `return_value`)
+    print ('*** %s returns: %s' % (old_method.__name__, `return_value`))
     return return_value
 
 # def demo():
@@ -134,7 +133,7 @@ def create_object_Dynamic(module_name, class_name,**object_attribute):
         module_meta = __import__(module_name)
         class_meta = getattr(module_meta, class_name)
         o = class_meta()
-    for k in object_attribute:
+    for k in object_attribute.keys():
         if str(type(object_attribute[k])) == '<class \'dict\'>':
             setattr(o, k, create_object_Dynamic(object_attribute[k]))
         else:

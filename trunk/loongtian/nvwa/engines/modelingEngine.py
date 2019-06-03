@@ -463,7 +463,7 @@ class ModelingEngine(ThinkEngineBase):
         # 这里需要特别说明一下：如果只有差异，没有相同，说明是两个完全不相关的内容，无法对其进行意义上的处理。
         if len(sames1) > 0 and len(differs1) > 0:
             if len(differs1) == 1:  # 如果只有一个，例如：牛 有 腿——牛 组件为 腿，将差出"有"，直接生成"有"的模式
-                sub_exe = knowledge1._s_chain_items[differs1.keys()[0]]
+                sub_exe = knowledge1._s_chain_items[list(differs1.keys())[0]]
                 # 因为要生成模式，所以需要对其类型进行更改
                 if isinstance(sub_exe, RealObject) and not ObjType.isExecutable(sub_exe):
                     sub_exe.type = ObjType.ACTION

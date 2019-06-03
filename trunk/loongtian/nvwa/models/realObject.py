@@ -576,7 +576,7 @@ class Constitutions():
         # 取得以当前实际对象开头，以relatedObj结尾的所有Knowledge
         from loongtian.nvwa.models.knowledge import Knowledge
 
-        relations = constitutions.keys()
+        relations = list(constitutions.keys())
         error_msg = "查询条件必须是实际对象、知识链或字符串！"
         # 首先取得符合第一个条件的所有结果（可能有多个）
         first_relations = Constitutions.__getConditionObject(relations[0], error_msg)

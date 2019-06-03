@@ -240,7 +240,7 @@ class GroupEngine(ThinkEngineBase):
 
     def splitByPosExecutable(self, reals, pos_exe_dict):
 
-        pos_exe_list = pos_exe_dict.keys()
+        pos_exe_list = list(pos_exe_dict.keys())
         pos_exe_list.sort()
 
         fragments_pos = []  # 匹配当前可执行对象模式的碎片（位置信息）

@@ -1891,7 +1891,7 @@ class LayerLimitation(object):
                 self.add(k, v)
 
     def keys(self):
-        return self.main.keys() + self.subs.keys()
+        return list(self.main.keys()) + list(self.subs.keys())
 
     def items(self):
         return tuple(list(self.main.items()) + list(self.subs.items()))

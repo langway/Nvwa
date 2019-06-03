@@ -456,9 +456,9 @@ class _Instincts(object):
         检查加载的直觉是否符合nvwa内部定义
         :return:
         """
-        li1 = self.InstinctsMValueDict.keys()
+        li1 = list(self.InstinctsMValueDict.keys())
         li1.sort()
-        li2 = self.mvalue_metas_dict.keys()
+        li2 = list(self.mvalue_metas_dict.keys())
         li2.sort()
         return li1 == li2
 

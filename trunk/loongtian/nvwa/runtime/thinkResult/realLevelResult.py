@@ -295,7 +295,7 @@ class RealLevelResult(object):
         if not pose_frags:
             return None
         frags_list = []
-        pose_list = pose_frags.keys()
+        pose_list = list(pose_frags.keys())
         pose_list.sort()
         for pose in pose_list:
             frags_list.append(pose_frags[pose])
