@@ -18,6 +18,7 @@ from loongtian.fuxi import app
 from loongtian.fuxi.mod.models import User, db, SearchRecord
 
 
+@app.route('/')
 @app.route('/index', methods=['GET'])
 def index():
     """

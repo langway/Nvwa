@@ -10,6 +10,7 @@ from loongtian.nvwa.organs.centralBrain import CentralBrain
 
 if __name__ == "__main__":
     from loongtian.nvwa.organs.centralManager import CentralManager
+
     CentralManager._cleanDB(wait_for_command=True)
 
     _CentralBrain = CentralBrain()

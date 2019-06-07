@@ -20,7 +20,7 @@ __author__ = 'leon'
 if __name__ == '__main__':
 
     run(console)
-    print ("-"*10 + "sleeping 5秒，以等待http_console" + "-"*10)
+    print ("-"*10 + "sleeping 5秒，以等待http_console" + "-"*10 + "\r\n")
     time.sleep(5)
-    print ("-"*10 +" sleeping 结束 " + "-"*10)
+    print ("-"*10 +" sleeping 结束 " + "-"*10 + "\r\n")
     app.run(host='127.0.0.1', port=1547)

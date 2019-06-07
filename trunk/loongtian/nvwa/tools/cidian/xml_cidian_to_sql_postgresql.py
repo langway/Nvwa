@@ -6,7 +6,7 @@ from BeautifulSoup import BeautifulSoup
 import psycopg2
 from loongtian.util.helper import stringHelper
 
-conn = psycopg2.connect(database="nvwa", user="postgres", password="191739qaz", host="localhost", port="5432")
+conn = psycopg2.connect(database="nvwa", user="postgres", password="123456qaz", host="localhost", port="5432")
 cur = conn.cursor()
 tbl_metadata = "\"tbl_metaData\""
 valuesHasStopMark = []

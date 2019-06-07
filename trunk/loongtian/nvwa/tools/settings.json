@@ -19,7 +19,7 @@
   "postgresPort": 5432,
   "postgresDatabase": "nvwa",
   "postgresUser": "postgres",
-  "postgresPassword": "191739qaz",
+  "postgresPassword": "123456qaz",
 
   "logActive": true,
   "logLevel": "debug",

@@ -1,16 +1,16 @@
-
+ï»¿
 
 loongtian/nvwa/organs/console.py
-# [ÏûÏ¢´«ËÍ²½Öè]£º0¡¢¿Í»§¶ËÊäÈë£¬·¢ËÍÍù·şÎñÆ÷¶Ë£¬µÈ´ıClientHandler´¦Àí
+# [æ¶ˆæ¯ä¼ é€æ­¥éª¤]ï¼š0ã€å®¢æˆ·ç«¯è¾“å…¥ï¼Œå‘é€å¾€æœåŠ¡å™¨ç«¯ï¼Œç­‰å¾…ClientHandlerå¤„ç†
 
 loongtian.nvwa.organs.centralBrain.ClientHandler
-# [ÏûÏ¢´«ËÍ²½Öè]1¡¢·şÎñÆ÷¶Ë½ÓÊÕConsole¿Í»§¶ËÊäÈë£¬
-#         ·ÅÈëCentralManager.console_input_queueÏûÏ¢¶ÓÁĞ£¨ÒÑÔÚUserDispenserÖĞ×¢²á£©£¬
-#         µÈ´ıUserDispenser´¦Àí
+# [æ¶ˆæ¯ä¼ é€æ­¥éª¤]1ã€æœåŠ¡å™¨ç«¯æ¥æ”¶Consoleå®¢æˆ·ç«¯è¾“å…¥ï¼Œ
+#         æ”¾å…¥CentralManager.console_input_queueæ¶ˆæ¯é˜Ÿåˆ—ï¼ˆå·²åœ¨UserDispenserä¸­æ³¨å†Œï¼‰ï¼Œ
+#         ç­‰å¾…UserDispenserå¤„ç†
 
-# 1.1¡¢·ÅÈëÏûÏ¢¶ÓÁĞ£¬µÈ´ıUserDispenser´¦Àí
+# 1.1ã€æ”¾å…¥æ¶ˆæ¯é˜Ÿåˆ—ï¼Œç­‰å¾…UserDispenserå¤„ç†
 
 
 loongtian.nvwa.organs.userDispenser.UserDispenser#_execute
-[ÏûÏ¢´«ËÍ²½Öè]2¡¢´ÓClientHandlerÑ¹ÈëCentralManager.console_input_queue¶ÓÁĞµÄÏûÏ¢ÖĞÈ¡µÃÏûÏ¢¼°ÓÃ»§IPµØÖ·
-        ²éÕÒÊÇ·ñÒÑ¾­µÇÂ¼£¬ÈçÎ´µÇÂ¼£¬µ÷ÓÃµÇÂ¼½çÃæ£¨»ò·¢ËÍµÇÂ¼ĞÅÏ¢£©
+[æ¶ˆæ¯ä¼ é€æ­¥éª¤]2ã€ä»ClientHandlerå‹å…¥CentralManager.console_input_queueé˜Ÿåˆ—çš„æ¶ˆæ¯ä¸­å–å¾—æ¶ˆæ¯åŠç”¨æˆ·IPåœ°å€
+        æŸ¥æ‰¾æ˜¯å¦å·²ç»ç™»å½•ï¼Œå¦‚æœªç™»å½•ï¼Œè°ƒç”¨ç™»å½•ç•Œé¢ï¼ˆæˆ–å‘é€ç™»å½•ä¿¡æ¯ï¼‰

@@ -26,17 +26,17 @@ Postgres:
   sqlite:///c:/absolute/path/to/mydatabase(win)
 　　  sqlite:////absolute/path/to/mydatabase(unix) foo.db
 """
-SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:191739qaz@localhost:5432/auth'  # 'mysql://root:root@localhost:3306/loongsou'
-SQLALCHEMY_DEV_DATABASE_URI = 'postgresql://postgres:191739qaz@localhost:5432/auth'
-SQLALCHEMY_TEST_DATABASE_URI = 'postgresql://postgres:191739qaz@localhost:5432/auth'
+SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:123456qaz@localhost:5432/auth'  # 'mysql://root:root@localhost:3306/loongsou'
+SQLALCHEMY_DEV_DATABASE_URI = 'postgresql://postgres:123456qaz@localhost:5432/auth'
+SQLALCHEMY_TEST_DATABASE_URI = 'postgresql://postgres:123456qaz@localhost:5432/auth'
 
 # SQLALCHEMY_BINDS = { # 绑定多个数据库
 #     'users': 'mysqldb://localhost/users',
 #     'appmeta': 'sqlite:////path/to/appmeta.db'
 # }
 SQLALCHEMY_BINDS = { # 绑定多个数据库
-    'users_sms': 'postgresql://postgres:191739qaz@localhost:5432/yiya',
-    'search_record': 'postgresql://postgres:191739qaz@localhost:5432/yiya'
+    'users_sms': 'postgresql://postgres:123456qaz@localhost:5432/yiya',
+    'search_record': 'postgresql://postgres:123456qaz@localhost:5432/yiya'
 }
 SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
 SQLALCHEMY_COMMIT_ON_TEARDOWN = True
@@ -77,9 +77,9 @@ class BaseConfig:
       sqlite:///c:/absolute/path/to/mydatabase(win)
 　　  sqlite:////absolute/path/to/mydatabase(unix) foo.db
     """
-    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:191739qaz@localhost:5432/auth'  # 'mysql://root:root@localhost:3306/loongsou'
-    SQLALCHEMY_DEV_DATABASE_URI = 'postgresql://postgres:191739qaz@localhost:5432/auth'
-    SQLALCHEMY_TEST_DATABASE_URI = 'postgresql://postgres:191739qaz@localhost:5432/auth'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:123456qaz@localhost:5432/auth'  # 'mysql://root:root@localhost:3306/loongsou'
+    SQLALCHEMY_DEV_DATABASE_URI = 'postgresql://postgres:123456qaz@localhost:5432/auth'
+    SQLALCHEMY_TEST_DATABASE_URI = 'postgresql://postgres:123456qaz@localhost:5432/auth'
 
     # SQLALCHEMY_BINDS = { # 绑定多个数据库
     #     'users': 'mysqldb://localhost/users',

@@ -39,7 +39,27 @@ Nvwa Brain is a GAI (General Artificial Intelligence) based on understanding sys
 
 ![Image text](https://raw.githubusercontent.com/langway/Nvwa/master/doc/img/console-dialog3.png)
 
-## Fourth,Theory Based on Understanding (Basic Part)
+## Fourth, Operation of Web Page Form
+
+### 1. Start the Nvwa central brain first, see 3-1.
+
+### 2. Start http server: run/debug loongtian/fuxi/http Server Runner.py. The interface after startup is as follows (login as a superuser at present):
+
+![Image text](https://raw.githubusercontent.com/langway/Nvwa/master/doc/img/start-web-server.png)
+
+### 3. After starting the server, use the browser to open the web address: http://127.0.0.1:1547/. The interface is as follows:
+
+![Image text](https://raw.githubusercontent.com/langway/Nvwa/master/doc/img/start-web-index-page.png)
+
+    Notice: By default, the interface displays the traditional search engine style, which can be changed by the left button, such as: default/fit/full screen
+	
+### 4. You can enter some simple sentences and click the "Send" button to view the results line by line.
+
+![Image text](https://raw.githubusercontent.com/langway/Nvwa/master/doc/img/web-dialog0.png)
+
+![Image text](https://raw.githubusercontent.com/langway/Nvwa/master/doc/img/web-dialog1.png)
+
+## Fifth, Theory Based on Understanding (Basic Part)
 ### 1. On Metadata-Actual Objects
 ### 2. On Top Relations
 ### 3. About T-shaped Data Structure (T-shaped Data Structure)
@@ -51,7 +71,7 @@ Nvwa Brain is a GAI (General Artificial Intelligence) based on understanding sys
 #### (4) Internal and External Relevant Action
 Currently, you can read doc/"Relations between Objects.doc"
 
-## Fifth, Other
+## Sixth, Other
 ### 1. Python library changes
 
 \Lib\logging\__init__.py\LogRecord.getMessage最后一句话：
@@ -83,5 +103,8 @@ class RotatingFileHandler(BaseRotatingHandler):
                 except:
                     pass
 
-## Sixth,Contact information: mobile phone/Wechat 15640193617
+## Seventh,Contact information: mobile phone/Wechat 15640193617
+
+## Eighth. Questions:
+### 1. Somehow, Python 3.0 is slower than Python 2.0!
 

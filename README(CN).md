@@ -15,7 +15,7 @@ Nuwa Brain is a GAI (General Artificial Intelligence) based on understanding sys
 ####  （3）安装需要的库，打开loongtian/util/pip目录，运行pipInstallAll.py，前期需要pytz等库，安装完成后检查，一般未安装成功不影响运行。
 
 ## 三、运行基本代码
-### 1、启动nvwa大脑：运行/调试 loongtian/nvwa/centralBrainRuner.py
+### 1、启动nvwa中央大脑：运行/调试 loongtian/nvwa/centralBrainRuner.py
 #### （1）系统会询问是否删除原有数据（如下图），默认调试状态下，建议删除，以便测试系统关联的正确性；
 
 ![Image text](https://raw.githubusercontent.com/langway/Nvwa/master/doc/img/start-nvwa-del-db.png)
@@ -42,7 +42,29 @@ Nuwa Brain is a GAI (General Artificial Intelligence) based on understanding sys
 
 ![Image text](https://raw.githubusercontent.com/langway/Nvwa/master/doc/img/console-dialog3.png)
 
-## 四、基于理解的理论（基础部分）
+
+## 四、网页形式运行
+
+### 1、首先启动启动nvwa中央大脑，见三-1
+
+### 2、启动http server：运行/调试 loongtian/fuxi/httpServerRunner.py，启动后界面如下图（目前以超级用户的身份登录）：
+
+![Image text](https://raw.githubusercontent.com/langway/Nvwa/master/doc/img/start-web-server.png)
+
+### 3、启动服务器端后，使用浏览器打开网址：http://127.0.0.1:1547/，界面如下图：
+
+![Image text](https://raw.githubusercontent.com/langway/Nvwa/master/doc/img/start-web-index-page.png)
+
+    说明：默认情况下，界面显示的是传统的搜索引擎样式，可以通过左侧按钮更改板式，例如：默认\适合\全屏
+
+### 4、可以输入一些简单句子，然后点击”发送“按钮，即可逐行查看运行结果。
+
+![Image text](https://raw.githubusercontent.com/langway/Nvwa/master/doc/img/web-dialog0.png)
+
+![Image text](https://raw.githubusercontent.com/langway/Nvwa/master/doc/img/web-dialog1.png)
+
+
+## 五、基于理解的理论（基础部分）
 ### 1、关于元数据-实际对象
 ### 2、关于顶级关系
 ### 3、关于丁字形数据结构（T型数据结构）
@@ -55,7 +77,7 @@ Nuwa Brain is a GAI (General Artificial Intelligence) based on understanding sys
 
 目前，可阅读doc/《对象之间的关系.doc》
 
-## 五、其他
+## 六、其他
 ###  1、python库更改
 
 \Lib\logging\__init__.py\LogRecord.getMessage最后一句话：
@@ -87,5 +109,9 @@ class RotatingFileHandler(BaseRotatingHandler):
                 except:
                     pass
 
-## 六、联系方式：手机/微信 15640193617
+## 七、联系方式：手机/微信 15640193617
+
+## 八、问题：
+
+### 1、不知为什么，python3.0的速度比python2.0的速度要慢！
 
