@@ -103,7 +103,10 @@ class CentralBrain(Runnable):
             CentralManager.user_dispenser,
             # self.init(), # 女娲中央大脑初始化
         ]
-        map(lambda t: run(t), self._sub_threads)  # 启动子线程，并put到线程池中。
+        # map(lambda t: run(t), self._sub_threads)
+        # 启动子线程，并put到线程池中。
+        for _sub_thread in self._sub_threads:
+            run(_sub_thread)
         Runnable.pool.poll()  # 通过线程池管理子线程，poll实现异步执行模式。
 
         # 等待处理，如果state为False退出。
@@ -192,7 +195,7 @@ class ClientHandler(BaseStreamHandler):
             return None
         if _receive is None or _receive.strip() == '':
             return None
-        _receive = _receive.strip().decode('utf-8')
+        _receive = _receive.strip()
         _msgInfo = None
         try:
             _msgInfo = MsgInfo()

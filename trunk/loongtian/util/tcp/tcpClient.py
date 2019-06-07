@@ -22,6 +22,11 @@ class TcpClient(object):
             print('Can not connect to {0}[{1}]'.format((self.__host, self.__port), e.args[0]))
 
     def send(self, msg):
+        """
+        [消息传送步骤]：0、客户端输入，发送往服务器端，等待ClientHandler处理
+        :param msg:
+        :return:
+        """
         try:
             if not self.is_connected:
                 try:
@@ -30,10 +35,10 @@ class TcpClient(object):
                     self.is_connected = True
                     print('Reconnect to {0}'.format((self.__host, self.__port)))
                 except Exception as  e:
-                    print('Can not connect to {0}[{1}]'.format((self.__host, self.__port), e.args[0]))
+                    print('Can not connect to {0}[{1}]，Error:{2}'.format(self.__host, self.__port,str(e.args[0])))
                     self.is_connected = False
                     return
-            self._client.send(msg)
+            self._client.send(msg.encode())
         except Exception as e:
             print('Lost connection {0}[{1}]'.format((self.__host, self.__port), e.args[0]))
             self.is_connected = False

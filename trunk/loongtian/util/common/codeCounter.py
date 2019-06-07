@@ -93,7 +93,7 @@ def CountTotalLines(path,spaceHead):
 print ("---Code Counter Stated---")
 
 while True:
-    path =raw_input('请输入要计算代码量的路径：').decode('utf-8')
+    path =input('请输入要计算代码量的路径：')
     path=os.path .normpath(path)
     curTotal,curCode,curRemarks,curSpace= CountTotalLines(path,'    ')
     print(path + u'--目录总实际行数：%d 代码量：%d 注释量：%d 空行量：%d' % (curTotal,curCode,curRemarks,curSpace))

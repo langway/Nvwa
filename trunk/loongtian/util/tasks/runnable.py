@@ -59,7 +59,11 @@ class Runnable(object):
             self.stop()
 
     def _start_sub_threads(self):
-        map(lambda t: run(t), self._sub_threads)
+        # 启动子线程，并put到线程池中。
+        # map(lambda t: run(t), self._sub_threads)
+        for _sub_thread in self._sub_threads:
+            run(_sub_thread)
+
         Runnable.pool.poll()
 
     def stop(self):
@@ -102,7 +106,7 @@ def print_wrapper(msg):
     打印线程信息
     '''
 
-    print('\r\n-------- %s -------------\r\n' % (msg))
+    print('-------- %s -------------\r\n' % (msg))
 
 
 def handle_exception(request, exc_info):

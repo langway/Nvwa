@@ -64,7 +64,7 @@ class Console(Runnable):
         处理用户输入
         :return:
         """
-        _input = raw_input()  # ("[%s]:" % self._user.username)
+        _input = input()  # ("[%s]:" % self._user.username)
         if _input is None or _input.strip() == "":  # 如果没有输入，不进行任何处理
             return False
         if _input in self.shutdown_commands:
@@ -81,8 +81,8 @@ class Console(Runnable):
         :return:
         """
         self._msgInfo.msg = auth.message.logon_msg
-        # 消息发送步骤：0、客户端输入，发送往服务器端，等待ClientHandler处理
-        self._client.send(self._msgInfo.toStr() + '\r\n')  # 一个下午！！！必须加'\r\n'，不知道为什么
+        # [消息传送步骤]：0、客户端输入，发送往服务器端，等待ClientHandler处理
+        self._client.send(self._msgInfo.toStr()+ '\r\n')  # 一个下午！！！必须加'\r\n'，不知道为什么
 
         return True
 

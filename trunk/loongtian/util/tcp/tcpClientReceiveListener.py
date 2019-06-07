@@ -22,12 +22,15 @@ class TcpClientReceiveListener(Runnable):
         while True:
             try:
                 _output = self.client.recv()
-                if _output != '':
-                    # 压到队列之中
-                    self._lock.acquire()
-                    self.output_queue.put(_output)
-                    self._lock.release()
-                    print(self.prompt + _output)
+
+                if _output:
+                    _output=_output.decode()
+                    if _output!= '':
+                        # 压到队列之中
+                        self._lock.acquire()
+                        self.output_queue.put(_output)
+                        self._lock.release()
+                        print(self.prompt + _output)
             except Exception as e:
                 continue
             if not self.state():

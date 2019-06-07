@@ -1,0 +1,16 @@
+
+
+loongtian/nvwa/organs/console.py
+# [消息传送步骤]：0、客户端输入，发送往服务器端，等待ClientHandler处理
+
+loongtian.nvwa.organs.centralBrain.ClientHandler
+# [消息传送步骤]1、服务器端接收Console客户端输入，
+#         放入CentralManager.console_input_queue消息队列（已在UserDispenser中注册），
+#         等待UserDispenser处理
+
+# 1.1、放入消息队列，等待UserDispenser处理
+
+
+loongtian.nvwa.organs.userDispenser.UserDispenser#_execute
+[消息传送步骤]2、从ClientHandler压入CentralManager.console_input_queue队列的消息中取得消息及用户IP地址
+        查找是否已经登录，如未登录，调用登录界面（或发送登录信息）

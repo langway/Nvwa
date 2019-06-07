@@ -74,7 +74,7 @@ class _centralManager(object):
         """
         _socket = self.user_dispenser.socket_dict.get(client_address)
         if _socket:
-            _socket.send(output)
+            _socket.send(output.encode())
             print('Send: {0} To:{1}'.format(output, client_address))
 
     def _cleanDB(self, wait_for_command=True):

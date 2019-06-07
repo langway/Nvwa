@@ -31,5 +31,5 @@ class BaseStreamHandler(StreamRequestHandler):
         return _input
 
     def _send(self, output):
-        self.wfile.write(output)
+        self.wfile.write(output.encode())
         print("Send: {0}  To: {1}:{2}".format(output, self.client_address[0], self.client_address[1]))

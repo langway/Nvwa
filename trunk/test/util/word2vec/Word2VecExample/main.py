@@ -71,7 +71,7 @@ def main():
 	word2vec = load_word2vec('vectors')
 	print('Type several words separated by spaces. The more words you enter, the better I can guess.')
 	while (True):
-		words = raw_input('->').lower().split(' ')
+		words = input('->').lower().split(' ')
 		print('I think',get_furthest_word(words, word2vec),'doesnt belong in this list!\n')
 			
 if __name__ == '__main__':

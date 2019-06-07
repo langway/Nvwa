@@ -30,9 +30,6 @@ class MsgInfo(object):
 
         for attribute,value in dict.items():
             if hasattr(self,attribute.lower()):
-                if isinstance(value, str):
-                    value = value.decode("utf-8")
-
                 setattr(self,attribute, value)
 
     def toStr(self):

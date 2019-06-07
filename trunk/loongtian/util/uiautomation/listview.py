@@ -10,9 +10,9 @@ import win32gui
 from loongtian.util.uiautomation import screen, mouse_key_commond
 # exe_path=r"D:\Program Files (x86)\wh6弘业期货\mytrader_spqh.exe"
 # # start the application and wait for the Agent Dialog to be ready
-# process_input=raw_input("输入要连接的程序进程id：")
+# process_input=input("输入要连接的程序进程id：")
 # process_input=int(process_input)
-# handle_input=raw_input("输入要连接的窗体handle：")
+# handle_input=input("输入要连接的窗体handle：")
 # handle_input=int(handle_input)
 # app = Application().connect(process=process_input,handle=handle_input)
 #
@@ -22,7 +22,7 @@ from loongtian.util.uiautomation import screen, mouse_key_commond
 #
 # app.
 
-hwnd_input=590250 #raw_input("输入ListView的窗体句柄：")
+hwnd_input=590250 #input("输入ListView的窗体句柄：")
 hwnd_input=int(hwnd_input)
 lst=ListViewWrapper(hwnd_input)
 # import time
