@@ -50,7 +50,7 @@ class RealLevelResult(object):
         self.collectionFragments = CollectionFragments(self)
         self.unsatisfiedFragments = UnsatisfiedFragments(self)  # pattern只能部分匹配的部分片段的列表。
         self.unknownObjs = UnknownObjs(self)  # 在一个realObject链（笛卡尔积）中未能正确理解的对象。
-        self.linkedActions = LinkedActions(self)  # 在一个realObject链（笛卡尔积）中交联的两个动作的包装类的列表
+        self.linkedActions = LinkedActions(self)  # 在一个realObject链（笛卡尔积）中前后相连的两个动作的包装类的列表
 
         self.realLevelThinkingRecords = RealLevelThinkingRecords(self)  # 关于思考状态的信息记录（这些状态在思维处理中不断被改变，是单向、互斥的）。
 

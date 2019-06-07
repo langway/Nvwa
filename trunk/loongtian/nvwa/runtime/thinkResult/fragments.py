@@ -683,7 +683,7 @@ class LinkedAction(object):
 
 class LinkedActions(GenericsList):
     """
-    在一个realObject链（笛卡尔积）中交联的两个动作的包装类的列表
+    在一个realObject链（笛卡尔积）中前后相连的的两个动作的包装类的列表
     """
 
     def __init__(self, realLevelResult):

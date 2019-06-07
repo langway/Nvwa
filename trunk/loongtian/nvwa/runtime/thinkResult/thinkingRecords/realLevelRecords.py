@@ -243,12 +243,12 @@ class RealLevelThinkingRecords():
     # 匹配状态信息
     # ####################################
 
-    def isRealObjectUnmatched(self):
-        """
-        判断实际对象是否未知（元数据已知）。
-        :return:
-        """
-        return self.curRealLevelMatchInfo == ThinkingInfo.RealLevelInfo.MatchInfo.RELATED_REALS_UNMATCHED
+    # def isRealObjectUnmatched(self):
+    #     """
+    #     判断实际对象是否未知（元数据已知）。
+    #     :return:
+    #     """
+    #     return self.curRealLevelMatchInfo == ThinkingInfo.RealLevelInfo.MatchInfo.RELATED_REALS_UNMATCHED
 
     def isAllUnmatched(self):
         """

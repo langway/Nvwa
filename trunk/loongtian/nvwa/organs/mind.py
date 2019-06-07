@@ -1089,7 +1089,7 @@ class RealArea(SequencedObj):
                     realLevelResult.unknownObjs.add(cur_real, cur_pos)
             else:
                 # 如果是动作（可执行的），查看是否匹配其pattern
-                # 取得下一个(或下几个)对象，如果也是可执行的，那么放到ConjugatedActions，不继续执行，等待进一步处理
+                # 取得下一个(或下几个)对象，如果也是可执行的，那么放到linkedActions，不继续执行，等待进一步处理
                 _action_test_pos = cur_pos + 1
                 _conjugated_actions = []
                 while _action_test_pos < len(realLevelResult.reals):
@@ -1102,7 +1102,7 @@ class RealArea(SequencedObj):
 
                 if _conjugated_actions:
                     _conjugated_actions.insert(0, cur_real)
-                    realLevelResult.conjugatedActions.add(cur_pos, *_conjugated_actions)  # actions
+                    realLevelResult.linkedActions.add(cur_pos, *_conjugated_actions)  # actions
                     cur_pos = _action_test_pos - 1
                 else:
                     # 根据可执行对象取得执行结果
@@ -2554,8 +2554,8 @@ class RealArea(SequencedObj):
             将第一个动词的前部（至前一个动词止），与第二个动词及后续部分（至第三个动词止）重新拼合
             2、作为集合考虑
         """
-        for conjugatedAction in realLevelResult.conjugatedActions:
-            if len(conjugatedAction.actions) == len(realLevelResult.reals):  # 全部都是动作
+        for linkedAction in realLevelResult.linkedActions:
+            if len(linkedAction.actions) == len(realLevelResult.reals):  # 全部都是动作
                 frag = CollectionFragment(realLevelResult, realLevelResult.reals, 0, len(realLevelResult.reals))
                 self._thinkAsCollection(realLevelResult, frag, realsType=ObjType.ACTION)
                 if not realLevelResult.isAllUnderstood():
@@ -2563,7 +2563,7 @@ class RealArea(SequencedObj):
                     self._thinkAsModification(realLevelResult, frag, realsType=ObjType.ACTION)
 
             else:
-                return self._processLinkedAction(realLevelResult, conjugatedAction)
+                return self._processLinkedAction(realLevelResult, linkedAction)
 
     def _processLinkedAction(self, realLevelResult, linkedAction):
         """
