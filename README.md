@@ -1,6 +1,7 @@
 # Nvwa
 Nvwa Brain is a GAI (General Artificial Intelligence) based on understanding system that can truly realize machine thinking. The goal is to create a machine thinking like human beings that can "learn and think" and help people do things. An understandable world similar to human beings can further form the results of logical reasoning, association, emotion and even humor that other technologies can not achieve.
 
+
 ## First, why is it called Nvwa?
 ### Nvwa is the goddess of earth and human creation in Chinese mythology. The reason why human beings are human is that they have a wise brain. Naming the project "Nvwa" is the hope that the project will enable the machine to think like human beings.
 
@@ -33,9 +34,6 @@ Nvwa Brain is a GAI (General Artificial Intelligence) based on understanding sys
     
 #### (2) Try to input simple sentences such as "cow" and "cow has legs". The results are as follows:
     
-![Image text](https://raw.githubusercontent.com/langway/Nvwa/master/doc/img/console-dialog1.png)
-    
-![Image text](https://raw.githubusercontent.com/langway/Nvwa/master/doc/img/console-dialog2.png)
 
 ### 3. In the case of development, the test/nvwa/testBrain.py can be used directly to run the test Meaning function to view the running results line by line.
 
@@ -86,3 +84,4 @@ class RotatingFileHandler(BaseRotatingHandler):
                     pass
 
 ## Sixth,Contact information: mobile phone/Wechat 15640193617
+
