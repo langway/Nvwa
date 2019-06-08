@@ -1,6 +1,8 @@
 # Nvwa
-女娲大脑，是基于理解体系建立起来的可真正实现机器思维的“强”人工智能（GAI，General Artificial Intelligence）！ 目标是打造一款像人一样“学习、思维”，帮人做事的机器思维！一个类似于人的可理解的世界，可以进一步形成其他技术实现不了的逻辑推理，联想，情感，甚至幽默等思维结果！  
-Nuwa Brain is a GAI (General Artificial Intelligence) based on understanding system that can truly realize machine thinking. The goal is to create a machine thinking like human beings that can "learn and think" and help people do things. An understandable world similar to human beings can further form the results of logical reasoning, association, emotion and even humor that other technologies can not achieve.
+女娲大脑，是基于理解体系建立起来的可真正实现机器思维的“强”人工智能（AGI，Artificial General Intelligence，AI还包括弱人工智能，例如深度学习等）！ 目标是打造一款像人一样“学习、思维”，帮人做事的机器思维！一个类似于人的可理解的世界，可以进一步形成其他技术实现不了的逻辑推理，联想，情感，甚至幽默等思维结果！  
+Nuwa Brain is a AGI (Artificial General Intelligence. AI also include weak intelligence,such as deep leaning,etc.) based on understanding system that can truly realize machine thinking. The goal is to create a machine thinking like human beings that can "learn and think" and help people do things. An understandable world similar to human beings can further form the results of logical reasoning, association, emotion and even humor that other technologies can not achieve.
+
+[English version Readme](https://github.com/langway/Nvwa/blob/master/README.md)
 
 ## 一、为什么叫女娲？
 ### 女娲，是中国神话中抟土造人的女神。而人类之所以为人，就是因为人类具有智慧的大脑。给项目名称起名“女娲”，就是希望项目能让机器实现像人类一样的思考。
@@ -10,7 +12,7 @@ Nuwa Brain is a GAI (General Artificial Intelligence) based on understanding sys
 ####  （1）数据库使用Postgre，安装完成后，postgre用户密码设置为123456qaz，你也可以在\trunk\loongtian\nvwa\settings.py中更改数据库用户及密码。
 ####  （2）安装数据库，新建auth、nvwa（目前为nvwa2）、yiya三个数据库，在目前项目中的\database_backup目录下，恢复三个数据库。
 ### 2、python：
-####  （1）目前使用版本python2.7，正在完成向python3.7的迁移
+####  （1）目前使用版本python3.7，已结完成从python2.7的迁移（第一个上传版本First Comit使用python2.7）
 ####  （2）修改python库中的log代码，否则会报错！具体修改方案见下面。
 ####  （3）安装需要的库，打开loongtian/util/pip目录，运行pipInstallAll.py，前期需要pytz等库，安装完成后检查，一般未安装成功不影响运行。
 
@@ -51,7 +53,7 @@ Nuwa Brain is a GAI (General Artificial Intelligence) based on understanding sys
 
 ![Image text](https://raw.githubusercontent.com/langway/Nvwa/master/doc/img/start-web-server.png)
 
-### 3、启动服务器端后，使用浏览器打开网址：http://127.0.0.1:1547/，界面如下图：
+### 3、启动服务器端后，使用浏览器打开网址：http://127.0.0.1:1547/ ，界面如下图：
 
 ![Image text](https://raw.githubusercontent.com/langway/Nvwa/master/doc/img/start-web-index-page.png)
 
@@ -77,7 +79,17 @@ Nuwa Brain is a GAI (General Artificial Intelligence) based on understanding sys
 
 目前，可阅读doc/《对象之间的关系.doc》
 
-## 六、其他
+## 六、为什么要开源：
+### 1、做这个项目已经很长一段时间了，从2006年就开始了理论探索，一直到现在；
+### 2、目前市面上的AI都偏向于“感知计算”，图像、声音的通过深度学习技术大行其道，文字方面的，特别是能够像人类一样理解意义方面的“认知计算”，还非常弱智，深度学习还解决不了强人工智能的问题；
+### 3、曾经组建过公司，但最后因为投资人资金链断裂，没能挺到最后，非战之罪！心里一直憋着一股火，希望我的技术通过开源，能够重见天日，而非埋在我个人的计算机硬盘里面。
+
+## 七、希望： 
+### 1、更多有识之士能够加入进来，一起探索强人工智能的发展方向；
+### 2、早日实现技术的进一步突破。当前的版本只属于基础的核心版本，仅仅将语义、简单动作开发完成，后面还有更多技术等待探索、完善；
+### 3、早日开发出能够商业化的版本。
+
+## 八、其他
 ###  1、python库更改
 
 \Lib\logging\__init__.py\LogRecord.getMessage最后一句话：
@@ -109,9 +121,9 @@ class RotatingFileHandler(BaseRotatingHandler):
                 except:
                     pass
 
-## 七、联系方式：手机/微信 15640193617
+## 九、联系方式：手机/微信 15640193617
 
-## 八、问题：
+## 十、问题：
 
-### 1、不知为什么，python3.0的速度比python2.0的速度要慢！
+### 1、python3.0的速度比python2.0的速度要慢很多！
 
