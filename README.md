@@ -34,7 +34,10 @@ Nvwa Brain is a AGI (Artificial General Intelligence. AI also include weak intel
 ![Image text](https://raw.githubusercontent.com/langway/Nvwa/master/doc/img/start-console-logon.png)
     
 #### (2) Try to input simple sentences such as "cow" and "cow has legs". The results are as follows:
+
+![Image text](https://raw.githubusercontent.com/langway/Nvwa/master/doc/img/console-dialog1.png)
     
+![Image text](https://raw.githubusercontent.com/langway/Nvwa/master/doc/img/console-dialog2.png)
 
 ### 3. In the case of development, the test/nvwa/testBrain.py can be used directly to run the test Meaning function to view the running results line by line.
 

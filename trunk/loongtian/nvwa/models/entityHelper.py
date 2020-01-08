@@ -41,13 +41,13 @@ def getEntityByTypeAndId(entityType=ObjType.UNKNOWN,id=None,memory=None):
     return entity
 
 
-def getNatureLanguage(obj,seperator=","):
+def getNatureLanguage(obj,seperator=None):
     """
     取得对象的自然语言
     :param obj:
     :return:
     """
-    if not seperator:
+    if seperator is None:
         seperator=","
     if isinstance(obj, RealObject):
         return obj.remark

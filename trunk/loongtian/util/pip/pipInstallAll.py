@@ -22,7 +22,7 @@ else:
 COMPONENTS=[
     "pip",
     "pytz",
-    "VCForPython27", #2.7必备之组件，如果是3.0，将自动忽略
+
     "pywin32",
 
     # ——安装软件部分（一般省略）——
@@ -36,7 +36,7 @@ COMPONENTS=[
     # ——数据库部分——
     "psycopg2",  # （见support文件夹）
     "postgres",  # PostgreSQL数据库连接
-    "dbutils",  # 数据库连接池# 3.5需要安装升级版（见support文件夹）：https://github.com/Mohanson/DButils
+    "dbutils",  # 数据库连接池
     "redis",  # redis数据库连接
     "SQLAlchemy",
     "mysqlclient",
@@ -47,7 +47,7 @@ COMPONENTS=[
     "jsonplus",
 
     # ——科学计算计算部分——
-    "numpy",  # （numpy+mkl 见support文件夹）MKL：Intel Math Kernel Library
+    "numpy",  #
     "scipy", # （见support文件夹）主要是一些科学工具集，信号处理工具集（如线性代数使用LAPACK库，快速傅立叶变换使用FFTPACK库）及数值计算的一些工具（常微分方程求解使用ODEPACK库，非线性方程组求解以及最小值求解等）
     "matplotlib",  # 是一个画图工具，和Matlab中的画图工程类似，作数据可视化。
     "seaborn", # 用于美化matplotlib图表
@@ -63,13 +63,13 @@ COMPONENTS=[
 
     # ——自然语言处理组件部分——
     "jieba",  # 结巴分词
-    "word2vec",  # 不再使用，直接使用gensim
+    # "word2vec",  # 不再使用，直接使用gensim
     "nltk",
     "gensim",# Word2Vec的Python实现。
     # 参考：中英文维基百科语料上的Word2Vec实验 | 我爱自然语言处理
     # http://www.52nlp.cn/%e4%b8%ad%e8%8b%b1%e6%96%87%e7%bb%b4%e5%9f%ba%e7%99%be%e7%a7%91%e8%af%ad%e6%96%99%e4%b8%8a%e7%9a%84word2vec%e5%ae%9e%e9%aa%8c
 
-    "dateutil",
+    # "dateutil",
     "requests",
 
 
@@ -91,7 +91,7 @@ COMPONENTS=[
     # http://blog.csdn.net/happen23/article/details/45866783
     # ——其他组件部分——
     "apscheduler",  # 计划调度
-    "PySide",  # 图像界面开发(目前不支持python3.5)
+    # "PySide",  # 图像界面开发(目前不支持python3.5)
     # "Twisted",#scrapy需要组件
     "scrapy",  # 网络爬虫，要首先安装lxml（见support文件夹），参见：Index of Packages : Python Package Index
     # https://pypi.python.org/pypi/lxml
@@ -174,8 +174,6 @@ COMPONENTS=[
     "msgpack-python", #MessagePack是一个基于二进制高效的对象序列化Library用于跨语言通信。
                         #它可以像JSON那样，在许多种语言之间交换结构对象；但是它比JSON更快速也更轻巧。
 
-    #再重新安装一遍numpy+mkl，因为有的安装会卸载numpy+mkl，只安装numpy
-    "numpy",  # （numpy+mkl 见support文件夹）MKL：Intel Math Kernel Library
 
     "treelib",
     "SocketServer",

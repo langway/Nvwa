@@ -188,7 +188,7 @@ def install(component,withOutput=True,specialComponents=None):
     安装组件
     :rawParam component: 组件名称
     :rawParam withOutput: 是否输出有关信息
-    :rawParam specialComponents:特殊处理pywin32，numpy，安装Numpy+MKL，scipy，Twisted，lxml等组件
+    :rawParam specialComponents:特殊处理的组件
     :return:
     """
     if withOutput:
@@ -200,17 +200,6 @@ def install(component,withOutput=True,specialComponents=None):
     if withOutput:
         print("——正在安装{0}——".format(component))
     result =0
-
-    if not PY3:
-        # 重载sys模块，设置默认字符串编码方式为utf8
-        reload(sys)
-        sys.setdefaultencoding('utf8')
-
-
-    if component=="VCForPython27" :# 特殊处理VCForPython27
-        return installfrominstallation("VCForPython27")
-    elif component=="tesseract-ocr" :# 特殊处理tesseract-ocr
-        return installfrominstallation("tesseract-ocr")
 
 
     from loongtian.util.helper import fileHelper
@@ -231,22 +220,7 @@ def install(component,withOutput=True,specialComponents=None):
             result=1
         return result
 
-    if PY3:
-        if component=="dbutils":
-            dbutilsPath=supportPath + "DButils4Python3\\"+"setup.py"
-            dbutilsCommand=sys.executable + " " + dbutilsPath + " install"
-            dbutilsCommand=addQuoteMark(dbutilsCommand)#为了防止Dos CMD命令行出现长文件名现象，在其两端加上引号。
-            print("dbutilsCommand: " +dbutilsCommand) #这里有可能出错，将该行输出拷贝到命令行执行！
-            result=call(dbutilsCommand, shell=True)
-            return result
-        # elif component=="PySide":
-        #     print("——目前{0}暂不支持Python3.5——".format(component))
-        #     return
-        else:
-            result=call(pipCommand + " install --upgrade " + component + imageAddress, shell=True)
-
-    else:
-        result =call(pipCommand + " install --upgrade " + component + imageAddress, shell=True)
+    result =call(pipCommand + " install --upgrade " + component + imageAddress, shell=True)
 
     if withOutput:
         print("\r\n——python组件:{0}已经安装完毕！请检查输出，对可能的错误进行处理！——".format(component))
@@ -318,10 +292,6 @@ def getUpdateList():
 
     print("本机需要更新的组件：" + str(updatelist))
 
-    if updatelist.__contains__("numpy") or updatelist.__contains__("scipy"):
-        print ("numpy or scipy 出现重大更新，请至:\r\n"
-               "http://www.lfd.uci.edu/~gohlke/pythonlibs/ \r\n"
-               "下载对应的numpy或scipy版本，以免其他组件安装中出现问题！")
 
     return outdatelist,updatelist
 

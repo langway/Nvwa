@@ -6,7 +6,7 @@ __author__ = 'CoolSnow'
 import types
 
 import psycopg2
-from psycopg2 import IntegrityError
+from psycopg2 import OperationalError,IntegrityError
 from DBUtils.PooledDB import PooledDB
 
 class _DbPool(object):
@@ -43,6 +43,7 @@ class _DbPool(object):
                 mincached=mincached, maxcached=maxcached, maxconnections=maxcached,
                 blocking=blocking, maxusage=maxusage, setsession=setsession, ping=ping
             )
+
         except Exception as e:
             # print (str(e).decode("GBK"))
             raise e

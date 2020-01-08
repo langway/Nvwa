@@ -35,6 +35,7 @@ class ObjType(Enum):
     #      实际对象类型枚举。其中：Instinct\Action\Modifier为可执行性的实际对象（executable ）
     # ####################################
     REAL_OBJECT = 3  # 实际对象的总类（未分类的实际对象类型）
+    ENTITY_REAL_OBJECT = 300 # 根据动作分组产生的新实体对象，需在存储时进行处理（暂时转换成VIRTUAL对象【待考虑】）
     # UNCLASSIFIED_REALOBJECT = 30 # 未分类的实际对象类型
     EXISTENCE = 30  # 实对象（可以通过感知器感知的实际存在的对象，
     # 例如“爱因斯坦”，“这头牛”，“曹操”,“天安门”可以理解为类的实例。

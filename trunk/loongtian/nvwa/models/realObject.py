@@ -58,6 +58,8 @@ class RealObject(BaseEntity):
     lowerLimitation.update({
         # ObjType.REALOBJECT: 1,
         ObjType.LINEAR_EXE_INFO: -1,  # 有多个模式
+        ObjType.CONJUGATED_EXE_INFO: -1,  # 有多个模式
+        ObjType.CONTEXT_EXE_INFO: -1,  # 有多个模式
         # ObjType.MEANING: 1,
     })  # 在下一层其他对象的分层中，包含的对象类型、数量限制，
 
@@ -1522,7 +1524,7 @@ class ExecutionInfo():
 
         from loongtian.nvwa.models.knowledge import Knowledge
         for id, cur_pattern in cur_patterns.items():
-            if isinstance(cur_patterns, RelatedObj):
+            if isinstance(cur_pattern, RelatedObj):
                 cur_pattern = cur_pattern.obj
             if not isinstance(cur_pattern,Knowledge):
                 raise Exception("当前实际对象的模式不是知识链！")

@@ -17,17 +17,6 @@ imageHosts= [
     ["e.pypi.python.org ","http://e.pypi.python.org"], # 另一个官网的源
 ]
 
-# 特殊处理pywin32，numpy，安装Numpy+MKL，scipy，Twisted，lxml等组件
-SpecialComponents=["pywin32",
-                   "numpy",
-                   "scipy",
-                   "Twisted",
-                   "lxml",
-                   "SQLAlchemy",
-                   "mysqlclient",
-                   "seaborn",
-                   "gensim",
-                   # "PyQt5",
-                   "tesseract-ocr",
-                   # "TA-Lib",
+# 特殊处理的组件
+SpecialComponents=[
     ]

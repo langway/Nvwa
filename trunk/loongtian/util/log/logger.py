@@ -36,24 +36,14 @@ if self.args:
         msg = msg % self.args
     except:
         pass
-        
-\Lib\logging\handlers
-class RotatingFileHandler(BaseRotatingHandler):
-    def doRollover(self):
-        def doRollover(self):
-            原语句：
-            # Issue 18940: A file may not have been created if delay is True.
-            if os.path.exists(self.baseFilename):
-                os.rename(self.baseFilename, dfn)
-            
-            
-            更改为：
-            # Issue 18940: A file may not have been created if delay is True.
-            if os.path.exists(self.baseFilename):
-                try:
-                    os.rename(self.baseFilename, dfn)
-                except:
-                    pass
+
+
+/Lib/configparser.py:
+configparser.RawConfigParser#read
+    def read(self, filenames, encoding=None):
+    更改为：
+    def read(self, filenames, encoding='utf-8'):
+
 """
 
 

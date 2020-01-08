@@ -15,7 +15,7 @@ from loongtian.nvwa.models.enum import ObjType, DirectionType, WhereRelation
 
 from loongtian.nvwa.organs.character import Character
 
-debugCounter = {}  # 调试用计数器
+# debugCounter = {}  # 调试用计数器
 
 
 class BaseEntity(object):
