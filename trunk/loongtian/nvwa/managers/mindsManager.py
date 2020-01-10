@@ -19,7 +19,7 @@ class MindsManager(SequencedObjs):
         多思维（Mind）管理器，产生并管理上下文。
         :param thinkingCentral:
         """
-        super(MindsManager,self).__init__(objType=Mind)
+        super(MindsManager,self).__init__(objTypes=[Mind])
 
         self.thinkingCentral = thinkingCentral
         self._Minds = []

@@ -17,7 +17,7 @@ class AttentionManager(SequencedObjs):
         """
         注意力（关注对象列表）管理器。
         """
-        super(AttentionManager, self).__init__(Focus)
+        super(AttentionManager, self).__init__(objTypes=[Focus])
 
         self.focuses = {}
 

@@ -32,3 +32,7 @@ trunk/loongtian/nvwa/nvwa.log.1
 trunk/loongtian/nvwa/nvwa.log.5
 trunk/test/nvwa/nvwa.log
 trunk/test/nvwa/nvwa.log.1
+*.log
+trunk/test/nvwa/nvwa.log
+*.1
+trunk/test/nvwa/nvwa.log

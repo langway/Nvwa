@@ -165,7 +165,7 @@ class BaseEntity(object):
         :param entity:
         :return:_id,_type
         """
-        error_msg = "无法取得对象的id及type，对象应为MetaData、MetaNet、RealObject、Knowledge、Layer或[sid,utype]\(sid,utype)，当前类型错误："
+        error_msg = "无法取得对象的id及type，对象应为MetaData、MetaNet、RealObject、Knowledge、Layer或[sid,utype]\\(sid,utype)，当前类型错误："
         if isinstance(entity, list) or isinstance(entity, tuple):
             _id = entity[0]
             _type = entity[1]

@@ -94,3 +94,9 @@ class log():
     logLevel = "debug"
     logConsole = True
     logFile = True
+
+class InnerOperations():
+    """
+
+    """
+

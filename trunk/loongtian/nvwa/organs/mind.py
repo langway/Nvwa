@@ -462,7 +462,9 @@ class MetaArea(SequencedObj):
         self.Mind = mind
         # self.Last = None  # 上一个InputArea，与nextInputArea共同构成一个链
         # self.Next = None  # 下一个InputArea，与lastInputArea共同构成一个链
-        self.textEngine = self.Mind.thinkingCentral.Brain.PerceptionCentral.TextEngine  # 取得文本处理引擎
+
+        if self.Mind and self.Mind.thinkingCentral:
+            self.textEngine = self.Mind.thinkingCentral.Brain.PerceptionCentral.TextEngine  # 取得文本处理引擎
 
     def execute(self):
         """

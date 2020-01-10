@@ -323,7 +323,7 @@ class ObjType(Enum):
     @staticmethod
     def isExecutable(type):
         """
-        是否是可执行性的实际对象（包括Instinct\Action\Modifier）
+        是否是可执行性的实际对象（包括Instinct/Action/Modifier）
         :param type:
         :return:
         """

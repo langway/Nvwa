@@ -27,7 +27,7 @@ consoleLogger = logging.getLogger('root')
 
 """
 注意：要更改
-\Lib\logging\__init__.py\LogRecord.getMessage最后一句话：
+/Lib/logging/__init__.py/LogRecord.getMessage最后一句话：
 if self.args:
     msg = msg % self.args
 

@@ -207,8 +207,8 @@ class Knowledge(TGraphEntity):
                                   memory=None):
         """
         创建Knowledge（允许end为None）
-        :param start:可以是RealObject、Knowledge或[sid,stype]\(sid,stype)
-        :param end:可以是RealObject、Knowledge或[eid,etype]\(eid,etype)
+        :param start:可以是RealObject、Knowledge或[sid,stype]\\(sid,stype)
+        :param end:可以是RealObject、Knowledge或[eid,etype]\\(eid,etype)
         :return:
         """
         kwargs = {"understood_ratio": understood_ratio,

@@ -132,8 +132,8 @@ class DiGraphEntity(BaseEntity):
                                     memory=None):
         """
         创建Digraph（不记录到数据库）
-        :param start:可以是MetaData、MetaNetItem、RealObject、Knowledge、Collection或startid(BaseEntity及其继承类，或 Id字符串)或[uid,stype]\(uid,stype)
-        :param end:可以是MetaData、MetaNetItem、RealObject、Knowledge、Collection或startid(BaseEntity及其继承类，或 Id字符串)或[lid,etype]\(lid,etype)
+        :param start:可以是MetaData、MetaNetItem、RealObject、Knowledge、Collection或startid(BaseEntity及其继承类，或 Id字符串)或[uid,stype]\\(uid,stype)
+        :param end:可以是MetaData、MetaNetItem、RealObject、Knowledge、Collection或startid(BaseEntity及其继承类，或 Id字符串)或[lid,etype]\\(lid,etype)
         :return:
         """
         if stype:
@@ -158,8 +158,8 @@ class DiGraphEntity(BaseEntity):
                                 memory=None):
         """
         创建Digraph
-        :param start:可以是MetaData、MetaNetItem、RealObject、Knowledge、Collection或startid(BaseEntity及其继承类，或 Id字符串)或[uid,stype]\(uid,stype)
-        :param end:可以是MetaData、MetaNetItem、RealObject、Knowledge、Collection或startid(BaseEntity及其继承类，或 Id字符串)或[lid,etype]\(lid,etype)
+        :param start:可以是MetaData、MetaNetItem、RealObject、Knowledge、Collection或startid(BaseEntity及其继承类，或 Id字符串)或[uid,stype]\\(uid,stype)
+        :param end:可以是MetaData、MetaNetItem、RealObject、Knowledge、Collection或startid(BaseEntity及其继承类，或 Id字符串)或[lid,etype]\\(lid,etype)
         :return:
         """
         digraph = cls.createByStartAndEndInMemory(start, end, weight, stype, etype,

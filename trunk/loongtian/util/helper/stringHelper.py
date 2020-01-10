@@ -288,7 +288,7 @@ def is_float(str):
     :rawParam str:
     :return:
     """
-    pattern= '^[-+]?[0-9]+\.[0-9]+$ ' #'^([0-9]*.[0-9]+)?$'
+    pattern= "^[-+]?[0-9]+\\.[0-9]+$ " #'^([0-9]*.[0-9]+)?$'
     # 将正则表达式编译成Pattern对象
     pattern = re.compile(pattern, re.S)
     # 使用Pattern匹配文本，获得匹配结果，无法匹配时将返回None

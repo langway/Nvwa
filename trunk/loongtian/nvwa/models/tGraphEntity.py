@@ -278,12 +278,12 @@ class TGraphEntity(BaseEntity):
             condition = {self.primaryKey[0]: self.startid}
             self._end_item = self.getOne(memory=self.MemoryCentral, **condition)
         else:
-            raise Exception("%s结束对象类型错误：{%d:%s}。" % (self.curEntityName, self.etype, ObjType.getTypeNames(self.etype)))
+            raise Exception("%s结束对象类型错误：{%s:%s,%d:%s,%s:%s}。" % ("Id", self.endid,self.curEntityName, self.etype, ObjType.getTypeNames(self.etype),"mnvalue",self.mnvalue))
 
         if not self._end_item:
             raise Exception(
-                "未能取得%s结束对象：{%s:%s,%d:%s}。" % (
-                    self.curEntityName, "Id", self.endid, self.etype, ObjType.getTypeNames(self.etype)))
+                "未能取得%s结束对象：{%s:%s,%d:%s,%s:%s}。" % (
+                    self.curEntityName, "Id", self.endid, self.etype, ObjType.getTypeNames(self.etype),"mnvalue",self.mnvalue))
         return self._end_item
 
     @classmethod
@@ -294,8 +294,8 @@ class TGraphEntity(BaseEntity):
                          **kwargs):
         """
         创建TGraphEntity（允许end为None）
-        :param start:可以是MetaData/MetaData/RealObject、TGraphEntity或[sid,stype]\(sid,stype)
-        :param end:可以是MetaData/MetaData/RealObject、TGraphEntity或[eid,etype]\(eid,etype)
+        :param start:可以是MetaData\\MetaData\\RealObject、TGraphEntity或[sid,stype]\\(sid,stype)
+        :param end:可以是MetaData\\MetaData\\RealObject、TGraphEntity或[eid,etype]\\(eid,etype)
         :return:
         """
         Instincts.loadAllInstincts(memory=memory)
@@ -315,7 +315,7 @@ class TGraphEntity(BaseEntity):
             stype = start[1]
         else:
             raise Exception(
-                "start对象应为MetaData/MetaData/RealObject或TGraphEntity或[sid,stype]\(sid,stype)，当前类型错误：%s" % type(start))
+                "start对象应为MetaData/MetaData/RealObject或TGraphEntity或[sid,stype]/(sid,stype)，当前类型错误：%s" % type(start))
 
         if isinstance(end, cls.curItemType):
             eid = end.id
@@ -332,7 +332,7 @@ class TGraphEntity(BaseEntity):
             etype = cls.curItemObjType
         else:
             raise Exception(
-                "end对象应为MetaData/MetaData/RealObject或TGraphEntity或[sid,stype]\(sid,stype)，当前类型错误：" + type(start))
+                "end对象应为MetaData/MetaData/RealObject或TGraphEntity或[sid,stype]/(sid,stype)，当前类型错误：" + type(start))
 
         obj = cls(start=sid, stype=stype, end=eid, etype=etype,
                   memory=memory,

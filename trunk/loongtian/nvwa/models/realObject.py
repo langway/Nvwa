@@ -247,7 +247,7 @@ class RealObject(BaseEntity):
 
     def isExecutable(self):
         """
-        当前实际对象是否是可执行性的实际对象（包括Instinct\Action）。
+        当前实际对象是否是可执行性的实际对象（包括Instinct\\Action）。
         :return:
         """
         if ObjType.isExecutable(self.getType()):

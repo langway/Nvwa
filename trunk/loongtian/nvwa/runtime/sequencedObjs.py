@@ -8,7 +8,6 @@ __author__ = 'Leon'
 import uuid
 import datetime
 
-
 class SequencedObj(object):
     """
     [运行时对象]在一个特定类型的序列中的对象的基类（可以查找上下文）。例如：Mind、Focus
@@ -28,7 +27,7 @@ class SequencedObj(object):
 
         self.containedObj = containedObj  # 将SequencedObj作为装载对象的车厢
 
-
+        self.utc_time = datetime.datetime.utcnow() # 对象进入序列的时间
         self._last = None  # 上一个，与next共同构成一个链
         self._next = None  # 下一个，与last共同构成一个链
         # self.sequenceType = SequencedObj  # 序列中的对象类型（必须重写）
@@ -38,7 +37,7 @@ class SequencedObj(object):
         判断SequencedObj是否作为装载对象的车厢
         :return:
         """
-        return self.containedObj is None
+        return not self.containedObj is None
 
     def getLast(self):
         """
@@ -53,7 +52,7 @@ class SequencedObj(object):
         :param value:
         :return:
         """
-        if value and isinstance(value, type(self)):
+        if value:
             self._last = value
             if setNext:
                 value.setNext(self)
@@ -65,6 +64,8 @@ class SequencedObj(object):
         :param value:
         :return:
         """
+        pass
+
 
     def getNext(self):
         """
@@ -73,13 +74,13 @@ class SequencedObj(object):
         """
         return self._next
 
-    def setNext(self, value, setLast=True):
+    def setNext(self, value, setLast=False):
         """
         下一个，与last共同构成一个链
         :param value:
         :return:
         """
-        if value and isinstance(value, type(self)):
+        if value:
             self._next = value
             if setLast:
                 value.setLast(self)
@@ -91,6 +92,8 @@ class SequencedObj(object):
         :param value:
         :return:
         """
+        pass
+
 
     def isHead(self):
         """
@@ -113,26 +116,37 @@ class SequencedObj(object):
         """
         return self._last is None and self._next is None
 
+    def __repr__(self):
+        return "SequencedObj:{containedObj:%s,utc_time:%s}" % (self.containedObj,self.utc_time)
+
 
 class SequencedObjs(object):
     """
     [运行时对象]特定类型的序列。
     """
 
-    def __init__(self, objType=SequencedObj):
+    def __init__(self, objTypes:[],typesNum=1):
         """
         [运行时对象]特定类型的序列。
-        :param objType:
+        :param objTypes:对象的类型（可能有多个）
+        :param typesNum:对象的类型的数量（默认是一种类型）
         """
 
-        self.objType = objType # 限定被管理对象的类型
+        if len(objTypes)>typesNum: # 截取中指定数量的类型
+            self.objTypes=objTypes[0:typesNum]
+            self.typesNum = typesNum
+        else:
+            self.objTypes = objTypes  # 限定被管理对象的类型
+            self.typesNum=len(objTypes)
+
+        self._sequence_obj_list = []  # 按顺序的元输入及时间，格式为：[SequencedObj1,...]}
 
         self._containedObj_sequenceObjs_dict ={} # 将SequencedObj作为装载车厢时，对象与SequencedObj.id的映射关系
         self._id_containedObj_dict ={}# 将SequencedObj作为装载车厢时，SequencedObj.id与对象的映射关系
 
         self._id_obj_dict = {}
+        self._obj_ids_dict = {}
         self._obj_times_dict = {}  # 元输入及时间，格式为：{元输入:[时间1,时间2,...]}
-        self._sequence_obj_list = []  # 按顺序的元输入及时间，格式为：[(元输入:时间),...]}
         self._time_obj_dict = {}  # 按时间的元输入及时间，格式为：{时间:元输入,...]}
         self._obj_poses_dict = {}  # 元输入及位置，格式为：{元输入:[位置1,位置2,...]}
 
@@ -144,44 +158,62 @@ class SequencedObjs(object):
         """
         if obj is None:
             return False
-        if not isinstance(obj, self.objType):
-            raise Exception("添加的对象类型错误，当前类型%s，目标类型%s" % (str(type(obj)), str(self.objType)))
+        if not type(obj) in self.objTypes:
+            raise Exception("添加的对象类型错误，当前类型%s，目标类型%s" % (str(type(obj)), str(self.objTypes)))
 
         # 如果添加的对象不是SequencedObj类型，将SequencedObj作为装载车厢
         if not isinstance(obj, SequencedObj):
             obj = SequencedObj(containedObj=obj)
-            if not obj.containedObj in self._containedObj_sequenceObjs_dict:
-                self._containedObj_sequenceObjs_dict[obj.containedObj] =[obj]
-            else:
-                self._containedObj_sequenceObjs_dict[obj.containedObj].append(obj)
+
+        # 实际装载序列
+        if len(self._sequence_obj_list) > 0:
+            last = self._sequence_obj_list[-1]
+            obj.setLast(last,True)
+
+        self._sequence_obj_list.append(obj)
+
+        key_obj = obj.containedObj
+        containedObj_seq=self._containedObj_sequenceObjs_dict.get(key_obj)
+
+        # 装载序列的对象管理。装载的实际对象与装载车厢的关联管理，例如，多次输入“苹果”，可直接查找“苹果”输入序列
+        if containedObj_seq:
+            containedObj_seq.append(obj)
+        else:
+            self._containedObj_sequenceObjs_dict[key_obj] = [obj]
 
         self._id_obj_dict[obj.id] =obj
 
-        if len(self._sequence_obj_list) > 0:
-            last = self._sequence_obj_list[-1]
-            obj.setLast(last)
-
-        if obj.isContainer():
-            key = obj.containedObj
+        # 装载序列的id管理
+        ids=self._obj_ids_dict.get(key_obj)
+        if ids:
+            ids.append(obj.id)
         else:
-            key = obj.id
-        _times = self._obj_times_dict.get(key)
-        cur_utctime = datetime.datetime.utcnow()
+            self._obj_ids_dict[key_obj]=[obj.id]
+
+        # 装载序列的时间管理
+        _times = self._obj_times_dict.get(key_obj)
+
         if _times:
-            _times.append(cur_utctime)
+            _times.append(obj.utc_time)
         else:
-            self._obj_times_dict[key] = [cur_utctime]
+            self._obj_times_dict[key_obj] = [obj.utc_time]
 
-        self._sequence_obj_list.append((obj, cur_utctime))
-        self._time_obj_dict[cur_utctime] = obj
+        timed_objs=self._time_obj_dict.get(obj.utc_time)
+        if timed_objs:
+            timed_objs.append(obj)
+        else:
+            self._time_obj_dict[obj.utc_time] = [obj]
 
-        _poses = self._obj_poses_dict.get(key)
+        # 装载序列的位置管理
+        _poses = self._obj_poses_dict.get(key_obj)
         if _poses:
             _poses.append(len(self._sequence_obj_list))
         else:
-            self._obj_poses_dict[key] = [len(self._sequence_obj_list)]
+            self._obj_poses_dict[key_obj] = [len(self._sequence_obj_list)]
 
-        return self._add(obj)
+        self._add(obj)
+
+        return obj
 
     def _add(self, obj):
         """
@@ -193,11 +225,19 @@ class SequencedObjs(object):
 
     def getById(self, id):
         """
-        根据Id取得Mind
+        根据Id取得obj
         :param Id:
         :return:
         """
         return self._id_obj_dict.get(id)
+
+    def getObjIds(self,obj):
+        """
+        根据obj取得Ids
+        :param obj:
+        :return:
+        """
+        return self._obj_ids_dict.get(obj)
 
     def getByTime(self, utctime):
         """
@@ -207,13 +247,48 @@ class SequencedObjs(object):
         """
         return self._time_obj_dict.get(utctime)
 
-    def getByPos(self, pos):
+    def getByDuration(self, start_time, end_time):
         """
-        根据输入顺序取得序列中的对象
-        :param pos:
+        根据输入时间段取得序列中的对象
+        :param start_time:
+        :param end_time:
         :return:
         """
-        return self._sequence_obj_list[pos]
+        seq_objs=[]
+        for obj in self._sequence_obj_list:
+            if obj.utc_time>=start_time and end_time>=obj.utc_time:
+                seq_objs.append(obj)
+        return seq_objs
+
+
+    def getByPos(self, pos):
+        """
+        根据位置取得序列中的对象
+        :param pos:位置
+        :return:
+        """
+        try:
+            return self._sequence_obj_list[pos]
+        except:
+            return None
+
+
+    def getByPoses(self, poses:[int]):
+        """
+        根据位置取得序列中的对象
+        :param poses:位置
+        :return:
+        """
+        posed_objs={}
+        for pos in poses:
+            try:
+                temp_objs= self._sequence_obj_list[pos]
+                posed_objs[pos]=temp_objs
+            except:
+                posed_objs[pos]=None
+
+        return posed_objs
+
 
     def getAddTimes(self, obj):
         """
@@ -252,7 +327,7 @@ class SequencedObjs(object):
         清除时间段内的序列中的对象（如果没有，全部清除）
         :param start_time:
         :param end_time:
-        :return:
+        :return:todo 需要测试
         """
 
         if start_time:
@@ -275,10 +350,17 @@ class SequencedObjs(object):
                     time_to_eliminate.append(temp_time)
             self._eliminate_by_time(time_to_eliminate)
         else:  # 没有时间段，全部清除
+            self._sequence_obj_list = []  # 按顺序的元输入及时间，格式为：[SequencedObj1,...]}
+
+            self._containedObj_sequenceObjs_dict = {}  # 将SequencedObj作为装载车厢时，对象与SequencedObj.id的映射关系
+            self._id_containedObj_dict = {}  # 将SequencedObj作为装载车厢时，SequencedObj.id与对象的映射关系
+
+            self._id_obj_dict = {}
+            self._obj_ids_dict = {}
             self._obj_times_dict = {}  # 元输入及时间，格式为：{元输入:[时间1,时间2,...]}
-            self._sequence_obj_list = []  # 按顺序的元输入及时间，格式为：[(元输入:时间),...]}
             self._time_obj_dict = {}  # 按时间的元输入及时间，格式为：{时间:元输入,...]}
             self._obj_poses_dict = {}  # 元输入及位置，格式为：{元输入:[位置1,位置2,...]}
+
 
     def _eliminate_by_time(self, time_to_eliminate):
         """
@@ -300,7 +382,7 @@ class SequencedObjs(object):
             sequence_inputs_pos_to_eliminate = []
             pos = 0
             for sequence_input in self._sequence_obj_list:
-                if sequence_input[1] == temp_time:
+                if sequence_input.utc_time == temp_time:
                     sequence_inputs_pos_to_eliminate.append((sequence_input, pos))
                 pos += 1
             for sequence_input_to_eliminate, pos in sequence_inputs_pos_to_eliminate:

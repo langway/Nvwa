@@ -15,4 +15,4 @@ class MessagesManager(SequencedObjs):
         元输入信息管理器（上下文）
         """
         # 限定被管理对象的类型
-        super(MessagesManager, self).__init__(objType=str)
+        super(MessagesManager, self).__init__(objTypes=[str])
