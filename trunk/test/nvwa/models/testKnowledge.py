@@ -137,17 +137,17 @@ class TestKnowledge(TestCase):
         self.assertEqual(components[3][1].remark, "d")
         self.assertEqual(components[4].remark, "e")
 
-        self.meta_xiaoming = MetaData(mvalue=u"小明",memory=self.memoryCentral).create()
-        self.meta_da = MetaData(mvalue=u"打",memory=self.memoryCentral).create()
-        self.meta_xiaoli = MetaData(mvalue=u"小丽",memory=self.memoryCentral).create()
+        self.meta_xiaoming = MetaData(mvalue="小明",memory=self.memoryCentral).create()
+        self.meta_da = MetaData(mvalue="打",memory=self.memoryCentral).create()
+        self.meta_xiaoli = MetaData(mvalue="小丽",memory=self.memoryCentral).create()
 
-        self.meta_shouluo = MetaData(mvalue=u"手落",memory=self.memoryCentral).create()
-        self.meta_taishou = MetaData(mvalue=u"抬手",memory=self.memoryCentral).create()
+        self.meta_shouluo = MetaData(mvalue="手落",memory=self.memoryCentral).create()
+        self.meta_taishou = MetaData(mvalue="抬手",memory=self.memoryCentral).create()
 
-        self.meta_shouteng = MetaData(mvalue=u"手疼",memory=self.memoryCentral).create()
-        self.meta_ku = MetaData(mvalue=u"哭",memory=self.memoryCentral).create()
+        self.meta_shouteng = MetaData(mvalue="手疼",memory=self.memoryCentral).create()
+        self.meta_ku = MetaData(mvalue="哭",memory=self.memoryCentral).create()
         self.real_xiaoming = RealObject.createRealByMeta(self.meta_xiaoming, realType=ObjType.VIRTUAL)
-        self.real_da = RealObject.createRealByMeta(self.meta_da, realType=ObjType.ACTION)
+        self.real_da = RealObject.createRealByMeta(self.meta_da, realType=ObjType.COMMON_ACTION)
         self.real_xiaoli = RealObject.createRealByMeta(self.meta_xiaoli, realType=ObjType.VIRTUAL)
         self.real_shouteng = RealObject.createRealByMeta(self.meta_shouteng, realType=ObjType.VIRTUAL)
 

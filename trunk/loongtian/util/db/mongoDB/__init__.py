@@ -70,7 +70,7 @@ class mongo():
         从MongoDB中读取数据，d是查询要求，返回的是数据库查询的指针。查询所有记录。
         :param dbName:
         :param collectionName:
-        :param d: 例如{"name":"xiaoliu"}
+        :param d: 例如{"name":"xiaoli"}
         :return:
         """
         if self.dbClient:
@@ -91,7 +91,7 @@ class mongo():
         从MongoDB中读取数据，d是查询要求，返回的是数据库查询的指针。查询单条记录。
         :param dbName:
         :param collectionName:
-        :param d: 例如{"name":"xiaoliu"}
+        :param d: 例如{"name":"xiaoli"}
         :return:
         """
         if self.dbClient:
@@ -109,7 +109,7 @@ class mongo():
         :param dbName:
         :param collectionName:
         :param d:
-        :param flt: 例如{"name":"xiaoliu"}
+        :param flt: 例如{"name":"xiaoli"}
         :param upsert:
         :return:
         """

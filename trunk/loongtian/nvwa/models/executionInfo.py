@@ -72,7 +72,7 @@ class LinearExecutionInfo(object):
     def add(self, pattern_klg, meaning_klg, value_placeholder=None, pattern_weight=Character.Original_Link_Weight,
             meaning_weight=Character.Original_Link_Weight):
         """
-        添加可执行性信息
+        添加可执行性信息到内存
         :param pattern_klg: 模式知识链
         :param meaning_klg: 意义知识链
         :return:

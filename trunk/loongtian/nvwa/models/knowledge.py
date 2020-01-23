@@ -430,7 +430,7 @@ class Knowledge(TGraphEntity):
         components = self.getSequenceComponents()
         import loongtian.nvwa.models.entityHelper as entityHelper
         entity_real.remark = entityHelper.getNatureLanguage(components, seperator="")
-        entity_real.type=ObjType.ENTITY_REAL_OBJECT # 根据动作分组产生的新实体对象，需在存储时进行处理（暂时转换成VIRTUAL对象【待考虑】）
+        entity_real.type=ObjType.GENERATED_ENTITY # 根据动作分组产生的新实体对象，需在存储时进行处理（暂时转换成VIRTUAL对象【待考虑】）
         return entity_real
 
     def isNLKnowledge(self):

@@ -17,7 +17,7 @@ class GeneralCharacter(object):
         # 从DoubleFrequancyDict根据阀值和元输入的位置提取元数据（可能有多个）的频率阀值（超过该阀值才提取），包括：独立成字符块的阀值，连续连接成词的阀值。
         # MetaDataExtractThreshold_SingleBlock =0.09 # 从DoubleFrequancyDict根据阀值和元输入的位置提取元数据（可能有多个）的频率阀值（超过该阀值才提取），随着理解的元数据的增多，其阀值应该逐渐增加
         # 从metaNet根据阀值和元输入的位置提取元数据（可能有多个）的频率阀值（超过该阀值才提取）
-        self.MetaDataExtractThreshold_ContinuousBlocks = 0.15
+        self.MetaDataExtractThreshold_ContinuousBlocks = 0.08
 
         # 指定进行二元、三元关系计算的“元数”,对匹配出来的字符块链进行排序，目前使用邻接匹配法——ngram，
         # 二元字符块（bigram）相当于有向图（为丁字形结构特例），三元字符块（trigram）及以上相当于丁字型结构的分解
@@ -26,9 +26,9 @@ class GeneralCharacter(object):
         # 所有女娲系统内部操作使用的对象的初始权重
         self.System_Obj_Weight = 1000000.0
 
-        self.Original_Link_Weight = 0.02  # 所有两两关联的对象之间的初始权重（例如Layer、MetaData-RealObject等）
+        self.Original_Link_Weight = 2.0  # 所有两两关联的对象之间的初始权重（例如Layer、MetaData-RealObject等）
 
-        self.Inner_Thinking_Link_Weight = 1.0 # todo 内部思考的对象建立起的权重，是否应该比外部输入建立的初始权重大，待思考。
+        self.Inner_Thinking_Link_Weight = 100.0 # todo 内部思考的对象建立起的权重，是否应该比外部输入建立的初始权重大，待思考。
         self.Inner_Instinct_Link_Weight = self.Inner_Thinking_Link_Weight * 10.0 # 系统内部关于直觉思考时建立的权重
 
         self.Unknowns_Tolerate_Dgree = 0.999 # 对陌生事物的容忍度，由女娲的性格进行控制(尽量在0.98-1.0之间微调)

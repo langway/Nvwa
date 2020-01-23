@@ -47,7 +47,7 @@ class Code(object):
         if not isinstance(temp_code, MetaData):
             raise Exception("无法找到实际对象对应的代码元数据")
         temp_code = temp_code.mvalue
-        if temp_code is None or not isinstance(temp_code, str) or temp_code == u"":
+        if temp_code is None or not isinstance(temp_code, str) or temp_code == "":
             raise Exception("实际对象对应的元数据代码为空！")
         return temp_code
 

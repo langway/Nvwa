@@ -32,9 +32,9 @@ class TestJSONPlus(unittest.TestCase):
                 "a": 1,
                 "b": 2
             },
-            "u":u"unicode",
+            "":"unicode",
         }
-        self.basic_dumps = '{"a":"str","d":{"a":1,"b":2},"f":1.23,"i":123,"l":[4,3],"ll":[{"x":1},2],"u":"unicode"}'
+        self.basic_dumps = '{"a":"str","d":{"a":1,"b":2},"f":1.23,"i":123,"l":[4,3],"ll":[{"x":1},2],"":"unicode"}'
         self.basic_pretty = textwrap.dedent("""\
             {
                 "a": "str",

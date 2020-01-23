@@ -32,46 +32,53 @@ class ObjType(Enum):
     META_NET = 2  # 元数据网
 
     # ####################################
-    #      实际对象类型枚举。其中：Instinct\Action\Modifier为可执行性的实际对象（executable ）
+    #      实际对象类型枚举。
     # ####################################
     REAL_OBJECT = 3  # 实际对象的总类（未分类的实际对象类型）
-    ENTITY_REAL_OBJECT = 300 # 根据动作分组产生的新实体对象，需在存储时进行处理（暂时转换成VIRTUAL对象【待考虑】）
     # UNCLASSIFIED_REALOBJECT = 30 # 未分类的实际对象类型
     EXISTENCE = 30  # 实对象（可以通过感知器感知的实际存在的对象，
     # 例如“爱因斯坦”，“这头牛”，“曹操”,“天安门”可以理解为类的实例。
     # 特别需要注意的是：实对象也可以由虚对象构成，
     # 但需要实对象的值进行填充【这时需要引入值、值域的概念】）
+    OBSERVER = 301  # 观察者-观察的知识关联关系
+
     VIRTUAL = 31  # 虚对象（不可以通过感知器感知的不实际存在的对象，例如“牛”，“人类”,是大脑经过抽象提炼出的对象，可以理解为类）在人类的语言中，大部分为虚对象
-    ACTION = 32  # 动作类实际对象
 
-    INSTINCT = 33  # 内置实际对象（本能，包括元对象、顶级关系）
-    ORIGINAL = 331  # 内置元对象（本能，元对象、元集合、元知识等）
-    TOP_RELATION = 332  # 顶级关系（本能，成分、属性、父对象等）
-
-    CODE = 34
-    INNER_OPERATION = 35  # 女娲系统内部操作对象
-
-    PLACEHOLDER = 36  # 占位符类型实际对象，模式生成中使用
-    # MODIFIER =37 # 修限对象（目前未使用）
-    EMOTION = 38  # 情感实际对象
-    LINEAR_EXE_MEANING_VALUE = 370  # 意义的值（女娲系统的意义的值只能有一个实际对象，或为一个表示集合的实际对象！）
-    CONJUGATED_EXE_MEANING_VALUE=371
-    CONTEXT_EXE_MEANING_VALUE = 372
-
+    GENERATED_ENTITY = 310  # 根据动作迁移产生的新实体对象，例如：小明的手机是苹果，小明的手机就是新实体，需在存储时进行处理（暂时转换成VIRTUAL对象【待考虑】）
+    PLACEHOLDER = 311  # 占位符类型实际对象，模式生成中使用
     # 用户管理部分
-    USER = 39  # 作为用户的实际对象
-    ASSISTANT = 390  # 用户的个人助理
+    USER = 312  # 作为用户的实际对象
+    ASSISTANT = 313  # 用户的个人助理
+
+    LINEAR_EXE_MEANING_VALUE = 390  # 意义的值（女娲系统的意义的值只能有一个实际对象，或为一个表示集合的实际对象！）
+    CONJUGATED_EXE_MEANING_VALUE = 391
+    CONTEXT_EXE_MEANING_VALUE = 392
+
+    CODE = 4
+
+    EMOTION = 5  # 情感实际对象(预留)
+
+    # ####################################
+    #      动作类实际对象类型枚举。其中：Instinct\Action\Modifier为可执行性的实际对象（executable ）
+    # ####################################
+    ACTION = 6  # 动作类实际对象
+    COMMON_ACTION = 60  # 动作类实际对象
+    INSTINCT = 61  # 内置实际对象（本能，包括元对象、顶级关系）
+    ORIGINAL = 610  # 内置元对象（本能，元对象、元集合、元知识等）
+    TOP_RELATION = 611  # 顶级关系（本能，成分、属性、父对象等）
+
+    INNER_OPERATION = 62  # 女娲系统内部操作对象 用来连接外部对象与内部代码
 
     # ####################################
     #      知识链。
     # ####################################
     # 知识对象（实际对象链）类型枚举。
-    KNOWLEDGE = 4  # 真正的知识\实际对象链（不作为模式或意义的知识链）
+    KNOWLEDGE = 7  # 真正的知识\实际对象链（不作为模式或意义的知识链）
     # REAL_KNOWLEDGE = 40
 
-    LINEAR_EXE_INFO = 41  # 作为可执行信息（模式和意义）的知识链（里面有placeholder）。RealObject的模式（kid）,当RealObject为动词或修限词时。
-    CONJUGATED_EXE_INFO = 42  # 作为线性结构的可执行信息（模式和意义）的知识链（里面有placeholder）。
-    CONTEXT_EXE_INFO = 43  # 作为上下文结构的可执行信息（模式和意义）的知识链（里面有placeholder）。
+    LINEAR_EXE_INFO = 71  # 作为可执行信息（模式和意义）的知识链（里面有placeholder）。RealObject的模式（kid）,当RealObject为动词或修限词时。
+    CONJUGATED_EXE_INFO = 72  # 作为线性结构的可执行信息（模式和意义）的知识链（里面有placeholder）。
+    CONTEXT_EXE_INFO = 73  # 作为上下文结构的可执行信息（模式和意义）的知识链（里面有placeholder）。
 
     # 模式的知识链只有一个。
     # 意义的知识链（应该看做集合，每个元素看做一步，哪怕只有一个元素）
@@ -91,93 +98,53 @@ class ObjType(Enum):
     #      分层对象。
     # ####################################
     LAYER = 9  # 分层对象类型，例如：MetaData-RealObject
-    OBSERVER = 10  # 观察者-观察的知识关联关系
+
 
     @staticmethod
-    def getSubTypes(type):
+    def getSubTypes(type, level=2):
         """
         取得当前类型的子类型，例如：元数据的子类型包括文字、声音等。
         :param type:
         :return:
         """
-        if type == ObjType.META_DATA:
-            return [
-                ObjType.WORD,  # 文字类型元数据
-                ObjType.SOUND,  # 声音类型元数据
-                ObjType.PICTURE,  # 图片类型元数据
-                ObjType.VIDEO,  # 影像类型元数据
-                ObjType.FILE,  # 文件类型元数据
-                ObjType.NEURON,  # 神经网络元数据
-                ObjType.WEB_FILE,  # 网络地址类型元数据
-            ]
-        if type == ObjType.INSTINCT:
-            return [
-                ObjType.ORIGINAL,
-                ObjType.TOP_RELATION,
-            ]
-        if type == ObjType.REAL_OBJECT:
-            return [
-                ObjType.EXISTENCE,  # 实对象（可以通过感知器感知的实际存在的对象，例如“爱因斯坦”，“这头牛”，“小明”,可以理解为类的实例）
-                ObjType.VIRTUAL,  # 虚对象（不可以通过感知器感知的不实际存在的对象，例如“牛”，“人类”,是大脑经过抽象提炼出的对象，可以理解为类）在人类的语言中，大部分为虚对象
-                ObjType.ACTION,  # 动作类实际对象
-                ObjType.INSTINCT,  # 内置实际对象（本能，包括顶级关系）### TOP_RELATION 顶级关系（与INSTINCT合并）
-                ObjType.PLACEHOLDER,  # 占位符类型实际对象，模式生成中使用
-                # ObjType.MOTIFIER,  # 修限类实际对象（目前未使用）
-                ObjType.ORIGINAL,
-                ObjType.TOP_RELATION,
-                ObjType.INNER_OPERATION,
+        sub_types = []
+        for attr_value, attr_name in ObjType._value_name_dict.items():
+            for i in range(1, level + 1):
+                if type * (10 ** i) <= attr_value <= type * (10 ** i) + 9 ** int(i * '1'):
+                    sub_types.append(attr_value)
 
-            ]
-
-        if type == ObjType.KNOWLEDGE:
-            return [
-                ObjType.LINEAR_EXE_INFO,
-                # ObjType.MEANING,
-                # ObjType.MEANING_STEP,
-                # ObjType.MEANING_STATUS,
-            ]
-        # if type == ObjType.MEANING:
-        #     return [
-        #         ObjType.MEANING_STEP,
-        #         ObjType.MEANING_STATUS,
-        #     ]
-        return None
+        sub_types.sort()
+        return sub_types
 
     @staticmethod
-    def getTopType(type):
+    def getParentType(type, level=2):
         """
         取得当前类型的最顶层类型，例如：文字、声音等的最顶层类型为元数据。
         :param type:
         :return:
         """
-        if ObjType.isMetaData(type):
-            return ObjType.META_DATA
-        elif ObjType.isMetaNet(type):
-            return ObjType.META_NET
-        elif ObjType.isRealObject(type):
-            return ObjType.REAL_OBJECT
-        elif ObjType.isKnowledge(type):
-            return ObjType.KNOWLEDGE
-        elif ObjType.isLayer(type):
-            return ObjType.LAYER
+        parent_types = []
+        for i in range(1, level + 1):
+            parent_type=type // (10 ** i)
+            if parent_type>0:
+                parent_types.append(parent_type)
 
-    # @staticmethod
-    # def getParentType(type):
-    #     """
-    #     取得当前类型的父层类型，例如：文字、声音等的父层类型为元数据。
-    #     :param type:
-    #     :return:
-    #     """
-    #     if ObjType.isMetaData(type):
-    #         return ObjType.METADATA
-    #     if ObjType.isMetaNet(type):
-    #         return ObjType.METANET
-    #     if ObjType.isRealObject(type):
-    #         return ObjType.REALOBJECT
-    #     if ObjType.isKnowledge(type):
-    #         return ObjType.KNOWLEDGE
-    #     if ObjType.isLayer(type):
-    #         return ObjType.LAYER
+        parent_types.sort()
+        return parent_types
+
+
+    @staticmethod
+    def isUnknown(type):
+        """
+        是否是未知的对象类型
+        :param type:
+        :return:
+        """
+        if type == ObjType.UNKNOWN:
+            return True
+        if ObjType._value_name_dict.get(type):
+            return False
+        return True
 
     @staticmethod
     def isMetaData(type):
@@ -186,7 +153,8 @@ class ObjType(Enum):
         :param type:
         :return:
         """
-        return type == ObjType.META_DATA or (type >= 10 and type <= 19)
+        return type == ObjType.META_DATA or \
+               (ObjType.META_DATA * 10 <= type <= ObjType.META_DATA * 10 + 9)
 
     @staticmethod
     def isWord(type):
@@ -267,7 +235,9 @@ class ObjType(Enum):
         :param type:
         :return:
         """
-        return type == ObjType.REAL_OBJECT or (type >= 30 and type <= 39) or ObjType.isInstinct(type)
+        return type == ObjType.REAL_OBJECT or \
+               (ObjType.REAL_OBJECT * 10 <= type <= ObjType.REAL_OBJECT * 10 + 9) or \
+               (ObjType.REAL_OBJECT * 100 <= type <= ObjType.REAL_OBJECT * 100 + 99)
 
     @staticmethod
     def isExistence(type):
@@ -287,7 +257,8 @@ class ObjType(Enum):
         :param type:
         :return:
         """
-        return type == ObjType.VIRTUAL
+        return type == ObjType.VIRTUAL or \
+               (ObjType.VIRTUAL * 10 <= type <= ObjType.VIRTUAL * 10 + 9)
 
     @staticmethod
     def isAction(type):
@@ -296,7 +267,9 @@ class ObjType(Enum):
         :param type:
         :return:
         """
-        return type == ObjType.ACTION
+        return type == ObjType.ACTION or \
+               (ObjType.ACTION * 10 <= type <= ObjType.ACTION * 10 + 9) or \
+               (ObjType.ACTION * 100 <= type <= ObjType.ACTION * 100 + 99)
 
     # @staticmethod
     # def isMotify(type):
@@ -318,7 +291,8 @@ class ObjType(Enum):
         :param type:
         :return:
         """
-        return type == ObjType.INSTINCT or (type >= 330 and type <= 339)
+        return type == ObjType.INSTINCT or \
+               (ObjType.INSTINCT * 10 <= type <= ObjType.INSTINCT * 10 + 9)
 
     @staticmethod
     def isExecutable(type):
@@ -340,14 +314,41 @@ class ObjType(Enum):
         """
         return type == ObjType.PLACEHOLDER
 
-    # @staticmethod
-    # def isCollection(type):
-    #     """
-    #     是否是集合对象类型
-    #     :param type:
-    #     :return:
-    #     """
-    #     return type == ObjType.COLLECTION
+    @staticmethod
+    def isGeneratedEntity(type):
+        """
+        是否是根据动作迁移产生的新实体对象，例如：小明的手机是苹果，小明的手机就是新实体，需在存储时进行处理（暂时转换成VIRTUAL对象【待考虑】）
+        :param type:
+        :return:
+        """
+        return type == ObjType.GENERATED_ENTITY
+
+    @staticmethod
+    def isUser(type):
+        """
+        是否是作为用户的实际对象
+        :param type:
+        :return:
+        """
+        return type == ObjType.USER
+
+    @staticmethod
+    def isAssistant(type):
+        """
+        是否是用户的个人助理
+        :param type:
+        :return:
+        """
+        return type == ObjType.ASSISTANT
+
+    @staticmethod
+    def isCode(type):
+        """
+        是否是代码对象类型
+        :param type:
+        :return:
+        """
+        return type == ObjType.CODE
 
     @staticmethod
     def isInnerOperation(type):
@@ -365,7 +366,7 @@ class ObjType(Enum):
         :param type:
         :return:
         """
-        return type == ObjType.KNOWLEDGE or (type >= 40 and type <= 49)
+        return type == ObjType.KNOWLEDGE or (type >= ObjType.KNOWLEDGE * 10 and type <= ObjType.KNOWLEDGE * 10 + 9)
 
     @staticmethod
     def isExeInfo(type):
@@ -403,61 +404,9 @@ class ObjType(Enum):
         """
         return type == ObjType.OBSERVER
 
+
     @staticmethod
-    def getTypeNames(type):
-
-        if ObjType.isWord(type):
-            return "WORD"
-        elif ObjType.isSound(type):
-            return "SOUND"
-        elif ObjType.isPicture(type):
-            return "PICTURE"
-        elif ObjType.isVideo(type):
-            return "VIDEO"
-        elif ObjType.isFile(type):
-            return "FILE"
-        elif ObjType.isNeuron(type):
-            return "NEURON"
-        elif ObjType.isWebFile(type):
-            return "WEBFILE"
-        elif ObjType.isMetaData(type):
-            return "METADATA"
-
-        elif ObjType.isMetaNet(type):
-            return "METANET"
-
-        elif ObjType.isVirtual(type):
-            return "VIRTUAL"
-        elif ObjType.isExistence(type):
-            return "EXISTENCE"
-        elif ObjType.isAction(type):
-            return "ACTION"
-        # if ObjType.isMotify(type):
-        #     return "MOTIFIER"
-        elif ObjType.isInstinct(type):
-            return "INSTINCT"
-        elif ObjType.isPlaceHolder(type):
-            return "PLACEHOLDER"
-        elif ObjType.isRealObject(type):
-            return "REALOBJECT"
-        elif ObjType.isInnerOperation(type):
-            return "INNER_OPERATION"
-
-        elif ObjType.isKnowledge(type):
-            return "KNOWLEDGE"
-        elif ObjType.isExeInfo(type):
-            return "LINEAR_EXE_INFO"
-        # if ObjType.isMeaning(type):
-        #     return "MEANING"
-
-        # if ObjType.isCollection(type):
-        #     return "COLLECTION"
-        elif ObjType.isLayer(type):
-            return "LAYER"
-
-        return "UNKNOWN"
-
-    def isInstance(self, type, parent_type):
+    def isInstance(type, parent_type):
         """
         判断一个对象类型是否是父对象类型或其的子类型
         :param type:
@@ -466,7 +415,7 @@ class ObjType(Enum):
         """
         if type == parent_type:
             return True
-        sub_types = ObjType.getSubTypes(parent_type)
+        sub_types = ObjType.getSubTypes(parent_type, level=2)
         if sub_types and type in sub_types:
             return True
         return False
@@ -475,7 +424,7 @@ class ObjType(Enum):
 ObjType = ObjType()
 
 
-class DirectionType(Enum):
+class LayerDirection(Enum):
     """
     方向（上层、下层）
     """
@@ -485,29 +434,7 @@ class DirectionType(Enum):
     BOTH = 3  # 全方向
 
 
-DirectionType = DirectionType()
-
-
-class SequencePattern(Enum):
-    """
-    女娲对象的序列类型。（包括：RRR、AAA、RAR）
-    """
-    #     模式包括：
-    #         顺序  模式  结果及存储             匹配规则    是否迁移   eg
-    #         1     RRR   R(知识链，新实际对象)   由后向前      否       中国人民建设银行
-    #         2     AAA   A(新动词)              由前向后      否       打跑了  跑了  走了
-    #         3     RAR   R(知识链)              优先级        是       小明打小丽  小明给小丽花
-    RRR = 0
-    AAA = 1
-    RAR = 2
-
-    # class Confusion(Enum):
-    #     """
-    #     带来思考混乱的问题枚举
-    #     """
-    #
-    #
-    # Confusion=Confusion()
+LayerDirection = LayerDirection()
 
 
 class DBValueType(Enum):
@@ -589,6 +516,7 @@ class DBValueType(Enum):
     inet = 92  # IPv4 或者 IPv6 网络地址
     macaddr = 93  # MAC地址
 
+DBValueType=DBValueType()
 
 class WhereRelation(Enum):
     """
@@ -596,3 +524,5 @@ class WhereRelation(Enum):
     """
     AND = 0
     OR = 1
+
+WhereRelation=WhereRelation()

@@ -17,6 +17,7 @@ from loongtian.nvwa.models.realObject import RealObject, Constitutions
 from loongtian.nvwa.language import UserTags, UserErrors
 from loongtian.nvwa.runtime.ipAddress import IPAddress
 
+
 class RealUser(BaseEntity):
     """
     [运行时对象]用户操作的封装类（对应于软件、数据库等旧系统）
@@ -26,13 +27,13 @@ class RealUser(BaseEntity):
     primaryKey = copy.copy(BaseEntity.primaryKey)
     primaryKey.append("id")
     columns = copy.copy(BaseEntity.columns)
-    columns.extend(["username", "realname","nickname", "email", "phone",
+    columns.extend(["username", "realname", "nickname", "email", "phone",
                     "password", "gender", "ismanager", "photo",
                     "assistantid", "location", "oauth"])
     retrieveColumns = copy.copy(BaseEntity.retrieveColumns)  # 查询时需要使用的字段
     retrieveColumns.extend(["username", "email", "phone", "password"])
 
-    def __init__(self, userid=None, username=None, realname=None,nickname=None, email=None, phone=None,
+    def __init__(self, userid=None, username=None, realname=None, nickname=None, email=None, phone=None,
                  password=None, gender=1, ismanager=False, photo=None,
                  assistantid=None, location=0, oauth=0,
                  createrid=None, createrip='0.0.0.1',
@@ -68,7 +69,7 @@ class RealUser(BaseEntity):
 
         self.username = username
         self.realname = realname
-        self.nickname=nickname
+        self.nickname = nickname
         self.email = email
         self.phone = phone
         self.password = password
@@ -96,7 +97,7 @@ class RealUser(BaseEntity):
         if show_name:
             return show_name
         show_name = self.username
-        if  show_name:
+        if show_name:
             return show_name
         show_name = self.email
         if show_name:
@@ -245,8 +246,8 @@ class RealUser(BaseEntity):
             raise Exception("username、email、phone至少要有一个！")
         if not password:
             raise Exception("必须提供密码！")
-        password=stringHelper.encodeStringMD5(password)
-        _real_user = cls(username=username, realname=realname,nickname=nickname, password=password,
+        password = stringHelper.encodeStringMD5(password)
+        _real_user = cls(username=username, realname=realname, nickname=nickname, password=password,
                          email=email, phone=phone, gender=gender,
                          ismanager=ismanager, photo=photo,
                          assistantid=assistantid,
@@ -271,7 +272,7 @@ class RealUser(BaseEntity):
             raise Exception(UserErrors.Can_Not_Create_User)
 
         RealUser.setUserRealConstituents(_user_real,
-                                         username=username, realname=realname,nickname=nickname,
+                                         username=username, realname=realname, nickname=nickname,
                                          password=password,
                                          email=email, phone=phone, gender=gender,
                                          ismanager=ismanager, photo=photo,
@@ -310,7 +311,7 @@ class RealUser(BaseEntity):
             user_real.Constitutions.addRelatedObject(UserTags.photo, photo, recordInDB=recordInDB)
 
     @staticmethod
-    def createAssistant(user_real, ismanager=False, recordInDB=True,memory=None):
+    def createAssistant(user_real, ismanager=False, recordInDB=True, memory=None):
         """
         根据用户创建其个人助理。
         :param _user_real:

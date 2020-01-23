@@ -140,21 +140,21 @@ class RpcServer(RpcObject):
 
         self.__socketREP = self.__context.socket(zmq.REP)  # 请求回应socket
         self.__socketPUB = self.__context.socket(zmq.PUB)  # 数据广播socket
-        message0=u"服务器端({0}socket)开启，地址：{1}。"
-        message1 = u"当前({0})地址：{1} 被占用！请检查地址是否设置正确或有相同的服务开启"
+        message0="服务器端({0}socket)开启，地址：{1}。"
+        message1 = "当前({0})地址：{1} 被占用！请检查地址是否设置正确或有相同的服务开启"
 
         try:
             self.__socketREP.bind(repAddress)# 请求回应socket设置
 
-            logger.info(message0.format(u"请求发出",repAddress))
+            logger.info(message0.format("请求发出",repAddress))
         except zmq.error.ZMQBindError as ex:
-            message = message1.format(u"请求发出",repAddress)
+            message = message1.format("请求发出",repAddress)
             # logger.info(message)
             logger.critical( SocketSetException(message))
             return
         except zmq.error.ZMQError as ex:
             if ex.strerror == "Address in use":
-                message = message1.format(u"请求发出", repAddress)
+                message = message1.format("请求发出", repAddress)
                 logger.critical( SocketSetException(message))
             else:
                 # logger.info(ex)
@@ -163,15 +163,15 @@ class RpcServer(RpcObject):
 
         try:
             self.__socketPUB.bind(pubAddress)
-            logger.info(message0.format(u"数据广播", pubAddress))
+            logger.info(message0.format("数据广播", pubAddress))
 
         except zmq.error.ZMQBindError as ex:
-            message = message1.format(u"数据广播", pubAddress)
+            message = message1.format("数据广播", pubAddress)
             logger.critical( SocketSetException(message))
             return
         except zmq.error.ZMQError as ex:
             if ex.errno == "Address in use":
-                message = message1.format(u"数据广播", pubAddress)
+                message = message1.format("数据广播", pubAddress)
                 logger.critical(SocketSetException(message))
             else:
                 logger.critical(SocketSetException(ex.strerror))
@@ -193,8 +193,8 @@ class RpcServer(RpcObject):
 
         # 检查服务器socket是否设置成功
         if not self.__socket_setted:
-            # logger.info( SocketSetException(u"服务器socket未能设置成功，无法正常启动！"))
-            logger.critical( SocketSetException(u"服务器socket未能设置成功，无法正常启动！"))
+            # logger.info( SocketSetException("服务器socket未能设置成功，无法正常启动！"))
+            logger.critical( SocketSetException("服务器socket未能设置成功，无法正常启动！"))
             return False
 
 
@@ -206,7 +206,7 @@ class RpcServer(RpcObject):
             self.__thread.start()
 
 
-        logger.info(u"服务器启动成功！")
+        logger.info("服务器启动成功！")
         return True
 
         
@@ -221,7 +221,7 @@ class RpcServer(RpcObject):
 
         # 将服务器设为停止
         self.__active = False
-        logger.info(u"服务器停止成功！")
+        logger.info("服务器停止成功！")
 
         # 等待工作线程退出
         if self.__thread.isAlive():
@@ -337,28 +337,28 @@ class RpcClient(RpcObject):
         if self.__active:
             return True
 
-        error_message1=u"服务器端({0}socket)未能开启，地址：{1}，客户端将启用静默模式等待服务器开启！"
-        error_message2=u"服务器端({0}socket)未能开启，地址：{1}，客户端无法执行！"
+        error_message1="服务器端({0}socket)未能开启，地址：{1}，客户端将启用静默模式等待服务器开启！"
+        error_message2="服务器端({0}socket)未能开启，地址：{1}，客户端无法执行！"
         if not check_address_aliveness(self.__reqAddress):
             if slience_waitting:
-                logger.critical(SocketSetException(error_message1.format(u"请求发出",self.__reqAddress)))
+                logger.critical(SocketSetException(error_message1.format("请求发出",self.__reqAddress)))
             else:
-                logger.critical( SocketSetException (error_message2.format(u"请求发出",self.__reqAddress)))
+                logger.critical( SocketSetException (error_message2.format("请求发出",self.__reqAddress)))
                 return False
 
         if not check_address_aliveness(self.__subAddress):
             if slience_waitting:
-                logger.critical(SocketSetException (error_message1.format(u"广播订阅",self.__subAddress)))
+                logger.critical(SocketSetException (error_message1.format("广播订阅",self.__subAddress)))
             else:
-                logger.critical( SocketSetException (error_message2.format(u"广播订阅",self.__subAddress)))
+                logger.critical( SocketSetException (error_message2.format("广播订阅",self.__subAddress)))
                 return False
 
         # 连接端口
-        message = u"客户端({0}socket)成功连接，地址：{1}"
+        message = "客户端({0}socket)成功连接，地址：{1}"
         self.__socketREQ.connect(self.__reqAddress)
-        logger.info(message.format(u"请求发出",self.__reqAddress))
+        logger.info(message.format("请求发出",self.__reqAddress))
         self.__socketSUB.connect(self.__subAddress)
-        logger.info(message.format(u"广播订阅", self.__subAddress))
+        logger.info(message.format("广播订阅", self.__subAddress))
         # print ("subscribe return_code: " + str(return_code))
         # 将客户端设为启动
         self.__active = True
@@ -367,7 +367,7 @@ class RpcClient(RpcObject):
         if not self.__thread.isAlive():
             self.__thread.start()
 
-        logger.info(u"客户端启动成功！")
+        logger.info("客户端启动成功！")
         return True
     
     #----------------------------------------------------------------------
@@ -385,7 +385,7 @@ class RpcClient(RpcObject):
         if self.__thread.isAlive():
             self.__thread.join()
 
-        logger.info(u"客户端停止成功！")
+        logger.info("客户端停止成功！")
         return True
         
     #----------------------------------------------------------------------

@@ -4,13 +4,16 @@
 文本处理的帮助类
 """
 __author__ = 'Leon'
+
+
 from loongtian.nvwa.engines.ngramEngine import NgramEngine
-from loongtian.nvwa.engines.segmentedResult import *
+from loongtian.nvwa.runtime.segmentedResult import *
 from loongtian.util.helper import stringHelper
 
 # 需要忽略的组词开始字符
-IgnorChars = [u"的"]
+IgnorChars = ["的"]
 num_base = 0.1
+
 
 def segmentWithStopMarks(rawInput, stopMarks, stopMarkLevel=3, keepStopMark=True):
     """
@@ -51,14 +54,14 @@ def __segmentWithStopMarks(rawInput, stopMarks, stopMarkLevel=3, keepStopMark=Tr
     if stopMarkLevel < 0:
         stopMarkLevel = 0
 
-    cur_chars = u""
+    cur_chars = ""
     while i < len(rawInput):
         cur_char = rawInput[i]
         if cur_char in stopMarks and stopMarks[cur_char][0] <= stopMarkLevel:
             # 特殊处理小数点（跟英文句号区分）
             is_radix_point = False
             if cur_char == u'.':
-                if i > 0:
+                if i > 0:  # 排除小数点，例如：当前“.”的前后字符均为数字
                     backward_char = rawInput[i - 1]
                     if stringHelper.is_number(backward_char):
                         forward_char = rawInput[i + 1]
@@ -69,13 +72,13 @@ def __segmentWithStopMarks(rawInput, stopMarks, stopMarkLevel=3, keepStopMark=Tr
                     splits.append(cur_chars)
                 if keepStopMark:
                     splits.append(cur_char)
-                cur_chars = u""
+                cur_chars = ""
                 i += 1
                 continue
 
         cur_chars += cur_char
         i += 1
-        if i == len(rawInput) and not cur_chars == u"":
+        if i == len(rawInput) and not cur_chars == "":
             splits.append(cur_chars)
 
     return splits
@@ -90,14 +93,14 @@ def segmentWithNumbers(rawInput):
     splits = []
     i = 0
 
-    cur_chars = u""
+    cur_chars = ""
     length = len(rawInput)
     while i < length:
         cur_char = rawInput[i]
         if stringHelper.is_number(cur_char):  # 如果是数字
-            if not cur_chars == u"":
+            if not cur_chars == "":
                 splits.append(cur_chars)
-                cur_chars = u""
+                cur_chars = ""
             cur_chars += cur_char
             j = i + 1
             if j == length:  # 如果已经是最后一个了，直接停机
@@ -109,7 +112,7 @@ def segmentWithNumbers(rawInput):
                     i = j
                 else:
                     splits.append(cur_chars)
-                    cur_chars = u""
+                    cur_chars = ""
                     i = j
                     break
                 j += 1
@@ -132,470 +135,11 @@ def segmentWithStopMarksAndNumbersAndEnglish(rawInput, stopMarks, stopMarkLevel=
     :param splitWithSpace:是否对空格进行分割
     :return:
     """
-    return stringHelper.splitsWithStopMarksAndNumbersAndEnglish(rawInput, stopMarks, stopMarkLevel, keepStopMark,
-                                                                splitWithSpace)
+    return stringHelper.splitWithStopMarksAndNumbersAndEnglish(rawInput,
+                                                               stopMarks,
+                                                               keepStopMark,
+                                                               splitWithSpace)
 
-
-def __createSingleFrequancyDict(rawInputs, CachedSingleFrequancyDict=None):
-    """
-    根据输入的元字符串，创建单字-频率字典
-    :param rawInputs:
-    :param CachedSingleFrequancyDict:
-    :return:_singleFrequancyDict,total_length
-    """
-
-    _singleFrequancyDict = {}
-
-    if not CachedSingleFrequancyDict is None:
-        _singleFrequancyDict = CachedSingleFrequancyDict
-
-    # 检查参数
-    if not rawInputs or len(rawInputs) == 0:  # 如果没有元输入，直接返回
-        return _singleFrequancyDict, 0
-
-    total_length = 0
-    for rawInput in rawInputs:
-        for c in rawInput:
-            if c in _singleFrequancyDict:
-                _singleFrequancyDict[c] += 1.0
-            else:
-                _singleFrequancyDict[c] = 1.0
-        total_length += len(rawInput)
-
-    return _singleFrequancyDict, total_length
-
-    pass
-
-
-def createDoubleFrequancyDict2(rawInputs, unknowns_tolerate_dgree=1.0):
-    """
-    根据输入的元字符串，创建双字-频率字典（在调用前应使用segmentWithStopMarksAndNumbersAndEnglish进行处理，得到的是应该是中文串、数字串、英文串）
-    :param rawInputs: 元数据字符串（List），形式为：[元数据字符串,是否需要先学习]
-    :param unknowns_tolerate_dgree: 对陌生事物的容忍度，由女娲的性格进行控制
-    :return:doubleFrequancyDict,total_length
-    """
-    # 这里需要计算其占总字数的比率，作为最后取得的词频，其计算公式为：
-    # tf = 总出现次数 * 对陌生事物的容忍度/总字数
-    # idf = log(总输入句子数/出现某词的句子数,10) 底数是10
-    # 词频= tf * idf
-    # 这里引入的 对陌生事物的容忍度，由女娲的性格进行控制
-
-    # 检查参数
-    if rawInputs is None or not isinstance(rawInputs, list) or len(rawInputs) == 0:
-        return None, 0
-
-    doubleFrequancyDict = {}
-
-    # 检查参数
-    if not rawInputs or len(rawInputs) == 0:  # 如果没有元输入，直接返回
-        return doubleFrequancyDict, 0
-
-    total_length = 0
-    doubleFrequancyDict_in_rawInputs = {}
-    word_apperence_in_others_dict ={}
-    for rawinput in rawInputs:
-        # 这里应该是中文、数字串、英文串已经被分开的
-
-        doubleFrequancyDict, length, doubleFrequancyDict_in_rawInput = __createDoubleFrequancyDictByRawInput2(rawinput,
-                                                                                                             doubleFrequancyDict)
-        doubleFrequancyDict_in_rawInputs[rawinput] = doubleFrequancyDict_in_rawInput
-        total_length += length
-
-    import math
-    # 这里需要计算其占总字数的比率，作为最后取得的词频，其计算公式为：
-    # tf = 单句总出现次数 * 对陌生事物的容忍度/单句总字数
-    # idf = log((总输入句子数+1 )/出现某词的句子数,10) 底数是10，之所以+0.1，是避免出现idf=0的情况出现
-    # 词频= tf * idf
-    # 这里引入的 对陌生事物的容忍度，由女娲的性格进行控制
-
-    # 0、总输入句子数
-    # 去掉单字符、数字、标点符号等干扰
-    rawinpt_num = len(rawInputs) + 0.1
-    for rawinput in rawInputs:
-        if len(rawinput) == 1:
-            rawinpt_num -= 1
-            continue
-        elif stringHelper.is_number(rawinput):
-            rawinpt_num -= 1
-            continue
-        elif stringHelper.is_stopmark(rawinput):
-            rawinpt_num -= 1
-            continue
-    for rawinput, doubleFrequancyDict_in_rawInput in doubleFrequancyDict_in_rawInputs.items():
-        for word, freq in doubleFrequancyDict_in_rawInput.items():
-            tf = freq * unknowns_tolerate_dgree / len(rawinput)
-            word_in_rawiput_num = 0
-            for other_rawinput, other_doubleFrequancyDict_in_rawInput in doubleFrequancyDict_in_rawInputs.items():
-                if word in other_doubleFrequancyDict_in_rawInput:
-                    word_in_rawiput_num += 1
-
-            idf = math.log( rawinpt_num/ (word_in_rawiput_num + num_base), 10)
-
-            if not isinstance(word,str):
-                word=stringHelper.converStringToUnicode(word)
-            doubleFrequancyDict[word] = tf * idf
-
-    return doubleFrequancyDict, total_length
-
-
-def createDoubleFrequancyDict(rawInputs,unknowns_tolerate_dgree =1.0):
-    """
-    根据输入的元字符串，创建双字-频率字典（在调用前应使用segmentWithStopMarksAndNumbersAndEnglish进行处理，得到的是应该是中文串、数字串、英文串）
-    :param rawInputs: 元数据字符串（List），形式为：[元数据字符串,是否需要先学习]
-    :return:doubleFrequancyDict,total_length
-    """
-    # 检查参数
-    if rawInputs is None or not isinstance(rawInputs, list) or len(rawInputs) == 0:
-        return None, 0
-
-    doubleFrequancyDict = {}
-
-    # 检查参数
-    if not rawInputs or len(rawInputs) == 0:  # 如果没有元输入，直接返回
-        return doubleFrequancyDict, 0
-
-    total_length = 0
-    for rawinput in rawInputs:
-        # 这里应该是中文、数字串、英文串分开的
-        doubleFrequancyDict, length = __createDoubleFrequancyDictByRawInput(rawinput, doubleFrequancyDict)
-        total_length += length
-
-    # 这里需要计算其占总字数的比率，作为最后取得的词频，其计算公式为：
-    # 总出现次数*字数/总字数
-    for word, freq in doubleFrequancyDict.items():
-        freq = freq * unknowns_tolerate_dgree / total_length
-        doubleFrequancyDict[word] = freq
-
-    return doubleFrequancyDict, total_length
-
-
-def __createDoubleFrequancyDictByRawInput(rawInput,
-                                          doubleFrequancyDict):
-    """
-    根据输入的元输入字符串，创建双字-频率字典
-    :param rawInput:元输入字符串(这里应该是中文、数字串、英文串分开的)
-    :param stopMarks:
-    :param doubleFrequancyDict:
-    :param stopMarkLevel:
-    :param keepStopMark:是否保留分割的标点
-    :return:doubleFrequancyDict,length
-    """
-    if doubleFrequancyDict is None:
-        doubleFrequancyDict = {}
-
-    # 2、根据字符串的的类型进行相应处理。包括：
-    # 标点符号
-    # 纯中文
-    # 纯英文
-    # 纯数字
-    # OTHER=9 # 其他
-
-    # 0、如果是标点符号，不进行处理，继续下一个，标点符号不参与总频率计算
-    if rawInput in stringHelper.StopMarks:
-        return doubleFrequancyDict, 0
-    if stringHelper.is_all_alphabet(rawInput):  # 如果是英文（包含空格、标点等）
-        engs = rawInput.split(u" ")  # 使用空格分割英文
-        for eng in engs:
-            if eng == u"" or eng == u" ":
-                continue
-            # 过滤掉前后的标点符号
-            if len(eng) > 0:
-                while eng[0] in stringHelper.StopMarks:
-                    eng = eng[1::]
-                while eng[-1] in stringHelper.StopMarks:
-                    eng = eng[:-1:]
-
-            # 过滤掉数字、空格、需要忽略的首字（例如：的）、标点符号，在理解过程中，将优先处理数字
-            if stringHelper.is_number(eng) or eng in IgnorChars:
-                continue
-            if eng in doubleFrequancyDict:
-                doubleFrequancyDict[eng] += 1.0
-            else:
-                doubleFrequancyDict[eng] = 1.0
-
-        return doubleFrequancyDict, len(engs)
-    elif stringHelper.is_all_chinese(rawInput):  # 如果是汉字（包含空格、标点等）
-
-        length = len(rawInput)
-        for i in range(length - 1):
-            cur_char = rawInput[i]
-            # 过滤掉数字、空格、需要忽略的首字（例如：的）、标点符号，在理解过程中，将优先处理数字
-            if stringHelper.is_number(cur_char) or stringHelper.is_space(
-                    cur_char) or cur_char in IgnorChars or cur_char in stringHelper.StopMarks:
-                continue
-            next_char = rawInput[i + 1]
-            if stringHelper.is_number(next_char) or next_char in stringHelper.StopMarks:
-                continue
-            key = cur_char + next_char
-            key = key.strip()  # 过滤掉空格
-            if key == u"":
-                continue
-            if key in doubleFrequancyDict:
-                doubleFrequancyDict[key] += 1.0
-            else:
-                doubleFrequancyDict[key] = 1.0
-
-
-        return doubleFrequancyDict, length
-    else:  # 数字串、其他不处理（目前未考虑阿拉伯文等）
-        # todo 目前未考虑阿拉伯文等
-        return doubleFrequancyDict, 0
-
-
-def __createDoubleFrequancyDictByRawInput2(rawInput,
-                                          doubleFrequancyDict):
-    """
-    根据输入的元输入字符串，创建双字-频率字典
-    :param rawInput:元输入字符串(这里应该是中文、数字串、英文串分开的)
-    :param stopMarks:
-    :param doubleFrequancyDict:
-    :param stopMarkLevel:
-    :param keepStopMark:是否保留分割的标点
-    :return:doubleFrequancyDict,length
-    """
-    if doubleFrequancyDict is None:
-        doubleFrequancyDict = {}
-
-    # 2、根据字符串的的类型进行相应处理。包括：
-    # 标点符号
-    # 纯中文
-    # 纯英文
-    # 纯数字
-    # OTHER=9 # 其他
-    doubleFrequancyDict_in_rawInput = {}
-    # 0、如果是标点符号，不进行处理，继续下一个，标点符号不参与总频率计算
-    if rawInput in stringHelper.StopMarks:
-        return doubleFrequancyDict, 0, doubleFrequancyDict_in_rawInput
-    if stringHelper.is_all_alphabet(rawInput):  # 如果是英文（包含空格、标点等）
-        engs = rawInput.split(u" ")  # 使用空格分割英文
-        for eng in engs:
-            if eng == u"" or eng == u" ":
-                continue
-            # 过滤掉前后的标点符号
-            if len(eng) > 0:
-                while eng[0] in stringHelper.StopMarks:
-                    eng = eng[1::]
-                while eng[-1] in stringHelper.StopMarks:
-                    eng = eng[:-1:]
-
-            # 过滤掉数字、空格、需要忽略的首字（例如：的）、标点符号，在理解过程中，将优先处理数字
-            if stringHelper.is_number(eng) or eng in IgnorChars:
-                continue
-            if eng in doubleFrequancyDict:
-                doubleFrequancyDict[eng] += 1.0
-            else:
-                doubleFrequancyDict[eng] = 1.0
-            if eng in doubleFrequancyDict_in_rawInput:
-                doubleFrequancyDict_in_rawInput[eng] += 1.0
-            else:
-                doubleFrequancyDict_in_rawInput[eng] = 1.0
-        return doubleFrequancyDict, len(engs), doubleFrequancyDict_in_rawInput
-    elif stringHelper.is_all_chinese(rawInput):  # 如果是汉字（包含空格、标点等）
-
-        length = len(rawInput)
-        for i in range(length - 1):
-            cur_char = rawInput[i]
-            # 过滤掉数字、空格、需要忽略的首字（例如：的）、标点符号，在理解过程中，将优先处理数字
-            if stringHelper.is_number(cur_char) or stringHelper.is_space(
-                    cur_char) or cur_char in IgnorChars or cur_char in stringHelper.StopMarks:
-                continue
-            next_char = rawInput[i + 1]
-            if stringHelper.is_number(next_char) or next_char in stringHelper.StopMarks:
-                continue
-            key = cur_char + next_char
-            key = key.strip()  # 过滤掉空格
-            if key == u"":
-                continue
-            if key in doubleFrequancyDict:
-                doubleFrequancyDict[key] += 1.0
-            else:
-                doubleFrequancyDict[key] = 1.0
-
-            if key in doubleFrequancyDict_in_rawInput:
-                doubleFrequancyDict_in_rawInput[key] += 1.0
-            else:
-                doubleFrequancyDict_in_rawInput[key] = 1.0
-        return doubleFrequancyDict, length, doubleFrequancyDict_in_rawInput
-    else:  # 数字串、其他不处理（目前未考虑阿拉伯文等）
-        # todo 目前未考虑阿拉伯文等
-        return doubleFrequancyDict, 0, doubleFrequancyDict_in_rawInput
-
-
-    pass  # def __createDoubleFrequancyDictByRawInput(rawInput,doubleFrequancyDict=None):
-
-
-def extractRawMetaData(rawInputs, doubleFrequancyDict, threshold_ContinuousBlocks, CachedRawMetas=None, segment=False):
-    """
-    根据元输入，从metaNet根据阀值和元输入的位置提取元数据（可能有多个）
-    :param rawInputs: 元输入，用以查找其关键字出现位置
-    :param doubleFrequancyDict: 元数据网及其原始输入的长度，其格式为：({字符串:频率},total_length)
-    :param threshold_ContinuousBlocks: 提取元数据的频率阀值（超过该阀值才提取），连续连接成词的阀值。
-    :param segment:是否直接分割字符串。
-    :return:1、WordFrequncyDict：最终取得的元数据，其格式为{元输入（字符串）:词频（平均值）}
-             2、segmentedBlocks：最终取得的元数据匹配分割后的根据词频连接的输入字符串（字符块），格式为：
-                {"北京举办新年音乐会真棒":[["北京举办",0,False],["新年音乐会",4,True],["真棒",9,False]]}
-                含义为：{输入字符串:[第n个分割后得到的字符串,起始位置,是否是元数据]}
-    """
-    # 检查参数
-    if rawInputs is None or not isinstance(rawInputs, list):
-        return
-    if not doubleFrequancyDict:
-        return None
-
-    candidates_continuous = {}  # 连续连接成词的备选词列表，其格式为：{字符串:频率（平均值）}
-
-    for k, v in doubleFrequancyDict.items():
-        if v >= threshold_ContinuousBlocks:  # 连续连接成词的阀值判断其频率，如果频率高于阀值，添加到备选列表
-            candidates_continuous[k] = v
-    if len(candidates_continuous) == 0:  # 如果没有备选词列表
-        return candidates_continuous, {}
-
-    # 取得包含备选词的所有字符串，
-    # 格式为{"新年音乐会中的音乐很动听":["音乐",2,8],["乐会",3,6],["音乐",7,8]}
-    # 其含义为：关键字，起始位置，词频
-    segmentedBlocks = []  # 最终取得的元数据匹配分割后的根据词频连接的输入字符串（字符块），格式为：
-    new_rawMetas = {}  # 最终取得的元数据（单词字符串的形式）,其格式为{元输入（字符串）:词频（平均值）}
-    for rawinput in rawInputs:
-        rawinput = rawinput.strip()
-        if rawinput == u"":
-            continue
-
-        segmentedInput = []  # 分解后的结果
-
-        if stringHelper.is_all_alphabet(rawinput):  # 特殊处理英文
-            has_key = False
-            if rawinput in candidates_continuous:
-                new_rawMetas[rawinput] = candidates_continuous[rawinput]
-                has_key = True
-            if segment:
-                segmentedInput.append([rawinput, 0, has_key])
-                # 添加到最终结果
-                segmentedBlocks.append((rawinput, segmentedInput))
-            continue
-
-        word_position_frequency = __getWordPosition(candidates_continuous, rawinput)
-
-        # {"北京举办新年音乐会":[["北京举办新年",0,False],["音乐会",6,True]]}
-        # 含义为：{输入字符串:[第n个分割后得到的字符串,起始位置,是否是元数据]}
-        # 取得前后关联的两个词，输入：北京举办新年音乐会，结果["音乐会",6,7]，6为起始位置，7为所有匹配词（音乐+乐会）的词频
-        connectedWords = __getConnectedWords(word_position_frequency)
-        if not len(connectedWords) > 0:
-            continue
-        curIndex = 0
-
-        for word, position, frequncy in connectedWords:
-            # 如果是完整输入，相当于未识别，继续下一个
-            if word == rawinput.strip():
-                continue
-            if not word in new_rawMetas:  # 这里面的frequncey只需要计算一次（其他循环都是相同的），所以不用考虑已经有该元数据的情况
-                new_rawMetas[word] = frequncy
-
-            # 取得输入字符串中包含的所有根据元数据分割后得到的字符串及其位置、是否是元数据
-            # 结果为：{"北京举办新年音乐会":[["北京举办新年",0,False],["音乐会",6,True]]}
-            # （格式为：{输入字符串:[第n个分割后得到的字符串,起始位置,是否是元数据]}）
-            if position > curIndex:
-                if segment:
-                    segmentedInput.append([rawinput[curIndex:position], curIndex, False])
-                    segmentedInput.append([rawinput[position:position + len(word)], position, True])
-                curIndex = position + len(word)
-            elif position == curIndex:
-                if segment:
-                    segmentedInput.append([rawinput[position:position + len(word)], position, True])
-                curIndex = position + len(word)
-            else:
-                raise Exception("位置给定错误！当前元数据：{0}，当前位置：{1}".format(word, str(position)))
-        if segment:
-            # 最后可能还会有尾巴，收秋
-            if curIndex < len(rawinput):
-                segmentedInput.append([rawinput[curIndex:len(rawinput)], curIndex, False])
-            # 添加到最终结果
-            segmentedBlocks.append((rawinput, segmentedInput))
-
-    # # 【不再考虑】这里要避免将所有元输入直接作为元词块（一个重复的词块都没有）
-    # for rawinput in rawInputs:
-    #     segmentedBlock=segmentedBlocks.get(rawinput)
-    #     if segmentedBlock and len(segmentedBlock)==1 and segmentedBlock[0][0]==rawinput:
-    #         # 更改分割后的结果为：未识别
-    #         segmentedBlock[0][2]=False
-    #         return None,segmentedBlocks
-
-    # 考虑到"音乐"+"乐会"的频率是叠加的，最后还需更新CachedRawMetas的实际频率
-    if not CachedRawMetas is None:  # 如果要保存到当前已加载的元数据字典，添加
-        for word, frequncy in new_rawMetas.items():
-            if not frequncy:
-                continue  # 如果freq为0，或是小于0，过滤掉（避免掉频）
-            old_freq = CachedRawMetas.get(word)
-            if old_freq:
-                frequncy = frequncy + old_freq  # 2018-6-30 目前的方案为单纯累加，否则会出现前面已经非常高了，后面进来一个，突然下降。
-                # (frequncy + old_freq)/2# 计算公式为：这里需要对其频率进行累加
-            CachedRawMetas[word] = frequncy
-
-    return new_rawMetas, segmentedBlocks
-
-    # pass  def extractRawMetaData(doubleFrequancyDict,thresholds,referenceInputs):
-
-
-def __getWordPosition(candidateWords, rawInput):
-    """
-    查找输入的字符串列表中所有包含某一字符串的字符串（提取元数据使用）
-    :param candidateWords: 某一关键词的字符串
-    :param rawInputs: 输入的字符串列表
-    :return:当输入关键词"音乐"时，会产生的格式为{"新年音乐会中的音乐很动听":["音乐",2,8],["乐会",3,6],["音乐",7,8]}
-    其含义为：关键字，起始位置，词频
-    """
-    word_position_frequency_list = []
-    if stringHelper.is_all_alphabet(rawInput):  # 特殊处理英文
-        splits = segmentWithStopMarksAndNumbersAndEnglish(rawInput, stopMarks=None, splitWithSpace=True)
-        for i in range(len(splits)):
-            key = splits[i]
-            if key in candidateWords:
-                word_position_frequency_list.append([key, i, candidateWords[key]])
-            else:
-                word_position_frequency_list.append([key, i, -1.0])
-
-    else:
-        for i in range(len(rawInput) - 1):
-            key = rawInput[i:i + 2]
-            if key in candidateWords:
-                word_position_frequency_list.append([key, i, candidateWords[key]])
-
-    return word_position_frequency_list
-    pass  # def __getWordPositions(candidateWords, rawInputs):
-
-
-def __getConnectedWords(word_position_frequency_list):
-    """
-    根据词频和顺序链接字符串（提取元数据使用）。
-    :param word_position_frequency_list:
-    :return:输入：北京举办新年音乐会，结果["新年音乐会",4,17]，4为起始位置，17为所有匹配词（新年+年音+音乐+乐会）的词频
-    """
-    proceed = []
-    result = []
-    length = len(word_position_frequency_list)
-    for i in range(length):
-        if proceed.__contains__(i):
-            continue
-        word, position, frequency = word_position_frequency_list[i]
-
-        frequncy_num = 1
-        for j in range(i + 1, length):
-            if proceed.__contains__(j):
-                continue
-            nextword, nextposition, nextfrequency = word_position_frequency_list[j]
-
-            if nextposition - position == j - i:  # 如果两者是相连的
-                word += nextword[1]
-                frequency += nextfrequency
-                proceed.append(j)
-                frequncy_num += 1
-
-        # 前后相连的n个词块的共同频率的计算公式为：
-        # （前词块频率+后词块频率）/n
-        frequency = frequency / frequncy_num
-        result.append([word, position, frequency])  # 添加到结果
-        proceed.append(i)  # 标记为已处理
-
-    return result
 
 
 def loadChainCharFrequncyMetaDict(rawMetas, CachedChainCharMetaDict=None):
@@ -608,18 +152,18 @@ def loadChainCharFrequncyMetaDict(rawMetas, CachedChainCharMetaDict=None):
     [是否字符块末尾，元字符串，频率，{后续子串字典}]
     例如：
     ddd={
-        u"中":[False,"中",0.0,
-            {u"央":[True,u"中央",5.4,{}],
-            u"国":[True,u"中国",8.6,
-                {u"人":[True,u"中国人",6.2,
-                    {u"好":[True,u"中国人好",3.2,{}],
-                    u"民":[True,u"中国人民",5.2,
-                        {u"解":[False,None,0.0,
-                            {u"放":[False,None,0.0,
-                                {u"军":[True,u"中国人民解放军",6.2,{}]}]}],
-                        u"法":[False,None,0.0,
-                            {u"院":[True,u"中国人民法院",6.2,{}]}]}]}]}]}]}
-    WordFrequncyDict={u"中国人民解放军":5.0,u"中国人民法院":5.0,u"中国人民":5.0,u"中国人好":5.0,u"中国人":5.0,u"中国":5.0,u"中央":5.0,}
+        "中":[False,"中",0.0,
+            {"央":[True,"中央",5.4,{}],
+            "国":[True,"中国",8.6,
+                {"人":[True,"中国人",6.2,
+                    {"好":[True,"中国人好",3.2,{}],
+                    "民":[True,"中国人民",5.2,
+                        {"解":[False,None,0.0,
+                            {"放":[False,None,0.0,
+                                {"军":[True,"中国人民解放军",6.2,{}]}]}],
+                        "法":[False,None,0.0,
+                            {"院":[True,"中国人民法院",6.2,{}]}]}]}]}]}]}
+    WordFrequncyDict={"中国人民解放军":5.0,"中国人民法院":5.0,"中国人民":5.0,"中国人好":5.0,"中国人":5.0,"中国":5.0,"中央":5.0,}
     """
 
     if not CachedChainCharMetaDict is None:  # 如果给定了要保存到当前已加载的字符链字典字典
@@ -731,9 +275,9 @@ def segmentInputWithChainCharMetaDict(rawInput,
                                       keepStopMark=True,
                                       ngramDict=None,
                                       gramNum=2,
-                                      splitWithStopMarksAndNumbersAndEnglish=True,
+                                      splitWithStopMarksAndNumbersAndEnglish=False,
                                       filterSingle=True,
-                                      resegmentWithUnknowns=True,memory=None):
+                                      resegmentWithUnknowns=True, memory=None):
     """
     根据元数据分割输入字符串（列表）-根据链接字符词典进行匹配（有两种：最长顺序匹配、全部最可能匹配）。
     分解的顺序为：
@@ -764,7 +308,7 @@ def segmentInputWithChainCharMetaDict(rawInput,
     if not isinstance(rawInput, str):
         raise AttributeError("元输入必须是string类型！" + str(rawInput))
     rawInput = rawInput.strip()
-    if rawInput == u"" or len(rawInput) == 0:
+    if rawInput == "" or len(rawInput) == 0:
         return SegmentedResult.createSingleWordResult(rawInput, 0, True, 1.0)
 
     # # 0、先期处理段落及标点符号
@@ -797,12 +341,12 @@ def segmentInputWithChainCharMetaDict(rawInput,
         return SegmentedResult.createSingleWordResult(rawInput, 0, is_meta, freq)
 
     # 3、如果是英文，进行分割，然后返回结果
-    elif stringHelper.is_all_alphabet(rawInput):
+    elif stringHelper.is_alphabet(rawInput):
         cur_chain = BlockChain()
         _segmentedResult = SegmentedResult(rawInput)
         _segmentedResult.bigramResult.append(cur_chain)
 
-        eng_strs = rawInput.split(u" ")  # 使用空格分割英文
+        eng_strs = rawInput.split(" ")  # 使用空格分割英文
         i = 0
         for eng_str in eng_strs:
             cur_dict = chainCharMetaDict
@@ -822,7 +366,7 @@ def segmentInputWithChainCharMetaDict(rawInput,
                 cur_block = Block(eng_str, i, True, cur_meta_info[2])
             else:  # 未能完成全部字符串的遍历，说明未找到该单词
                 # 格式为：[位置,字符串,词频，是否元数据]
-                cur_block = Block(eng_str,i,  False, -1.0)
+                cur_block = Block(eng_str, i, False, -1.0)
             cur_chain.chain.append(cur_block)
 
             i += 1
@@ -834,7 +378,7 @@ def segmentInputWithChainCharMetaDict(rawInput,
         return __segmentInputByMaxMatch(rawInput, chainCharMetaDict, 0, 0, resegmentWithUnknowns=resegmentWithUnknowns)
     else:  # 全部最可能匹配（目前使用）
         return __segmentInputByAll(rawInput, chainCharMetaDict, ngramDict, gramNum, filterSingle,
-                                   resegmentWithUnknowns=resegmentWithUnknowns,memory=memory)
+                                   resegmentWithUnknowns=resegmentWithUnknowns, memory=memory)
 
 
 def __segmentInputByAll(rawInput,
@@ -862,36 +406,36 @@ def __segmentInputByAll(rawInput,
                   如果不是元数据，默认频率为-1.0
                   中国人民法院有司法权中央"可以分解为下面的possibleMetas
     possibleMetas=[
-        [[0,u"中国人民法院",5.5,True],[0,u"中国人民",7.0,True],[0,u"中国人",8.5,True],[0,u"中国",9.8,True],],
-        [[1,u"国人",4.0,True],],
-        [[2,u"人民",8.1,True],[2,u"人民法院",4.3,True],],
-        [[3,u"民法",6.3,True],[3,u"民法院",3.2,True],],
-        [[4,u"法院",8.7,True],],
-        [[6,u"有司",2.4,True],[6,u"有",9.9,True],],
-        [[7,u"司法权",6.4,True],[7,u"司法",8.5,True],],
-        [[8,u"法权",2.5,True],],
-        [[10,u"中央",8.0,True],],
+        [[0,"中国人民法院",5.5,True],[0,"中国人民",7.0,True],[0,"中国人",8.5,True],[0,"中国",9.8,True],],
+        [[1,"国人",4.0,True],],
+        [[2,"人民",8.1,True],[2,"人民法院",4.3,True],],
+        [[3,"民法",6.3,True],[3,"民法院",3.2,True],],
+        [[4,"法院",8.7,True],],
+        [[6,"有司",2.4,True],[6,"有",9.9,True],],
+        [[7,"司法权",6.4,True],[7,"司法",8.5,True],],
+        [[8,"法权",2.5,True],],
+        [[10,"中央",8.0,True],],
     ]
     拼接为线性字符块，如：
     chainBlocks=[
-        [[u"中国人民法院",5.5,True,0],[u"有司",2.4,True,6],[u"法权",2.5,True,8],[u"中央",8.0,True,10],],
-        [[u"中国人民法院",5.5,True],[u"有",-1.0,False],[u"司法权",6.4,True],[u"中央",8.0,True],],
-        [[u"中国人民法院",5.5,True],[u"有",-1.0,False],[u"司法",8.5,True],[u"权",-1.0,False],[u"中央",8.0,True],],
-        [[u"中国人民",7.0,True],[u"法院",8.7,True],[u"有司",2.4,True],[u"法权",2.5,True],[u"中央",8.0,True],],
-        [[u"中国人民",7.0,True],[u"法院",8.7,True],[u"有",-1.0,False],[u"司法权",6.4,True],[u"中央",8.0,True],],
-        [[u"中国人民",7.0,True],[u"法院",8.7,True],[u"有",-1.0,False],[u"司法",8.5,True],[u"权",-1.0,False],,[u"中央",8.0,True],],
-        [[u"中国人",8.5,True],[u"民法院",3.2,True],[u"有司",2.4,True],[u"法权",2.5,True],[u"中央",8.0,True],],
-        [[u"中国人",8.5,True],[u"民法院",3.2,True],[u"有",-1.0,False],[u"司法权",6.4,True],[u"中央",8.0,True],],
-        [[u"中国人",8.5,True],[u"民法院",3.2,True],[u"有",-1.0,False],[u"司法",8.5,True],[u"权",-1.0,False],,[u"中央",8.0,True],],
-        [[u"中国人",8.5,True],[u"民法",6.3,True],[u"院",-1.0,False],[u"有司",2.4,True],[u"法权",2.5,True],[u"中央",8.0,True],],
-        [[u"中国人",8.5,True],[u"民法",6.3,True],[u"院",-1.0,True],[u"有",-1.0,False],[u"司法权",6.4,True],[u"中央",8.0,True],],
-        [[u"中国人",8.5,True],[u"民法",6.3,True],[u"院",-1.0,True],[u"有",-1.0,False],[u"司法",8.5,True],[u"权",-1.0,False],,[u"中央",8.0,True],],
-        [[u"中国",9.8,True],[u"人民法院",4.3,True],[u"有司",2.4,True],[u"法权",2.5,True],[u"中央",8.0,True],],
-        [[u"中国",9.8,True],[u"人民法院",4.3,True],[u"有",-1.0,False],[u"司法权",6.4,True],[u"中央",8.0,True],],
-        [[u"中国",9.8,True],[u"人民法院",4.3,True],[u"有",-1.0,False],[u"司法",8.5,True],[u"权",-1.0,False],,[u"中央",8.0,True],],
-        [[u"中国",9.8,True],[u"人民",8.1,True],[u"法院",8.7,True],[u"有司",2.4,True],[u"法权",2.5,True],[u"中央",8.0,True],],
-        [[u"中国",9.8,True],[u"人民",8.1,True],[u"法院",8.7,True],[u"有",-1.0,False],[u"司法权",6.4,True],[u"中央",8.0,True],],
-        [[u"中国",9.8,True],[u"人民",8.1,True],[u"法院",8.7,True],[u"有",-1.0,False],[u"司法",8.5,True],[u"权",-1.0,False],,[u"中央",8.0,True],],
+        [["中国人民法院",5.5,True,0],["有司",2.4,True,6],["法权",2.5,True,8],["中央",8.0,True,10],],
+        [["中国人民法院",5.5,True],["有",-1.0,False],["司法权",6.4,True],["中央",8.0,True],],
+        [["中国人民法院",5.5,True],["有",-1.0,False],["司法",8.5,True],["权",-1.0,False],["中央",8.0,True],],
+        [["中国人民",7.0,True],["法院",8.7,True],["有司",2.4,True],["法权",2.5,True],["中央",8.0,True],],
+        [["中国人民",7.0,True],["法院",8.7,True],["有",-1.0,False],["司法权",6.4,True],["中央",8.0,True],],
+        [["中国人民",7.0,True],["法院",8.7,True],["有",-1.0,False],["司法",8.5,True],["权",-1.0,False],,["中央",8.0,True],],
+        [["中国人",8.5,True],["民法院",3.2,True],["有司",2.4,True],["法权",2.5,True],["中央",8.0,True],],
+        [["中国人",8.5,True],["民法院",3.2,True],["有",-1.0,False],["司法权",6.4,True],["中央",8.0,True],],
+        [["中国人",8.5,True],["民法院",3.2,True],["有",-1.0,False],["司法",8.5,True],["权",-1.0,False],,["中央",8.0,True],],
+        [["中国人",8.5,True],["民法",6.3,True],["院",-1.0,False],["有司",2.4,True],["法权",2.5,True],["中央",8.0,True],],
+        [["中国人",8.5,True],["民法",6.3,True],["院",-1.0,True],["有",-1.0,False],["司法权",6.4,True],["中央",8.0,True],],
+        [["中国人",8.5,True],["民法",6.3,True],["院",-1.0,True],["有",-1.0,False],["司法",8.5,True],["权",-1.0,False],,["中央",8.0,True],],
+        [["中国",9.8,True],["人民法院",4.3,True],["有司",2.4,True],["法权",2.5,True],["中央",8.0,True],],
+        [["中国",9.8,True],["人民法院",4.3,True],["有",-1.0,False],["司法权",6.4,True],["中央",8.0,True],],
+        [["中国",9.8,True],["人民法院",4.3,True],["有",-1.0,False],["司法",8.5,True],["权",-1.0,False],,["中央",8.0,True],],
+        [["中国",9.8,True],["人民",8.1,True],["法院",8.7,True],["有司",2.4,True],["法权",2.5,True],["中央",8.0,True],],
+        [["中国",9.8,True],["人民",8.1,True],["法院",8.7,True],["有",-1.0,False],["司法权",6.4,True],["中央",8.0,True],],
+        [["中国",9.8,True],["人民",8.1,True],["法院",8.7,True],["有",-1.0,False],["司法",8.5,True],["权",-1.0,False],,["中央",8.0,True],],
     ]
     含义为：
     [分出的字符块，词频，是否元数据，起始位置]
@@ -912,7 +456,7 @@ def __segmentInputByAll(rawInput,
     # 1、根据元数据字典匹配所有的可能的元数据，所有词的匹配（为避免过多匹配，过滤单字词、数字）
     possibleMetas = __getAllPossibleMetas(rawInput, chainChar_MetaDict, filterSingle)
 
-    if not possibleMetas: # 如果没有匹配的元数据，可能是由于过滤单字词导致的
+    if not possibleMetas:  # 如果没有匹配的元数据，可能是由于过滤单字词导致的
         possibleMetas = __getAllPossibleMetas(rawInput, chainChar_MetaDict, filterSingle=False)
     # 2、根据所有的可能的元数据取得链表
     chain_blocks = __getChainBlocksWithPossibleMetas(possibleMetas, 0)
@@ -922,10 +466,12 @@ def __segmentInputByAll(rawInput,
         return SegmentedResult.createSingleWordResult(rawInput, 0, False, -1.0)
 
     # 3、如果有未识别，整合到一起（这时要检查单字符，如果存在，替换现有频率、是否已知等参数，直接整合在一起，）
-    integrated_chain_blocks, unknowns_dict = __getIntegratedChainBlocks(rawInput, chain_blocks, chainChar_MetaDict,getUnknownSingleWord=True)
+    integrated_chain_blocks, unknowns_dict = __getIntegratedChainBlocks(rawInput, chain_blocks, chainChar_MetaDict,
+                                                                        getUnknownSingleWord=True)
 
     if resegmentWithUnknowns and unknowns_dict:
-        resegmented_chain_blocks_with_unknowns = __resegmentChainBlocksWithUnknowns(integrated_chain_blocks, unknowns_dict,memory)
+        resegmented_chain_blocks_with_unknowns = __resegmentChainBlocksWithUnknowns(integrated_chain_blocks,
+                                                                                    unknowns_dict, memory)
         if resegmented_chain_blocks_with_unknowns:
             integrated_chain_blocks = []
             for resegmented_chain_block_with_unknowns in resegmented_chain_blocks_with_unknowns:  # 只拆一层
@@ -976,15 +522,15 @@ def __getAllPossibleMetas(rawInput, chainCharMetaDict, filterSingle=True):
     :return:[起始位置，该起始位置所有匹配的结果([匹配的词块，频率，是否词块])]
     "中国人民法院系红旗有司法权中央"可以分解为：
     possibleMetas=[
-        [0,[[u"中国人民法院",5.5,True],[u"中国人民",7.0,True],[u"中国人",8.5,True],[u"中国",9.8,True],]],
-        [1,[[u"国人",4.0,True],]],
-        [2,[[u"人民",8.1,True],[u"人民法院",4.3,True],]],
-        [3,[[u"民法",6.3,True],[u"民法院",3.2,True],]],
-        [4,[[u"法院",8.7,True],]],
-        [9,[[u"有司",2.4,True],]],
-        [10,[[u"司法权",6.4,True],[u"司法",8.5,True],]],
-        [11,[[u"法权",2.5,True],]],
-        [13,[[u"中央",8.0,True],]],
+        [0,[["中国人民法院",5.5,True],["中国人民",7.0,True],["中国人",8.5,True],["中国",9.8,True],]],
+        [1,[["国人",4.0,True],]],
+        [2,[["人民",8.1,True],["人民法院",4.3,True],]],
+        [3,[["民法",6.3,True],["民法院",3.2,True],]],
+        [4,[["法院",8.7,True],]],
+        [9,[["有司",2.4,True],]],
+        [10,[["司法权",6.4,True],["司法",8.5,True],]],
+        [11,[["法权",2.5,True],]],
+        [13,[["中央",8.0,True],]],
     ]
     """
     if not isinstance(chainCharMetaDict, dict):
@@ -1110,7 +656,7 @@ def __getChainBlocksWithPossibleMetas(possibleMetas, cur_position):
 
     for cur_possibleMeta in cur_possibleMeta_list:
         next_position = cur_possibleMeta[0] + len(cur_possibleMeta[1])
-        # if cur_possibleMeta[1]==u"有":
+        # if cur_possibleMeta[1]=="有":
         #     iii=1
         next_chain_Blocks = __getChainBlocksWithPossibleMetas(possibleMetas, next_position)
         if next_chain_Blocks:  # 如果有后续的，逐条添加
@@ -1194,7 +740,7 @@ def __getIntegratedChainBlocks(rawInput,
     integrated_chain_blocks = []
     unknowns = {}
 
-    index =0
+    index = 0
     for cur_chain_block in chain_blocks:
         cur_integrated_chain_block = []
         cur_unknowns = {}
@@ -1204,7 +750,7 @@ def __getIntegratedChainBlocks(rawInput,
             cur_meta_info = cur_chain_block[i]
             backward_meta_info = None
             if i == 0:
-                backward_meta_info = [0, u"", -1, False]
+                backward_meta_info = [0, "", -1, False]
             else:
                 backward_meta_info = cur_chain_block[i - 1]
             unknown_meta_info = __getUnknownMetaInfo(rawInput, backward_meta_info[0] + len(backward_meta_info[1]),
@@ -1223,7 +769,7 @@ def __getIntegratedChainBlocks(rawInput,
                             is_known_as_single_word = True
                 cur_integrated_chain_block.append(unknown_meta_info)
                 if not is_known_as_single_word:
-                    cur_unknowns[i]=unknown_meta_info
+                    cur_unknowns[i] = unknown_meta_info
             # 将当前元数据词块添加到结果
             cur_integrated_chain_block.append(cur_meta_info)
 
@@ -1242,13 +788,13 @@ def __getIntegratedChainBlocks(rawInput,
                     last_unknown_meta_info[2] = cur_last_chain_char_meta_dict[2]  # 频率
                     last_unknown_meta_info[3] = cur_last_chain_char_meta_dict[0]  # 是否元数据
             cur_integrated_chain_block.append(last_unknown_meta_info)
-            cur_unknowns[i] =last_unknown_meta_info
+            cur_unknowns[i] = last_unknown_meta_info
 
         integrated_chain_blocks.append(cur_integrated_chain_block)
         if cur_unknowns:
-            unknowns[index]=cur_unknowns
+            unknowns[index] = cur_unknowns
 
-        index+=1
+        index += 1
 
     return integrated_chain_blocks, unknowns
 
@@ -1263,7 +809,7 @@ def __getUnknownMetaInfo(rawInput, start, end):
     """
     try:
         unknown_str = rawInput[start:end]
-        if unknown_str and not unknown_str == u"":
+        if unknown_str and not unknown_str == "":
             return [start, unknown_str, -1.0, False]
     except:
         return None
@@ -1328,7 +874,7 @@ def __cleanDuplicatedChainBlocks(chain_blocks, metaInput):
     return cleaned_chain_blocks
 
 
-def __resegmentChainBlocksWithUnknowns(chain_blocks, unknowns_dict,memory=None):
+def __resegmentChainBlocksWithUnknowns(chain_blocks, unknowns_dict, memory=None):
     """
     进一步使用其他已分出来的未知元数据重新处理已经分割出来的结果。
     :param cleaned_chain_blocks:
@@ -1337,18 +883,18 @@ def __resegmentChainBlocksWithUnknowns(chain_blocks, unknowns_dict,memory=None):
     """
     import copy
     resegmented_chain_blocks = copy.copy(chain_blocks)  # 复制一个
-    for i,cur_unknowns_dict in unknowns_dict.items():
+    for i, cur_unknowns_dict in unknowns_dict.items():
         if not cur_unknowns_dict:  # 如果没有未知的，继续下一个
             continue
         cur_resegmented_chain_block = resegmented_chain_blocks[i]
-        for j,cur_unknown in cur_unknowns_dict.items():
+        for j, cur_unknown in cur_unknowns_dict.items():
 
             # 如果只有一个字符(无需再分)，直接略过
             if len(cur_unknown[1]) == 1:
                 continue
 
             other_unknown_list = []
-            for k,other_unknown in cur_unknowns_dict.items():  # 找到其他的未知元数据（不能用自身分割自身）
+            for k, other_unknown in cur_unknowns_dict.items():  # 找到其他的未知元数据（不能用自身分割自身）
                 if j == k:
                     continue
 
@@ -1373,7 +919,7 @@ def __resegmentChainBlocksWithUnknowns(chain_blocks, unknowns_dict,memory=None):
                 if cur_segment_result:
                     _resegmented_unknown_meta_chains = ResegmentedUnknownMetaChains()  # 肯定是全部未识别的
                     while True:
-                        cur_meta_data_chain = getCurMetaChainBySegmentResult(cur_segment_result,memory=memory)
+                        cur_meta_data_chain = getCurMetaChainBySegmentResult(cur_segment_result, memory=memory)
                         if not cur_meta_data_chain:
                             break
                         cur_meta_chain = ResegmentedUnknownMetaChain()
@@ -1403,16 +949,16 @@ def __resegmentChainBlocksWithUnknowns(chain_blocks, unknowns_dict,memory=None):
 
     final_resegmented_chain_blocks = []
     import itertools
-    i=0
+    i = 0
     for resegmented_chain_block in resegmented_chain_blocks:
-        if not i in unknowns_dict: # 全部已知，装箱，添加后直接返回
+        if not i in unknowns_dict:  # 全部已知，装箱，添加后直接返回
             final_resegmented_chain_blocks.append([resegmented_chain_block])
-            i+=1
+            i += 1
             continue
 
         cur_final_resegmented_chain_block = []
         # 拆箱
-        for cur_final_resegmented_chain in itertools.product(*resegmented_chain_block,repeat=1):
+        for cur_final_resegmented_chain in itertools.product(*resegmented_chain_block, repeat=1):
             # 将ResegmentedUnknownMetaChain进一步拆箱
             extended_final_resegmented = []
             for cur_final_resegmented_obj in cur_final_resegmented_chain:
@@ -1513,7 +1059,6 @@ def __sortSegmentedResultByNgram(rawInput, chain_blocks, ngramDict, gramNum=2):
 
     _segmentedResult = SegmentedResult(rawInput)
 
-
     # chain_block_bigram_probability=[] # 二元关系可能性的计算结果，其子元素格式为：[当前字符块链,二元关系的可能性]，例如：[cur_chain_block,cur_bi_probability]
     # chain_block_trigram_probability=[] # 三元关系可能性的计算结果，其子元素格式为：[当前字符块链,三元关系的可能性]，例如：[cur_chain_block,cur_tri_probability]
     for cur_chain_block in chain_blocks:
@@ -1522,7 +1067,7 @@ def __sortSegmentedResultByNgram(rawInput, chain_blocks, ngramDict, gramNum=2):
         chain_length = len(cur_chain_block)
         if chain_length == 1:  # 如果只有一个字符块，不需要查找n元关系，添加到结果，继续下一个
             total_probability_ratio = __get_total_probability_ratio(cur_chain_block, num_base)
-            cur_block_chain.probability = cur_chain_block[0][2] * total_probability_ratio *10
+            cur_block_chain.probability = cur_chain_block[0][2] * total_probability_ratio * 10
             _segmentedResult.bigramResult.append(cur_block_chain)
             continue
 
@@ -1565,10 +1110,10 @@ def __sortSegmentedResultByNgram(rawInput, chain_blocks, ngramDict, gramNum=2):
 
             i += 1
 
-        total_probability_ratio=__get_total_probability_ratio(cur_chain_block,num_base)
+        total_probability_ratio = __get_total_probability_ratio(cur_chain_block, num_base)
 
         if calcBigram:
-            cur_bi_probability*=total_probability_ratio
+            cur_bi_probability *= total_probability_ratio
             cur_block_chain.probability = cur_bi_probability  # /(len(cur_chain_block)) # 这里要避免分词多反而造成可能性大的情况，所以要对可能性进行加权平均
             _segmentedResult.bigramResult.append(cur_block_chain)
 
@@ -1587,7 +1132,8 @@ def __sortSegmentedResultByNgram(rawInput, chain_blocks, ngramDict, gramNum=2):
 
     return _segmentedResult
 
-def __get_total_probability_ratio(cur_chain_block,known_num_base):
+
+def __get_total_probability_ratio(cur_chain_block, known_num_base):
     known_num = 0
     for cur_block in cur_chain_block:
         if cur_block[3] == True:
@@ -1596,12 +1142,9 @@ def __get_total_probability_ratio(cur_chain_block,known_num_base):
     total_probability_ratio = (known_num + known_num_base) / (len(cur_chain_block) + known_num_base)
 
     if known_num == len(cur_chain_block):
-        total_probability_ratio *= 100 #
+        total_probability_ratio *= 100  #
 
     return total_probability_ratio
-
-
-
 
 
 def __get_block_chain(chain_block):
@@ -1654,7 +1197,7 @@ def getStopMarksRexPattern(stopMarks, stopMarkLevel=3, StopMarksRexPattern=None)
     if StopMarksRexPattern and stopMarkLevel in StopMarksRexPattern:
         return StopMarksRexPattern[stopMarkLevel]
 
-    pattern = u""
+    pattern = ""
     is_first = True
     for stopMark, detail in stopMarks.items():
         cur_levlel = detail[0]  # 当前需要取得的标点符号的级别
@@ -1664,7 +1207,7 @@ def getStopMarksRexPattern(stopMarks, stopMarkLevel=3, StopMarksRexPattern=None)
                 is_first = False
         else:
             if cur_levlel <= stopMarkLevel:
-                pattern += u"|" + stopMark
+                pattern += "|" + stopMark
 
     if not StopMarksRexPattern is None:
         StopMarksRexPattern[stopMarkLevel] = pattern
@@ -1685,7 +1228,7 @@ def __segmentWithStopMarks_rex(metaInput, stopMarks, stopMarkLevel=3, keepStopMa
     pattern = getStopMarksRexPattern(stopMarks, stopMarkLevel, StopMarksRexPattern)
 
     import re
-    # metaInput=u"习近平强调，中国将坚持改革开放.坚持走和平发展道路...努力推动构建以合作共赢为核心的新型国际关系，打造人类命运共同体!维护和完善以联合国为中心的现行国际体系和秩序。作为最大发展中国家和最大发达国家、世界前两大经济体，中美两国对促进世界和平、稳定、繁荣负有更加重要的责任，应该合作、可以合作的领域十分广阔。中美共同利益远远大于分歧，中美合作可以办成许多有利于两国和世界的大事。同时，双方应该在尊重彼此核心利益和重大关切基础上，通过对话协商积极寻求解决彼此间的分歧，或以建设性方式管控敏感问题，避免误解误判和矛盾升级，防止中美合作大局受到大的干扰。中方愿同美方加强沟通，聚焦合作，增进互信，一道努力构建新型大国关系，实现不冲突不对抗、相互尊重、合作共赢。"
+    # metaInput="习近平强调，中国将坚持改革开放.坚持走和平发展道路...努力推动构建以合作共赢为核心的新型国际关系，打造人类命运共同体!维护和完善以联合国为中心的现行国际体系和秩序。作为最大发展中国家和最大发达国家、世界前两大经济体，中美两国对促进世界和平、稳定、繁荣负有更加重要的责任，应该合作、可以合作的领域十分广阔。中美共同利益远远大于分歧，中美合作可以办成许多有利于两国和世界的大事。同时，双方应该在尊重彼此核心利益和重大关切基础上，通过对话协商积极寻求解决彼此间的分歧，或以建设性方式管控敏感问题，避免误解误判和矛盾升级，防止中美合作大局受到大的干扰。中方愿同美方加强沟通，聚焦合作，增进互信，一道努力构建新型大国关系，实现不冲突不对抗、相互尊重、合作共赢。"
     splits = re.split(pattern, metaInput)
 
     if splits is None:  # todo 这里需要测试一下单独一个标点的输入情况
@@ -1774,36 +1317,36 @@ def __getChainBlocksWithDescartes(metaInput, possibleMetas):
     :param possibleMetas:
     :return:中国人民法院有司法权中央"可以分解为下面的possibleMetas
     possibleMetas=[
-        [[0,u"中国人民法院",5.5,True],[0,u"中国人民",7.0,True],[0,u"中国人",8.5,True],[0,u"中国",9.8,True],],
-        [[1,u"国人",4.0,True],],
-        [[2,u"人民",8.1,True],[2,u"人民法院",4.3,True],],
-        [[3,u"民法",6.3,True],[3,u"民法院",3.2,True],],
-        [[4,u"法院",8.7,True],],
-        [[6,u"有司",2.4,True],[6,u"有",9.9,True],],
-        [[7,u"司法权",6.4,True],[7,u"司法",8.5,True],],
-        [[8,u"法权",2.5,True],],
-        [[10,u"中央",8.0,True],],
+        [[0,"中国人民法院",5.5,True],[0,"中国人民",7.0,True],[0,"中国人",8.5,True],[0,"中国",9.8,True],],
+        [[1,"国人",4.0,True],],
+        [[2,"人民",8.1,True],[2,"人民法院",4.3,True],],
+        [[3,"民法",6.3,True],[3,"民法院",3.2,True],],
+        [[4,"法院",8.7,True],],
+        [[6,"有司",2.4,True],[6,"有",9.9,True],],
+        [[7,"司法权",6.4,True],[7,"司法",8.5,True],],
+        [[8,"法权",2.5,True],],
+        [[10,"中央",8.0,True],],
     ]
     拼接为线性字符块，如：
     chainBlocks=[
-        [[u"中国人民法院",5.5,True,0],[u"有司",2.4,True,6],[u"法权",2.5,True,8],[u"中央",8.0,True,10],],
-        [[u"中国人民法院",5.5,True],[u"有",-1.0,False],[u"司法权",6.4,True],[u"中央",8.0,True],],
-        [[u"中国人民法院",5.5,True],[u"有",-1.0,False],[u"司法",8.5,True],[u"权",-1.0,False],[u"中央",8.0,True],],
-        [[u"中国人民",7.0,True],[u"法院",8.7,True],[u"有司",2.4,True],[u"法权",2.5,True],[u"中央",8.0,True],],
-        [[u"中国人民",7.0,True],[u"法院",8.7,True],[u"有",-1.0,False],[u"司法权",6.4,True],[u"中央",8.0,True],],
-        [[u"中国人民",7.0,True],[u"法院",8.7,True],[u"有",-1.0,False],[u"司法",8.5,True],[u"权",-1.0,False],,[u"中央",8.0,True],],
-        [[u"中国人",8.5,True],[u"民法院",3.2,True],[u"有司",2.4,True],[u"法权",2.5,True],[u"中央",8.0,True],],
-        [[u"中国人",8.5,True],[u"民法院",3.2,True],[u"有",-1.0,False],[u"司法权",6.4,True],[u"中央",8.0,True],],
-        [[u"中国人",8.5,True],[u"民法院",3.2,True],[u"有",-1.0,False],[u"司法",8.5,True],[u"权",-1.0,False],,[u"中央",8.0,True],],
-        [[u"中国人",8.5,True],[u"民法",6.3,True],[u"院",-1.0,False],[u"有司",2.4,True],[u"法权",2.5,True],[u"中央",8.0,True],],
-        [[u"中国人",8.5,True],[u"民法",6.3,True],[u"院",-1.0,False],[u"有",-1.0,False],[u"司法权",6.4,True],[u"中央",8.0,True],],
-        [[u"中国人",8.5,True],[u"民法",6.3,True],[u"院",-1.0,True],[u"有",-1.0,False],[u"司法",8.5,True],[u"权",-1.0,False],,[u"中央",8.0,True],],
-        [[u"中国",9.8,True],[u"人民法院",4.3,True],[u"有司",2.4,True],[u"法权",2.5,True],[u"中央",8.0,True],],
-        [[u"中国",9.8,True],[u"人民法院",4.3,True],[u"有",-1.0,False],[u"司法权",6.4,True],[u"中央",8.0,True],],
-        [[u"中国",9.8,True],[u"人民法院",4.3,True],[u"有",-1.0,False],[u"司法",8.5,True],[u"权",-1.0,False],,[u"中央",8.0,True],],
-        [[u"中国",9.8,True],[u"人民",8.1,True],[u"法院",8.7,True],[u"有司",2.4,True],[u"法权",2.5,True],[u"中央",8.0,True],],
-        [[u"中国",9.8,True],[u"人民",8.1,True],[u"法院",8.7,True],[u"有",-1.0,False],[u"司法权",6.4,True],[u"中央",8.0,True],],
-        [[u"中国",9.8,True],[u"人民",8.1,True],[u"法院",8.7,True],[u"有",-1.0,False],[u"司法",8.5,True],[u"权",-1.0,False],,[u"中央",8.0,True],],
+        [["中国人民法院",5.5,True,0],["有司",2.4,True,6],["法权",2.5,True,8],["中央",8.0,True,10],],
+        [["中国人民法院",5.5,True],["有",-1.0,False],["司法权",6.4,True],["中央",8.0,True],],
+        [["中国人民法院",5.5,True],["有",-1.0,False],["司法",8.5,True],["权",-1.0,False],["中央",8.0,True],],
+        [["中国人民",7.0,True],["法院",8.7,True],["有司",2.4,True],["法权",2.5,True],["中央",8.0,True],],
+        [["中国人民",7.0,True],["法院",8.7,True],["有",-1.0,False],["司法权",6.4,True],["中央",8.0,True],],
+        [["中国人民",7.0,True],["法院",8.7,True],["有",-1.0,False],["司法",8.5,True],["权",-1.0,False],,["中央",8.0,True],],
+        [["中国人",8.5,True],["民法院",3.2,True],["有司",2.4,True],["法权",2.5,True],["中央",8.0,True],],
+        [["中国人",8.5,True],["民法院",3.2,True],["有",-1.0,False],["司法权",6.4,True],["中央",8.0,True],],
+        [["中国人",8.5,True],["民法院",3.2,True],["有",-1.0,False],["司法",8.5,True],["权",-1.0,False],,["中央",8.0,True],],
+        [["中国人",8.5,True],["民法",6.3,True],["院",-1.0,False],["有司",2.4,True],["法权",2.5,True],["中央",8.0,True],],
+        [["中国人",8.5,True],["民法",6.3,True],["院",-1.0,False],["有",-1.0,False],["司法权",6.4,True],["中央",8.0,True],],
+        [["中国人",8.5,True],["民法",6.3,True],["院",-1.0,True],["有",-1.0,False],["司法",8.5,True],["权",-1.0,False],,["中央",8.0,True],],
+        [["中国",9.8,True],["人民法院",4.3,True],["有司",2.4,True],["法权",2.5,True],["中央",8.0,True],],
+        [["中国",9.8,True],["人民法院",4.3,True],["有",-1.0,False],["司法权",6.4,True],["中央",8.0,True],],
+        [["中国",9.8,True],["人民法院",4.3,True],["有",-1.0,False],["司法",8.5,True],["权",-1.0,False],,["中央",8.0,True],],
+        [["中国",9.8,True],["人民",8.1,True],["法院",8.7,True],["有司",2.4,True],["法权",2.5,True],["中央",8.0,True],],
+        [["中国",9.8,True],["人民",8.1,True],["法院",8.7,True],["有",-1.0,False],["司法权",6.4,True],["中央",8.0,True],],
+        [["中国",9.8,True],["人民",8.1,True],["法院",8.7,True],["有",-1.0,False],["司法",8.5,True],["权",-1.0,False],,["中央",8.0,True],],
     ]
     含义为：
     [分出的字符块，词频，是否元数据，起始位置]
@@ -1902,7 +1445,7 @@ def __fillChainBlocks(currentMetaInput, chainCharMetaDict, unknownBlock, filterS
     :return:
     """
     resultDict = {}
-    if currentMetaInput == u"":
+    if currentMetaInput == "":
         return resultDict
     currentBlocks = []
 
@@ -1912,7 +1455,7 @@ def __fillChainBlocks(currentMetaInput, chainCharMetaDict, unknownBlock, filterS
         # 这里的处理方式，是将两者添加到unknownBlock
         unknownBlock += getUnknownBlock(currentMetaInput, 0, chainCharMetaDict)
         position = len(unknownBlock)
-        nextDict = __fillChainBlocks(currentMetaInput[position:], chainCharMetaDict, u"")
+        nextDict = __fillChainBlocks(currentMetaInput[position:], chainCharMetaDict, "")
 
         resultDict.setdefault(unknownBlock, [0.0, False, nextDict])
     else:
@@ -1934,7 +1477,7 @@ def getUnknownBlock(currentMetaInput, cur_pos, curDict):
     :param curDict:
     :return:
     """
-    unknownBlock = u""
+    unknownBlock = ""
     while cur_pos < len(currentMetaInput):  # 继续往后查不识别的
         cur_char = currentMetaInput[cur_pos]
         cur_child = curDict.get(cur_char)
@@ -1994,13 +1537,13 @@ def __loopForChainBlocks(metaInput, cur_position, unknownBlock, curDict, chainCh
     #     segmentedResult.append([unknownBlock,cur_position,cur_Child[0],cur_Child[2]])
     #     break
     #
-    # if not unknownBlock ==u"": #如果查到了目前的字符有索引，需要将以前的未知块加入分解结果，并清空
+    # if not unknownBlock =="": #如果查到了目前的字符有索引，需要将以前的未知块加入分解结果，并清空
     #     lastResult= segmentedResult[len(segmentedResult)-1]
     #     if lastResult[2]==False:
     #         lastResult[0]+=unknownBlock
     #     else:
     #         segmentedResult.append([unknownBlock,cur_position-len(unknownBlock),False,0.0])
-    #     unknownBlock=u""
+    #     unknownBlock=""
     #     continue
 
 
@@ -2036,92 +1579,6 @@ def __segmentInputByMaxMatch(rawInput, chainCharMetaDict, start, end, resegmentW
         next_chain_block = curDict.get(next_char)
 
         pass
-
-
-def __segmentInputByMaxMatch2(rawInput, chainCharMetaDict):
-    """
-    根据元数据分割输入字符串（列表）-根据链接字符词典进行匹配（最长顺序匹配）
-    :param rawInput:输入的字符串（列表），metaInputs必须是unicode编码
-    :param chainCharMetaDict:以每个字符作为索引，[True/False,{...},meta,frequncy]为值的字典，含义为：
-    [是否字符块末尾，{后续子串字典}，元数据字符串，频率]
-    :return:所有分割出的字符串连接列表，例如："音乐会很好"，会分割出下面两条结果：
-                  [
-                  [["音乐会",0,True,8.5],["很好",3,False,0.0]]
-                  [["音乐",0,True,3.2],["会",2,False,0.0],["很好",3,False,0.0]]
-                  ]
-                  每条记录的格式应为：[[word,i,True/False,frequncy]]其含义为：[匹配到的单词，起始位置,是否元数据，频率]的列表
-                  如果不是元数据，默认频率为0.0
-    """
-
-    segmentedResult = []  # 所有分割出的字符串连接列表，例如："音乐会很好"，会分割出下面两条结果：
-    # [
-    # [["音乐会",0,True,8.5],["很好",3,False,0.0]]
-    # [["音乐",0,True,3.2],["会",2,False,0.0],["很好",3,False,0.0]]
-    # ]
-    # 每条记录的格式应为：[[word,i,True/False,frequncy]]其含义为：[匹配到的单词，起始位置,是否元数据，频率]的列表
-    # 如果不是元数据，默认频率为0.0
-    curDict = chainCharMetaDict  # curDict主要用于逐渐进行的查找，不能删除
-    childPath = []  # 用来记录子字符字典的路径
-    unknownBlock = u""  # 未知块，用来记录处理未建立索引的字符块
-    i = 0
-
-    chain_blocks = []
-
-    while i < len(rawInput):  # resovledtodo（已解决） 这理应考虑一个字符的情况
-        cur_char = rawInput[i]
-        cur_Child = curDict.get(cur_char)
-        if cur_Child is None:  # 这说明未找到该字符及以该字符为索引的后续信息，直接作为未知字符块处理
-            unknownBlock += cur_char
-            i += 1
-            if i == len(rawInput):  # 如果已经是最后一个字符了，直接添加，然后结束循环
-                segmentedResult.append([unknownBlock, i - len(unknownBlock), False, 0.0])
-                break
-            curDict = chainCharMetaDict
-            continue
-
-        if i == len(rawInput) - 1:  # 如果已经是最后一个字符了，直接将该字符的相关信息（位置、是否是元数据、词频等）添加，然后结束循环
-            unknownBlock += cur_char
-            segmentedResult.append([unknownBlock, i, cur_Child[0], cur_Child[2]])
-            break
-
-        if not unknownBlock == u"":  # 如果查到了目前的字符有索引，需要将以前的未知块加入分解结果，并清空
-            if len(segmentedResult) == 0:
-                segmentedResult.append([unknownBlock, 0, False, 0.0])
-            else:
-                lastResult = segmentedResult[len(segmentedResult) - 1]
-                if lastResult[2] == False:
-                    lastResult[0] += unknownBlock
-                else:
-                    segmentedResult.append([unknownBlock, i - len(unknownBlock), False, 0.0])
-            unknownBlock = u""
-            continue
-
-        childPath.append(cur_Child)
-        nextChar = rawInput[i + 1]
-        nextDict = cur_Child[3]
-        curDict = nextDict
-        next_Child = nextDict.get(nextChar)
-        if next_Child is None:  # 如果在cur_char的索引下，没有找到下一个字的索引，说明这两个字符都是未知的，
-            unknownBlock += cur_char
-            i += 1
-            curDict = chainCharMetaDict
-        elif len(next_Child[3]) == 0 or next_Child[3] is None:  # 如果后续没有相关的字符了,停机，迭代查询到最近的上级meta
-            childPath.append(next_Child)
-            upperChild = __getUpperMeta(childPath)
-            upper_chars = upperChild[1]
-            segmentedResult.append([upper_chars, i + 2 - len(upper_chars), upperChild[0], upperChild[2], []])
-
-            # 取得有交叉的元数据，例如：有司-法权，中的“有司”，与“司法权”相交
-            intersect_chars = upper_chars[1:]
-            # intersectMeta=
-
-            curDict = chainCharMetaDict
-            i += 2  # 跳到当前位置的下两个（下一个已经处理过了）
-            childPath = []
-        else:
-            i += 1
-
-    return segmentedResult
 
 
 def __getUpperMeta(childPath):
@@ -2252,7 +1709,7 @@ def __match_ascii(i, input):
     return result
 
 
-def getCurMetaChainBySegmentResult(segmentResult, ngram=2,memory=None):
+def getCurMetaChainBySegmentResult(segmentResult, ngram=2, memory=None):
     """
     根据当前的分割的结果创建元数据链（由于分割结果可能有多个，所以在处理时一条条调用，直到“理解”为止）
     :param segmentResult:
@@ -2284,16 +1741,16 @@ def getCurMetaChainBySegmentResult(segmentResult, ngram=2,memory=None):
         cur_meta = None
         if cur_block.isMeta:
             if memory:
-                cur_meta =memory.getMetaByMvalueInMemory(cur_block.word)# 取得内存之中的元数据
+                cur_meta = memory.getMetaByMvalueInMemory(cur_block.word)  # 取得内存之中的元数据
             if not cur_meta:
                 cur_meta = MetaData.retrieveByMvalue(cur_block.word)  # 取得数据库之中的元数据
             if not cur_meta:
                 # 未识别的字符串：
                 # 记录到内存，不应该创建到数据库
-                cur_meta = MetaData(mvalue=cur_block.word, recognized=False,memory=memory).create(recordInDB=False)
+                cur_meta = MetaData(mvalue=cur_block.word, recognized=False, memory=memory).create(recordInDB=False)
         else:  # 未识别的字符串：
             # 记录到内存，不应该创建到数据库
-            cur_meta = MetaData(mvalue=cur_block.word, recognized=False,memory=memory).create(recordInDB=False)
+            cur_meta = MetaData(mvalue=cur_block.word, recognized=False, memory=memory).create(recordInDB=False)
 
         # 记录
         meta_chain.append(cur_meta)
@@ -2305,7 +1762,7 @@ def getCurMetaChainBySegmentResult(segmentResult, ngram=2,memory=None):
     return (segmentResult.rawInput, meta_chain, unknown_metas_index)
 
 
-def segmentWithUnknownMetas(meta, unknown_metas,memory=None):
+def segmentWithUnknownMetas(meta, unknown_metas, memory=None):
     """
     使用已分出来的未知元数据进一步处理meta
     例如：牛有腿意义为牛组件为腿，初分出 牛有腿-意义为-牛-组件-腿，

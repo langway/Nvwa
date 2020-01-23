@@ -72,6 +72,8 @@ COMPONENTS=[
     # "dateutil",
     "requests",
 
+    "beautifulsoup4",
+
 
     # ——深度学习部分——
     # "tensorflow", # tensorflow 注意版本更新，目前只能支持3.5以上版本

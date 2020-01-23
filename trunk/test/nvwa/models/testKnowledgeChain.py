@@ -20,7 +20,7 @@ class TestKnowledgeChain(TestCase):
                 {"remark":"<名称代词>小明"} # self.r011
             ]},
             {"mvalue":"给", "frequency":80, "relatedRealObjs":[ # self.meta02
-                {"pattern":"{0}给{1}{2}", "meaning":"{0}失去{2};{1}得到{2};", "type":ObjType.ACTION,
+                {"pattern":"{0}给{1}{2}", "meaning":"{0}失去{2};{1}得到{2};", "type":ObjType.COMMON_ACTION,
                     "weight":0.2, "remark":"<动作>给"}, # self.r021
                 {"weight":0.8, "remark":"<名词>给"} # self.r022
             ]},
@@ -37,9 +37,9 @@ class TestKnowledgeChain(TestCase):
                 {"remark":"<名词>红色"} # self.r061
             ]},
             {"mvalue":"的", "frequency":100, "relatedRealObjs":[ # self.meta07
-                {"pattern":"{0}的{1}", "meaning":"{1}归属{0};", "type":ObjType.ACTION,
+                {"pattern":"{0}的{1}", "meaning":"{1}归属{0};", "type":ObjType.COMMON_ACTION,
                     "weight":0.2, "remark":"<归属>的"}, # self.r071
-                {"pattern":"{0}的{1}", "meaning":"{1}被修限{0};", "type":ObjType.ACTION,
+                {"pattern":"{0}的{1}", "meaning":"{1}被修限{0};", "type":ObjType.COMMON_ACTION,
                     "weight":0.3, "remark":"<修限>的"}, # self.r072
                 {"weight":0.5, "remark":"<名词>的"} # self.r073
             ]},

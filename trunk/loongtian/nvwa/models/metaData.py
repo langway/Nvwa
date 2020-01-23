@@ -45,7 +45,8 @@ class MetaData(BaseEntity):
     # 例如：metanet:[[中国-人民]-解放军]\[中国-[人民-解放军]]----metadata:中国人民解放军-
 
     lowerLimitation = LayerLimitation()
-    lowerLimitation.update({ObjType.REAL_OBJECT: -1})  # MetaData 的下一层对象为RealObject[可能有多个]
+    lowerLimitation.update({ObjType.REAL_OBJECT: -1,
+                            ObjType.ACTION:-1})  # MetaData 的下一层对象为RealObject[可能有多个]
 
     # 例如：牛-realobject:R1:动物牛、R2:很牛的牛
     def __init__(self, id=None, type=ObjType.WORD, mvalue=None,
@@ -100,7 +101,7 @@ class MetaData(BaseEntity):
         根据元字符串，查找库中是否存在此Entity，不比较PrimaryKey。
         :return: 找到返回Entity，未找到返回None
         """
-        if mvalue is None or mvalue == u"":
+        if mvalue is None or mvalue == "":
             return None
 
         # 首先从内存中取

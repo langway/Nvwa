@@ -402,7 +402,7 @@ def get_handle_text(pHandle, class_name, lastHandle=None, index=0,position=0, ge
         if lastHandle <= 0:
             print ("未能取得界面中的{0}!".format(class_name))
 
-        text = u""
+        text = ""
         if getText:
             text = get_text_by_handle(lastHandle)
             # print (text)

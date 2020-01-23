@@ -209,7 +209,7 @@ class TestJsonHelper(TestCase):
 # #导入json模块，你也可以用simplejson，一个第三模块，比较好用
 #
 # #定义一个dict对象，并有些value还是以json的形式出现，形式如下
-# adict={"xiaoqiangk":"xiaoqiangv","xiaofeik":"xiaofeiv","xiaofeis":{"xiaofeifk":"xiaofeifv","xiaofeimk":{"xiaoqik":"xiaoqiv","xiaogou":{"xiaolei":"xiaolei"}}},"xiaoer":{"xiaoyuk":"xiaoyuv"}}
+# adict={"xiaoqiangk":"xiaoqiangv","xiaofeik":"xiaofeiv","xiaofeis":{"xiaofeifk":"xiaofeifv","xiaofeimk":{"xiaoqik":"xiaoqiv","xiaogo":{"xiaolei":"xiaolei"}}},"xiaoer":{"xiaoyuk":"xiaoyuv"}}
 # #定义一个函数，用来处理json，传入json1对象，层深初始为0，对其进行遍历
 #
 # def hJson(json1,i=0):
@@ -263,8 +263,8 @@ class Msg(object):
         self.extNone = None #null
         self.simpleList = ['a', 1, 1.0]
         self.simpleTuple=('A',255,8032445.657,1232132131231232132132131213432434342)
-        self.simpleSet=set([4, 5, 6,u"女娲智能"])
+        self.simpleSet=set([4, 5, 6,"女娲智能"])
         self.simpleDict = {'pos':{'x': 100, 'y':50}} #dict
-        self.complexDict = {'pos':{'x': u"这3", 'y':['a',u'b']},u'中文键值':u'pinyin'} #dict
+        self.complexDict = {'pos':{'x': "这3", 'y':['a',u'b']},u'中文键值':u'pinyin'} #dict
         self.recordTime=time.time()
-        self.complexTuple = (1, "2\"", [3,4], {'a':1, 'b':'2'},u"这",set([1, 2, 3])) #tuple, list, dict,set
+        self.complexTuple = (1, "2\"", [3,4], {'a':1, 'b':'2'},"这",set([1, 2, 3])) #tuple, list, dict,set

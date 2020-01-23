@@ -24,11 +24,11 @@ __author__ = 'Leon'
 
 """
 
-
 from loongtian.util.common.generics import GenericsList
 from loongtian.nvwa.runtime.thinkResult.metaLevelResult import MetaLevelResult
 from loongtian.nvwa.runtime.systemInfo import ThinkingInfo
 from loongtian.nvwa.runtime.thinkResult.thinkingRecords.mindExecutingRecords import MindExecutingRecords
+from loongtian.nvwa.runtime.article import StrContent
 
 
 class ThinkResult(GenericsList):
@@ -52,7 +52,7 @@ class ThinkResult(GenericsList):
         10、行为的结果
     """
 
-    def __init__(self, mind, rawInput):
+    def __init__(self, strContent: StrContent = None):
         """
         对一个字符串输入的思维结果（包括：分割等），是一个MetaLevelResult的列表
         :param thinkResult:思维结果
@@ -61,17 +61,15 @@ class ThinkResult(GenericsList):
         1、MindThinkingRecords 记录Mind的活动情况
         2、MetaLevelResults 记录元数据级别的思考结果（其中MetaLevelResult包含RealLevelResult）
         """
-        if not rawInput or \
-                not isinstance(rawInput, str)or \
-                len(rawInput.strip()) == 0:
+        if not strContent or not strContent.containedObj:
             raise Exception("必须提供元输入，才能创建ThinkResult！")
         super(ThinkResult, self).__init__(MetaLevelResult)  # 是一个MetaLevelResult的列表
-        self.mind = mind
-        self.rawInput = rawInput.strip()  # 元输入
-        self.segment_result = None
+
+        self.strContent = strContent  # 元输入 冗余设计
+
         self.mindExecutingRecords = MindExecutingRecords()  # [(状态的枚举信息,实施的对象)]
 
-        self.isSingleMeta =False # 是否是单个元数据的标记（包括理解不了的整句）
+        self.isSingleMeta = False  # 是否是单个元数据的标记（包括理解不了的整句）
 
     def createNewMetaLevelResult(self, metas, unknown_metas_index):
         """
@@ -121,7 +119,7 @@ class ThinkResult(GenericsList):
 
         :return:
         """
-        _curMindThinkingRecord =self.curMindThinkingRecord
+        _curMindThinkingRecord = self.curMindThinkingRecord
         if _curMindThinkingRecord:
             return _curMindThinkingRecord.mindExecuteInfo
 
@@ -137,8 +135,6 @@ class ThinkResult(GenericsList):
                 return False
 
         return True
-
-
 
     def isAllUnknown(self):
         all_unknown_num = 0

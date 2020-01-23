@@ -5,9 +5,10 @@
 """
 __author__ = 'Leon'
 
+from abc import ABC
 from loongtian.util.log import logger
 
-class EngineBase(object):
+class EngineBase(ABC):
     """
     引擎的基础类
     """

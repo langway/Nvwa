@@ -22,16 +22,16 @@ class auth():
         """
         默认超级管理员参数设置
         """
-        user_name = u"nvwa"
-        nick_name = u"女娲"
-        real_name =u"女娲AI"
-        user_password =u"123"
-        user_email =u"langway@163.com"
-        user_phone =u"15640193617"
+        user_name = "nvwa"
+        nick_name = "女娲"
+        real_name ="女娲AI"
+        user_password ="123"
+        user_email ="langway@163.com"
+        user_phone ="15640193617"
         user_gender =2  # 性别 1-男，2-女
-        server_ip = u"127.0.0.1"
+        server_ip = "127.0.0.1"
         server_port = 8077
-        manageIp = u"127.0.0.1"
+        manageIp = "127.0.0.1"
         managePort = 8078
 
 
@@ -99,4 +99,19 @@ class InnerOperations():
     """
 
     """
+
+
+class LinearPattern():
+    """
+    目前发现的线性pattern包括：
+        1、修限型
+        （1）R1-...Rn，例如：中国人民银行
+        （2）A1A2，例如：跑了
+        （3）A1A2R1，例如：跑是动作，跑了一圈
+        （4）R1A1A2，例如：动作包含跑
+        2、集合型（一般为同一父对象）
+        （1）R1-...Rn，例如：四五六七
+        （2）A1A2...An，例如：跑跳蹲
+    """
+
 

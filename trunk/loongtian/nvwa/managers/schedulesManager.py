@@ -19,7 +19,7 @@ class SchedulesManager(SequencedObjs):
 
     def start(self):
 
-        for sched in self._sequence_obj_list:
+        for sched in self._sequencedObj_list:
             if isinstance(sched,SequencedObj):
                 sched=sched.containedObj
             sched.start()
@@ -28,7 +28,7 @@ class SchedulesManager(SequencedObjs):
 
     def shutdown(self):
 
-        for sched in self._sequence_obj_list:
+        for sched in self._sequencedObj_list:
             if isinstance(sched,SequencedObj):
                 sched=sched.containedObj
             sched.shutdown()

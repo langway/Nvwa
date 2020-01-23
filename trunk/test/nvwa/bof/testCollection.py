@@ -11,7 +11,7 @@ from loongtian.nvwa.models.enum import ObjType
 class TestCollection(TestCase):
     def setUp(self):
         print ("----setUp----")
-        type = ObjType.ACTION | ObjType.COLLECTION
+        type = ObjType.COMMON_ACTION | ObjType.COLLECTION
         self.data = [
             {"mvalue":"甲", "relatedRealObjs":[ # self.meta01
                 {"remark":"<名词>甲", 'type': type} # self.r011

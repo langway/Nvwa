@@ -21,10 +21,9 @@ from loongtian.nvwa.engines.engineBase import ThinkEngineBase
     （4）、RC-R：第一
     （5）、CA-A：又看，再看
     （6）、AC-A：走了
-    （7）、CCC-C：1234
-    （8）、RRR-R：中国建设银行
-    （9）、AAA-R/A：打跑了，开关，伟大
-    （10）、RAR-R：小明打小丽
+
+
+
 
 """
 
@@ -59,7 +58,7 @@ class GroupEngine(ThinkEngineBase):
             ObjType.EXISTENCE: {},
             ObjType.VIRTUAL: {},
             # ObjType.MOTIFIER:{},
-            ObjType.ACTION: {},
+            ObjType.COMMON_ACTION: {},
             ObjType.INSTINCT: {},
             ObjType.KNOWLEDGE: {}
         }
@@ -123,7 +122,7 @@ class GroupEngine(ThinkEngineBase):
             realsChainList = [reals]
 
         # 1、首先对action之间的对象进行处理
-        actions = typed_objs.get(ObjType.ACTION)
+        actions = typed_objs.get(ObjType.COMMON_ACTION)
 
         actions_splits = None
         if not actions is None and len(actions) > 0:

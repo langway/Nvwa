@@ -40,17 +40,17 @@ class BaseMemory(object):
         # [是否字符块末尾，元数据字符串，频率，{后续子串字典}]
         # 例如：
         # ddd={
-        #     u"中":[False,None,0.0,
-        #         {u"央":[True,u"中央",5.4,{}],
-        #         u"国":[True,u"中国",8.6,
-        #             {u"人":[True,u"中国人",6.2,
-        #                 {u"好":[True,u"中国人好",3.2,{}],
-        #                 u"民":[True,u"中国人民",5.2,
-        #                     {u"解":[False,None,0.0,
-        #                         {u"放":[False,None,0.0,
-        #                             {u"军":[True,u"中国人民解放军",6.2,{}]}]}],
-        #                     u"法":[False,None,0.0,
-        #                         {u"院":[True,u"中国人民法院",6.2,{}]}]}]}]}]}]}
+        #     "中":[False,None,0.0,
+        #         {"央":[True,"中央",5.4,{}],
+        #         "国":[True,"中国",8.6,
+        #             {"人":[True,"中国人",6.2,
+        #                 {"好":[True,"中国人好",3.2,{}],
+        #                 "民":[True,"中国人民",5.2,
+        #                     {"解":[False,None,0.0,
+        #                         {"放":[False,None,0.0,
+        #                             {"军":[True,"中国人民解放军",6.2,{}]}]}],
+        #                     "法":[False,None,0.0,
+        #                         {"院":[True,"中国人民法院",6.2,{}]}]}]}]}]}]}
 
         self.NgramDict = {}  # n元丁字型结构的字符块链表（数据库存储丁字型结构，用的时候加载）
         # 目前使用邻接匹配法——ngram，根据“元数”，进行二元、三元关系计算，对匹配出来的字符块链进行排序
@@ -495,7 +495,7 @@ class WorkingMemory(BaseMemory):
         super(WorkingMemory, self).__init__(memoryCentral)
 
         # self.TextWorkingMemory=TextWorkingMemory(self)
-        self.DoubleFrequancyDict = {}  # 本次程序启动至今加载的双字-频率字典
+        self.WordDoubleFrequancyDict = {}  # 本次程序启动至今加载的双字-频率字典
         # self.RawInputsLength=0 # 本次程序启动至今加载的元输入数据所有字符的总长度
 
         self.NewLearnedRawMetas = {}  # 自系统启动以来新学习到的元数据{word:frequncy}

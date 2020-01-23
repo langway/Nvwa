@@ -1553,7 +1553,7 @@ class ExecutionInfo():
         # 除了顶级关系、意义之外，明确实际对象的子类型为：动作
         if len(self.LinearExecutionInfo.meaning_knowledges) > 0 \
                 and not self.real.isTopRelation() and not self.real.isInstinctMeaning():
-            self.real.setType(type=ObjType.ACTION)
+            self.real.setType(type=ObjType.COMMON_ACTION)
 
         # else:
         #     self.LinearExecutionInfo = None
@@ -1615,7 +1615,7 @@ class ExecutionInfo():
         # 除了顶级关系、意义之外，明确实际对象的子类型为：动作
         if len(self.ConjugatedExecutionInfo.meaning_knowledges) > 0 \
                 and not self.real.isTopRelation() and not self.real.isInstinctMeaning():
-            self.real.setType(type=ObjType.ACTION)
+            self.real.setType(type=ObjType.COMMON_ACTION)
 
         # else:
         #     self.LinearExecutionInfo = None

@@ -15,7 +15,7 @@ from loongtian.nvwa.organs.brain import Brain
 class TestBrain(TestCase):
 
     def setUp(self):
-        print ("----setUp----")
+        print("----setUp----")
         from loongtian.nvwa.organs.centralManager import CentralManager
         CentralManager._cleanDB(wait_for_command=True)
         self.brain = Brain()
@@ -23,17 +23,17 @@ class TestBrain(TestCase):
         self.brain.init()
         run(self.brain)
 
-    def testCreatePattern(self):
-        print("——testCreatePattern——")
+    def testCreateMeaningPattern(self):
+        print("——testCreateMeaningPattern——")
 
         #############################
         # 牛有腿
         #############################
-        self.meta_niu = MetaData(mvalue=u"牛", memory=self.brain.MemoryCentral).create()
-        self.meta_you = MetaData(mvalue=u"有", memory=self.brain.MemoryCentral).create()
-        self.meta_tui = MetaData(mvalue=u"腿", memory=self.brain.MemoryCentral).create()
+        self.meta_niu = MetaData(mvalue="牛", memory=self.brain.MemoryCentral).create()
+        self.meta_you = MetaData(mvalue="有", memory=self.brain.MemoryCentral).create()
+        self.meta_tui = MetaData(mvalue="腿", memory=self.brain.MemoryCentral).create()
         self.real_niu = RealObject.createRealByMeta(self.meta_niu, realType=ObjType.VIRTUAL)
-        self.real_you = RealObject.createRealByMeta(self.meta_you, realType=ObjType.ACTION)
+        self.real_you = RealObject.createRealByMeta(self.meta_you, realType=ObjType.COMMON_ACTION)
         self.real_tui = RealObject.createRealByMeta(self.meta_tui, realType=ObjType.VIRTUAL)
 
         pattern_objs = [self.real_niu, self.real_you, self.real_tui]
@@ -68,9 +68,9 @@ class TestBrain(TestCase):
         #############################
         # 马有尾巴
         #############################
-        self.meta_ma = MetaData(mvalue=u"马", memory=self.brain.MemoryCentral).create()
+        self.meta_ma = MetaData(mvalue="马", memory=self.brain.MemoryCentral).create()
         self.real_ma = RealObject.createRealByMeta(self.meta_ma, realType=ObjType.VIRTUAL)
-        self.meta_weiba = MetaData(mvalue=u"尾巴", memory=self.brain.MemoryCentral).create()
+        self.meta_weiba = MetaData(mvalue="尾巴", memory=self.brain.MemoryCentral).create()
         self.real_weiba = RealObject.createRealByMeta(self.meta_weiba, realType=ObjType.VIRTUAL)
 
         pattern_objs = [self.real_ma, self.real_you, self.real_weiba]
@@ -84,21 +84,21 @@ class TestBrain(TestCase):
         #############################
         # 小明打小丽
         #############################
-        self.meta_xiaoming = MetaData(mvalue=u"小明", memory=self.brain.MemoryCentral).create()
-        self.meta_da = MetaData(mvalue=u"打", memory=self.brain.MemoryCentral).create()
-        self.meta_xiaoli = MetaData(mvalue=u"小丽", memory=self.brain.MemoryCentral).create()
+        self.meta_xiaoming = MetaData(mvalue="小明", memory=self.brain.MemoryCentral).create()
+        self.meta_da = MetaData(mvalue="打", memory=self.brain.MemoryCentral).create()
+        self.meta_xiaoli = MetaData(mvalue="小丽", memory=self.brain.MemoryCentral).create()
 
-        self.meta_shouluo = MetaData(mvalue=u"手落", memory=self.brain.MemoryCentral).create()
-        self.meta_taishou = MetaData(mvalue=u"抬手", memory=self.brain.MemoryCentral).create()
+        self.meta_shouluo = MetaData(mvalue="手落", memory=self.brain.MemoryCentral).create()
+        self.meta_taishou = MetaData(mvalue="抬手", memory=self.brain.MemoryCentral).create()
 
-        self.meta_shouteng = MetaData(mvalue=u"手疼", memory=self.brain.MemoryCentral).create()
-        self.meta_ku = MetaData(mvalue=u"哭", memory=self.brain.MemoryCentral).create()
+        self.meta_shouteng = MetaData(mvalue="手疼", memory=self.brain.MemoryCentral).create()
+        self.meta_ku = MetaData(mvalue="哭", memory=self.brain.MemoryCentral).create()
 
-        self.meta_xiaoliang = MetaData(mvalue=u"小亮", memory=self.brain.MemoryCentral).create()
-        self.meta_xiaohong = MetaData(mvalue=u"小红", memory=self.brain.MemoryCentral).create()
+        self.meta_xiaoliang = MetaData(mvalue="小亮", memory=self.brain.MemoryCentral).create()
+        self.meta_xiaohong = MetaData(mvalue="小红", memory=self.brain.MemoryCentral).create()
 
         self.real_xiaoming = RealObject.createRealByMeta(self.meta_xiaoming, realType=ObjType.VIRTUAL)
-        self.real_da = RealObject.createRealByMeta(self.meta_da, realType=ObjType.ACTION)
+        self.real_da = RealObject.createRealByMeta(self.meta_da, realType=ObjType.COMMON_ACTION)
         self.real_xiaoli = RealObject.createRealByMeta(self.meta_xiaoli, realType=ObjType.VIRTUAL)
         self.real_shouteng = RealObject.createRealByMeta(self.meta_shouteng, realType=ObjType.VIRTUAL)
 
@@ -109,7 +109,7 @@ class TestBrain(TestCase):
         self.real_xiaoliang = RealObject.createRealByMeta(self.meta_xiaoliang, realType=ObjType.VIRTUAL)
         self.real_xiaohong = RealObject.createRealByMeta(self.meta_xiaohong, realType=ObjType.VIRTUAL)
 
-        self.meta_pao = MetaData(mvalue=u"跑", memory=self.brain.MemoryCentral).create()
+        self.meta_pao = MetaData(mvalue="跑", memory=self.brain.MemoryCentral).create()
         self.real_pao = RealObject.createRealByMeta(self.meta_pao, realType=ObjType.VIRTUAL)
 
         pattern_objs = [self.real_xiaoming, self.real_da, self.real_xiaoli]
@@ -197,13 +197,13 @@ class TestBrain(TestCase):
         # 小明跑
         #############################
 
-        self.meta_taiqi = MetaData(mvalue=u"抬起", memory=self.brain.MemoryCentral).create()
+        self.meta_taiqi = MetaData(mvalue="抬起", memory=self.brain.MemoryCentral).create()
         self.real_taiqi = RealObject.createRealByMeta(self.meta_taiqi, realType=ObjType.VIRTUAL)
 
-        self.meta_luoxia = MetaData(mvalue=u"落下", memory=self.brain.MemoryCentral).create()
+        self.meta_luoxia = MetaData(mvalue="落下", memory=self.brain.MemoryCentral).create()
         self.real_luoxia = RealObject.createRealByMeta(self.meta_luoxia, realType=ObjType.VIRTUAL)
 
-        self.meta_dengdi = MetaData(mvalue=u"蹬地", memory=self.brain.MemoryCentral).create()
+        self.meta_dengdi = MetaData(mvalue="蹬地", memory=self.brain.MemoryCentral).create()
         self.real_dengdi = RealObject.createRealByMeta(self.meta_dengdi, realType=ObjType.VIRTUAL)
 
         pattern_objs = [self.real_xiaoming, self.real_pao]
@@ -279,10 +279,19 @@ class TestBrain(TestCase):
         # ########################################
         # 测试单对象部分
         # ########################################
-        self.brain.PerceptionCentral.receive("牛")  # 应该什么都不知道
-        self.brain.PerceptionCentral.receive("牛")  # 这回知道牛了（字符），也知道是什么实际对象了
+        # self.brain.PerceptionCentral.receive("牛")  # 应该什么都不知道
+        # self.brain.PerceptionCentral.receive("牛")  # 这回知道牛了（字符），也知道是什么实际对象了
+        #
+        # self.brain.PerceptionCentral.receive("组件")  # 肯定知道组件，应该输出需要上下文
 
-        self.brain.PerceptionCentral.receive("组件")  # 肯定知道组件，应该输出需要上下文
+        meta = MetaData(mvalue="天数",
+                        memory=self.brain.MemoryCentral).create()
+        # 测试单行短语
+        self.brain.PerceptionCentral.receive("1年天数365天。")  # 肯定知道组件，应该输出需要上下文
+        # 测试单行单句
+        self.brain.PerceptionCentral.receive("1年天数365天。")  # 肯定知道组件，应该输出需要上下文
+
+        self.brain.PerceptionCentral.receive("小明说：“1年天数365天”。6 june有24小时,数字8.96。")  # 肯定知道组件，应该输出需要上下文
 
         # ########################################
         # 测试两个对象部分（简单构成）
@@ -338,7 +347,6 @@ class TestBrain(TestCase):
         self.brain.PerceptionCentral.receive("苹果是红色意义苹果属性红色")
         self.brain.PerceptionCentral.receive("马是动物")  # 这时应该有两个意义
         self.brain.PerceptionCentral.receive("苹果是水果")  # 这时应该有两个意义
-
 
         # 测试简单问答
         self.brain.PerceptionCentral.receive("牛有")  # 正向查询
@@ -407,14 +415,11 @@ class TestBrain(TestCase):
 
         self.brain.PerceptionCentral.receive("因为太阳升起了所以什么")  # 测试
 
-
-
         # 作为集合进行思考
         self.brain.PerceptionCentral.receive("组件属性")
         self.brain.PerceptionCentral.receive("组件属性父对象")
         self.brain.PerceptionCentral.receive("组件属性父对象成分")
         self.brain.PerceptionCentral.receive("组件属性牛父对象成分")
-
 
         # 测试线性输入的集合
         self.brain.PerceptionCentral.receive("马是动物")
@@ -440,7 +445,6 @@ class TestBrain(TestCase):
         self.brain.PerceptionCentral.receive("中国人民银行")
         self.brain.PerceptionCentral.receive("中国人民银行是银行")
 
-
         # 同一性
         # 逻辑思维的基本规律有同一律，矛盾律，排中律和充足理由律。
         self.brain.PerceptionCentral.receive("牛就是牛")
@@ -451,19 +455,52 @@ class TestBrain(TestCase):
         self.brain.PerceptionCentral.receive("牛不是马意义牛不同一于马")
 
 
+
+    def testLinearPattern(self):
+        print("——testLinearPattern——")
+        # 目前发现的线性pattern包括：
+        # 1、修限型
+        # （1）R1-...Rn，例如：中国人民银行
+        # （2）A1A2，例如：跑了
+        # （3）A1A2R1，例如：跑是动作，跑了一圈
+        # （4）R1A1A2，例如：动作包含跑
+        # 2、集合型（一般为同一父对象）
+        # （1）R1-...Rn，例如：四五六七
+        # （2）A1A2...An，例如：跑跳蹲
+        from loongtian.nvwa.runtime.pattern import LinearPattern
+        self.brain.PerceptionCentral.receive("牛是动物意义牛父对象动物")  # 测试重新生成“是”，内部判断模式、意义是否一致
+        self.brain.PerceptionCentral.receive("四是数字")
+        self.brain.PerceptionCentral.receive("五是数字")
+        self.brain.PerceptionCentral.receive("六是数字")
+
+        # 生不成实际对象类型模式
+        self.brain.ThinkingCentral.PatternEngine.extractObjTypePattern(["四五六"])
+        self.brain.PerceptionCentral.receive("一是数字")
+        self.brain.PerceptionCentral.receive("二是数字")
+        self.brain.PerceptionCentral.receive("三是数字")
+
+        # 生成实际对象类型模式
+        self.brain.ThinkingCentral.PatternEngine.extractObjTypePattern(["四五六","一二三","四五六"])
+
+        # 生成实际对象父对象模式
+        self.brain.ThinkingCentral.PatternEngine.extractParentPattern("四五六")
+
+        # 生成对应的操作方法模式
+        self.brain.ThinkingCentral.PatternEngine.extractParentPattern("四五六意义四五六是集合四五六有四四五六有五四五六有六四五六元素是数字四五六数量三")
+
     def testCollectionMeaning(self):
         print("——testCollectionMeaning——")
 
         # 清空内存
         self.brain.MemoryCentral.flush()
 
+        self.brain.PerceptionCentral.receive("四是数字意义为四父对象数字")
 
         self.brain.PerceptionCentral.receive("四是数字")
         self.brain.PerceptionCentral.receive("五是数字")
         self.brain.PerceptionCentral.receive("六是数字")
-        self.brain.PerceptionCentral.receive("四五六")
+        self.brain.PerceptionCentral.receive("集合1是集合")
         self.brain.PerceptionCentral.receive("四属于四五六意义四五六组件四")
-
 
     def testLogicalMeaning(self):
         print("——testLogicalMeaning——")
@@ -475,26 +512,26 @@ class TestBrain(TestCase):
         self.brain.PerceptionCentral.receive("苹果不是动物")
         self.brain.PerceptionCentral.receive("苹果不是动物意义非苹果父对象动物")
 
-
-
     def testContextMeaning(self):
         print("——testContextMeaning——")
 
         # 清空内存
         self.brain.MemoryCentral.flush()
 
-        self.brain.PerceptionCentral.receive("牛有腿意义牛组件腿") # 生成有
+        # 三位一体：存储的，问的，应该回答的
+
+        self.brain.PerceptionCentral.receive("牛有腿意义牛组件腿")  # 生成有
         self.brain.PerceptionCentral.receive("牛有腿")
         self.brain.PerceptionCentral.receive("牛有角")
         self.brain.PerceptionCentral.receive("牛有尾巴")
         # 上下文输入生成范式
         self.brain.PerceptionCentral.receive("&:牛有腿吗@:有")
         self.brain.PerceptionCentral.receive("&:牛有角吗@:有")
-        self.brain.PerceptionCentral.receive("牛有尾巴吗") # 回答：有
+        self.brain.PerceptionCentral.receive("牛有尾巴吗")  # 回答：有
 
         self.brain.PerceptionCentral.receive("&:牛有手吗@:没有")
         self.brain.PerceptionCentral.receive("&:牛有爪子吗@:没有")
-        self.brain.PerceptionCentral.receive("牛有翅膀吗") # 回答：没有
+        self.brain.PerceptionCentral.receive("牛有翅膀吗")  # 回答：没有
 
         self.brain.PerceptionCentral.receive("牛是动物意义牛父对象动物")
         self.brain.PerceptionCentral.receive("一是数字")

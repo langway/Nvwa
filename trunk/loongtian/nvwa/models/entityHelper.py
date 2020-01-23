@@ -27,6 +27,8 @@ def getEntityByTypeAndId(entityType=ObjType.UNKNOWN,id=None,memory=None):
         entity = MetaNet.getOne(memory=memory, id=id)
     elif ObjType.isRealObject(entityType):
         entity = RealObject.getOne(memory=memory, id=id)
+    elif ObjType.isAction(entityType):
+        entity = RealObject.getOne(memory=memory, id=id)
     elif ObjType.isKnowledge(entityType):
         entity = Knowledge.getOne(memory=memory, id=id)
     elif ObjType.isLayer(entityType):
@@ -36,7 +38,7 @@ def getEntityByTypeAndId(entityType=ObjType.UNKNOWN,id=None,memory=None):
     # elif ObjType.isCollection(entityType):
     #     entity = Collection.getOne(cid = id)
     else:
-        raise Exception("对象类型错误：{%d:%s}。" % (entityType, ObjType.getTypeNames(entityType)))
+        raise Exception("对象类型错误：{%d:%s}。" % (entityType, ObjType.getName(entityType)))
 
     return entity
 

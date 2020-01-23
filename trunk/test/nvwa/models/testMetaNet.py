@@ -17,19 +17,19 @@ class TestMetaNet(TestCase):
 
         self.memoryCentral=MemoryCentral(None)
         self.textEngine=self.memoryCentral.WorkingMemory.TextEngine
-        self.meta_niu=MetaData(mvalue = u"牛").create()
-        self.meta_you=MetaData(mvalue = u"有").create()
-        self.meta_tui=MetaData(mvalue = u"腿").create()
-        self.meta_erduo=MetaData(mvalue = u"耳朵").create()
-        self.meta_yanjing=MetaData(mvalue = u"眼睛").create()
-        self.meta_wo=MetaData(mvalue = u"我").create()
-        self.meta_zhidao=MetaData(mvalue = u"知道").create()
-        self.meta_zhongguo=MetaData(mvalue = u"中国").create()
-        self.meta_renmin=MetaData(mvalue = u"人民").create()
-        self.meta_jiefangjun=MetaData(mvalue = u"解放军").create()
-        self.meta_shi=MetaData(mvalue = u"是").create()
-        self.meta_zuibang=MetaData(mvalue = u"最棒").create()
-        self.meta_de=MetaData(mvalue = u"的").create()
+        self.meta_niu=MetaData(mvalue = "牛").create()
+        self.meta_you=MetaData(mvalue = "有").create()
+        self.meta_tui=MetaData(mvalue = "腿").create()
+        self.meta_erduo=MetaData(mvalue = "耳朵").create()
+        self.meta_yanjing=MetaData(mvalue = "眼睛").create()
+        self.meta_wo=MetaData(mvalue = "我").create()
+        self.meta_zhidao=MetaData(mvalue = "知道").create()
+        self.meta_zhongguo=MetaData(mvalue = "中国").create()
+        self.meta_renmin=MetaData(mvalue = "人民").create()
+        self.meta_jiefangjun=MetaData(mvalue = "解放军").create()
+        self.meta_shi=MetaData(mvalue = "是").create()
+        self.meta_zuibang=MetaData(mvalue = "最棒").create()
+        self.meta_de=MetaData(mvalue = "的").create()
 
         self.memoryCentral.addMetasInMemory([self.meta_niu,self.meta_you,
                                             self.meta_tui,self.meta_erduo,self.meta_yanjing,
@@ -450,14 +450,14 @@ class TestMetaNet(TestCase):
 
     def testCreateMetaNetBySequnceWords(self):
         print ("----testCreateMetaNetBySequnceWords----")
-        meta_net1=self.MetaNetEngine.createMetaNetBySequnceWords([u"牛", u"有", u"腿"])
-        meta_net2=self.MetaNetEngine.createMetaNetBySequnceWords([u"牛", u"有", u"眼睛"])
-        meta_net3=self.MetaNetEngine.createMetaNetBySequnceWords([u"牛", u"有", u"耳朵"])
-        meta_net4=self.MetaNetEngine.createMetaNetBySequnceWords([[u"我", u"知道"], [u"牛", u"有", u"耳朵"]])
-        self.assertEqual(meta_net1._word_t_chain,[[u"牛", u"有"], u"腿"])
-        self.assertEqual(meta_net2._word_t_chain,[[u"牛", u"有"], u"眼睛"])
-        self.assertEqual(meta_net3._word_s_chain,[u"牛", u"有", u"耳朵"])
-        self.assertEqual(meta_net4._word_t_chain,[[u"我", u"知道"], [[u"牛", u"有"], u"耳朵"]])
+        meta_net1=self.MetaNetEngine.createMetaNetBySequnceWords(["牛", "有", "腿"])
+        meta_net2=self.MetaNetEngine.createMetaNetBySequnceWords(["牛", "有", "眼睛"])
+        meta_net3=self.MetaNetEngine.createMetaNetBySequnceWords(["牛", "有", "耳朵"])
+        meta_net4=self.MetaNetEngine.createMetaNetBySequnceWords([["我", "知道"], ["牛", "有", "耳朵"]])
+        self.assertEqual(meta_net1._word_t_chain,[["牛", "有"], "腿"])
+        self.assertEqual(meta_net2._word_t_chain,[["牛", "有"], "眼睛"])
+        self.assertEqual(meta_net3._word_s_chain,["牛", "有", "耳朵"])
+        self.assertEqual(meta_net4._word_t_chain,[["我", "知道"], [["牛", "有"], "耳朵"]])
 
 
     def testLoadNgramDictByMetaChain(self):
@@ -465,16 +465,16 @@ class TestMetaNet(TestCase):
         segment_result=self.textEngine.segmentInputWithChainCharMetaDict("我知道中国人民解放军是最棒的！")
         for meta_chain,unknown_metas_index in self.textEngine.getCurMetaChainBySegmentResults(segment_result):
             ngram_dict= self.memoryCentral.WorkingMemory.MetaNetEngine.loadNgramDictByMetaChain(meta_chain,NgramNum = 3)
-            if ngram_dict.get(u"知道"):
-                # self.assertEqual(ngram_dict.get(u"知道")[2][u"中国"],1.0)
-                self.assertEqual(ngram_dict.get(u"知道")[3][u"中国"][u"人民"],1.0)
-            self.assertIsNone(ngram_dict.get(u"!"))
+            if ngram_dict.get("知道"):
+                # self.assertEqual(ngram_dict.get("知道")[2]["中国"],1.0)
+                self.assertEqual(ngram_dict.get("知道")[3]["中国"]["人民"],1.0)
+            self.assertIsNone(ngram_dict.get("!"))
 
         allMetaNet= self.memoryCentral.WorkingMemory.MetaNetEngine.loadNgramDictFromDB()
-        if self.memoryCentral.NgramDict.get(u"知道"):
-                # self.assertEqual(self.memoryCentral.NgramDict.get(u"知道")[3][u"中国"],2.0)
-                self.assertEqual(self.memoryCentral.NgramDict.get(u"知道")[3][u"中国"][u"人民"],1.0)
-        self.assertIsNone(self.memoryCentral.NgramDict.get(u"!"))
+        if self.memoryCentral.NgramDict.get("知道"):
+                # self.assertEqual(self.memoryCentral.NgramDict.get("知道")[3]["中国"],2.0)
+                self.assertEqual(self.memoryCentral.NgramDict.get("知道")[3]["中国"]["人民"],1.0)
+        self.assertIsNone(self.memoryCentral.NgramDict.get("!"))
 
 
     def testLoadNgramDictFromDB(self):
@@ -487,10 +487,10 @@ class TestMetaNet(TestCase):
             # self.assertIsNotNone(mni)
 
         allMetaNet= self.memoryCentral.WorkingMemory.MetaNetEngine.loadNgramDictFromDB()
-        if self.memoryCentral.NgramDict.get(u"知道"):
-                self.assertEqual(self.memoryCentral.NgramDict.get(u"知道")[2][u"中国"],2.0)
-                # self.assertEqual(self.memoryCentral.NgramDict.get(u"知道")[3][u"中国"][u"人民"],2.0)
-        self.assertIsNone(self.memoryCentral.NgramDict.get(u"!"))
+        if self.memoryCentral.NgramDict.get("知道"):
+                self.assertEqual(self.memoryCentral.NgramDict.get("知道")[2]["中国"],2.0)
+                # self.assertEqual(self.memoryCentral.NgramDict.get("知道")[3]["中国"]["人民"],2.0)
+        self.assertIsNone(self.memoryCentral.NgramDict.get("!"))
 
 
     def testLoadNgramDictFromDB2(self):
@@ -503,16 +503,16 @@ class TestMetaNet(TestCase):
         self.assertIsNotNone(mni)
 
         allMetaNet= self.memoryCentral.WorkingMemory.MetaNetEngine.loadNgramDictFromDB()
-        if self.memoryCentral.NgramDict.get(u"知道"):
-                self.assertEqual(self.memoryCentral.NgramDict.get(u"知道")[2][u"中国"],1.0)
-                # self.assertEqual(self.memoryCentral.NgramDict.get(u"知道")[3][u"中国"][u"人民"],2.0)
-        self.assertIsNone(self.memoryCentral.NgramDict.get(u"!"))
+        if self.memoryCentral.NgramDict.get("知道"):
+                self.assertEqual(self.memoryCentral.NgramDict.get("知道")[2]["中国"],1.0)
+                # self.assertEqual(self.memoryCentral.NgramDict.get("知道")[3]["中国"]["人民"],2.0)
+        self.assertIsNone(self.memoryCentral.NgramDict.get("!"))
 
         allMetaNet= self.memoryCentral.WorkingMemory.MetaNetEngine.loadNgramDictFromDB(3)
-        if self.memoryCentral.NgramDict.get(u"知道"):
-                # self.assertEqual(self.memoryCentral.NgramDict.get(u"知道")[3][u"中国"],2.0)
-                self.assertEqual(self.memoryCentral.NgramDict.get(u"知道")[3][u"中国"][u"人民"],1.0)
-        self.assertIsNone(self.memoryCentral.NgramDict.get(u"!"))
+        if self.memoryCentral.NgramDict.get("知道"):
+                # self.assertEqual(self.memoryCentral.NgramDict.get("知道")[3]["中国"],2.0)
+                self.assertEqual(self.memoryCentral.NgramDict.get("知道")[3]["中国"]["人民"],1.0)
+        self.assertIsNone(self.memoryCentral.NgramDict.get("!"))
 
 
 

@@ -3,6 +3,7 @@
 __author__ = 'Leon'
 
 from loongtian.nvwa.runtime.sequencedObjs import SequencedObjs
+from loongtian.nvwa.runtime.article import StrContent
 from loongtian.nvwa.organs.mind import Mind
 
 class MindsManager(SequencedObjs):
@@ -27,13 +28,13 @@ class MindsManager(SequencedObjs):
 
         pass
 
-    def createMind(self,rawInput):
+    def createMind(self,str_content:StrContent):
         """
         根据元数据链（meta_chain）创建Mind
         :param meta_chain:
         :return:
         """
-        mind = Mind(self.thinkingCentral,rawInput)
+        mind = Mind(self.thinkingCentral,str_content)
         self.add(mind)
         return mind
 
@@ -47,11 +48,11 @@ class MindsManager(SequencedObjs):
         if not start:
             start=0
         if not end:
-            end= len(self._id_obj_dict)
+            end= len(self._id_sequencedObj_dict)
         if start<end:
             raise Exception("起始点不能小于终点！")
 
-        minds=self._sequence_obj_list[start:end] # 切片
+        minds= self._sequencedObj_list[start:end] # 切片
 
 
 

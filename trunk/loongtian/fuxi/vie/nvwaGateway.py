@@ -33,7 +33,7 @@ def getSearchData(input):
     elif input == u'图片':
         searchData = [{'title': u'12岁男孩捡钥匙开走车', 'url': u'/static/photo/a.jpeg', 'type': u'images'}]
     elif input == u'刘德华':
-        info = u"""
+        info = """
             刘德华（Andy Lau），1961年9月出生于中国香港，中国知名演员、歌手、词作人、制片人、电影人，
             影视歌多栖发展的代表艺人之一。1982年以全优成绩毕业于TVB艺训班签约出道，同年凭《猎鹰》走红，
             1983年主演《神雕侠侣》

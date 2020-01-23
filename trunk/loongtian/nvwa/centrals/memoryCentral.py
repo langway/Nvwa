@@ -9,7 +9,7 @@ __author__ = 'Leon'
 """
 
 from loongtian.nvwa.centrals.centralBase import CentralBase
-from loongtian.nvwa.managers.inputsManager import InputsManager
+from loongtian.nvwa.managers.dialogsManager import DialogsManager
 
 from loongtian.nvwa.organs.memory import GeneralMemoryBase,PersistentMemory
 
@@ -32,7 +32,7 @@ class MemoryCentral(CentralBase, GeneralMemoryBase):
         # # 供model模型调用
         # Memory.memory = self # 现改由用户memoryCentral维护
         # 元输入信息管理器（上下文），用以记录系统的输入信息
-        self.InputsManager = InputsManager()
+        self.DialogsManager = DialogsManager()
 
         # 持久记忆区（长久记忆，重启后不会被被擦除，类似于电脑硬盘数据或数据库，其遗忘速度较慢）
         if self.Brain :

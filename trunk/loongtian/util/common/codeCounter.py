@@ -58,7 +58,7 @@ def CountTotalLines(path,spaceHead):
             for fileItem in files:
                 ext = os.path .splitext(fileItem)
                 ext = ext[-1]  #get the postfix of the file
-                if(ext in [u".py"]):  #["cpp", "c", "h", "java", "py", "xml", "properties", "php"]):
+                if(ext in [".py"]):  #["cpp", "c", "h", "java", "py", "xml", "properties", "php"]):
                     subpath = root + "/" + fileItem
                     curTotal,curCode,curRemarks,curSpace= CountSingleFileLine(subpath)
                     total +=curTotal
@@ -70,7 +70,7 @@ def CountTotalLines(path,spaceHead):
             for dir in dirs:
                 print (path)
                 #print dir
-                if dir !=u".idea" and dir!=u".svn": #略过svn文件夹
+                if dir !=".idea" and dir!=".svn": #略过svn文件夹
 
                     curTotal,curCode,curRemarks,curSpace=CountTotalLines(os.path.join( path,dir),spaceHead+spaceHead)
                     print (spaceHead+u'|---'+dir + u'--目录总实际行数：%d 代码量：%d 注释量：%d 空行量：%d' % (curTotal,curCode,curRemarks,curSpace))

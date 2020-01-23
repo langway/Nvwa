@@ -226,7 +226,7 @@ class ModelingEngine(ThinkEngineBase):
         if executionInfo and executionInfo.isExecutable():
 
             if not ObjType.isAction(executable.type):
-                executable.setType(ObjType.ACTION)
+                executable.setType(ObjType.COMMON_ACTION)
 
             if ModelingEngine._matchPatternAndMeaning(executionInfo, patten_objs, meaning_objs, meaning_value):
                 new_created = False
@@ -357,12 +357,11 @@ class ModelingEngine(ThinkEngineBase):
         executable.addExecutionInfo(pattern_klg, meaning_klg, meaning_value)
 
         executable._gotExecutionInfo = True
-        executable.setType(ObjType.ACTION)
+        executable.setType(ObjType.COMMON_ACTION)
         Instincts.loadAllInstincts(memory=memory)
         executable.Constitutions.addParent(Instincts.instinct_action)
 
         return executable.ExecutionInfo  # newcreted=True
-
 
     @staticmethod
     def _createPlaceholdersParent(obj_placeholder_dict):
@@ -429,7 +428,7 @@ class ModelingEngine(ThinkEngineBase):
         executable = knowledge.Layers.getUpperEntitiesByType(type=ObjType.REAL_OBJECT)
 
         # 创建其上一层实际对象
-        upper_obj = knowledge.createUpperRealObject(realType=ObjType.ACTION)
+        upper_obj = knowledge.createUpperRealObject(realType=ObjType.COMMON_ACTION)
         # 关联其模式、意义
         pattern_knowledge = Knowledge.createKnowledgeByObjChain(patten_objs, type=ObjType.LINEAR_EXE_INFO,
                                                                 understood_ratio=1.0,
@@ -466,7 +465,7 @@ class ModelingEngine(ThinkEngineBase):
                 sub_exe = knowledge1._s_chain_items[list(differs1.keys())[0]]
                 # 因为要生成模式，所以需要对其类型进行更改
                 if isinstance(sub_exe, RealObject) and not ObjType.isExecutable(sub_exe):
-                    sub_exe.type = ObjType.ACTION
+                    sub_exe.type = ObjType.COMMON_ACTION
 
                 self.createExcutionInfo(sub_exe, knowledge1._s_chain_items, knowledge2._s_chain_items,
                                         pattern_type=ObjType.LINEAR_EXE_INFO,

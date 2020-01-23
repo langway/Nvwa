@@ -6,12 +6,12 @@
 __author__ = 'Leon'
 
 from loongtian.nvwa.engines.engineBase import EngineBase
-from loongtian.nvwa.engines import metaDataHelper
+from loongtian.nvwa.engines import metaDataHelper, patternHelper
 from loongtian.nvwa.engines.ngramEngine import NgramEngine
-from loongtian.nvwa.engines.segmentedResult import *
+from loongtian.nvwa.runtime.segmentedResult import *
+from loongtian.nvwa.runtime.article import Article, InShortPhrase
 from loongtian.nvwa.models.metaData import MetaData
 from loongtian.nvwa.models.metaNet import MetaNet
-from loongtian.util.helper import stringHelper
 from loongtian.util.log import logger
 
 
@@ -66,11 +66,12 @@ class MetaNetEngine(EngineBase):
             import uuid
             _uuid = str(uuid.uuid1())
             logger.info("开始从MetaNet数据库加载NgramDict", timeStartMark=_uuid)
-            allMetaNet = NgramEngine.loadNgramDictFromDB(self.MemoryCentral.PersistentMemory.NgramDict, NgramNum,memory=self.MemoryCentral)
+            allMetaNet = NgramEngine.loadNgramDictFromDB(self.MemoryCentral.PersistentMemory.NgramDict, NgramNum,
+                                                         memory=self.MemoryCentral)
             self._allNgramDictFromDBLoaded = True
-            msg="从MetaNet数据库加载NgramDict完毕"
+            msg = "从MetaNet数据库加载NgramDict完毕"
             if not allMetaNet:
-                msg+="，没有可用的MetaNet"
+                msg += "，没有可用的MetaNet"
             logger.info(msg, timeEndMark=_uuid)
         except Exception as e:
             logger.log(e)
@@ -176,7 +177,9 @@ class TextEngine(EngineBase):
         :rawParam rawInput:输入的字符串。
         :return:
         """
-        return metaDataHelper.segmentWithStopMarks(rawInput, self.MemoryCentral.stopMarks, self.MemoryCentral.stopMarkLevel,
+        return metaDataHelper.segmentWithStopMarks(rawInput,
+                                                   self.MemoryCentral.stopMarks,
+                                                   self.MemoryCentral.stopMarkLevel,
                                                    self.MemoryCentral.keepStopMark)
 
     def segmentWithNumbers(self, rawInput):
@@ -229,22 +232,30 @@ class TextEngine(EngineBase):
     #     return True
     #
 
-    def createDoubleFrequancyDict(self, rawInputs, unknowns_tolerate_dgree=1.0):
+    def createWordDoubleFrequancyDict(self, rawInputs,
+                                      unknowns_tolerate_dgree=1.0,
+                                      filters: list = None,
+                                      key_connector: str = None,
+                                      divideByTotalLength=False):
         """
         根据输入的元数据字符串，创建双字-频率字典（合并到self.DoubleFrequancyDict）（在调用前应使用segmentWithStopMarksAndNumbersAndEnglish进行处理，得到的是应该是中文串、数字串、英文串）
         :param rawInputs: 元输入字符串（List），形式为：[[元输入字符串,是否需要先学习]]
         :param unknowns_tolerate_dgree: 对陌生事物的容忍度，由女娲的性格进行控制
         :return: doubleFrequancyDict,total_length
         """
-        doubleFrequancyDict, total_length = metaDataHelper.createDoubleFrequancyDict(
+        doubleFrequancyDict, total_length = patternHelper.createDoubleFrequancyDict(
             rawInputs,
-            unknowns_tolerate_dgree=unknowns_tolerate_dgree)  # ,self.DoubleFrequancyDict) # 不再将现有的DoubleFrequancyDict传入，以便计算单次输入提取的元数据。
+            unknowns_tolerate_dgree=unknowns_tolerate_dgree,
+            filters=filters,
+            key_connector=key_connector,
+            divideByTotalLength=divideByTotalLength)  # ,self.DoubleFrequancyDict) # 不再将现有的DoubleFrequancyDict传入，以便计算单次输入提取的元数据。
         # 与现有双字-频率字典合并
-        self.mergeDoubleFrequancyDict(doubleFrequancyDict)
+        if doubleFrequancyDict:
+            self.mergeWordDoubleFrequancyDict(doubleFrequancyDict)
 
         return doubleFrequancyDict, total_length
 
-    def mergeDoubleFrequancyDict(self, doubleFrequancyDict):
+    def mergeWordDoubleFrequancyDict(self, doubleFrequancyDict):
         """
         与现有DoubleFrequancyDict合并
         计算公式为：（原频率+新频率）/2
@@ -257,17 +268,19 @@ class TextEngine(EngineBase):
         for word, freq in doubleFrequancyDict.items():
             if freq <= 0:  # 如果freq为0，或是小于0，过滤掉（避免掉频）
                 continue
-            old_freq = self.MemoryCentral.WorkingMemory.DoubleFrequancyDict.get(word)
+            old_freq = self.MemoryCentral.WorkingMemory.WordDoubleFrequancyDict.get(word)
 
             if old_freq:
                 freq = (freq + old_freq) / 2
 
-            self.MemoryCentral.WorkingMemory.DoubleFrequancyDict[word] = freq
+            self.MemoryCentral.WorkingMemory.WordDoubleFrequancyDict[word] = freq
 
         return True
 
-    def extractRawMetaData(self, rawInputs, segment=False, splitWithStopMarksAndNumbersAndEnglish=True,
-                           unknowns_tolerate_dgree=1.0):
+    def extractRawMetaData(self, rawInputs,
+                           splitWithStopMarksAndNumbersAndEnglish=False,
+                           unknowns_tolerate_dgree=1.0,
+                           filters: list = None):
         """
         根据元输入，从单双字-频率字典提取元词块（可能有多个）（传入self.WordFrequncyDict）
         规则：双字-频率字典根据阀值和元输入的位置，1、如果连续词块超过指定阀值，即将其进行拼接；2、如果备选词块在元输入中独立存在，也进行提取
@@ -282,7 +295,8 @@ class TextEngine(EngineBase):
             splits = []
             for rawinput in rawInputs:
                 # 0、将输入字符串按标点符号、数字串、英文串进行分割
-                cur_splits = metaDataHelper.segmentWithStopMarksAndNumbersAndEnglish(rawinput, self.MemoryCentral.stopMarks,
+                cur_splits = metaDataHelper.segmentWithStopMarksAndNumbersAndEnglish(rawinput,
+                                                                                     self.MemoryCentral.stopMarks,
                                                                                      self.MemoryCentral.stopMarkLevel,
                                                                                      self.MemoryCentral.keepStopMark,
                                                                                      splitWithSpace=True)
@@ -291,28 +305,33 @@ class TextEngine(EngineBase):
             splits = rawInputs
 
         # 1、根据双字-频率字典提取元词块（可能有多个）（传入self.WordFrequncyDict）
-        doubleFrequancyDict, length = self.createDoubleFrequancyDict(splits,
-                                                                     unknowns_tolerate_dgree=unknowns_tolerate_dgree)
+        doubleFrequancyDict, length = self.createWordDoubleFrequancyDict(splits,
+                                                                         unknowns_tolerate_dgree=unknowns_tolerate_dgree,
+                                                                         filters=filters)
         if not doubleFrequancyDict:
-            return None, None
-        new_raw_metas, segmentedInputs = metaDataHelper.extractRawMetaData(splits,
-                                                                           doubleFrequancyDict,
-                                                                           self.MemoryCentral.Threshold_ContinuousBlocks,
-                                                                           self.MemoryCentral.WorkingMemory.WordFrequncyDict,
-                                                                           segment)
+            return None
+
+        threshold_ContinuousBlocks = patternHelper.getThresholdContinuousBlocks(doubleFrequancyDict)
+        new_raw_metas = patternHelper.extractPattern(splits,
+                                                     doubleFrequancyDict,
+                                                     threshold_ContinuousBlocks)
 
         if new_raw_metas:
+            # 考虑到"音乐"+"乐会"的频率是叠加的，最后还需更新WordFrequncyDict的实际频率
             # 添加到新元数据字典中
-            for new_raw_meta, new_freq in new_raw_metas.items():
+            for new_word, new_freq in new_raw_metas.items():
                 if new_freq <= 0:  # 如果freq为0，或是小于0，过滤掉（避免掉频）
                     continue
-                _freq = self.MemoryCentral.WorkingMemory.WordFrequncyDict.get(new_raw_meta)
-                if _freq:
-                    self.MemoryCentral.WorkingMemory.NewLearnedRawMetas[new_raw_meta] = _freq
-                else:
-                    self.MemoryCentral.WorkingMemory.NewLearnedRawMetas[new_raw_meta] = new_freq
+                old_freq = self.MemoryCentral.WorkingMemory.WordFrequncyDict.get(new_word)
 
-        return new_raw_metas, segmentedInputs
+                if old_freq:
+                    new_freq += old_freq  # 2018-6-30 目前的方案为单纯累加，否则会出现前面已经非常高了，后面进来一个，突然下降。
+                    # (frequncy + old_freq)/2# 计算公式为：这里需要对其频率进行累加
+
+                self.MemoryCentral.WorkingMemory.WordFrequncyDict[new_word] = new_freq
+                self.MemoryCentral.WorkingMemory.NewLearnedRawMetas[new_word] = new_freq
+
+        return new_raw_metas
 
     def loadChainCharMetaDict(self, rawMetas):
         """
@@ -324,20 +343,21 @@ class TextEngine(EngineBase):
         [是否字符块末尾，元数据字符串，频率，{后续子串字典}]
         例如：
         ddd={
-            u"中":[False,None,0.0,
-                {u"央":[True,u"中央",5.4,{}],
-                u"国":[True,u"中国",8.6,
-                    {u"人":[True,u"中国人",6.2,
-                        {u"好":[True,u"中国人好",3.2,{}],
-                        u"民":[True,u"中国人民",5.2,
-                            {u"解":[False,None,0.0,
-                                {u"放":[False,None,0.0,
-                                    {u"军":[True,u"中国人民解放军",6.2,{}]}]}],
-                            u"法":[False,None,0.0,
-                                {u"院":[True,u"中国人民法院",6.2,{}]}]}]}]}]}]}
-        WordFrequncyDict={u"中国人民解放军":5.0,u"中国人民法院":5.0,u"中国人民":5.0,u"中国人好":5.0,u"中国人":5.0,u"中国":5.0,u"中央":5.0,}
+            "中":[False,None,0.0,
+                {"央":[True,"中央",5.4,{}],
+                "国":[True,"中国",8.6,
+                    {"人":[True,"中国人",6.2,
+                        {"好":[True,"中国人好",3.2,{}],
+                        "民":[True,"中国人民",5.2,
+                            {"解":[False,None,0.0,
+                                {"放":[False,None,0.0,
+                                    {"军":[True,"中国人民解放军",6.2,{}]}]}],
+                            "法":[False,None,0.0,
+                                {"院":[True,"中国人民法院",6.2,{}]}]}]}]}]}]}
+        WordFrequncyDict={"中国人民解放军":5.0,"中国人民法院":5.0,"中国人民":5.0,"中国人好":5.0,"中国人":5.0,"中国":5.0,"中央":5.0,}
         """
-        return metaDataHelper.loadChainCharFrequncyMetaDict(rawMetas, self.MemoryCentral.PersistentMemory.ChainCharMetaDict)
+        return metaDataHelper.loadChainCharFrequncyMetaDict(rawMetas,
+                                                            self.MemoryCentral.PersistentMemory.ChainCharMetaDict)
 
     def segmentInputWithChainCharMetaDict(self,
                                           rawInput,
@@ -363,7 +383,7 @@ class TextEngine(EngineBase):
         :return:
         """
         # 检查参数
-        if rawInput is None or rawInput == "" or rawInput == u"":
+        if rawInput is None or rawInput == "" or rawInput == "":
             return
         if not type(rawInput) is str:
             rawInput = str(rawInput)
@@ -410,7 +430,7 @@ class TextEngine(EngineBase):
         :param segmentResult:
         :return:
         """
-        return metaDataHelper.getCurMetaChainBySegmentResult(segmentResult, ngram,self.MemoryCentral)
+        return metaDataHelper.getCurMetaChainBySegmentResult(segmentResult, ngram, self.MemoryCentral)
 
     def retrieveMetaByMvalue(self, mvalue):
         """
@@ -461,39 +481,24 @@ class TextEngine(EngineBase):
                                                                  self.MemoryCentral.PersistentMemory.NgramDict,
                                                                  self.MemoryCentral.NgramNum)
 
-    # def loadFirstCharMetaDict(self,relatedMetas):
-    #     """
-    #     [弃用]
-    #     将{元数据：词频}的字典，转换成以首字符作为索引，所有元数据（按长度倒序排列）的列表为值，建立一个字典或将其添加到CachedFirstCharMetaDict。
-    #     :rawParam WordFrequncyDict:{元数据：词频}的字典
-    #     :return:以首字符作为索引，所有元数据（按长度倒序排列）的列表为值，建立的字典
-    #     """
-    #
-    #     return textHelper.loadFirstCharMetaDict(relatedMetas,self.FirstCharMetaDict)
-    #
-    #
-    # def segmentInputWithFirstCharMetaDict(self,metaInput,maxMatch=True,learn=True):
-    #     """
-    #     [弃用]
-    #     根据元数据分割输入字符串。
-    #     :rawParam metaInput:输入字符串。metaInput必须是unicode编码
-    #     :param learn:是否需要先学习
-    #     :return:
-    #     """
-    #
-    #     if learn:
-    #         relatedMetas, segmentedBlocks = self.extractRawMetaData([metaInput])
-    #         self.loadFirstCharMetaDict(relatedMetas)
-    #     return textHelper.segmentInputWithFirstCharMetaDict(metaInput,self.FirstCharMetaDict,maxMatch)
+    def createArticle(self, rawInput: str):
+        """
+        将字符串分割处理成文章级别的包装类
+        :param rawInput:
+        :return:
+        """
+        article = Article(rawInput)
+        article.getParagraphs()
+        return article
 
-    def segmentArticles(self, path, shouldLearn=True, suffix="txt", shouldLog=True):
+    def segmentFiles(self, path, shouldLearn=True, suffix="txt", shouldLog=True):
         """
         分割一个目录下的所有文章（.txt文件）
         :param path:
         :return:
         """
 
-        segments = ArticlesSegmentResults()
+        segments = FilesSegmentResults()
 
         unsegmented = []
 
@@ -512,7 +517,7 @@ class TextEngine(EngineBase):
                 cur_segments = self.segmentInputsWithChainCharMetaDict(lines, maxMatch=self.MemoryCentral.maxMatch,
                                                                        shouldLearn=False)  # 已经学习过了
                 if cur_segments and len(cur_segments):
-                    cur_segment_article = ArticleSegmentResult(filename)
+                    cur_segment_article = FileSegmentResult(filename)
                     cur_segment_article.segmentedResults = cur_segments
                     segments[filename] = cur_segment_article
                 else:
@@ -528,7 +533,7 @@ class TextEngine(EngineBase):
                 if shouldLog:
                     logger.info("——segmenting No." + str(i) + " file:" + filename, timeStartMark=filename)
                 i += 1
-                cur_segments = self.segmentArticle(filename, shouldLearn=False, shouldLog=False)  # 已经学习过了
+                cur_segments = self.segmentFile(filename, shouldLearn=False, shouldLog=False)  # 已经学习过了
 
                 if cur_segments and cur_segments.segmentedResults and len(cur_segments.segmentedResults):
                     segments[filename] = cur_segments
@@ -540,14 +545,14 @@ class TextEngine(EngineBase):
 
         return segments, unsegmented
 
-    def segmentArticle(self, filename, shouldLearn=True, shouldLog=True):
+    def segmentFile(self, filename, shouldLearn=True, shouldLog=True):
         """
         分割一篇文章
         :param filename:
         :return:
         """
-        articleSegmentResult = ArticleSegmentResult(filename)
-        if not isinstance(filename, str) or not filename.endswith(u".txt"):
+        articleSegmentResult = FileSegmentResult(filename)
+        if not isinstance(filename, str) or not filename.endswith(".txt"):
             return None
 
         from loongtian.util.helper import fileHelper
@@ -562,7 +567,53 @@ class TextEngine(EngineBase):
             logger.info("——segmented file:" + filename, timeEndMark=filename)
         return articleSegmentResult
 
-    def learnFiles(self, path, suffix="txt", shouldLog=True,unknowns_tolerate_dgree =1.0):
+    def segment(self, input: str, shouldLearn=False, shouldLog=False):
+        """
+        分割一个字符串
+        :param filename:
+        :return:
+        """
+        article = self.createArticle(input)
+        return self.segmentArticle(article, shouldLearn, shouldLog)
+
+    def segmentArticle(self, article: Article, shouldLearn=False, shouldLog=False):
+        """
+        分割一篇文章级别的字符串
+        :param filename:
+        :return:
+        """
+
+        if shouldLog:
+            logger.info("——segmenting article:" + article.containedObj, timeStartMark=article.containedObj)
+
+        real_content = article.getRealContent()
+
+        if shouldLearn:
+            self.learnRawInputs([real_content.containedObj])
+
+        # 递归分割子级字符串
+        self._segement(real_content, shouldLearn=shouldLearn)
+
+        if shouldLog:
+            logger.info("——segmented file:" + article.containedObj, timeStartMark=article.containedObj)
+
+        return real_content
+
+    def _segement(self, real_content, shouldLearn=False):
+        """
+        递归分割子级字符串
+        :param real_content:
+        :param shouldLearn:
+        :return:
+        """
+        if isinstance(real_content, InShortPhrase):
+            segment_result = self.segmentInputWithChainCharMetaDict(real_content.containedObj, shouldLearn=shouldLearn)
+            real_content.segmentedResult = segment_result
+        else:
+            for sub_content in real_content._getSubContents():
+                self._segement(sub_content)
+
+    def learnFiles(self, path, suffix="txt", shouldLog=True, unknowns_tolerate_dgree=1.0):
         """
         学习文件中的数据，提取出
         :param path:
@@ -584,7 +635,7 @@ class TextEngine(EngineBase):
                 logger.info("——learning No." + str(i) + " file:" + file, timeStartMark=file)
             i += 1
             self.learnFile(file, shouldLog=False, file_lines_dict=file_lines_dict,
-                           file_raw_metas_dict=file_raw_metas_dict,unknowns_tolerate_dgree =unknowns_tolerate_dgree)
+                           file_raw_metas_dict=file_raw_metas_dict, unknowns_tolerate_dgree=unknowns_tolerate_dgree)
 
             if shouldLog:
                 logger.info("——learned No." + str(i) + " file:" + file, timeEndMark=file)
@@ -610,29 +661,29 @@ class TextEngine(EngineBase):
             file_raw_metas_dict = {}
         lines = fileHelper.readLines(filename)
 
-        raw_metas, segmentedInputs = self.learnRawInputs(lines, unknowns_tolerate_dgree=unknowns_tolerate_dgree)
+        raw_metas = self.learnRawInputs(lines, unknowns_tolerate_dgree=unknowns_tolerate_dgree)
         if raw_metas:
             file_lines_dict[filename] = lines
             file_raw_metas_dict[filename] = raw_metas
             if __debug__:
-                print (u"我学到了：", raw_metas)
+                print("我学到了：", raw_metas)
 
         if shouldLog:
             logger.info("——learned file:" + filename, timeEndMark=filename)
 
         return file_lines_dict, file_raw_metas_dict
 
-    def learnRawInputs(self, rawInputs, splitWithStopMarksAndNumbersAndEnglish=True, unknowns_tolerate_dgree=1.0):
+    def learnRawInputs(self, rawInputs, splitWithStopMarksAndNumbersAndEnglish=False, unknowns_tolerate_dgree=1.0):
         """
         学习元输入的字符串
         :param rawInputs:
         :return:
         """
-        raw_metas, segmentedInputs = self.extractRawMetaData(rawInputs, False, splitWithStopMarksAndNumbersAndEnglish,
-                                                             unknowns_tolerate_dgree=unknowns_tolerate_dgree)
+        raw_metas = self.extractRawMetaData(rawInputs, splitWithStopMarksAndNumbersAndEnglish,
+                                            unknowns_tolerate_dgree=unknowns_tolerate_dgree)
         if raw_metas:
             self.loadChainCharMetaDict(raw_metas)
-        return raw_metas, segmentedInputs
+        return raw_metas
 
     def updateNewLearnedMetaData(self):
         """
@@ -648,12 +699,12 @@ class TextEngine(EngineBase):
         将所有记忆中的的元数据创建（更新）到数据库中
         :return:
         """
-        for id,meta in self.MemoryCentral.PersistentMemory.MetaDataIdDict.items():
+        for id, meta in self.MemoryCentral.PersistentMemory.MetaDataIdDict.items():
             if attributeValues:
                 meta.updateAttributeValues(**attributeValues)
             else:
                 meta.update()
-        for id,meta in self.MemoryCentral.WorkingMemory.MetaDataIdDict.items():
+        for id, meta in self.MemoryCentral.WorkingMemory.MetaDataIdDict.items():
             if attributeValues:
                 meta.updateAttributeValues(**attributeValues)
             else:

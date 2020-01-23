@@ -2,7 +2,7 @@
 # coding: utf-8
 __author__ = 'Leon'
 
-from loongtian.nvwa.models.enum import ObjType, DirectionType
+from loongtian.nvwa.models.enum import ObjType, LayerDirection
 from loongtian.nvwa.organs.character import Character
 
 """
@@ -188,7 +188,7 @@ class _RelatedObjsWithDirection(RelatedObjs):
     # 在与其他对象的分层中，包含的方向，
     # 例如，MetaNet只能有下层对象MetaData，Knowledge，
     # # MetaData 的上层对象为MetaNet，下层对象为RealObject
-    Direction = DirectionType.UNKNOWN
+    Direction = LayerDirection.UNKNOWN
 
     def __init__(self):
         """
@@ -435,7 +435,7 @@ class UpperObjs(_RelatedObjsWithDirection):
     # 在与其他对象的分层中，包含的方向，
     # 例如，MetaNet只能有下层对象MetaData，Knowledge，
     # # MetaData 的上层对象为MetaNet，下层对象为RealObject
-    Direction = DirectionType.UPPER
+    Direction = LayerDirection.UPPER
 
 
 class LowerObjs(_RelatedObjsWithDirection):
@@ -445,6 +445,6 @@ class LowerObjs(_RelatedObjsWithDirection):
     # 在与其他对象的分层中，包含的方向，
     # 例如，MetaNet只能有下层对象MetaData，Knowledge，
     # # MetaData 的上层对象为MetaNet，下层对象为RealObject
-    Direction = DirectionType.LOWER
+    Direction = LayerDirection.LOWER
     pass
 

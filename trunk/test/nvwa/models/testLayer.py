@@ -103,7 +103,7 @@ class TestLayer(TestCase):
         lowers=self.metas[3].Layers.getLowerEntities()
         self.assertIsNotNone(lowers)
         self.assertEqual(len(lowers),4)
-        self.assertEqual(lowers[u"三"].weight, 9.0)
+        self.assertEqual(lowers["三"].weight, 9.0)
 
     def testGetTypedStartsByEndInDB(self):
         print("——testGetStartsByEndInDB——")
@@ -138,7 +138,7 @@ class TestLayer(TestCase):
 
         typed_lowers=self.metas[2].Layers.getLowerEntitiesByType(ObjType.REAL_OBJECT)
         self.assertIsNotNone(typed_lowers)
-        self.assertEqual(typed_lowers[u"一"].obj.id,self.reals[1].id)
+        self.assertEqual(typed_lowers["一"].obj.id,self.reals[1].id)
 
     def testGetTypedEndsByStartInDB(self):
         print("——testGetTypedEndsByStartInDB——")

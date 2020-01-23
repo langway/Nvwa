@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 __author__ = 'Leon'
 
-import uuid
 import itertools
 import copy
 from loongtian.util.log import logger
@@ -15,6 +14,7 @@ from loongtian.nvwa.models.realObject import RealObject
 from loongtian.nvwa.models.knowledge import Knowledge
 
 from loongtian.nvwa.runtime.instinct import Instincts
+from loongtian.nvwa.runtime.article import StrContent,InShortPhrase
 from loongtian.nvwa.runtime.relatedObjects import RelatedObj
 from loongtian.nvwa.runtime.collection import Collection
 from loongtian.nvwa.runtime.thinkResult.thinkResult import ThinkResult
@@ -28,7 +28,8 @@ from loongtian.nvwa.runtime.thinkResult.realLevelResult import RealLevelResult, 
 from loongtian.nvwa.runtime.systemInfo import ThinkingInfo, SystemInfo
 from loongtian.nvwa.runtime.sequencedObjs import SequencedObj
 from loongtian.nvwa.runtime.specialList import RelatedRealObjs, RelatedRealChain
-from loongtian.nvwa.runtime.meanings import Meaning, ExecutionInfoCreatedMeaning,ExecutionInfoCreatedMeanings, SelfExplainSelfMeaning
+from loongtian.nvwa.runtime.meanings import Meaning, ExecutionInfoCreatedMeaning, ExecutionInfoCreatedMeanings, \
+    SelfExplainSelfMeaning
 from loongtian.nvwa.runtime.reals import AdminUser
 
 from loongtian.nvwa.engines.metaEngine import SegmentedResult, SegmentedResults
@@ -45,32 +46,29 @@ class Mind(SequencedObj):
     对象属性说明
     """
 
-    def __init__(self, thinkingCentral, rawInput, id=None):
+    def __init__(self, thinkingCentral, strContent: StrContent, id=None):
         """
         一条输入的思维空间（Meta层，处理元输入、MetaData、MetaNet；Real层，处理Realobject、Knowledge）
         :param thinkingCentral: 
         :param id: 
-        :param rawInput: 原始输入
+        :param strContent: 原始输入
         :param metaChain: 
         :param unknown_metas_index: 
         """
-        super(Mind, self).__init__()
-        if not id:
-            self.id = str(uuid.uuid1()).replace("-", "")
-        else:
-            self.id = id
+        if not strContent or not strContent.containedObj:
+            raise Exception("必须提供元输入，才能创建Mind！")
+
+        super(Mind, self).__init__(id=id, containedObj=strContent)
+
 
         self.thinkingCentral = thinkingCentral  # 思维中枢
         self.Memory = None
         if thinkingCentral:
             self.Memory = thinkingCentral.Brain.MemoryCentral
 
-        if not rawInput or \
-                not isinstance(rawInput, str) or \
-                len(rawInput.strip()) == 0:
-            raise Exception("必须提供元输入，才能创建Mind！")
+        self.strContent = strContent
         # 对输入的思维结果
-        self.thinkResult = ThinkResult(self, rawInput)
+        self.strContent.thinkResult = ThinkResult(strContent)
 
         self.metaArea = MetaArea(self)  # 每个Mind的元数据/元数据网层面的处理区
         self.realArea = RealArea(self)  # 每个Mind的实际对象/知识链层面的处理区
@@ -83,7 +81,7 @@ class Mind(SequencedObj):
     def _setLast(self, value, setNext=False):
         """
         设置Last（重写方法）
-        :param value:
+        :param value:Mind
         :return:
         """
         # 设置输入区、工作（运算）区、既往知识区的上下文
@@ -94,7 +92,7 @@ class Mind(SequencedObj):
     def _setNext(self, value, setLast=False):
         """
         重写方法
-        :param value:
+        :param value:Mind
         :return:
         """
         # 设置输入区、工作（运算）区、既往知识区的上下文
@@ -108,54 +106,60 @@ class Mind(SequencedObj):
         :return:
         """
         try:
-            self._execute()
+            self._execute(self.strContent)
         except Exception as ex:
-            msg = "“%s”思考出现错误，原因：%s" % (self.thinkResult.rawInput, ex)
+            msg = "“%s”思考出现错误，原因：%s" % (self.strContent.containedObj, ex)
             logger.info(msg)
             self.thinkingCentral.Brain.response(msg)
 
-        return self.thinkResult
+        return self.strContent.thinkResult
 
-    def _execute(self):
+    def _execute(self,strContent:StrContent):
         """
         [核心代码]真正的思考执行部分。
         :return:
         """
         # 设置Mind的执行信息
-        self.thinkResult.setMindExecuteRecord(ThinkingInfo.MindExecuteInfo.Start_Mind)
+        strContent.thinkResult.setMindExecuteRecord(ThinkingInfo.MindExecuteInfo.Start_Mind)
 
+        # 元数据 / 元数据网处理区执行思考
         self.metaArea.execute()
 
-        # self.removeSingleMetaUnmatched()
-
-        # 如果在元数据层面没有“理解”，进一步在实际对象层面处理（单个元数据也要处理，例如等待上下文等）
-        if not self.thinkResult.isMetaLevelUnderstood():
+        # 如果在元数据层面没有“理解”，
+        # 进一步在实际对象层面处理（单个元数据也要处理，例如等待上下文等）
+        if not strContent.thinkResult.isMetaLevelUnderstood():
             self.realArea.execute()
 
         # 对“理解”的结果进行评估
-        self.thinkingCentral.evaluateUnderstood(self.thinkResult)
+        self.thinkingCentral.evaluateUnderstood(strContent.thinkResult)
 
         # 对“评估”的结果进行情感计算
-        self.thinkingCentral.calculateEmotion(self.thinkResult)
+        self.thinkingCentral.calculateEmotion(strContent.thinkResult)
 
         # 根据“情感计算”的结果制定行为
-        self.thinkingCentral.createPlan(self.thinkResult)
+        self.thinkingCentral.createPlan(strContent.thinkResult)
 
         # 执行行为
-        self.thinkingCentral.executeBehaviour(self.thinkResult)
+        self.thinkingCentral.executeBehaviour(strContent.thinkResult)
 
         # 设置Mind的执行信息
-        self.thinkResult.setMindExecuteRecord(ThinkingInfo.MindExecuteInfo.Stop_Mind)
+        strContent.thinkResult.setMindExecuteRecord(ThinkingInfo.MindExecuteInfo.Stop_Mind)
 
-        return self.thinkResult
+        return strContent.thinkResult
 
-    # def removeSingleMetaUnmatched(self):
-    #     for metaLevelResult in self.thinkResult:
-    #         # 单个元数据，没有任何可匹配结果（完全不知道，不记得这个字符，也不知道是什么）
-    #         # 由于已经加载到内存ChainCharMetaDict，这时需要移除
-    #         if metaLevelResult.isSingle():
-    #             if metaLevelResult.metaLevelThinkingRecords.curMetaLevelMatchInfo == ThinkingInfo.MetaLevelInfo.MatchInfo.SINGLE_META_UNMATCHED:
-    #                 pass
+    def isUsedByAdminUser(self):
+        """
+        判断当前Mind是否被管理用户使用。
+        :return:
+        """
+        _AdminUser = AdminUser.getAdminUser(memory=self.Memory)
+
+        if self.thinkingCentral and \
+                self.thinkingCentral.Brain and \
+                self.thinkingCentral.Brain.User.id == _AdminUser.id:
+            return True
+
+        return False
 
     def registUnknownMetas(self, cur_meta, pos, metas_level_result):
         """
@@ -244,7 +248,8 @@ class Mind(SequencedObj):
                         components = frag_reals_klg.getSequenceComponents()
                         Knowledge.createKnowledgeByObjChain(components, recordInDB=True, memory=self.Memory)
 
-    def recordAllUnderstoodJoinedFragments(self, frag, record_meta=True, record_metanet=True, record_real=True,
+    def recordAllUnderstoodJoinedFragments(self, frag, record_meta=True,
+                                           record_metanet=True, record_real=True,
                                            record_knowledge=False):
         """
         已经理解一句（一段）话，对其中的元数据、实际数据、知识链进行处理（记录到数据库、从未知对象中移除等）
@@ -468,63 +473,114 @@ class MetaArea(SequencedObj):
 
     def execute(self):
         """
-        思维输入区执行思考
+        元数据/元数据网处理区执行思考
         :return:
         """
-        # 设置Mind的执行信息
-        self.Mind.thinkResult.setMindExecuteRecord(ThinkingInfo.MindExecuteInfo.Processing_MetaArea)
+        self._processStrContent(self.Mind.strContent)
 
-        if len(self.Mind.thinkResult.rawInput) == 1:  # 0、如果只有一个字符：
-            # # 设置ObjectsExecuteRecord执行状态
-            # metas_level_result.metaLevelThinkingRecords.setObjectsExecuteRecord(
-            #     ThinkingInfo.ObjectsExecuteInfo.Processing_RawInput, self.Mind.thinkResult.rawInput)
 
-            # 从内存中取
-            meta = self.Mind.thinkingCentral.Brain.MemoryCentral.getMetaByMvalueInMemory(self.Mind.thinkResult.rawInput)
-            if meta:
-                meta_chain = [meta]
-                unknown_metas_index = []
-            else:  # 如果内存中没有，在内存新建一个
-                meta = MetaData(mvalue=self.Mind.thinkResult.rawInput, memory=self.Mind.Memory).create(recordInDB=False)
-                meta_chain = [meta]
-                unknown_metas_index = [0]
-            # 对元数据链进行思考
-            # 一个字符，不需要重新分割
-            self._thinkMetaChain(meta_chain, unknown_metas_index, resegmentWithUnknowns=False)
+    def _processStrContent(self,strContent:StrContent):
+        """
+        真正的StrContent处理程序（可能会递归调用）
+        :param strContent:
+        :return:
+        """
+        if not strContent.thinkResult:
+            strContent.thinkResult=ThinkResult(strContent)
 
-        elif len(self.Mind.thinkResult.rawInput) > 1:
-            # 1、使用输入字符串直接查询metaNet（可能有多个：南京市长江大桥，南京市-长江大桥，南京-市长-江大桥，可能都对）。
-            meta_nets = MetaNet.getMetaNetsByStringValue(self.Mind.thinkResult.rawInput, memory=self.Mind.Memory)
+        # 设置执行信息
+        strContent.thinkResult.setMindExecuteRecord(ThinkingInfo.MindExecuteInfo.Processing_MetaArea)
 
-            if meta_nets:  # 1、如果使用字符串匹配到了元数据网，处理之
-                if isinstance(meta_nets, list):
-                    for meta_net in meta_nets:
-                        meta_chain = meta_net.getSequenceComponents()
-                        metas_level_result = self.Mind.thinkResult.createNewMetaLevelResult(meta_chain, None)
+        if len(strContent.containedObj) == 1:  # 0、如果只有一个字符：
+            self._processSingleChar(strContent)
+        elif len(strContent.containedObj) > 1:
+            self._processMultiChars(strContent)
 
-                        self._processMetaNet(metas_level_result, meta_net)
-                elif isinstance(meta_nets, MetaNet):
-                    meta_chain = meta_nets.getSequenceComponents()
-                    metas_level_result = self.Mind.thinkResult.createNewMetaLevelResult(meta_chain, None)
 
-                    self._processMetaNet(metas_level_result, meta_nets)
+    def _processSingleChar(self,strContent:StrContent):
+        """
+        如果只有一个字符，处理之。
+        :return:
+        """
+        # 从内存中取
+        meta = self.Mind.Memory.getMetaByMvalueInMemory(strContent.containedObj)
+        if meta:
+            meta_chain = [meta]
+            unknown_metas_index = []
+        else:  # 如果内存中没有，在内存新建一个（暂不记录到数据库）
+            meta = MetaData(mvalue=strContent.containedObj,
+                            memory=self.Mind.Memory).create(recordInDB=False)
+            meta_chain = [meta]
+            unknown_metas_index = [0]
 
-            else:  # 2、使用文本处理引擎对输入进行分割，以便进一步处理
-                segment_result = self.textEngine.segmentInputWithChainCharMetaDict(
-                    self.Mind.thinkResult.rawInput,
-                    shouldLearn=False,  # 以后学习未知词汇尽量在整篇文章的级别，否则会导致很多连句词出现
-                    resegmentWithUnknowns=True)
+        # 对元数据链进行思考（一个字符的元数据，不需要重新分割）
+        self._processMetaChain(strContent,meta_chain, unknown_metas_index, resegmentWithUnknowns=False)
 
-                if segment_result:
-                    # if segment_result.isNotSegmented(): # 判断是否根本没有能够进行分割（整句输入，整句输出）
-                    #     pass
-                    # else:
-                    self.Mind.thinkResult.segment_result = segment_result
-                    # 对字符串的分割结果进行思考。
-                    # 上面已经对未知值进行了重新分割，所以这里为False
-                    self._thinkSegmentResult(segment_result, resegmentWithUnknowns=False)
+    def _processMultiChars(self,strContent:StrContent):
+        """
+        如果有多个字符，处理之。
+        :return:
+        """
+        # 1、使用输入字符串直接查询metaNet（可能有多个：南京市长江大桥，南京市-长江大桥，南京-市长-江大桥，可能都对）。
+        meta_nets = MetaNet.getMetaNetsByStringValue(strContent.containedObj,
+                                                     memory=self.Mind.Memory)
 
-    def _thinkSegmentResult(self, segment_result, resegmentWithUnknowns=True):
+        if meta_nets:  # 2、如果使用字符串匹配到了元数据网，处理之
+            if isinstance(meta_nets, list):
+                for meta_net in meta_nets:
+                    meta_chain = meta_net.getSequenceComponents()
+                    metas_level_result = strContent.thinkResult.createNewMetaLevelResult(meta_chain, None)
+
+                    self._processMetaNet(metas_level_result, meta_net)
+            elif isinstance(meta_nets, MetaNet):
+                meta_chain = meta_nets.getSequenceComponents()
+                metas_level_result = strContent.thinkResult.createNewMetaLevelResult(meta_chain, None)
+
+                self._processMetaNet(metas_level_result, meta_nets)
+        else:  # 3、如果没能从元数据（元数据网）角度处理，思考进入strContent层面
+            self._processMultiCharsStrContent(strContent)
+            # 处理上下文
+            self._processMultiCharsStrContentContext(strContent)
+
+    def _processMultiCharsStrContent(self, str_content: StrContent):
+        """
+        如果没能从元数据（元数据网）角度处理，思考进入strContent层面，递归循环执行，
+        :param str_content:
+        :return:
+        """
+        if isinstance(str_content,InShortPhrase):
+            # 上面已经对未知值进行了重新分割，所以这里为False
+            return self._processSegmentResult(str_content,str_content.segmentedResult, resegmentWithUnknowns=False)
+
+        if hasattr(str_content,"_getSubContents"):
+            for _sub_content in str_content._getSubContents():
+                self._processStrContent(_sub_content)
+
+    def _processMultiCharsStrContentContext(self,str_content: StrContent):
+        """
+        在元数据层面处理上下文（查询metaNet）
+        :param str_content:
+        :return:
+        """
+        
+    def _processRawInput(self,strContent:StrContent,rawinput):
+
+        # 2、使用文本处理引擎对输入进行分割，以便进一步处理
+        segment_result = self.textEngine.segmentInputWithChainCharMetaDict(
+            rawinput,
+            shouldLearn=False,  # 以后学习未知词汇尽量在整篇文章的级别，否则会导致很多连句词出现
+            resegmentWithUnknowns=True)
+
+        if segment_result:
+            # if segment_result.isNotSegmented(): # 判断是否根本没有能够进行分割（整句输入，整句输出）
+            #     pass
+            # else:
+            strContent.segment_result = segment_result
+            # 对字符串的分割结果进行思考。
+            # 上面已经对未知值进行了重新分割，所以这里为False
+            self._processSegmentResult(strContent,segment_result, resegmentWithUnknowns=False)
+
+    def _processSegmentResult(self,strContent:StrContent, segment_result, resegmentWithUnknowns=True):
         """
         对字符串的分割结果进行思考。
         :param segment_result: 字符串的分割结果
@@ -539,7 +595,7 @@ class MetaArea(SequencedObj):
                         segment_result):
                     if not meta_chain:  # 如果没取到，暂停循环
                         break
-                    self._thinkMetaChain(meta_chain, unknown_metas_index, resegmentWithUnknowns=resegmentWithUnknowns)
+                    self._processMetaChain(strContent,meta_chain, unknown_metas_index, resegmentWithUnknowns=resegmentWithUnknowns)
 
         elif isinstance(segment_result, SegmentedResult):
             # 重置索引，以便从0开始
@@ -552,12 +608,12 @@ class MetaArea(SequencedObj):
                     break
                 rawInput, meta_chain, unknown_metas_index = cur_result
                 if meta_chain:
-                    self._thinkMetaChain(meta_chain, unknown_metas_index, resegmentWithUnknowns=resegmentWithUnknowns)
+                    self._processMetaChain(strContent,meta_chain, unknown_metas_index, resegmentWithUnknowns=resegmentWithUnknowns)
 
             # 重置索引，以便从0开始
             segment_result.restoreResultIndex()
 
-    def _thinkMetaChain(self, meta_chain, unknown_metas_index, resegmentWithUnknowns=True):
+    def _processMetaChain(self, strContent:StrContent,meta_chain, unknown_metas_index, resegmentWithUnknowns=True):
         """
         对元数据链进行思考
         :param meta_chain:
@@ -568,19 +624,19 @@ class MetaArea(SequencedObj):
             raise Exception("当前思维无法执行思考！metaChain is None or Empty！")
 
         # 创建一个元数据链的思考结果，并添加到thinkResult列表中。
-        metas_level_result = self.Mind.thinkResult.createNewMetaLevelResult(meta_chain, unknown_metas_index)
+        metas_level_result = strContent.thinkResult.createNewMetaLevelResult(meta_chain, unknown_metas_index)
 
         if metas_level_result.isSingle():  # 1、只有一个对象，取得其关联的实际对象(可能有多个)，看其是否被理解（有构成）
             # 处理单个元数据的情况
             cur_meta = meta_chain[0]
-            self.Mind.thinkResult.isSingleMeta = True  # 单个元数据（包括理解不了的整句）
+            strContent.thinkResult.isSingleMeta = True  # 单个元数据（包括理解不了的整句）
             self._processSingleMeta(cur_meta, metas_level_result, unknown_metas_index)
 
         else:
-            self._processMetaChain(meta_chain, metas_level_result, unknown_metas_index,
-                                   resegmentWithUnknowns=resegmentWithUnknowns)
+            self._processMultiMetas(meta_chain, metas_level_result, unknown_metas_index,
+                                    resegmentWithUnknowns=resegmentWithUnknowns)
 
-    def _processSingleMeta(self, cur_meta, metas_level_result, unknown_metas_index):
+    def _processSingleMeta(self,cur_meta, metas_level_result, unknown_metas_index):
         """
         处理单个元数据的情况
         :param cur_meta:
@@ -621,10 +677,10 @@ class MetaArea(SequencedObj):
                 metas_level_result.metaLevelThinkingRecords.setMetaLevelMatchRecord(
                     ThinkingInfo.MetaLevelInfo.MatchInfo.SINGLE_META_RELATED_REALS_UNMATCHED, None)
 
-    def _processMetaChain(self, meta_chain,
-                          metas_level_result,
-                          unknown_metas_index,
-                          resegmentWithUnknowns=True):
+    def _processMultiMetas(self, meta_chain,
+                           metas_level_result,
+                           unknown_metas_index,
+                           resegmentWithUnknowns=True):
         """
         处理单个元数据的情况
         :param cur_meta:
@@ -646,7 +702,8 @@ class MetaArea(SequencedObj):
             # 根据metaChain取得metaNet，然后查找是否有相关的知识链，如果找到了，并且是可以理解，直接返回
             # 0、使用完全匹配查询元数据链（只能有一个）
             unproceed = []
-            metaNet = MetaNet.getByObjectChain(meta_chain, unproceed=unproceed,memory=self.Mind.Memory)  # todo 这里如果是部分匹配，应该能够处理
+            metaNet = MetaNet.getByObjectChain(meta_chain, unproceed=unproceed,
+                                               memory=self.Mind.Memory)  # todo 这里如果是部分匹配，应该能够处理
             # metaNet=MetaNet()
             if metaNet and not unproceed:
                 if isinstance(metaNet, MetaNet) and len(metaNet.getSequenceComponents()) == len(meta_chain):
@@ -665,7 +722,7 @@ class MetaArea(SequencedObj):
 
             else:
                 # # 1、使用近似查询元数据链（可能有多个）
-                # metaNets = MetaNet.getMetaNetLikeMetaChain(self.Mind.thinkResult.metaLevelResult.meta_chain)
+                # metaNets = MetaNet.getMetaNetLikeMetaChain(strContent.thinkResult.metaLevelResult.meta_chain)
                 # if isinstance(metaNets, list) and len(metaNets) > 0:
                 #     for metaNet in metaNets:
                 #         self._processMetaNet(metaNet)
@@ -791,7 +848,8 @@ class MetaArea(SequencedObj):
 
             # 设置根据meta_net匹配的knowledges向下一层取得的意义知识链
             # 函数内会设置其执行、匹配及理解状态
-            metaLevelResult.set_meta_net_matched_knowledges_meaning_klgs(meta_net, meta_net_matched_knowledges_meaning_klgs)
+            metaLevelResult.set_meta_net_matched_knowledges_meaning_klgs(meta_net,
+                                                                         meta_net_matched_knowledges_meaning_klgs)
 
 
 class RealArea(SequencedObj):
@@ -809,13 +867,13 @@ class RealArea(SequencedObj):
         super(RealArea, self).__init__()
         self.Mind = mind
 
-    def _get_sorted_realsChain(self):
+    def _get_sorted_realsChain(self,strContent:StrContent):
         """
         根据metaChain取得的realObject列表（排序状态，是个list，根据权重，最大值在前）
         :return:
         """
 
-        for metaLevelResult in self.Mind.thinkResult:
+        for metaLevelResult in strContent.thinkResult:
 
             if metaLevelResult.isUndertood():  # 如果已经理解（匹配了元数据网-知识链-意义），无需进一步处理，继续下一个
                 continue
@@ -871,16 +929,19 @@ class RealArea(SequencedObj):
 
     def execute(self):
         """
-        思维输入区执行思考
+        实际对象/知识链工作（运算）区执行思考
         :return:
         """
+        return self._thinkStrContent(self.Mind.strContent)
+
+    def _thinkStrContent(self,strContent:StrContent):
         # 设置Mind的执行信息
-        self.Mind.thinkResult.setMindExecuteRecord(ThinkingInfo.MindExecuteInfo.Processing_RealArea)
+        strContent.thinkResult.setMindExecuteRecord(ThinkingInfo.MindExecuteInfo.Processing_RealArea)
 
         # 根据metaChain取得的realObject列表（排序状态，是个list，根据权重，最大值在前）
-        self._get_sorted_realsChain()
+        self._get_sorted_realsChain(strContent)
 
-        for metaLevelResult in self.Mind.thinkResult:
+        for metaLevelResult in strContent.thinkResult:
             if metaLevelResult.isUndertood():  # 如果已经理解（匹配了元数据网-知识链-意义），无需进一步处理，继续下一个
                 continue
 
@@ -1636,7 +1697,8 @@ class RealArea(SequencedObj):
                 else:
                     base_frag.realLevelResult.realLevelThinkingRecords.setRealLevelUnderstoodRecord(
                         ThinkingInfo.RealLevelInfo.UnderstoodInfo.EXECUTIONINFO_EXIST, transited_meaning)
-            elif isinstance(transited_meaning, ExecutionInfoCreatedMeanings):  # 建立多个动词的意义[因为...所以...]。根据意义标记，建立了左右两侧对象的意义关联
+            elif isinstance(transited_meaning,
+                            ExecutionInfoCreatedMeanings):  # 建立多个动词的意义[因为...所以...]。根据意义标记，建立了左右两侧对象的意义关联
                 for _transited_meaning in transited_meaning:
                     # 记录理解状态（意义建立或已存在）
                     if _transited_meaning.newCreated:
@@ -1922,11 +1984,8 @@ class RealArea(SequencedObj):
                                                                                understood_meaning_klg_dict)
 
                     if not anything_matched_klgs:
-                        _AdminUser = AdminUser.getAdminUser(memory=self.Mind.Memory)
                         # 如果是女娲超级管理账户，record_knowledge=True
-                        if self.Mind.thinkingCentral and \
-                                self.Mind.thinkingCentral.Brain and \
-                                self.Mind.thinkingCentral.Brain.User.id == _AdminUser.id:
+                        if self.Mind.isUsedByAdminUser():
                             record_knowledge, record_metanet = True, True
                         realLevelResult.realLevelThinkingRecords.setRealLevelUnderstoodRecord(
                             ThinkingInfo.RealLevelInfo.UnderstoodInfo.ALL_REALS_UNDERSTOOD,
@@ -2559,10 +2618,10 @@ class RealArea(SequencedObj):
         for linkedAction in realLevelResult.linkedActions:
             if len(linkedAction.actions) == len(realLevelResult.reals):  # 全部都是动作
                 frag = CollectionFragment(realLevelResult, realLevelResult.reals, 0, len(realLevelResult.reals))
-                self._thinkAsCollection(realLevelResult, frag, realsType=ObjType.ACTION)
+                self._thinkAsCollection(realLevelResult, frag, realsType=ObjType.COMMON_ACTION)
                 if not realLevelResult.isAllUnderstood():
-                    frag=ModificationFragment(realLevelResult, realLevelResult.reals, 0, len(realLevelResult.reals))
-                    self._thinkAsModification(realLevelResult, frag, realsType=ObjType.ACTION)
+                    frag = ModificationFragment(realLevelResult, realLevelResult.reals, 0, len(realLevelResult.reals))
+                    self._thinkAsModification(realLevelResult, frag, realsType=ObjType.COMMON_ACTION)
 
             else:
                 return self._processLinkedAction(realLevelResult, linkedAction)

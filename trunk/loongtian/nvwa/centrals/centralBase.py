@@ -3,9 +3,10 @@
 
 __author__ = 'Leon'
 
+from abc import ABC
 from loongtian.util.log import logger
 
-class CentralBase(object):
+class CentralBase(ABC):
     """
     各中枢的基础类。
     :rawParam

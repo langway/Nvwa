@@ -9,9 +9,10 @@ from loongtian.nvwa.engines.transitionEngine import TransitionEngine
 from loongtian.nvwa.engines.groupEngine import GroupEngine
 from loongtian.nvwa.engines.compareEngine import CompareEngine
 from loongtian.nvwa.engines.abstractEngine import AbstractEngine
+from loongtian.nvwa.engines.patternEngine import PatternEngine
 from loongtian.nvwa.managers.mindsManager import MindsManager
 from loongtian.nvwa.runtime.systemInfo import ThinkingInfo
-
+from loongtian.nvwa.runtime.article import StrContent
 
 # todo 下面的引擎/中枢暂时先放在这里，未来需要考虑是否需要放在brain之中
 from loongtian.nvwa.engines.evaluateEngine import EvaluateEngine
@@ -42,6 +43,7 @@ class ThinkingCentral(CentralBase):
         self.MindsManager = MindsManager(self)  # 多思维的管理器，产生并管理上下文
         self.CompareEngine = CompareEngine(self)  # 比较引擎。用来对任意两个对象进行比较，并输出其关联关系
         self.AbstractEngine = AbstractEngine(self)  # 抽象引擎。将n个对象的构成归纳合并，具有相同的，将生成一个相同的父对象。
+        self.PatternEngine=PatternEngine(self)
 
         # todo 下面的引擎/中枢暂时先放在这里，未来需要考虑是否需要放在brain之中
         self.EvaluateEngine = EvaluateEngine(self.Brain.MemoryCentral)
@@ -49,17 +51,17 @@ class ThinkingCentral(CentralBase):
         self.PlanEngine = PlanEngine(self.Brain.MemoryCentral)
         self.ExecuteEngine = ExecuteEngine(self.Brain.MemoryCentral)
 
-    def thinkStringInput(self,str_input):
+    def thinkStringContent(self, str_content:StrContent):
         """
         对字符串输入进行思考。
-        :param str_input:
+        :param str_content:
         :return:
         """
-        if not str_input or not isinstance(str_input,str):
+        if not str_content or not str_content.containedObj:
             raise Exception("必须提供字符串以进行思考！")
 
         # 创建Mind，真正开始思考
-        mind = self.MindsManager.createMind(str_input)
+        mind = self.MindsManager.createMind(str_content)
         thinkResult = mind.execute()
         return thinkResult
 

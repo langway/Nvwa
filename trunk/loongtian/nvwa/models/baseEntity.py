@@ -4,6 +4,7 @@
 __author__ = 'Leon'
 
 import uuid
+from abc import ABC
 from psycopg2 import IntegrityError
 
 from loongtian.nvwa.tools.db import DbPools
@@ -11,14 +12,14 @@ from loongtian.util.helper import jsonplus
 from loongtian.util.log import logger
 
 from loongtian.nvwa import settings
-from loongtian.nvwa.models.enum import ObjType, DirectionType, WhereRelation
+from loongtian.nvwa.models.enum import ObjType, LayerDirection, WhereRelation
 
 from loongtian.nvwa.organs.character import Character
 
 # debugCounter = {}  # 调试用计数器
 
 
-class BaseEntity(object):
+class BaseEntity(ABC):
     """
     基础实体，主要作用是标识女娲实体类。
     其它女娲实体类要继承这个基础实体类。
@@ -49,7 +50,7 @@ class BaseEntity(object):
     # 用以在删除（逻辑、物理）时进行循环操作，
     # 例如：[[中国,人民],解放军]，根据中国 删除[中国,人民]时，还要删除[[中国,人民],解放军]
 
-    directionInLayer = DirectionType.UNKNOWN
+    directionInLayer = LayerDirection.UNKNOWN
     upperLimitation = None  # 在上一层其他对象的分层中，包含的对象类型、数量限制，
     # 例如，MetaNet只能有一个下层对象MetaData，一个下层对象Knowledge，没有上层对象
     # MetaData 的上一层对象为MetaNet[多个，下一层对象为RealObject[多个]
@@ -130,7 +131,7 @@ class BaseEntity(object):
         :return:
         """
         if not entity:
-            return u""
+            return ""
 
         if isinstance(entity, str):
             return entity
@@ -147,7 +148,7 @@ class BaseEntity(object):
             if hasattr(entity, entity.primaryKey[0]):
                 _id = str(getattr(entity, entity.primaryKey[0]))
         else:
-            _id = u""
+            _id = ""
             for key in entity.primaryKey:
                 if hasattr(entity, key) and getattr(entity, key):
                     _id += str(getattr(entity, key))
@@ -251,10 +252,10 @@ class BaseEntity(object):
             if len(cls.primaryKey) == 1:
                 entity.id = str(getattr(entity, cls.primaryKey[0]))
             elif len(cls.primaryKey) > 1:
-                temp_id = u""
+                temp_id = ""
                 for _primaryKey in cls.primaryKey:
-                    temp_id += str(getattr(entity, _primaryKey)) + u"_"
-                temp_id = temp_id.rstrip(u"_")
+                    temp_id += str(getattr(entity, _primaryKey)) + "_"
+                temp_id = temp_id.rstrip("_")
                 entity.id = temp_id
 
             # 标记是从数据库中取出来的
@@ -968,7 +969,7 @@ class BaseEntity(object):
             ids = temp
         __ids = []
         for pk in ids:
-            __id = u""
+            __id = ""
             for atrrib, value in pk.items():
                 __id += value
             __ids.append(__id)
@@ -1314,7 +1315,7 @@ class BaseEntity(object):
         """
         if li is None or not isinstance(li, list) or len(li) < 1:
             raise Exception("必须提供要排序的列表！参数错误！")
-        if attribName is None or attribName == u"" or attribName == "":
+        if attribName is None or attribName == "" or attribName == "":
             raise Exception("必须提供属性名称！参数错误！")
         if hasattr(li[0], attribName):
             raise Exception("当前列表元素没有%s属性！参数错误！" % attribName)
@@ -1547,16 +1548,16 @@ class Layers(object):
         :return:
         """
         if not self.entity._UpperEntities is None and len(self.entity._UpperEntities) > 0:
-            self.checkLimitation(self.entity._UpperEntities, self.entity.upperLimitation, DirectionType.UPPER)
+            self.checkLimitation(self.entity._UpperEntities, self.entity.upperLimitation, LayerDirection.UPPER)
             return self.entity._UpperEntities
         from loongtian.nvwa.models.layer import Layer
 
         self.entity._UpperEntities = Layer.getStartsByEndInDB(self.entity, lazy_get=False,
                                                               memory=self.entity.MemoryCentral)
-        self.checkLimitation(self.entity._UpperEntities, self.entity.upperLimitation, DirectionType.UPPER)
+        self.checkLimitation(self.entity._UpperEntities, self.entity.upperLimitation, LayerDirection.UPPER)
         return self.entity._UpperEntities
 
-    def checkLimitation(self, ralatedObjects, limitation, direction=DirectionType.UNKNOWN):
+    def checkLimitation(self, ralatedObjects, limitation, direction=LayerDirection.UNKNOWN):
         """
         检查当前对象的其他层对象是否符合类型限定、数量限定
         :param ralatedObjects:
@@ -1565,9 +1566,9 @@ class Layers(object):
         :return:
         """
         if limitation is None:
-            if direction == DirectionType.LOWER:
+            if direction == LayerDirection.LOWER:
                 raise Exception("当前对象不应该有下一层对象！")
-            elif direction == DirectionType.UPPER:
+            elif direction == LayerDirection.UPPER:
                 raise Exception("当前对象不应该有上一层对象")
 
         if ralatedObjects is None or len(ralatedObjects) <= 0:
@@ -1579,9 +1580,9 @@ class Layers(object):
             if typed_objs is None:
                 continue
             if len(typed_objs) > limite:
-                if direction == DirectionType.LOWER:
+                if direction == LayerDirection.LOWER:
                     raise Exception("当前对象的下一层对象限定为%d，当前数量为%d！" % limitation, len(typed_objs))
-                elif direction == DirectionType.UPPER:
+                elif direction == LayerDirection.UPPER:
                     raise Exception("当前对象的上一层对象限定为%d，当前数量为%d！" % limitation, len(typed_objs))
 
     def getUpperEntitiesByType(self, type=ObjType.UNKNOWN, lazy_get=False):
@@ -1594,7 +1595,7 @@ class Layers(object):
             raise Exception("无法根据指定类型取得对应的上一层对象，type=ObjType.UNKNOWN！")
         uppers = None
         if not self.entity._UpperEntities is None and len(self.entity._UpperEntities) > 0:
-            self.checkLimitation(self.entity._UpperEntities, self.entity.upperLimitation, DirectionType.UPPER)
+            self.checkLimitation(self.entity._UpperEntities, self.entity.upperLimitation, LayerDirection.UPPER)
             uppers = self.entity._UpperEntities.getObjsByType(type=type)
             if uppers:
                 if isinstance(uppers, dict):
@@ -1615,7 +1616,7 @@ class Layers(object):
                 else:
                     self.entity._UpperEntities = uppers
 
-        self.checkLimitation(self.entity._UpperEntities, self.entity.upperLimitation, DirectionType.UPPER)
+        self.checkLimitation(self.entity._UpperEntities, self.entity.upperLimitation, LayerDirection.UPPER)
         return uppers
 
     def getLowerEntities(self):
@@ -1624,13 +1625,13 @@ class Layers(object):
         :return:
         """
         if not self.entity._LowerEntities is None and len(self.entity._LowerEntities) > 0:
-            self.checkLimitation(self.entity._LowerEntities, self.entity.lowerLimitation, DirectionType.LOWER)
+            self.checkLimitation(self.entity._LowerEntities, self.entity.lowerLimitation, LayerDirection.LOWER)
             return self.entity._LowerEntities
         from loongtian.nvwa.models.layer import Layer
 
         self.entity._LowerEntities = Layer.getEndsByStartInDB(self.entity, lazy_get=False,
                                                               memory=self.entity.MemoryCentral)
-        self.checkLimitation(self.entity._LowerEntities, self.entity.lowerLimitation, DirectionType.LOWER)
+        self.checkLimitation(self.entity._LowerEntities, self.entity.lowerLimitation, LayerDirection.LOWER)
         return self.entity._LowerEntities
 
     def getLowerEntitiesByType(self, type=ObjType.UNKNOWN, lazy_get=False):
@@ -1644,7 +1645,7 @@ class Layers(object):
 
         lowers = None
         if not self.entity._LowerEntities is None and len(self.entity._LowerEntities) > 0:
-            self.checkLimitation(self.entity._LowerEntities, self.entity.lowerLimitation, DirectionType.LOWER)
+            self.checkLimitation(self.entity._LowerEntities, self.entity.lowerLimitation, LayerDirection.LOWER)
             lowers = self.entity._LowerEntities.getObjsByType(type=type)
             if lowers:
                 if isinstance(lowers, dict):
@@ -1664,7 +1665,7 @@ class Layers(object):
                     self.entity._LowerEntities.merge(lowers)
                 else:
                     self.entity._LowerEntities = lowers
-                self.checkLimitation(self.entity._LowerEntities, self.entity.lowerLimitation, DirectionType.LOWER)
+                self.checkLimitation(self.entity._LowerEntities, self.entity.lowerLimitation, LayerDirection.LOWER)
 
         return lowers
 

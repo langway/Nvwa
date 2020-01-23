@@ -253,12 +253,12 @@ class TGraphEntity(BaseEntity):
             condition = {self.primaryKey[0]: self.startid}
             self._start_item = self.getOne(memory=self.MemoryCentral, **condition)
         else:
-            raise Exception("%s开始对象类型错误：{%d:%s}。" % (self.curEntityName, self.stype, ObjType.getTypeNames(self.stype)))
+            raise Exception("%s开始对象类型错误：{%d:%s}。" % (self.curEntityName, self.stype, ObjType.getName(self.stype)))
 
         if not self._start_item:
             raise Exception(
                 "未能取得%s开始对象：{%s:%s,%d:%s}。" % (
-                    self.curEntityName, "Id", self.startid, self.stype, ObjType.getTypeNames(self.stype)))
+                    self.curEntityName, "Id", self.startid, self.stype, ObjType.getName(self.stype)))
         return self._start_item
 
     def getEndItem(self):
@@ -278,12 +278,12 @@ class TGraphEntity(BaseEntity):
             condition = {self.primaryKey[0]: self.startid}
             self._end_item = self.getOne(memory=self.MemoryCentral, **condition)
         else:
-            raise Exception("%s结束对象类型错误：{%s:%s,%d:%s,%s:%s}。" % ("Id", self.endid,self.curEntityName, self.etype, ObjType.getTypeNames(self.etype),"mnvalue",self.mnvalue))
+            raise Exception("%s结束对象类型错误：{%s:%s,%d:%s,%s:%s}。" % ("Id", self.endid,self.curEntityName, self.etype, ObjType.getName(self.etype),"mnvalue",self.mnvalue))
 
         if not self._end_item:
             raise Exception(
                 "未能取得%s结束对象：{%s:%s,%d:%s,%s:%s}。" % (
-                    self.curEntityName, "Id", self.endid, self.etype, ObjType.getTypeNames(self.etype),"mnvalue",self.mnvalue))
+                    self.curEntityName, "Id", self.endid, self.etype, ObjType.getName(self.etype),"mnvalue",self.mnvalue))
         return self._end_item
 
     @classmethod

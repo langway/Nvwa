@@ -1,0 +1,1380 @@
+UPDATE "tbl_metaData" SET remark='<x>
+<l>孢子</l>
+</x>' WHERE id='b9390db73b6311eaa30c40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>传说中的一种走兽，古代常把它的形象画在牢狱的门上。</x><x>借指监狱。</x>' WHERE id='a83c1f8b3b6311ea87b940b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>形</w>物体表面凹下去；不饱满<example>干～|～谷|没牙～嘴儿|车带～了|乒乓球～了。</example>
+</x>' WHERE id='cf95d9b93b6311eaa41a40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>形</w>物体表面凹下去；不饱满<example>干～|～谷|没牙～嘴儿|车带～了|乒乓球～了。</example>
+</x>' WHERE id='cf997eac3b6311ea8f3940b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>动</w>抑止(呼吸)<example> ～着呼吸|～着气。</example>
+</x><x>除去；排除<example> ～除|～弃。</example>
+</x>' WHERE id='d259943c3b6311ea994040b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>艺术性的插图。</x>
+<x>
+<w>名</w>艺术性的插图。</x>' WHERE id='e75a3b8b3b6311ea8bdf40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>形</w>声音大而杂乱<example> ～得慌</example>
+<example>临街的房子太～</example>
+</x><x>
+<w>动</w>吵扰<fx>1</fx>
+<example> ～人</example>
+<example>把孩子～醒了。</example>
+</x><x>
+<w>动</w>争吵<example>两人说着说着～了起来</example>
+<example>不要～，有话好好说。</example>
+</x>' WHERE id='f068eb8f3b6311eab0a040b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>指构成事物的各种不同的物质或因素<example>化学～</example>
+<example>营养～</example>
+<example>减轻了心里不安的～</example>
+</x><x>指个人早先的主要经历或职业<example>工人～</example>
+<example>他的个人～是学生。</example>
+</x>' WHERE id='560f4c073b6311ea8cc740b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<t>蹙</t>
+</x>' WHERE id='18fac0033b6411ea86a840b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>古时汉族对北方各游牧民族的统称。明代指东蒙古人，住在今内蒙古和蒙古国的东部。</x>' WHERE id='1eed9f253b6411ea8c3840b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<l>疙瘩</l>
+</x>' WHERE id='1ef2a8893b6411ea9de040b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>表示信息的符号组合。如在计算机中，所有数据、程序输入时都必须转换为计算机能够识别的二进制数字，这种二进制数字就是代码。</x>' WHERE id='562398393b6311ea9bf540b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>形</w>
+<sx>1</sx>一个(跟“双”相对)<example> ～扇门</example>
+<example>～人床。</example>
+</x><x>
+<w>形</w>
+<sx>1</sx>奇数的(一、三、五、七等，跟“双”相对)<example> ～数</example>
+<example>～号</example>
+<example>～日。</example>
+</x><x>单独<example> ～身</example>
+<example>～干</example>
+<example>～打一</example>
+<example>～枪匹马</example>
+<example>形～影只。</example>
+</x><x>
+<w>副</w>只；仅<example>干工作不能～凭经验</example>
+<example>别的不说，～说这件事。</example>
+</x><x>项目或种类少；不复杂<example>简～</example>
+<example>～纯</example>
+<example>～调。</example>
+</x><x>薄弱<example> ～薄</example>
+<example>～弱</example>
+<example>势孤力～</example>
+</x><x>
+<w>形</w>
+<sx>1</sx>只有一层的(衣服等)<example> ～衣</example>
+<example>～裤|这堆衣服～的、夹的都有。</example>
+</x><x>
+<e>1</e>
+<w>名</w>单子<fx>1</fx>
+<example>被～儿</example>
+<example>床～子。</example>
+</x><x>
+<e>1</e>
+<w>名</w>单子<fx>2</fx>
+<example>名～</example>
+<example>传～</example>
+<example>清～</example>
+<example>账～</example>
+<example>货～|你给开个～儿吧。</example>
+</x><x>
+<y>Dān</y>
+<w>名</w>
+<v>1</v>姓</x>' WHERE id='eadba95e3b6311eab43740b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>形</w>
+<sx>1</sx>一个(跟“双”相对)<example> ～扇门</example>
+<example>～人床。</example>
+</x><x>
+<w>形</w>
+<sx>1</sx>奇数的(一、三、五、七等，跟“双”相对)<example> ～数</example>
+<example>～号</example>
+<example>～日。</example>
+</x><x>单独<example> ～身</example>
+<example>～干</example>
+<example>～打一</example>
+<example>～枪匹马</example>
+<example>形～影只。</example>
+</x><x>
+<w>副</w>只；仅<example>干工作不能～凭经验</example>
+<example>别的不说，～说这件事。</example>
+</x><x>项目或种类少；不复杂<example>简～</example>
+<example>～纯</example>
+<example>～调。</example>
+</x><x>薄弱<example> ～薄</example>
+<example>～弱</example>
+<example>势孤力～</example>
+</x><x>
+<w>形</w>
+<sx>1</sx>只有一层的(衣服等)<example> ～衣</example>
+<example>～裤|这堆衣服～的、夹的都有。</example>
+</x><x>
+<e>1</e>
+<w>名</w>单子<fx>1</fx>
+<example>被～儿</example>
+<example>床～子。</example>
+</x><x>
+<e>1</e>
+<w>名</w>单子<fx>2</fx>
+<example>名～</example>
+<example>传～</example>
+<example>清～</example>
+<example>账～</example>
+<example>货～|你给开个～儿吧。</example>
+</x><x>
+<y>Dān</y>
+<w>名</w>
+<v>1</v>姓</x>' WHERE id='eadeb6f23b6311eabc6140b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>由于劳累而得的病。</x><x>憎恨<example>彰善～恶。</example>
+</x>' WHERE id='2b3fdde03b6411ea92ec40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>由于劳累而得的病。</x><x>憎恨<example>彰善～恶。</example>
+</x>' WHERE id='2b4472073b6411ea8e9340b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>形</w>形容珠光闪耀。</x>' WHERE id='3b5a4f4d3b6411eaa96b40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>一种生活在地下洞穴中的蜘蛛。</x>' WHERE id='2e3733f33b6411eab91b40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>全身或身体的一部分的活动<example>这一节操有四个～</example>
+<example>～敏捷。</example>
+</x><x>
+<w>动</w>活动；行动起来<example>弹钢琴要十个指头都～</example>
+</x>' WHERE id='5616ed383b6311ea847140b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>矛戟柄末的平底金属套。</x>' WHERE id='11e3a2b43b6411eabedb40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>很坏的行为；犯罪的事情(跟“善”相对)<example>作～</example>
+<example>罪大～极</example>
+<example>惩～劝善</example>
+<example>疾～如仇。</example>
+</x><x>
+<w>形</w>凶恶；凶狠；凶猛<example> ～霸</example>
+<example>～骂</example>
+<example>～战</example>
+<example>那人长相真～</example>
+</x><x>恶劣；坏<example> ～习</example>
+<example>～意。</example>
+</x>' WHERE id='59402e6a3b6411eaaea440b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>动</w>口头指派或命令；嘱咐<example>父亲～大哥务必在月底以前赶回来</example>
+<example>我们俩做什么，请你～</example>
+</x>' WHERE id='6fe517763b6411eaa1ff40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>形</w>处境困难，不好处理<example>他觉得去也不好，不去也不好，实在～</example>
+</x><x>(神色、态度)不自然<example>表情～</example>
+</x>' WHERE id='836e73f43b6411eaa67540b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>角落(也用于地名)<example>炕～</example>
+<example>周家～(在陕西)。</example>
+</x>' WHERE id='8f6e212c3b6411ea9e0240b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<t>圪垯</t>
+</x>' WHERE id='275090523b6411eaa5e440b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>
+<t>疙瘩<fx>2</fx>，多用于纱、线、织物等<example>线～</example>
+<example>包袱～</example>
+</t>
+</x>' WHERE id='8f902a453b6411eabb6440b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>格子<example>方～纸</example>
+<example>把字写在～儿里</example>
+<example>四～儿的书架。</example>
+</x><x>规格；格式<example>品～</example>
+<example>～律</example>
+<example>合～</example>
+<example>别具一～</example>
+</x><x>品质；风度<example>人～</example>
+<example>风～</example>
+</x><x>
+<s>1</s>阻碍；限制<example> ～于成例。</example>
+</x><x>
+<y>Gé</y>
+<w>名</w>
+<v>1</v>姓</x>' WHERE id='8fc23ed83b6411ea902240b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>活塞的旧称。</x>' WHERE id='c1b749823b6311ea8f5940b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>骨头(gǔ·tou)<fx>1</fx>。</x><x>比喻在物体内部支撑的架子<example>钢～水泥</example>
+<example>龙～</example>
+</x><x>品质；气概<example> ～气</example>
+<example>媚～</example>
+<example>侠～</example>
+</x>' WHERE id='9f347bb73b6411eaaf2840b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<l>蝲蛄</l>
+<l>蝲蝲蛄</l>
+</x>' WHERE id='9f5d8a3f3b6411ea8a2440b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>古时一种面制食品。</x>' WHERE id='57f4861f3b6411ea9c3f40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>车轮的中心部分，有圆孔，可以插轴。<u>图“轮子”</u>
+</x>' WHERE id='9f849cde3b6411ea91db40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>车轮的中心部分，有圆孔，可以插轴。<u>图“轮子”</u>
+</x>' WHERE id='9f881f533b6411ea979a40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>木头块；树根墩子。</x>' WHERE id='580acea83b6411ea862b40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<l>拉呱儿</l>
+</x>' WHERE id='9e3af05e3b6411eaaadb40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>动</w>把线绕在桄子上<example>把线～上。</example>
+</x><x>
+<e>1</e>在桄子或拐子上绕好后取下来的成圈的线<example>线～儿。</example>
+</x><x>
+<e>1</e>
+<w>量</w>用于线<example>一～线。</example>
+</x>' WHERE id='abba198f3b6411eaa11f40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>荷花。</x>' WHERE id='2c2744a63b6411ea8f9c40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<l>回纥</l>
+</x>' WHERE id='8f9226323b6411ea829f40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<t>嘿</t>
+</x>' WHERE id='b5db875e3b6411eab98040b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>动</w>太甜或太咸的食物使喉咙不舒服<example>这个菜咸得～人。</example>
+</x><x>
+<f>1</f>
+<w>副</w>非常(多表示不满意)<example> ～咸</example>
+<example>～苦</example>
+<example>～酸</example>
+<example>天气～热。</example>
+</x>' WHERE id='ca8698333b6411eab50e40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>隼(sǔn)的旧称。</x>' WHERE id='a217a74f3b6411ea8df140b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>隼(sǔn)的旧称。</x>' WHERE id='a21b512a3b6411eab0e840b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>古代松柏树脂的化石，成分是C10H16O。淡黄色、褐色或红褐色的固体，质脆，燃烧时有香气，摩擦时生电。用来制造琥珀酸和各种漆，也可做装饰品，可入药。</x>' WHERE id='cfcc7d503b6411ea847a40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>鸟，身体大，嘴细长而弯曲，腿长。生活在水边。种类较多，如白鹮、朱鹮等。</x>
+<x>
+<w>名</w>鸟，身体大，嘴细长而弯曲，腿长。生活在水边。种类较多，如白鹮、朱鹮等。</x>' WHERE id='d98e86e53b6411eab1ab40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>动</w>疲劳生病(多用于马)。<h>虺<p>523</p>
+</h>
+</x>' WHERE id='ded9508e3b6411ea9fc840b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<l>低回</l>(低徊)。</x>' WHERE id='d7a6e26b3b6411eaa63940b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>蝉的一种，吻长，身体短，紫青色，有黑色条纹，翅膀有黑斑。</x>' WHERE id='9f6049993b6411eaa10340b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>动</w>从两个相对的方面加压力，使物体固定不动<example> ～菜</example>
+<example>用钳子～住烧红的铁。</example>
+</x><x>
+<w>动</w>胳膊向胁部用力，使腋下放着的东西不掉下<example> ～着书包</example>
+<example>～起铺盖卷儿。</example>
+</x><x>
+<w>动</w>处在两者之间<example>两座大山～着一条小沟</example>
+<example>你在左，我在右，他～在中间</example>
+<example>把信～在书本里。</example>
+</x><x>
+<w>动</w>夹杂；掺杂<example> ～在人群里</example>
+<example>风声～着雨声</example>
+<example>白话～文言，念起来不顺口。</example>
+</x><x>夹子<example>文件～</example>
+</x>' WHERE id='82dc71e43b6411eabd2140b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>动</w>从两个相对的方面加压力，使物体固定不动<example> ～菜</example>
+<example>用钳子～住烧红的铁。</example>
+</x><x>
+<w>动</w>胳膊向胁部用力，使腋下放着的东西不掉下<example> ～着书包</example>
+<example>～起铺盖卷儿。</example>
+</x><x>
+<w>动</w>处在两者之间<example>两座大山～着一条小沟</example>
+<example>你在左，我在右，他～在中间</example>
+<example>把信～在书本里。</example>
+</x><x>
+<w>动</w>夹杂；掺杂<example> ～在人群里</example>
+<example>风声～着雨声</example>
+<example>白话～文言，念起来不顺口。</example>
+</x><x>夹子<example>文件～</example>
+</x>' WHERE id='82dce7183b6411eaaccd40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>多年生草本植物，茎呈三棱形，叶子细长，花小绿褐色。茎可用来织席。</x>' WHERE id='502789e83b6411ea840340b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>台阶。</x><x>
+<l>砂礓</l>
+</x>' WHERE id='de080be93b6311ea8b7040b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>矫正<example> ～枉过正。</example>
+</x><x>
+<y>Jiǎo</y>
+<w>名</w>
+<v>1</v>姓</x>' WHERE id='0c205dee3b6511ea86ca40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>矫正<example> ～枉过正。</example>
+</x><x>
+<y>Jiǎo</y>
+<w>名</w>
+<v>1</v>姓</x>' WHERE id='0c22f1853b6511eaa2cf40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>物体各段之间相连的地方<example>关～</example>
+<example>竹～</example>
+</x><x>段落<example> ～拍</example>
+<example>音～</example>
+</x><x>
+<w>量</w>用于分段的事物或文章<example>两～火车</example>
+<example>四～甘蔗</example>
+<example>上了三～课</example>
+<example>第三章第八～</example>
+</x><x>
+<w>名</w>节日；节气<example>五一国际劳动～</example>
+<example>春～</example>
+<example>清明～</example>
+<example>这件事过了～再说吧。</example>
+</x><x>删节<example> ～选</example>
+<example>～录。</example>
+</x><x>
+<w>动</w>节约；节制<example> ～电</example>
+<example>～煤</example>
+<example>～育</example>
+<example>开源～流。</example>
+</x><x>事项<example>细～</example>
+<example>礼～</example>
+<example>生活小～</example>
+</x><x>节操<example>气～</example>
+<example>变～</example>
+<example>保持晚～</example>
+<example>高风亮～</example>
+</x><x>
+<y>Jié</y>
+<w>名</w>
+<v>1</v>姓</x>' WHERE id='104939573b6511ea971840b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>物体各段之间相连的地方<example>关～</example>
+<example>竹～</example>
+</x><x>段落<example> ～拍</example>
+<example>音～</example>
+</x><x>
+<w>量</w>用于分段的事物或文章<example>两～火车</example>
+<example>四～甘蔗</example>
+<example>上了三～课</example>
+<example>第三章第八～</example>
+</x><x>
+<w>名</w>节日；节气<example>五一国际劳动～</example>
+<example>春～</example>
+<example>清明～</example>
+<example>这件事过了～再说吧。</example>
+</x><x>删节<example> ～选</example>
+<example>～录。</example>
+</x><x>
+<w>动</w>节约；节制<example> ～电</example>
+<example>～煤</example>
+<example>～育</example>
+<example>开源～流。</example>
+</x><x>事项<example>细～</example>
+<example>礼～</example>
+<example>生活小～</example>
+</x><x>节操<example>气～</example>
+<example>变～</example>
+<example>保持晚～</example>
+<example>高风亮～</example>
+</x><x>
+<y>Jié</y>
+<w>名</w>
+<v>1</v>姓</x>' WHERE id='104d0f323b6511ea928c40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>诘问<example>盘～</example>
+<example>反～</example>
+<example>～责。</example>
+</x>' WHERE id='f11bf1343b6411eaadc640b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>诘问<example>盘～</example>
+<example>反～</example>
+<example>～责。</example>
+</x>' WHERE id='f11fc1f93b6411eabed540b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>芥菜<example> ～末</example>
+<example>～子。</example>
+</x><x>小草，比喻轻微纤细的事物<example>草～</example>
+<example>纤～</example>
+</x>' WHERE id='8496dadb3b6411ea9c4240b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>“橘”俗作桔。</x>' WHERE id='143317503b6511ea956540b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>占据<example> ～为已有。</example>
+</x><x>凭借；依靠<example> ～点</example>
+<example>～险固守。</example>
+</x><x>
+<w>介</w>按照；依据<example> ～理力争</example>
+<example>～实报告</example>
+<example>～民歌改编。</example>
+</x><x>可以用作证明的事物<example>凭～</example>
+<example>证～</example>
+<example>字～</example>
+<example>论～</example>
+<example>票～</example>
+<example>实～</example>
+</x><x>
+<y>Jù</y>
+<w>名</w>
+<v>1</v>姓</x>' WHERE id='29b650cf3b6511ea812540b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>一年或二年生草本植物，叶子菱形，有长柄，花绿色。叶子嫩时可以吃。</x>' WHERE id='1e99819d3b6411ea8ddb40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>动</w>使东西从咽头或气管里出来<example> ～血</example>
+<example>把鱼刺～出来。</example>
+</x>' WHERE id='8fa75d623b6411eaa38540b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>高大。</x>' WHERE id='39b6ec233b6511ea9d1d40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>高大。</x>' WHERE id='39babcdb3b6511eab02440b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>瞌睡<example>打～</example>
+</x>' WHERE id='3d5c89df3b6511eaab8c40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>蛙或蟾蜍等两栖动物的幼体，黑色，椭圆形，像小鱼，有鳃和尾巴。生活在水中，用尾巴运动，逐渐发育生出四肢，尾巴逐渐变短而消失，最后变成蛙或蟾蜍等。</x>' WHERE id='4c40585e3b6411eab9e540b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<l>坎坷</l>
+</x>' WHERE id='3c0d10cb3b6511ea911740b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>古代弦乐器，分卧式、竖式两种，弦数因乐器大小而不同，最少的五根弦，最多的二十五根弦。</x>' WHERE id='cae9f45c3b6411ea848540b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>山名，在新疆、西藏和青海。今作昆仑<t>昆仑</t>。</x>' WHERE id='4dca1ddc3b6511ea86f640b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>黄癣。</x>' WHERE id='510a86d23b6511eaa53340b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>黄癣。</x>' WHERE id='510eaab23b6511ea8fba40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>形</w>(衣服)破烂<example>衣衫～</example>
+</x>' WHERE id='535d7c4c3b6511eab58340b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>阆中(Làngzhōng)，地名，在四川。</x>' WHERE id='54fd115d3b6511eaab9740b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>阆中(Làngzhōng)，地名，在四川。</x>' WHERE id='5500bb1d3b6511eabcf340b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>说；谈(话)<example>有话慢慢～|大家在一起～得很热闹|有什么问题，咱们～～吧。</example>
+</x>' WHERE id='56f99b6d3b6511eaa0cc40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>说；谈(话)<example>有话慢慢～|大家在一起～得很热闹|有什么问题，咱们～～吧。</example>
+</x>' WHERE id='56fb97773b6511ea84a640b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>常绿灌木或乔木，枝上有刺，小叶长圆形，花淡青色，蒴果紫红色，种子黑色，可提制芳香油。根可入药。</x>' WHERE id='5b06db003b6511ea9bac40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>积累<example>日积月～|成千～万。</example>
+</x><x>屡次；连续<example> ～教不改|连篇～牍|欢聚～日。</example>
+</x><x>
+<t>垒<c>1</c>
+</t>
+</x>' WHERE id='5b2dc6bc3b6511ea9ab940b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>积累<example>日积月～|成千～万。</example>
+</x><x>屡次；连续<example> ～教不改|连篇～牍|欢聚～日。</example>
+</x><x>
+<t>垒<c>1</c>
+</t>
+</x>' WHERE id='5b2eff353b6511eaae0f40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>胸部的侧面<example>两～|左～|～骨。</example>
+</x>' WHERE id='5a5cd47b3b6511eaa8ef40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>用法跟“喽”（·lou）<fx>2</fx>相似，语气更轻快些<example>好～，我就去|雨不下了，走～！</example>
+</x>' WHERE id='5a6453ef3b6511eabf9640b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>形</w>形容山高。</x>' WHERE id='e6c9605e3b6311ea96c140b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>篱笆<example>樊～|竹～茅舍。</example>
+</x>' WHERE id='5ff7844c3b6511eaaa4640b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>英里旧<h>哩</h>
+</x>' WHERE id='5e7ba11e3b6511eaa59d40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>海里旧<h>浬</h>
+</x>
+<x>海里旧<h>浬</h>
+</x>' WHERE id='b617a9f23b6411eaa6ac40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>廉洁<example>清～|～耻。</example>
+</x><x>(价钱)低；便宜<example>低～|价～物美。</example>
+</x><x>
+<y>Lián</y>
+<w>名</w>
+<v>1</v>姓。　</x>
+<x>廉洁<example>清～|～耻。</example>
+</x><x>(价钱)低；便宜<example>低～|价～物美。</example>
+</x><x>
+<y>Lián</y>
+<w>名</w>
+<v>1</v>姓。　</x>' WHERE id='689856063b6511ea8e0e40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>指薯莨<example> ～绸</example>
+</x><x>
+<y>Liáng</y>
+<w>名</w>
+<v>1</v>姓</x>' WHERE id='559587943b6511ea865540b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>扣住门窗等的铁片，一端钉在门窗上，另一端有钩子钩在屈戌儿里，或者有眼儿套在屈戌儿上。</x>' WHERE id='43fb1c023b6411eab40840b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>动</w>嘴角向两边伸展<example> ～着嘴笑|把嘴一～</example>
+</x><x>
+<f>1</f>说(含贬义)<example>胡～|胡诌八～</example>
+</x>' WHERE id='6ed3bd403b6511ea939240b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>原张的纸五百张为一令<example>五～白报纸。</example>
+<o>英</o>
+<q>ream</q>
+</x>' WHERE id='72753bec3b6511ea844240b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>昆虫，背部茶褐色，腹面灰黄色。前足发达，呈铲状，适于掘土，有尾须。生活在泥土中，昼伏夜出，吃农作物嫩茎。也叫蝲蝲蛄(làlàgǔ)。</x>' WHERE id='9f648fa73b6411eaaddc40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>用法如“了”(·le)<fx>1</fx>，用于预期的或假设的动作<example>吃～饭就走|他要知道～一定很高兴。</example>
+</x><x>用法如“了”(·le)<fx>2</fx>，带有提醒注意的语气<example>水开～|起来～</example>
+</x>' WHERE id='7b95cc6d3b6511eab11c40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>用法如“了”(·le)<fx>1</fx>，用于预期的或假设的动作<example>吃～饭就走|他要知道～一定很高兴。</example>
+</x><x>用法如“了”(·le)<fx>2</fx>，带有提醒注意的语气<example>水开～|起来～</example>
+</x>' WHERE id='7b9adaea3b6511eabd3640b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>水鸟，羽毛黑色，有绿、蓝、紫色光泽，嘴扁而长，暗黑色，上嘴的尖端有钩。能游泳，善于捕鱼，喉下的皮肤扩大成囊状，捕得鱼就放在囊内。我国南方多饲养来帮助捕鱼。通称鱼鹰，有的地区叫墨鸦。</x>' WHERE id='14e2bca23b6411ea9e3640b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>平凡(指人)<example>庸～</example>
+</x><x>事务繁杂<example>忙～|劳～</example>
+</x>' WHERE id='797142773b6511eaa05440b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>青丝带子。</x><x>
+<s>1</s>钓鱼用的丝线<example>垂～</example>
+</x><x>指某些合成纤维<example>锦～|涤～|腈～|丙～</example>
+</x>' WHERE id='a7ac64313b6411eab14940b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>青丝带子。</x><x>
+<s>1</s>钓鱼用的丝线<example>垂～</example>
+</x><x>指某些合成纤维<example>锦～|涤～|腈～|丙～</example>
+</x>' WHERE id='a7af4f973b6411ea953e40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>病，多发生在颈部，有时也发生在腋窝部，由于结核杆菌侵入淋巴结而引起，症状是局部发生硬块，溃烂后经常流脓，不易愈合。</x>' WHERE id='659531323b6511eab8b640b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>用在句末，表示肯定语气<example>你放心好～|照章纳税，自然是应该的～！</example>
+</x>' WHERE id='85324a383b6511eab2f340b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>用在句末，表示肯定语气<example>你放心好～|照章纳税，自然是应该的～！</example>
+</x>' WHERE id='853509b83b6511eab11940b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>大麻、亚麻、苎麻、黄麻、剑麻、蕉麻等植物的统称。</x><x>
+<w>名</w>麻类植物的纤维，是纺织等工业的重要原料。</x><x>芝麻<example> ～酱</example>
+<example>～油。</example>
+</x>' WHERE id='885170e33b6511eaafc940b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<t>蔓”(wàn)，多用于合成词</t>
+</x>' WHERE id='8d0645d73b6511eaa84740b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>烦闷。</x><x>愤慨；生气<example>愤～</example>
+</x>
+<x>烦闷。</x><x>愤慨；生气<example>愤～</example>
+</x>' WHERE id='97f9e4213b6511eab65840b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>形</w>日光不明。</x>' WHERE id='7a8252223b6511eaa0f440b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>形</w>月光不明。</x><x>不清楚；模糊<example>暮色～|烟雾～</example>
+</x>' WHERE id='7a8dc14e3b6511ea9f6f40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>古代战船。</x>' WHERE id='012aa9f33b6411eab2de40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>谜语<example>灯～|哑～|猜～</example>
+</x><x>比喻还没有弄明白的或难以理解的事物<example>这个问题到现在还是一个～</example>
+</x>' WHERE id='965a982e3b6511eab0df40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>谜语<example>灯～|哑～|猜～</example>
+</x><x>比喻还没有弄明白的或难以理解的事物<example>这个问题到现在还是一个～</example>
+</x>' WHERE id='965daa953b6511eaa98d40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>在约定的人中间使用的特别编定的秘密电码或号码<qb>明码</qb>
+<example>破译～|～锁。</example>
+</x>' WHERE id='5866a8903b6311ea999d40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>形</w>形容大醉<example> ～大醉。</example>
+</x>' WHERE id='46a7f1e43b6411eab11640b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>摩擦；接触<example> ～拳擦掌|～肩擦背。</example>
+</x><x>抚摩<example>按～</example>
+</x><x>研究切磋<example>观～|揣～</example>
+</x><x>
+<y>Mó</y>
+<w>名</w>
+<v>1</v>姓</x>' WHERE id='885c1ffe3b6511ea8eca40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>常绿灌木，叶子卵形或椭圆形，有光泽，花白色，香气浓。供观赏，花可用来窨制茶叶，根、叶可入药。</x><x>这种植物的花。</x>' WHERE id='659a61c03b6511ea820240b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>我国古代东北方的民族。</x>' WHERE id='c3f1ce313b6411ea884a40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<l>保姆</l>
+</x>' WHERE id='87fcbba13b6511eabb5240b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>年老的妇人。</x>' WHERE id='59d3773f3b6511eab11940b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>前一字韵尾是-n，“啊(·ɑ)”变成“哪(·nɑ)”<example>谢谢您～|你得留神～!|同志们加油干～!</example>
+<l>啊”·ɑ</l>
+</x>' WHERE id='adb0d9793b6511ea9a3940b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>形</w>不晓事；不懂事<example> ～子(不晓事的人)。</example>
+</x>' WHERE id='29a685ea3b6411eab91340b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>方位词。四个主要方向之一，清晨面对太阳时右手的一边<example> ～边儿|～头儿|～方|～风|山～|坐北朝～</example>
+</x><x>南部地区，在我国通常指长江流域及其以南的地区<example> ～味|～货。</example>
+</x><x>
+<y>Nán</y>
+<w>名</w>
+<v>1</v>姓</x>' WHERE id='acd8e2213b6511eab0a040b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>口袋<example>药～|琴～|皮～|探～取物。</example>
+</x><x>像口袋的东西<example>肾～|胆～</example>
+</x><x>
+<s>1</s>用袋子装<example> ～括。</example>
+</x>' WHERE id='b0e362a13b6511eabfa040b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>表示亲昵的称呼。</x>' WHERE id='584ba4bf3b6311ea8cc440b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>柠檬树，常绿小乔木，叶子长椭圆形，质厚，花单生，外面粉红色，里面白色。果实长椭圆形或卵形，果肉味极酸，可制饮料，果皮黄色，可提取柠檬油。</x><x>这种植物的果实。</x>' WHERE id='98e516603b6511ea81dc40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>形</w>
+<sx>1</sx>女性(跟“男”相对)<example> ～工|～学生|男～平等。</example>
+</x><x>女儿<example>长～|生儿育～</example>
+</x><x>二十八宿之一。</x><x>
+<g>
+<t>汝<y>rǔ</y>
+</t>
+</g>
+</x>' WHERE id='58c1063c3b6311eaaf0940b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>动</w>在一个地方来回地走<example>他独自在江边～</example>
+</x><x>比喻犹疑不决<example> ～歧路。</example>
+</x><x>比喻事物在某个范围内来回浮动、起伏<example>这个厂每月的产值一直在三百万元左右～</example>
+</x>' WHERE id='d7a8b76b3b6411eaa62740b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>指立场、见解或作风、习气相同的一些人<example>党～</example>
+<example>学～</example>
+<example>宗～</example>
+<example>乐观～</example>
+</x><x>作风或风度<example>气～</example>
+<example>～头。</example>
+</x><x>
+<f>1</f>
+<w>形</w>有派头儿；有风度<example>小王穿上这身衣服真够～的。</example>
+</x><x>
+<w>量</w>用于派别<example>两～学者对这个问题有两种不同的看法。</example>
+</x><x>用于景色、气象、声音、语言等(前面用“一”字)<example>好一～北国风光</example>
+<example>一～新气象</example>
+<example>一～胡言。</example>
+</x><x>
+<s>1</s>江河的支流，泛指分支。</x><x>
+<w>动</w>分配；派遣；委派；安排<example>分～</example>
+<example>调（diào）～</example>
+<example>～人送去</example>
+<example>～用场。</example>
+</x><x>
+<w>动</w>摊派<example> ～粮～款。</example>
+</x><x>
+<w>动</w>指摘(别人过失)<example> ～不是。</example>
+</x>' WHERE id='c125f5f63b6511ea9fe840b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>形</w>腿脚不灵便，走路缓慢、摇摆的样子<example>步履～</example>
+</x>' WHERE id='c4c71a833b6511ea80c640b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>动</w>走来走去，犹疑不决，不知往哪个方向去<example> ～歧途</example>
+<example>～失措。</example>
+</x>' WHERE id='dd5b70f83b6411ea929140b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>古书上指茼蒿。</x>' WHERE id='d69aef373b6311ea984540b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>人和高等动物体内储存尿的器官，囊状，位于盆腔内。由平滑肌等构成，有很大的伸缩性。尿从肾脏顺着输尿管进入膀胱。有的地区叫尿脬(suī·pāo)。<u>图“人的泌尿器”</u>
+</x>' WHERE id='abc1e2543b6411ea916240b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>形</w>(气势)盛大<example>气势～</example>
+</x><x>
+<w>动</w>(气势)充满<example> ～宇内。</example>
+</x>' WHERE id='d74d0ca33b6311eaaf7740b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>动</w>扔；投掷<example> ～球</example>
+<example>～物线</example>
+<example>～砖引玉。</example>
+</x><x>
+<w>动</w>丢下<example> ～妻别子|跑到第三圈，他已经把别人远远地～在后面了。</example>
+</x><x>暴露<example> ～头露面。</example>
+</x><x>
+<w>动</w>抛售<example> ～出股票。</example>
+</x>
+<x>
+<w>动</w>扔；投掷<example> ～球</example>
+<example>～物线</example>
+<example>～砖引玉。</example>
+</x><x>
+<w>动</w>丢下<example> ～妻别子|跑到第三圈，他已经把别人远远地～在后面了。</example>
+</x><x>暴露<example> ～头露面。</example>
+</x><x>
+<w>动</w>抛售<example> ～出股票。</example>
+</x>' WHERE id='c6ad86123b6511ea9d8b40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>古时末端形状像燕尾的旗。</x><x>
+<s>1</s>泛指旌旗。</x>
+<x>古时末端形状像燕尾的旗。</x><x>
+<s>1</s>泛指旌旗。</x>' WHERE id='c9e1a1963b6511eaa71a40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>常绿小乔木，叶子长椭圆形，花小，白色。果实淡黄色或橙黄色，外皮上有细毛。生长在较温暖的地区，果实可以吃，叶子和核可入药。</x><x>这种植物的果实。</x>' WHERE id='c15a4fcf3b6511ea9ea840b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>弦乐器，用木料制成，有四根弦，下部为瓜子形的盘，上部为长柄，柄端弯曲。</x>' WHERE id='c19e3af73b6511eab61d40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>诋毁；斥责。</x>' WHERE id='c592c7223b6311eabbb140b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>城上矮墙。</x>' WHERE id='b6d5ff943b6511eab1b440b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>首尾完整的文章<example> ～章</example>
+<example>《荀子·劝学～》。</example>
+</x><x>
+<e>1</e>
+<w>名</w>写着或印着文字的单张纸<example>单～儿讲义。</example>
+</x><x>
+<e>1</e>
+<w>量</w>用于文章、纸张、书页(一篇是两页)等<example>一～论文</example>
+<example>三～儿纸</example>
+<example>这本书缺了一～儿。</example>
+</x>' WHERE id='ca960ed33b6311ea8f3040b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>平而薄的东西，一般不很大<example>布～儿|玻璃～儿</example>
+<example>纸～儿</example>
+<example>明信～儿。</example>
+</x><x>指电影、电视剧等<example> ～约</example>
+<example>～酬。</example>
+</x><x>
+<e>1</e>
+<w>名</w>指较大地区内划分的较小地区<example>分～传达。</example>
+</x><x>
+<w>动</w>用刀横割成薄片(多指肉)<example> ～肉片儿。</example>
+</x><x>不全的；零星的；简短的<example> ～面</example>
+<example>～刻</example>
+<example>～言</example>
+<example>～纸只字。</example>
+</x><x>
+<e>1</e>
+<w>量</w>用于成片的东西<example>两～儿药</example>
+<example>一～树叶</example>
+<example>几～面包。</example>
+</x><x>用于地面和水面等<example>一～草地</example>
+<example>一～汪洋。</example>
+</x><x>用于景色、气象、声音、语言、心意等(前面用“一”字)<example>一～新气象</example>
+<example>一～欢腾</example>
+<example>一～脚步声</example>
+<example>一～胡言</example>
+<example>一～真心。</example>
+</x><x>
+<y>Piàn</y>
+<w>名</w>
+<v>1</v>姓</x>' WHERE id='cfc43a093b6511eaa04e40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>形</w>形容隐隐约约，若有若无<example>虚无～</example>
+<example>云雾～</example>
+<h>飘渺</h>
+</x>' WHERE id='9ecb056d3b6511eaaa8540b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>青白色。</x><x>青白色丝织品。</x>' WHERE id='d1c9c6593b6511eab95b40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>青白色。</x><x>青白色丝织品。</x>' WHERE id='d1ce30b43b6511ea991e40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>逼迫；强迫<example>压～</example>
+<example>～害</example>
+<example>饥寒交～</example>
+<example>被～出走。</example>
+</x><x>急促<example>急～</example>
+<example>窘～</example>
+<example>～不及待</example>
+<example>从容不～</example>
+</x><x>接近<example> ～近。</example>
+</x>' WHERE id='c3655caa3b6511ea917c40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>藏族地区出产的一种羊毛织品，可做床毯、衣服等。</x>' WHERE id='80694f6e3b6511eab38540b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>晒<example>一～十寒。</example>
+</x>' WHERE id='bd9cfede3b6311eaa30840b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>金龟子的幼虫，白色，圆柱状，向腹面弯曲。种类很多，生活在土里，吃农作物的地下部分，是害虫。</x>' WHERE id='e4ae746e3b6311ea813a40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>形</w>从上到下或从外到里的距离小(跟“深”相对，<fx>2</fx>—<fx>5</fx>同)<example> ～滩|水～|屋子的进深～</example>
+</x><x>浅显<example> ～易|这些读物内容～，容易懂。</example>
+</x><x>浅薄<example>功夫～</example>
+</x><x>(感情)不深厚<example>交情～</example>
+</x><x>(颜色)淡<example> ～红|～绿。</example>
+</x><x>(时间)短<example>年代～|相处的日子还～</example>
+</x>' WHERE id='fef0cb5e3b6411ea8a4940b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>形</w>从上到下或从外到里的距离小(跟“深”相对，<fx>2</fx>—<fx>5</fx>同)<example> ～滩|水～|屋子的进深～</example>
+</x><x>浅显<example> ～易|这些读物内容～，容易懂。</example>
+</x><x>浅薄<example>功夫～</example>
+</x><x>(感情)不深厚<example>交情～</example>
+</x><x>(颜色)淡<example> ～红|～绿。</example>
+</x><x>(时间)短<example>年代～|相处的日子还～</example>
+</x>' WHERE id='fef2a0c23b6411ea9abe40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>古代称成串的钱。</x>' WHERE id='ecfaa8513b6511eaa5cd40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>古代称成串的钱。</x>' WHERE id='ecfccac33b6511ea95aa40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>形</w>形容人瘦弱，面色不好看<example>她病了一场，显得～多了。</example>
+</x>' WHERE id='1ac5301d3b6411ea975140b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>没有声音或声音很低<example> ～声。</example>
+</x><x>
+<s>1</s>忧愁。</x>' WHERE id='eed247713b6511ea852840b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<t>雀”(què)，用于“家雀儿、雀盲眼</t>
+</x>' WHERE id='eee841f03b6511ea894240b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>动</w>倾斜<example> ～坡儿|～着身子。</example>
+</x>' WHERE id='29c542e43b6511eaa37740b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>哺乳动物，身体小，外形像老鼠，但吻部细而尖，头部和背部棕褐色，腹部棕灰色或灰白色。多生活在山林中，捕食昆虫、蜗牛、蚯蚓等小动物，也吃植物种子和谷物。</x>' WHERE id='2145dcaa3b6511ea8e6640b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>古代指用竹或苇编的粗席。</x>' WHERE id='091128f03b6411ea821840b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>多年生草本植物，野生，叶子互生，长椭圆披针形，花黄色。茎叶嫩时可以吃，全草入药。</x>' WHERE id='8ba4a33e3b6511ea80d840b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>如；好像<example>安之～素|欣喜～狂|～隐～现|旁～无人|～无其事。</example>
+</x><x>
+<y>Ruò</y>
+<w>名</w>
+<v>1</v>姓</x>' WHERE id='072c81d33b6611eaa08d40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<t>涩</t>
+</x>
+<x>
+<t>涩</t>
+</x>' WHERE id='1b06e8c13b6611ea9bde40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<l>稼穑</l>
+</x>
+<x>
+<l>稼穑</l>
+</x>' WHERE id='1b0d03833b6611eaaf6340b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>鱼，身体纺锤形，稍扁，鳞为盾状，胸、腹鳍大，尾鳍发达。生活在海洋中，性凶猛，行动敏捷，捕食其他鱼类。经济价值很高。种类很多，常见的有真鲨、角鲨等。也叫鲛。</x>' WHERE id='1c7f48d13b6611ea845540b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<t>唼</t>
+<t>歃</t>
+</x>' WHERE id='4478210f3b6411eaa45240b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>哺乳动物，外形像猫，但大得多。尾巴短，耳的尖端有长毛，两颊的毛也长。全身毛棕黄色，厚而软，有灰褐色斑点，尾端黑色。善于爬树，行动敏捷，性凶猛。也叫林<p>1154</p> (línyì)。</x>' WHERE id='65eea1893b6511eabe1b40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>莘县，地名，在山东。</x><x>
+<w>名</w>
+<v>1</v>姓</x>' WHERE id='2bfaec973b6611ea9cc440b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>代</w>疑问代词。</x><x>表示疑问。单用，问事物<example>这是～?</example>
+<example>你找～?</example>
+<example>他说～?</example>
+<example>～叫押韵?</example>
+</x><x>用在名词前面，问人或事物<example> ～人?</example>
+<example>～事儿?</example>
+<example>～颜色?</example>
+<example>～地方?</example>
+</x><x>虚指，表示不确定的事物<example>他们仿佛在谈论～</example>
+<example>我饿了，想吃点儿～</example>
+</x><x>任指。a)用在“也”或“都”前面，表示所说的范围之内没有例外<example>他～也不怕</example>
+<example>只要认真学，～都能学会。</example>
+</x><x>两个“什么”前后照应，表示由前者决定后者<example>想～说～</example>
+<example>你～时候去，我也～时候去</example>
+</x><x>表示惊讶或不满<example> ～!九点了，车还没有开!</example>
+<example>这是～鞋!一只大一只小的！</example>
+</x><x>表示责难<example>你笑～?(不应该笑)</example>
+<example>你说呀!装～哑巴?(不必装哑巴)</example>
+</x><x>表示不同意对方说的话<example> ～晒一天？晒三天也晒不干。</example>
+</x><x>用在几个并列成分前面，表示列举不尽<example> ～送个信儿啊，跑个腿儿啊，他都干得了。</example>
+</x>' WHERE id='560957cd3b6311ea8d1e40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>形</w>过分<example>欺人太～</example>
+</x><x>
+<w>动</w>超过；胜过<example>日～一日</example>
+<example>他关心他人～于关心自己。</example>
+</x><x>
+<w>副</w>很；极<example> ～佳</example>
+<example>所言～当。</example>
+</x><x>
+<y>Shèn</y>
+<w>名</w>
+<v>1</v>姓</x>' WHERE id='2d073dcb3b6611ea80d140b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<t>乘</t>
+</x>
+<x>
+<t>乘</t>
+</x>' WHERE id='fb57a87a3b6311eab5fc40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<t>十”(多用于分数或倍数)<example> ～一(十分之一)</example>
+<example>～九(十分之九)</example>
+<example>～百(十倍或百倍)</example>
+</t>
+</x><x>多种的；杂样的<example> ～物</example>
+<example>～件</example>
+<example>家～</example>
+</x><x>
+<y>Shí</y>
+<w>名</w>
+<v>1</v>姓</x>' WHERE id='2d031ef13b6611eabe5940b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>移植(秧苗)<example> ～秧。</example>
+</x><x>
+<s>1</s>栽种。</x><x>
+<y>Shì</y>
+<w>名</w>
+<v>1</v>姓</x>' WHERE id='3c3b48d53b6611ea89e540b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>移植(秧苗)<example> ～秧。</example>
+</x><x>
+<s>1</s>栽种。</x><x>
+<y>Shì</y>
+<w>名</w>
+<v>1</v>姓</x>' WHERE id='3c3d44bb3b6611eaa31840b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>手持式移动电话机的简称。</x>' WHERE id='589b50883b6311ea919d40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>事物所具有的性质、特点，如运动是物质的属性。</x>' WHERE id='561084263b6311eaa7fb40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>动</w>像；如同<example>相～</example>
+<example>近～</example>
+<example>类～</example>
+<example>～是而非</example>
+<example>骄阳～火。</example>
+</x><x>
+<w>副</w>似乎<example> ～属可行</example>
+<example>～应从速办理。</example>
+</x><x>
+<w>介</w>用于比较，表示超过<example>人民生活一年强～一年。</example>
+</x>' WHERE id='3eeb31353b6611ea9d9c40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>观察；守候<example>窥～</example>
+<example>～隙</example>
+<example>～机。</example>
+</x>' WHERE id='156143be3b6411ea8c8b40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>等待<example> ～机进攻。</example>
+</x><x>
+<y>Sì</y>
+<w>名</w>
+<v>1</v>姓</x>' WHERE id='e036e6653b6511eaa22340b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<t>骕骦</t>
+</x>' WHERE id='5f7a8f4f3b6611ea892b40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<t>鹔鹴</t>
+</x>' WHERE id='5fcf44583b6611eab33940b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<l>猢狲</l>
+</x>
+<x>
+<l>猢狲</l>
+</x>' WHERE id='6282d16d3b6611ea9dbf40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>蕨类植物，木本，茎柱状，高而直，叶片大，羽状分裂。是珍稀植物。</x>' WHERE id='860511243b6511ea81f340b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>动</w>由大变小或由长变短；收缩<example>紧～</example>
+<example>～短</example>
+<example>热胀冷～</example>
+<example>这布下水也不～</example>
+</x><x>没伸开或伸开了又收回去；不伸出<example>乌龟的头老～在里面。</example>
+</x><x>后退<example>退～</example>
+<example>畏～</example>
+<example>谁也不许往后～</example>
+</x>' WHERE id='5ff62ff73b6611eaa5ba40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>动</w>由大变小或由长变短；收缩<example>紧～</example>
+<example>～短</example>
+<example>热胀冷～</example>
+<example>这布下水也不～</example>
+</x><x>没伸开或伸开了又收回去；不伸出<example>乌龟的头老～在里面。</example>
+</x><x>后退<example>退～</example>
+<example>畏～</example>
+<example>谁也不许往后～</example>
+</x>' WHERE id='5ffac40c3b6611eabaca40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>形</w>(工作或学习的态度)切实；不浮躁。</x><x>(情绪)安定；安稳<example>事情办完就～了</example>
+<example>翻来覆去睡不～</example>
+</x>' WHERE id='64b629ac3b6611eab87340b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>动</w>踩<example>践～</example>
+<example>～步</example>
+<example>脚～实地</example>
+<example>～上工作岗位。</example>
+</x><x>在现场(查勘)<example> ～看</example>
+<example>～勘。</example>
+</x>' WHERE id='64d0911d3b6611ea97a040b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>劣马<example>驽～(劣马，比喻庸才)。</example>
+</x>' WHERE id='287da3eb3b6411eab6da40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>劣马<example>驽～(劣马，比喻庸才)。</example>
+</x>' WHERE id='288126aa3b6411ea833940b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>
+<v>1</v>姓</x>
+<x>
+<w>名</w>
+<v>1</v>姓</x>' WHERE id='eba4d31f3b6311eab83c40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>
+<v>1</v>姓</x>
+<x>
+<w>名</w>
+<v>1</v>姓</x>' WHERE id='eba6cee03b6311eaa4ec40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>热水；开水<example>温～浸种</example>
+<example>扬～止沸</example>
+<example>赴～蹈火。</example>
+</x><x>专指温泉(现多用于地名)<example>小～山(在北京)。</example>
+</x><x>
+<w>名</w>食物煮后所得的汁水<example>米～</example>
+<example>鸡～</example>
+</x><x>
+<w>名</w>烹调后汁儿特别多的副食<example>豆腐～</example>
+<example>菠菜～</example>
+<example>四菜一～</example>
+</x><x>
+<w>名</w>汤药<example>柴胡～</example>
+<example>煎～服用。</example>
+</x><x>
+<y>Tāng</y>
+<w>名</w>
+<v>1</v>姓</x>' WHERE id='2241f6093b6611ea853540b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>热水；开水<example>温～浸种</example>
+<example>扬～止沸</example>
+<example>赴～蹈火。</example>
+</x><x>专指温泉(现多用于地名)<example>小～山(在北京)。</example>
+</x><x>
+<w>名</w>食物煮后所得的汁水<example>米～</example>
+<example>鸡～</example>
+</x><x>
+<w>名</w>烹调后汁儿特别多的副食<example>豆腐～</example>
+<example>菠菜～</example>
+<example>四菜一～</example>
+</x><x>
+<w>名</w>汤药<example>柴胡～</example>
+<example>煎～服用。</example>
+</x><x>
+<y>Tāng</y>
+<w>名</w>
+<v>1</v>姓</x>' WHERE id='2244b56f3b6611ea976840b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>连</w>倘若<example> ～有困难，当再设法。</example>
+</x>' WHERE id='ee5579893b6311ea8fd240b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>“惝”chǎng的又音。</x>' WHERE id='ef19c07f3b6311ea9e3040b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>受到(好处)；沾<fx>4</fx>
+<example> ～光</example>
+<example>～教。</example>
+</x>' WHERE id='2fd435ec3b6411ea8e9540b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>“脦”·de的又音</x>' WHERE id='344b0f443b6411ea9bf740b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+</x>
+<x>
+</x>' WHERE id='344ebe813b6411eaa59e40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>鸟，体长可达2米，翅膀大，嘴长，尖端弯曲，嘴下有一个皮质的囊，可以存食，羽毛大多白色，翅膀上有少数黑色羽毛。喜群居，善于游泳和捕鱼。也叫淘河。</x>' WHERE id='cf3f7b4a3b6411ea898f40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>古时指从牛奶中提炼出来的精华，佛教比喻最高的佛法<example>如饮～</example>
+<example>～灌顶(比喻灌输智慧，使人彻底醒悟)。</example>
+</x>' WHERE id='cf844bfb3b6411ea9c4f40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>身体，有时指身体的一部分<example> ～重</example>
+<example>上～</example>
+<example>肢～</example>
+<example>五～投地。</example>
+</x><x>物体<example>固～</example>
+<example>液～</example>
+<example>整～</example>
+<example>集～</example>
+</x><x>文字的书写形式；作品的体裁<example>字～</example>
+<example>草～</example>
+<example>文～</example>
+<example>旧～诗。</example>
+</x><x>亲身(经验)；设身处地(着想)<example> ～会</example>
+<example>～验</example>
+<example>～谅</example>
+<example>身～力行。</example>
+</x><x>体制<fx>1</fx>
+<example>政～</example>
+<example>国～</example>
+</x><x>
+<w>名</w>一种语法范畴，多表示动词所指动作进行的情况，如进行体、完成体等。</x><x>
+<y>Tǐ</y>
+<w>名</w>
+<v>1</v>姓</x>' WHERE id='723439313b6611eabd1940b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>形容人脸<example> ～然人面。</example>
+</x><x>
+<t>觍</t>
+</x>' WHERE id='9d8529cd3b6511eab12240b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>一年生草本植物，叶子卵圆形或长椭圆形，花小，黄色，果实椭圆形。种子可入药。</x>' WHERE id='64297a243b6511ea8a5f40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>动</w>用背部承载人或物体<example> ～运</example>
+<example>这匹马能～四袋粮食</example>
+<example>他～着我过了河。</example>
+</x>' WHERE id='57d2a40c3b6411ea99bf40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>动</w>用背部承载人或物体<example> ～运</example>
+<example>这匹马能～四袋粮食</example>
+<example>他～着我过了河。</example>
+</x>' WHERE id='57d6ef233b6411ea9ffd40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>古书上指旱獭。</x>' WHERE id='9038ea073b6611eaaef640b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>数</w>十个千。</x><x>表示很多<example> ～国|～事|～物|～水千山。</example>
+</x><x>
+<w>副</w>极；很；绝对<example> ～全|～不得已|～不能行。</example>
+</x><x>
+<y>Wàn</y>
+<w>名</w>
+<v>1</v>姓</x>' WHERE id='a709d8153b6511ea807740b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<t>魍魉</t>
+</x>' WHERE id='990f7b5e3b6611ea9e5640b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>形</w>形容枝叶繁盛。</x>' WHERE id='1431d1b43b6611ea85d740b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>把事交给别人去办；委任<example> ～托|～派|～以重任。</example>
+</x><x>抛弃<example> ～弃|～之于地。</example>
+</x><x>推诿<example> ～罪。</example>
+</x><x>指委员或委员会<example>编～|党～|市～</example>
+</x><x>
+<y>Wěi</y>
+<w>名</w>
+<v>1</v>姓</x>' WHERE id='9a38a5323b6611ea876340b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>
+<v>1</v>姓</x>
+<x>
+<w>名</w>
+<v>1</v>姓</x>' WHERE id='4c464fc13b6511ea910240b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<t>碨”（wèi）</t>
+</x>' WHERE id='9c84692d3b6611eabf6e40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<t>碨”（wèi）</t>
+</x>' WHERE id='9c87ebe33b6611eab36740b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>落叶灌木或小乔木，叶子长圆形，花淡红色或白色。果实近球形，有香气，味酸，可以制蜜饯，也可入药。</x><x>这种植物的果实。</x>' WHERE id='da2c1cee3b6511eabb8e40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>古代可以卧的车，也用作丧车。</x>' WHERE id='6afecf793b6511ea8c8940b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>形</w>不干净；脏。</x><x>比喻人品质恶劣<example>卑鄙～</example>
+</x><x>
+<s>1</s>形容气量狭小，拘于小节。</x>' WHERE id='12a3f1b73b6411ea8bc340b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>动</w>没有(跟“有”相对)<example>从～到有</example>
+<example>～产阶级</example>
+<example>有则改之，～则加勉。</example>
+</x><x>不<example> ～论</example>
+<example>～须。</example>
+</x><x>
+<w>连</w>不论<example>事～大小，都有人负责。</example>
+</x><x>
+<t>毋</t>
+</x><x>
+<y>Wú</y>
+<w>名</w>
+<v>1</v>姓</x>' WHERE id='560427473b6311eab7ae40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>动</w>没有(跟“有”相对)<example>从～到有</example>
+<example>～产阶级</example>
+<example>有则改之，～则加勉。</example>
+</x><x>不<example> ～论</example>
+<example>～须。</example>
+</x><x>
+<w>连</w>不论<example>事～大小，都有人负责。</example>
+</x><x>
+<t>毋</t>
+</x><x>
+<y>Wú</y>
+<w>名</w>
+<v>1</v>姓</x>' WHERE id='a54776923b6511eaa3d640b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>节肢动物，身体长而扁，头部金黄色，背部暗绿色，腹部黄褐色，头部有鞭状触角，躯干由许多环节构成，每个环节有一对足。第一对足呈钩状，有毒腺，能分泌毒液。吃小昆虫。可入药。</x>' WHERE id='9a3a348f3b6411eab5ce40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>像玉的石块。<h>碔砆</h>
+</x>' WHERE id='786b0f583b6411eaa89740b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<t>珷玞</t>
+</x>' WHERE id='789774693b6411ea99bb40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>高高地突起<example>突～</example>
+</x><x>形容山秃，泛指秃<example> ～鹫。</example>
+</x>' WHERE id='a5b84cf43b6611ea8fd940b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<t>乌拉”(wù·lɑ)</t>
+</x>' WHERE id='512d0a163b6511ea832d40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>
+<v>1</v>姓</x>
+<x>
+<w>名</w>
+<v>1</v>姓</x>' WHERE id='fcd7af6b3b6311eaacf940b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<t>嬉</t>
+</x>' WHERE id='a4faafa23b6311ea92ef40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>遏蓝菜。</x>' WHERE id='9c9f27d83b6511eaada740b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>形容细小的摩擦声音。</x>' WHERE id='5de15e3d3b6611eaa7a240b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>小路<example> ～径。</example>
+</x>' WHERE id='debfe58e3b6511eaa8a840b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>昆虫，身体黑褐色，触角很长，后腿粗大，善于跳跃。尾部有尾须一对。雄的好斗，两翅摩擦能发声。生活在阴湿的地方，吃植物的根、茎和种子，对农业有害。也叫促织，有的地区叫蛐蛐儿。</x>' WHERE id='4f914f4f3b6611ea8c7840b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>束发的帛。</x>' WHERE id='5f4937b93b6511ea8b5a40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>喝<c>1</c>(hē)<fx>1</fx>
+<example> ～了一口茶。</example>
+</x>' WHERE id='82f7eab53b6411eabb6c40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>动</w>偶然遇见；不期而遇<example>他乡～</example>
+</x>' WHERE id='cca751a53b6411eab14740b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>确实<example> ～史|～而有征。</example>
+</x><x>信用<example>守～|失～|威～|言而有～</example>
+</x><x>
+<w>动</w>相信<example> ～托|～任|～仰|别～他的话。</example>
+</x><x>
+<w>动</w>信奉(宗教)<example> ～教|～徒。</example>
+</x><x>听凭；随意；放任<example> ～步|～口开河。</example>
+</x><x>凭据<example> ～号|～物|印～</example>
+</x><x>
+<w>名</w>按照习惯的格式把要说的话写下来给指定的对象看的东西；书信<example>送～|介绍～|证明～</example>
+</x><x>
+<e>1</e>
+<w>名</w>信息<example>音～|口～儿|通风报～</example>
+</x><x>引信<example> ～管。</example>
+</x><x>
+<t>芯”(xìn)</t>
+</x><x>
+<y>Xìn</y>
+<w>名</w>
+<v>1</v>姓</x><x>
+<g>
+<t>伸<y>shēn</y>
+</t>
+</g>
+</x>' WHERE id='d66461f13b6611ea8ad740b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>雌雄两性的区别,通常指男女两性的区别。</x>' WHERE id='58b591643b6311eab14240b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>
+<l>川芎</l>
+</x>' WHERE id='fb5c785b3b6511ea9e9840b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>鸟，羽毛棕褐色，有横斑，尾巴黑褐色，腿部白色。脸部羽毛略呈放射状，头部没有角状的羽毛。捕食鼠、兔等，对农业有益。</x>' WHERE id='78c244783b6511ea8bb240b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>古代传说中的一种吃人的猛兽。</x>' WHERE id='ef8a447f3b6611eaa3b740b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>动</w>把鱼、肉、蛋、蔬菜、果品等加上盐、糖、酱、酒等。</x>' WHERE id='a45e3e813b6311eab75140b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>一年生或二年生草本植物，羽状复叶，小叶卵圆形或条形，茎和叶有特殊香气，花小，白色。果实球形，用作香料，也可入药。嫩茎和叶用来调味。通称香菜，也叫胡荽。</x>' WHERE id='60dd97913b6611eabbe640b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>助</w>表示疑问的语气<example>是～非～?</example>
+</x><x>
+<g>
+<t>爷</t>
+</g>
+</x>' WHERE id='feee1b203b6611eaac6740b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>半常绿或落叶乔木，叶子椭圆形或卵状披针形，花白色，果实卵形。树皮和果实可入药。</x>' WHERE id='076b93003b6711ea99a040b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>介</w>往；向(表示在某一方向上的延伸)<example>天安门～西是中山公园，～东是劳动人民文化宫。</example>
+</x>' WHERE id='080e1f1a3b6711ea9d0440b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>介</w>往；向(表示在某一方向上的延伸)<example>天安门～西是中山公园，～东是劳动人民文化宫。</example>
+</x>' WHERE id='08128c1c3b6711eab8fb40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>形</w>柔和美好<example>风光～</example>
+</x>' WHERE id='b62bd2043b6511ea993d40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<t>刈</t>
+</x>
+<x>
+<t>刈</t>
+</x>' WHERE id='0dfecc693b6711eaa84b40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>语言文字或其他信号所表示的内容。</x><x>价值；作用<example>积极的～</example>
+<example>探讨人生的～</example>
+<example>一部富有教育～的影片。</example>
+</x>' WHERE id='56195e543b6311eaadf840b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>有机化合物，化学式C8H7N，无色或淡黄色片状晶体，存在于煤焦油和腐败的蛋白质中。用来制香料、染料和药物。<o>英</o>
+<q>indole</q>。</x>' WHERE id='57a157c63b6411ea91dd40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>英寸旧<h>吋</h>
+</x>
+<x>英寸旧<h>吋</h>
+</x>' WHERE id='1c2ee9a93b6411ea985240b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>英尺旧<h>呎</h>
+</x>
+<x>英尺旧<h>呎</h>
+</x>' WHERE id='fe9ea5093b6311ea948d40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>英两(盎司)旧<h>唡</h>
+</x>
+<x>英两(盎司)旧<h>唡</h>
+</x>' WHERE id='6c395f863b6511ea985b40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>英两(盎司)旧<h>唡</h>
+</x>
+<x>英两(盎司)旧<h>唡</h>
+</x>' WHERE id='6c3b605d3b6511ea878640b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>英里旧<h>哩</h>
+</x>
+<x>英里旧<h>哩</h>
+</x>' WHERE id='5e7ba11e3b6511eaa59d40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>梭子蟹。</x>' WHERE id='a9886eda3b6511ea80a240b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>常绿乔木，叶子大而阔，卵形，花白色，很香，果实大，冬季成熟，球形或扁圆形，果皮淡黄，果肉白色或粉红色，是常见水果。生长于我国南部地区。</x><x>这种植物的果实。通称柚子。有的地区叫文旦。</x>' WHERE id='230f604c3b6711eaad4640b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>古时一种木船。</x>' WHERE id='dda2df6f3b6411ea8d1440b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>古书上说的凤凰一类的鸟。</x>' WHERE id='313f94293b6711eab9f840b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>大波浪。</x>' WHERE id='39d7e98d3b6711ea9bdf40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>生长在水边的大竹子。</x>' WHERE id='2e420a413b6411ea9d4140b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>碎麻。</x><x>新旧混合的丝绵絮<example> ～袍。</example>
+</x>' WHERE id='38bc3a513b6711ea804040b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>碎麻。</x><x>新旧混合的丝绵絮<example> ～袍。</example>
+</x>' WHERE id='38c0ce843b6711eaa0e740b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>动</w>用烙铁或熨斗烫平<example> ～衣服。</example>
+</x>' WHERE id='307ea8fd3b6711ea84c640b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>代</w>人称代词。</x><x>咱们<example>哥哥，～回家吧</example>
+<example>运动员为～国家争了光。</example>
+</x><x>
+<f>1</f>我<example> ～不懂他的话。</example>
+</x>' WHERE id='3ccb555b3b6711ea9e1c40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>小船。</x>' WHERE id='99a53e823b6511ea81fc40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<t>乌贼</t>
+</x>
+<x>
+<t>乌贼</t>
+</x>' WHERE id='a641f83e3b6611eabc4a40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>(手、头发、树枝等)张开；伸开。<h>扎煞</h>
+</x>' WHERE id='1d0683063b6611ea818440b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>旧时仆役对主人的应诺声。</x><x>
+<w>拟</w>形容鸟叫等声音<example>喜鹊～～地叫。</example>
+</x>' WHERE id='e7af624c3b6311eabdb040b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>栅栏<example>铁～</example>
+<example>木～</example>
+<example>～门(栅栏门)。</example>
+</x>' WHERE id='1febf8e53b6611ea91ea40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>栅栏<example>铁～</example>
+<example>木～</example>
+<example>～门(栅栏门)。</example>
+</x>' WHERE id='1ff08d0e3b6611eaa5b640b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>昆虫，身体扁平，黑褐色，能发出臭味。常咬坏衣物，污染食物，并能传染伤寒、霍乱等疾病，是害虫。种类很多。也叫蜚蠊。</x>' WHERE id='557b473b3b6511eab02040b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>形</w>形容声音烦杂细碎。<h>嘲哳</h>
+</x>' WHERE id='44e511c33b6711eaa6b440b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>用金属丝、竹篾或柳条等制成的能漏水的用具，有长柄，用来捞东两。</x>' WHERE id='5ffadff73b6511eab39140b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>旧时仆役对主人或宾客的应诺声。</x>' WHERE id='4f6223483b6711ea930140b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>鸟，背部和腹部黑白两色相杂，头顶棕色，脚黄色。生活在有灌木丛的低矮山地，吃昆虫、蚯蚓、植物的种子等。</x>' WHERE id='9f49b7de3b6411eaabcc40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>形</w>高峻<example>山势～</example>
+<example>怪石～</example>
+<example>殿宇～</example>
+</x><x>比喻才气、品格等超越寻常；不平凡<example>头角～</example>
+<example>～岁月。</example>
+</x>' WHERE id='0e6c4faf3b6611eaba0e40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>拟</w>形容金属撞击的声音。</x>' WHERE id='561fe2bc3b6711ea832f40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>形</w>头发蓬松。</x>' WHERE id='baecff523b6511ea99db40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>发愣；发呆<example>我一看诊断书，顿时～住了，不敢对他明说。</example>
+</x>' WHERE id='55d763453b6711ea9ae840b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>动</w>用力使自己摆脱束缚<example> ～脱枷锁</example>
+<example>把捆绑的绳子～开了。</example>
+</x>' WHERE id='55e9b8ca3b6711eaad2f40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>(器物表面)光亮耀眼<example>玻璃擦得～亮。</example>
+</x>' WHERE id='56227afe3b6711ea9bd540b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>遇到障碍。</x><x>跌倒<example>跋前～后(进退两难)。</example>
+</x>
+<x>遇到障碍。</x><x>跌倒<example>跋前～后(进退两难)。</example>
+</x>' WHERE id='645fafe13b6711eabe8d40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>疯狂。</x>' WHERE id='000e049f3b6411ea9d2640b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<t>种(種)</t>
+</x>
+<x>
+<t>种(種)</t>
+</x>' WHERE id='685017383b6711ea825040b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>哥哥的妻子和弟弟的妻子的合称<example>她们三个是～</example>
+<example>你们～俩去吧！</example>
+</x>' WHERE id='61618b913b6511eab1d840b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>山茱萸、吴茱萸、食茱萸等的统称。</x>' WHERE id='298738963b6711eaad7d40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>指首尾衔接的船只(舳:船尾；舻:船头)<example> ～相继</example>
+<example>～千里。</example>
+</x>' WHERE id='7dca13613b6511ea97ef40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>动</w>告诉对方记住应该怎样，不应该怎样<example>再三～</example>
+<example>～孩子好好学习。</example>
+</x>' WHERE id='7f8c4ca13b6411eaa45940b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<t>馔</t>
+<t>撰</t>
+</x>
+<x>
+<t>馔</t>
+<t>撰</t>
+</x>' WHERE id='744524023b6711ea8ae640b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>形</w>形容迟迟不进<example> ～途次。</example>
+</x><x>困顿不得志<example> ～坎坷。</example>
+<h>屯邅</h>
+</x>' WHERE id='477e95c53b6711eab91e40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>墓穴。</x>' WHERE id='b10d6ccd3b6611ea9c6f40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>古代供祭祀的谷物。</x>' WHERE id='12d42d513b6411ea9a5b40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<l>孜孜</l>
+</x>' WHERE id='795c975f3b6711ea9bb740b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>形</w>行走困难。</x><x>想前进又不敢前进的样子<example> ～不前。</example>
+</x>' WHERE id='29c8023e3b6511eaa8bc40b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>
+<w>名</w>大锄。<h>镃基</h>
+</x>' WHERE id='eedea0283b6411ea89b540b89afe1ea2';
+UPDATE "tbl_metaData" SET remark='<x>黏虫。</x>' WHERE id='689507333b6411ea810940b89afe1ea2';

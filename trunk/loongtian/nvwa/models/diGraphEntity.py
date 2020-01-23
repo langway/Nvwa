@@ -200,7 +200,7 @@ class DiGraphEntity(BaseEntity):
         
         if not self._StartItem:
             raise Exception(
-                "未能取得始端对象对象：{%s:%s,%d:%s}。" % ("Id", self.startid, self.stype, ObjType.getTypeNames(self.stype)))
+                "未能取得始端对象对象：{%s:%s,%d:%s}。" % ("Id", self.startid, self.stype, ObjType.getName(self.stype)))
         return self._StartItem
 
     def getEndItem(self):
@@ -219,7 +219,7 @@ class DiGraphEntity(BaseEntity):
 
         if not self._EndItem:
             raise Exception(
-                "未能取得尾端对象对象：{%s:%s,%d:%s}。" % ("Id", self.endid, self.etype, ObjType.getTypeNames(self.etype)))
+                "未能取得尾端对象对象：{%s:%s,%d:%s}。" % ("Id", self.endid, self.etype, ObjType.getName(self.etype)))
         return self._EndItem
 
     @classmethod

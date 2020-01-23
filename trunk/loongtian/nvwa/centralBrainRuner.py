@@ -8,7 +8,7 @@ __author__ = "Leon"
 """
 from loongtian.nvwa.organs.centralBrain import CentralBrain
 
-if __name__ == "__main__":
+def startCentralBrain():
     from loongtian.nvwa.organs.centralManager import CentralManager
 
     CentralManager._cleanDB(wait_for_command=True)
@@ -16,3 +16,6 @@ if __name__ == "__main__":
     _CentralBrain = CentralBrain()
     _CentralBrain.init()
     _CentralBrain.run()
+
+if __name__ == "__main__":
+    startCentralBrain()

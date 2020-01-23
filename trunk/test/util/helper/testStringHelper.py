@@ -12,50 +12,50 @@ class TestStringHelper(TestCase):
 
     def testIsStringNullOrEmpty(self):
         print("----testIsStringNullOrEmpty----")
-        isString = StringHelper.IsStringNullOrEmpty(10)
+        isString = StringHelper.isStringNullOrEmpty(10)
         print('%s IsStringNullOrEmpty:'%10, isString)
-        isString = StringHelper.IsStringNullOrEmpty('abcd')
+        isString = StringHelper.isStringNullOrEmpty('abcd')
         print('%s IsStringNullOrEmpty:'%'\'abcd\'', isString)
-        isString = StringHelper.IsStringNullOrEmpty('')
+        isString = StringHelper.isStringNullOrEmpty('')
         print('%s IsStringNullOrEmpty:'%'\'\'', isString)
 
 
 
     def testIsNotAStringOrStringEmpty(self):
         print("----testIsNotAStringOrStringEmpty----")
-        isString = StringHelper.IsNotAStringOrStringEmpty(10)
+        isString = StringHelper.isNotAStringOrStringEmpty(10)
         print('%s IsNotAStringOrStringEmpty:'%10, isString)
-        isString = StringHelper.IsNotAStringOrStringEmpty('abcd')
+        isString = StringHelper.isNotAStringOrStringEmpty('abcd')
         print('%s IsNotAStringOrStringEmpty:'%'\'abcd\'', isString)
-        isString = StringHelper.IsNotAStringOrStringEmpty('')
+        isString = StringHelper.isNotAStringOrStringEmpty('')
         print('%s IsNotAStringOrStringEmpty:'%'\'\'', isString)
 
 
     def testConverUnicodeToString(self):
         print("----testConverUnicodeToString----???????????")
         unic_str = u'中国, 辽宁'.encode('utf-8')
-        string_str = StringHelper.ConverUnicodeToString(unic_str)
+        string_str = StringHelper.converUnicodeToString(unic_str)
         print(string_str)
 
     def testConverStringToUnicode(self):
         print("----testConverStringToUnicode----?????")
         unic_str = u'中国, 辽宁'
-        string_str = StringHelper.ConverStringToUnicode(unic_str)
+        string_str = StringHelper.converStringToUnicode(unic_str)
         print(string_str)
 
     def testConvertToNumber(self):
         print("----testConvertToNumber----")
         num_str = u'中国, 辽宁'
-        string_str = StringHelper.ConvertToNumber(num_str)
+        string_str = StringHelper.convertToNumber(num_str)
         print(string_str, type(string_str))
         num_str = u'10'
-        string_str = StringHelper.ConvertToNumber(num_str)
+        string_str = StringHelper.convertToNumber(num_str)
         print(string_str, type(string_str))
         num_str = u'12.333'
-        string_str = StringHelper.ConvertToNumber(num_str)
+        string_str = StringHelper.convertToNumber(num_str)
         print(string_str, type(string_str))
         num_str = u'101416132131213121213'
-        string_str = StringHelper.ConvertToNumber(num_str)
+        string_str = StringHelper.convertToNumber(num_str)
         print(string_str, type(string_str))
 
     def testIsFloat(self):
@@ -76,23 +76,23 @@ class TestStringHelper(TestCase):
     def testIsLong(self):
         print("----testIsLong----")
         num_str = u'中国, 辽宁'
-        string_str = StringHelper.isLong(num_str)
+        string_str = StringHelper.is_float(num_str)
         print(num_str,'IsLong:', string_str)
         num_str = u'10'
-        string_str = StringHelper.isLong(num_str)
+        string_str = StringHelper.is_float(num_str)
         print(num_str,'IsLong:', string_str)
         num_str = u'12.333'
-        string_str = StringHelper.isLong(num_str)
+        string_str = StringHelper.is_float(num_str)
         print(num_str,'IsLong:', string_str)
         num_str = u'101416132131213121213L'
-        string_str = StringHelper.isLong(num_str)
+        string_str = StringHelper.is_float(num_str)
         print(num_str,'IsLong:', string_str)
 
-    def testIsKexue(self):
-        print("----testIsKexue----")
-        num_str = '2.0001e+12'
-        string_str = StringHelper.isKexue(num_str)
-        print(num_str,'IsKexue:', string_str)
+    # def testIsKexue(self):
+    #     print("----testIsKexue----")
+    #     num_str = '2.0001e+12'
+    #     string_str = StringHelper.isKexue(num_str)
+    #     print(num_str,'IsKexue:', string_str)
 
     def testNumberConverter(self):
         test_dig = [u'九',
@@ -116,11 +116,9 @@ class TestStringHelper(TestCase):
     def testQuanjiaoBanjiao(self):
         print(StringHelper.strB2Q('mn2000'))
 
-        b = StringHelper.strQ2B(u"ｍｎ123abc博客园")
-        print((u"ｍｎ123abc博客园"))
+        b = StringHelper.strQ2B("ｍｎ123abc博客园")
+        print(("ｍｎ123abc博客园"))
         print(b)
-
-
 
     def tearDown(self):
         print("----tearDown----")

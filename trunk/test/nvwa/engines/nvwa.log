@@ -1,10 +1,86 @@
-[ INFO ]- 鈥斺�攍earned No.23 file:E:\0-Nvwa\doc\鐭ヨ瘑搴揬Other\鏂版氮鏂伴椈-鐢ㄤ簬鑷劧璇█澶勭悊鐨勮鏂欏簱\10宀佸濡规晳钀芥按濮愬鍙屽弻閬囬毦.txt
-InnerTraceback (most recent call last):
-File "E:\0-nvwa\trunk\loongtian\util\log\logger.py", line 442, in info
-File "E:\0-nvwa\trunk\loongtian\nvwa\engines\metaEngine.py", line 592, in learnFiles
-File "E:\0-nvwa\trunk\test\nvwa\engines\testMetaEnginet.py", line 322, in testLearnFiles total_seconds:1.306 - 2019-02-27 11:31:29,914 - nvwa - logger.py:442
-[ INFO ]- 鈥斺�攍earning No.23 file:E:\0-Nvwa\doc\鐭ヨ瘑搴揬Other\鏂版氮鏂伴椈-鐢ㄤ簬鑷劧璇█澶勭悊鐨勮鏂欏簱\10宀佸濮愯荡浜晳鐧借鐥呭濡圭画锛氭垚鍔熸鍏ュ共缁嗚優.txt
-InnerTraceback (most recent call last):
-File "E:\0-nvwa\trunk\loongtian\util\log\logger.py", line 442, in info
-File "E:\0-nvwa\trunk\loongtian\nvwa\engines\metaEngine.py", line 586, in learnFiles
-File "E:\0-nvwa\trunk\test\nvwa\engines\testMetaEnginet.py", line 322, in testLearnFiles - 2019-02-27 11:31:29,940 - nvwa - logger.py:442
+[ INFO ]- ——learning No.7469 file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\黑老大自感羞愧哭求法官让旁听女儿离庭.txt - 2020-01-17 16:28:45,175 - nvwa - logger.py:440
+[ INFO ]- ——learned No.7470 file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\黑老大自感羞愧哭求法官让旁听女儿离庭.txt total_seconds:0.217057 - 2020-01-17 16:28:45,393 - nvwa - logger.py:440
+[ INFO ]- ——learning No.7470 file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\黑老大贿赂看押人员逃脱至今未归案.txt - 2020-01-17 16:28:45,394 - nvwa - logger.py:440
+[ INFO ]- ——learned No.7471 file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\黑老大贿赂看押人员逃脱至今未归案.txt total_seconds:0.130037 - 2020-01-17 16:28:45,525 - nvwa - logger.py:440
+[ INFO ]- ——learning No.7471 file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\黑老大逼欠债赌徒赤脚走荆条.txt - 2020-01-17 16:28:45,529 - nvwa - logger.py:440
+[ INFO ]- ——learned No.7472 file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\黑老大逼欠债赌徒赤脚走荆条.txt total_seconds:0.288079 - 2020-01-17 16:28:45,817 - nvwa - logger.py:440
+[ INFO ]- ——learning No.7472 file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\黑诊所医生无证行医致人死亡被判刑.txt - 2020-01-17 16:28:45,818 - nvwa - logger.py:440
+[ INFO ]- ——learned No.7473 file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\黑诊所医生无证行医致人死亡被判刑.txt total_seconds:0.067946 - 2020-01-17 16:28:45,886 - nvwa - logger.py:440
+[ INFO ]- ——learning No.7473 file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\黑车司机深夜劫杀乘客获死刑.txt - 2020-01-17 16:28:45,887 - nvwa - logger.py:440
+[ INFO ]- ——learned No.7474 file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\黑车司机深夜劫杀乘客获死刑.txt total_seconds:0.037005 - 2020-01-17 16:28:45,925 - nvwa - logger.py:440
+[ INFO ]- ——learning No.7474 file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\黑车司机猥亵13岁打车女孩.txt - 2020-01-17 16:28:45,926 - nvwa - logger.py:440
+[ INFO ]- ——learned No.7475 file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\黑车司机猥亵13岁打车女孩.txt total_seconds:0.008005 - 2020-01-17 16:28:45,934 - nvwa - logger.py:440
+[ INFO ]- ——learning No.7475 file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\黑道老大出狱后安置上百刑释人员就业.txt - 2020-01-17 16:28:45,936 - nvwa - logger.py:440
+[ INFO ]- ——learned No.7476 file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\黑道老大出狱后安置上百刑释人员就业.txt total_seconds:0.336074 - 2020-01-17 16:28:46,271 - nvwa - logger.py:440
+[ INFO ]- ——learning No.7476 file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\黑龙江两兄弟拟用三轮车拉老母到台湾.txt - 2020-01-17 16:28:46,273 - nvwa - logger.py:440
+[ INFO ]- ——learned No.7477 file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\黑龙江两兄弟拟用三轮车拉老母到台湾.txt total_seconds:0.026079 - 2020-01-17 16:28:46,299 - nvwa - logger.py:440
+[ INFO ]- ——learning No.7477 file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\黑龙江亿万富豪被控雇凶杀人(图).txt - 2020-01-17 16:28:46,300 - nvwa - logger.py:440
+[ INFO ]- ——learned No.7478 file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\黑龙江亿万富豪被控雇凶杀人(图).txt total_seconds:0.081949 - 2020-01-17 16:28:46,381 - nvwa - logger.py:440
+[ INFO ]- ——learning No.7478 file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\黑龙江种粮高手马广福：上完春晚还回家种田.txt - 2020-01-17 16:28:46,386 - nvwa - logger.py:440
+[ INFO ]- ——learned No.7479 file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\黑龙江种粮高手马广福：上完春晚还回家种田.txt total_seconds:0.110098 - 2020-01-17 16:28:46,496 - nvwa - logger.py:440
+[ INFO ]- 开始加载数据库元数据 - 2020-01-19 16:34:24,153 - nvwa - logger.py:440
+[ INFO ]- 加载数据库元数据完毕 total_seconds:0.691173 - 2020-01-19 16:34:24,844 - nvwa - logger.py:440
+[ INFO ]- ——segmenting file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\乡村女教师背着残疾女儿求学十余年(图).txt - 2020-01-19 16:34:24,942 - nvwa - logger.py:440
+[ INFO ]- ——segmented file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\乡村女教师背着残疾女儿求学十余年(图).txt total_seconds:0.091896 - 2020-01-19 16:34:25,034 - nvwa - logger.py:440
+[ INFO ]- ——segmenting file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\经适房公示人员身份证号为18个“1”遭质疑.txt - 2020-01-19 16:34:25,042 - nvwa - logger.py:440
+[ INFO ]- ——segmented file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\经适房公示人员身份证号为18个“1”遭质疑.txt total_seconds:0.110025 - 2020-01-19 16:34:25,152 - nvwa - logger.py:440
+[ INFO ]- ——segmenting file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\男子非法吸收公众存款1.91亿获刑5年.txt - 2020-01-19 16:34:25,165 - nvwa - logger.py:440
+[ INFO ]- ——segmented file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\男子非法吸收公众存款1.91亿获刑5年.txt total_seconds:0.057142 - 2020-01-19 16:34:25,222 - nvwa - logger.py:440
+[ INFO ]- 开始加载数据库元数据 - 2020-01-19 16:35:22,424 - nvwa - logger.py:440
+[ INFO ]- 加载数据库元数据完毕 total_seconds:0.022007 - 2020-01-19 16:35:22,446 - nvwa - logger.py:440
+[ INFO ]- ——segmenting file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\乡村女教师背着残疾女儿求学十余年(图).txt - 2020-01-19 16:35:22,455 - nvwa - logger.py:440
+[ INFO ]- ——segmented file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\乡村女教师背着残疾女儿求学十余年(图).txt total_seconds:0.116031 - 2020-01-19 16:35:22,571 - nvwa - logger.py:440
+[ INFO ]- ——segmenting file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\经适房公示人员身份证号为18个“1”遭质疑.txt - 2020-01-19 16:35:22,578 - nvwa - logger.py:440
+[ INFO ]- ——segmented file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\经适房公示人员身份证号为18个“1”遭质疑.txt total_seconds:0.146034 - 2020-01-19 16:35:22,724 - nvwa - logger.py:440
+[ INFO ]- ——segmenting file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\男子非法吸收公众存款1.91亿获刑5年.txt - 2020-01-19 16:35:22,730 - nvwa - logger.py:440
+[ INFO ]- ——segmented file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\男子非法吸收公众存款1.91亿获刑5年.txt total_seconds:0.068014 - 2020-01-19 16:35:22,799 - nvwa - logger.py:440
+[ INFO ]- 开始加载数据库元数据 - 2020-01-19 19:40:38,807 - nvwa - logger.py:440
+[ INFO ]- 加载数据库元数据完毕 total_seconds:28.436943 - 2020-01-19 19:41:07,244 - nvwa - logger.py:440
+[ INFO ]- 开始加载数据库元数据 - 2020-01-19 19:46:57,790 - nvwa - logger.py:440
+[ INFO ]- 加载数据库元数据完毕 total_seconds:22.154598 - 2020-01-19 19:47:19,945 - nvwa - logger.py:440
+[ INFO ]- 开始加载数据库元数据 - 2020-01-19 20:10:06,529 - nvwa - logger.py:440
+[ INFO ]- 加载数据库元数据完毕 total_seconds:14.226592 - 2020-01-19 20:10:20,755 - nvwa - logger.py:440
+[ INFO ]- ——segmenting file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\乡村女教师背着残疾女儿求学十余年(图).txt - 2020-01-19 20:10:26,297 - nvwa - logger.py:440
+[ INFO ]- ——segmented file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\乡村女教师背着残疾女儿求学十余年(图).txt total_seconds:0.165984 - 2020-01-19 20:10:26,463 - nvwa - logger.py:440
+[ INFO ]- ——segmenting file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\经适房公示人员身份证号为18个“1”遭质疑.txt - 2020-01-19 20:15:37,166 - nvwa - logger.py:440
+[ INFO ]- ——segmented file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\经适房公示人员身份证号为18个“1”遭质疑.txt total_seconds:0.142986 - 2020-01-19 20:15:37,309 - nvwa - logger.py:440
+[ INFO ]- ——segmenting file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\男子非法吸收公众存款1.91亿获刑5年.txt - 2020-01-19 20:15:52,203 - nvwa - logger.py:440
+[ INFO ]- ——segmented file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\男子非法吸收公众存款1.91亿获刑5年.txt total_seconds:0.099021 - 2020-01-19 20:15:52,302 - nvwa - logger.py:440
+[ INFO ]- 开始加载数据库元数据 - 2020-01-19 22:16:41,766 - nvwa - logger.py:440
+[ INFO ]- 加载数据库元数据完毕 total_seconds:370.690662 - 2020-01-19 22:22:52,519 - nvwa - logger.py:440
+[ INFO ]- ——segmenting file:..\..\..\..\doc\知识库\Other\新浪新闻-用于自然语言处理的语料库\乡村女教师背着残疾女儿求学十余年(图).txt - 2020-01-19 22:23:47,431 - nvwa - logger.py:440
+[ INFO ]- 开始加载数据库元数据 - 2020-01-20 11:46:06,087 - nvwa - logger.py:440
+[ INFO ]- 加载数据库元数据完毕 total_seconds:15.91594 - 2020-01-20 11:46:22,072 - nvwa - logger.py:440
+[ INFO ]- 开始加载数据库元数据 - 2020-01-20 11:48:22,979 - nvwa - logger.py:440
+[ INFO ]- 加载数据库元数据完毕 total_seconds:15.996043 - 2020-01-20 11:48:38,975 - nvwa - logger.py:440
+[ INFO ]- 开始加载数据库元数据 - 2020-01-20 11:51:14,235 - nvwa - logger.py:440
+[ INFO ]- 加载数据库元数据完毕 total_seconds:14.595568 - 2020-01-20 11:51:28,831 - nvwa - logger.py:440
+[ INFO ]- 开始加载数据库元数据 - 2020-01-20 12:07:09,282 - nvwa - logger.py:440
+[ INFO ]- 加载数据库元数据完毕 total_seconds:14.703717 - 2020-01-20 12:07:23,986 - nvwa - logger.py:440
+[ INFO ]- 开始加载数据库元数据 - 2020-01-20 12:37:04,328 - nvwa - logger.py:440
+[ INFO ]- 加载数据库元数据完毕 total_seconds:14.653701 - 2020-01-20 12:37:18,982 - nvwa - logger.py:440
+[ INFO ]- 开始加载数据库元数据 - 2020-01-20 12:39:36,307 - nvwa - logger.py:440
+[ INFO ]- 加载数据库元数据完毕 total_seconds:15.453984 - 2020-01-20 12:39:51,762 - nvwa - logger.py:440
+[ INFO ]- 开始加载数据库元数据 - 2020-01-20 12:46:56,689 - nvwa - logger.py:440
+[ INFO ]- 加载数据库元数据完毕 total_seconds:15.603935 - 2020-01-20 12:47:12,293 - nvwa - logger.py:440
+[ INFO ]- 开始加载数据库元数据 - 2020-01-20 18:03:10,598 - nvwa - logger.py:440
+[ INFO ]- 加载数据库元数据完毕 total_seconds:112.144436 - 2020-01-20 18:05:02,742 - nvwa - logger.py:440
+[ INFO ]- <bound method BaseEntity.create of {MetaData:{id:68d98b1f3b8311ea8db940b89afe1ea2,mvalue:小明,type:WORD,recognized:True}}> - 2020-01-20 20:50:17,407 - nvwa - logger.py:440
+[ INFO ]- 开始加载数据库元数据 - 2020-01-20 20:50:59,591 - nvwa - logger.py:440
+[ INFO ]- 加载数据库元数据完毕 total_seconds:105.560178 - 2020-01-20 20:52:45,210 - nvwa - logger.py:440
+[ INFO ]- 开始加载数据库元数据 - 2020-01-21 20:47:08,423 - nvwa - logger.py:440
+[ INFO ]- 加载数据库元数据完毕 total_seconds:93.357205 - 2020-01-21 20:48:41,795 - nvwa - logger.py:440
+[ INFO ]- 开始加载数据库元数据 - 2020-01-21 21:40:09,971 - nvwa - logger.py:440
+[ INFO ]- 加载数据库元数据完毕 total_seconds:94.550619 - 2020-01-21 21:41:44,521 - nvwa - logger.py:440
+[ INFO ]- 开始加载数据库元数据 - 2020-01-21 21:42:56,634 - nvwa - logger.py:440
+[ INFO ]- 加载数据库元数据完毕 total_seconds:93.016576 - 2020-01-21 21:44:29,651 - nvwa - logger.py:440
+[ INFO ]- 开始加载数据库元数据 - 2020-01-21 21:46:15,818 - nvwa - logger.py:440
+[ INFO ]- 加载数据库元数据完毕 total_seconds:93.055194 - 2020-01-21 21:47:48,873 - nvwa - logger.py:440
+[ INFO ]- 开始加载数据库元数据 - 2020-01-21 21:53:31,967 - nvwa - logger.py:440
+[ INFO ]- 加载数据库元数据完毕 total_seconds:96.029242 - 2020-01-21 21:55:07,997 - nvwa - logger.py:440
+[ INFO ]- 开始加载数据库元数据 - 2020-01-21 21:57:46,428 - nvwa - logger.py:440
+[ INFO ]- 加载数据库元数据完毕 total_seconds:93.608893 - 2020-01-21 21:59:20,037 - nvwa - logger.py:440
+[ INFO ]- 开始加载数据库元数据 - 2020-01-21 22:03:45,286 - nvwa - logger.py:440
+[ INFO ]- 加载数据库元数据完毕 total_seconds:91.965195 - 2020-01-21 22:05:17,252 - nvwa - logger.py:440
+[ INFO ]- 开始加载数据库元数据 - 2020-01-21 22:06:51,263 - nvwa - logger.py:440
+[ INFO ]- 加载数据库元数据完毕 total_seconds:92.842163 - 2020-01-21 22:08:24,105 - nvwa - logger.py:440

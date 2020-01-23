@@ -18,17 +18,17 @@ collection=db.users
 #添加命令如下：
 
 # 添加单条数据到集合中
-user = {"name":"xiaoxu","age":"23"}
+user = {"name":"xiaox","age":"23"}
 collection.insert(user)     #添加数据
 collection.save(user)      #添加数据
 
 #同时添加多条数据到集合中
-users=[{"name":"xiaoxu","age":"23"},{"name":"xiaoli","age":"20"}]
+users=[{"name":"xiaox","age":"23"},{"name":"xiaoli","age":"20"}]
 collection.insert(users)    #添加数据
 collection.save(users)      #添加数据
 
 #删除命令如下：
-collection.remove({"name":"xiaoxu"})
+collection.remove({"name":"xiaox"})
 
 
 #修改命令如下：

@@ -44,7 +44,7 @@ def resolveProxies(PROXIES,PROXY_LIST_FILE):
         if type(proxy) is types.DictionaryType:
             proxies.update(proxy)
         else:
-            proxies[proxy]=u""
+            proxies[proxy]=""
 
     if not len(proxies)==len(PROXIES):
         proxies.update(PROXIES)

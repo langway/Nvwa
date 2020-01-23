@@ -606,7 +606,7 @@ class _Instincts(object):
             self.instinct_original_code_language = instinct
             self.meta_original_code_language.Layers.addLower(instinct, recordInDB=False)  # 关联meta和real
         else:
-            raise Exception("未知的直觉对象")
+            raise Exception("未知的直觉对象：%s" % instinct.remark)
 
     def getConstituentDistance(self, instinct):
         """

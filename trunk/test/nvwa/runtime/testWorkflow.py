@@ -25,7 +25,7 @@ class TestWorkflow(TestCase):
         print (workflow.toObjChain(forceToNvwaObject=False))
 
         step2 = Step()
-        status3 = Status([u"A", u"B", u"C"])
+        status3 = Status(["B", "C"])
         step2.addStatus(status3)
         workflow.addStep(step2)
         print (workflow.toObjChain(forceToNvwaObject=False))

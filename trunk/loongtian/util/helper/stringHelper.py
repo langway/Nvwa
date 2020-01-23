@@ -7,85 +7,126 @@ import math
 import re
 import hashlib
 from loongtian.util.common.enum import Enum
-
+from loongtian.util.common.generics import GenericsList
 
 """
 标点符号字典，包括0：段落标记、1：整句子间标点符号、2：短语间标点符号、3：短语内标点符号
 格式为：{标点符号:[标点符号类别,词频]}
 """
+
+
+class StopMarkLevel(Enum):
+    paragraph = 0
+    sentence = 1
+    short = 2
+    inshort = 3
+
+
 StopMarks = {
-     # paragraphMarks段落标记
-        u"\r\n":[0, 8.8],
-        u"\n": [0,6.5],
-        u"\r": [0,3.3],
-        # u"\t":[0,2.0],
+    # paragraphMarks段落标记
+    "\r\n": [StopMarkLevel.paragraph, 8.8],
+    "\n": [StopMarkLevel.paragraph, 6.5],
+    # "\r": [StopMarkLevel.paragraph, 3.3],
+    # "\t":[StopMarkLevel.paragraph,2.0],
     # sentence_punctuation句子间标点符号，是句子结束
-        u".": [1,9.2],
-        u";": [1,9.2],
-        u"?": [1,9.2],
-        u"…": [1,9.2],
-        u"!": [1,9.2],
-        u"。": [1,9.2],
-        u"；": [1,9.2],
-        u"！": [1,9.2],
-        u"？": [1,9.2],
-        u"……": [1,9.2],
+    ".": [StopMarkLevel.sentence, 9.2],
+    ";": [StopMarkLevel.sentence, 9.2],
+    "?": [StopMarkLevel.sentence, 9.2],
+    "…": [StopMarkLevel.sentence, 9.2],
+    "!": [StopMarkLevel.sentence, 9.2],
+    "。": [StopMarkLevel.sentence, 9.2],
+    "；": [StopMarkLevel.sentence, 9.2],
+    "！": [StopMarkLevel.sentence, 9.2],
+    "？": [StopMarkLevel.sentence, 9.2],
+    "……": [StopMarkLevel.sentence, 9.2],
     # short_punctuation短语间标点符号，不是句子结束
-        u",": [2,8.8],
-        u":": [2,8.8],
-        u"...": [2,8.8],
-        u"，": [2,8.8],
-        u"：": [2,8.8],
-        # u" ": [2,8.8], # 空格
+    ",": [StopMarkLevel.short, 8.8],
+    ":": [StopMarkLevel.short, 8.8],
+    "...": [StopMarkLevel.short, 8.8],
+    "，": [StopMarkLevel.short, 8.8],
+    "：": [StopMarkLevel.short, 8.8],
+    " ": [StopMarkLevel.short, 8.8],  # 空格
     # inshort_punctuation短语间标点符号，不是短语结束
-        u"+": [3,8.8],
-        u"-": [3,8.8],
-        u"|": [3,8.8],
-        u"/": [3,8.8],
-        u"\\": [3,8.8],
-        u"'": [3,8.8],
-        u"\"": [3,8.8],
-        u"<": [3,8.8],
-        u">": [3,8.8],
-        u"[": [3,8.8],
-        u"]": [3,8.8],
-        u"{": [3,8.8],
-        u"}": [3,8.8],
-        u"@": [3,8.8],
-        u"#": [3,8.8],
-        u"$": [3,8.8],
-        u"%": [3,8.8],
-        u"^": [3,8.8],
-        u"&": [3,8.8],
-        u"*": [3,8.8],
-        u"(": [3,8.8],
-        u")": [3,8.8],
-        u"~": [3,8.8],
-        u"`": [3,8.8],
-        u"‘": [3,8.8],
-        u"’": [3,8.8],
-        u"“": [3,8.8],
-        u"”": [3,8.8],
-        u"／": [3,8.8],
-        u"～": [3,8.8],
-        u"＠": [3,8.8],
-        u"＃": [3,8.8],
-        u"￥": [3,8.8],
-        u"％": [3,8.8],
-        u"＆": [3,8.8],
-        u"×": [3,8.8],
-        u"（": [3,8.8],
-        u"）": [3,8.8],
-        u"【": [3,8.8],
-        u"】": [3,8.8],
-        u"｛": [3,8.8],
-        u"｝": [3,8.8],
-        u"｜": [3,8.8],
-        u"、": [3,8.8],
-        u"《": [3,8.8],
-        u"》": [3,8.8],
-        u"——": [3,8.8],
+    "+": [StopMarkLevel.inshort, 8.8],
+    "-": [StopMarkLevel.inshort, 8.8],
+    "|": [StopMarkLevel.inshort, 8.8],
+    "/": [StopMarkLevel.inshort, 8.8],
+    "\\": [StopMarkLevel.inshort, 8.8],
+    "'": [StopMarkLevel.inshort, 8.8],
+    "\"": [StopMarkLevel.inshort, 8.8],
+    "<": [StopMarkLevel.inshort, 8.8],
+    ">": [StopMarkLevel.inshort, 8.8],
+    "[": [StopMarkLevel.inshort, 8.8],
+    "]": [StopMarkLevel.inshort, 8.8],
+    "{": [StopMarkLevel.inshort, 8.8],
+    "}": [StopMarkLevel.inshort, 8.8],
+    "@": [StopMarkLevel.inshort, 8.8],
+    "#": [StopMarkLevel.inshort, 8.8],
+    "$": [StopMarkLevel.inshort, 8.8],
+    "%": [StopMarkLevel.inshort, 8.8],
+    "^": [StopMarkLevel.inshort, 8.8],
+    "&": [StopMarkLevel.inshort, 8.8],
+    "*": [StopMarkLevel.inshort, 8.8],
+    "(": [StopMarkLevel.inshort, 8.8],
+    ")": [StopMarkLevel.inshort, 8.8],
+    "~": [StopMarkLevel.inshort, 8.8],
+    "`": [StopMarkLevel.inshort, 8.8],
+    "‘": [StopMarkLevel.inshort, 8.8],
+    "’": [StopMarkLevel.inshort, 8.8],
+    "“": [StopMarkLevel.inshort, 8.8],
+    "”": [StopMarkLevel.inshort, 8.8],
+    "／": [StopMarkLevel.inshort, 8.8],
+    "～": [StopMarkLevel.inshort, 8.8],
+    "＠": [StopMarkLevel.inshort, 8.8],
+    "＃": [StopMarkLevel.inshort, 8.8],
+    "￥": [StopMarkLevel.inshort, 8.8],
+    "％": [StopMarkLevel.inshort, 8.8],
+    "＆": [StopMarkLevel.inshort, 8.8],
+    "×": [StopMarkLevel.inshort, 8.8],
+    "（": [StopMarkLevel.inshort, 8.8],
+    "）": [StopMarkLevel.inshort, 8.8],
+    "【": [StopMarkLevel.inshort, 8.8],
+    "】": [StopMarkLevel.inshort, 8.8],
+    "｛": [StopMarkLevel.inshort, 8.8],
+    "｝": [StopMarkLevel.inshort, 8.8],
+    "｜": [StopMarkLevel.inshort, 8.8],
+    "、": [StopMarkLevel.inshort, 8.8],
+    "《": [StopMarkLevel.inshort, 8.8],
+    "》": [StopMarkLevel.inshort, 8.8],
+    "——": [StopMarkLevel.inshort, 8.8],
 }
+
+__Level_Freq_StopMarks = {}  # {level:{freq:[stop_mark]}}
+__Level_StopMarks = {}  # {level:[stop_mark]}
+
+
+def getLeveledStopMarks():
+    """
+    根据StopMarks取得Leveled_StopMarks
+    :return:
+    """
+    if __Level_Freq_StopMarks:
+        return __Level_Freq_StopMarks, __Level_StopMarks
+    for stop_mark, level_freq in StopMarks.items():
+        level = level_freq[0]
+        freq = level_freq[1]
+        stop_mark_freq_dict = __Level_Freq_StopMarks.get(level)
+        if stop_mark_freq_dict:
+            stop_mark_li = stop_mark_freq_dict.get(freq)
+            if stop_mark_li:
+                stop_mark_li.append(stop_mark)
+            else:
+                stop_mark_freq_dict[freq] = [stop_mark]
+        else:
+            __Level_Freq_StopMarks[level] = {freq: [stop_mark]}
+
+        stop_mark_list = __Level_StopMarks.get(level)
+        if stop_mark_list:
+            stop_mark_list.append(stop_mark)
+        else:
+            __Level_StopMarks[level] = [stop_mark]
+
+    return __Level_Freq_StopMarks, __Level_StopMarks
 
 
 class StringNullOrEmptyException(Exception):
@@ -93,6 +134,7 @@ class StringNullOrEmptyException(Exception):
     对象非字符串或是空白的错误类。
     """
     pass
+
 
 class StringTypeEnum(Enum):
     """
@@ -106,86 +148,88 @@ class StringTypeEnum(Enum):
     CHINESE_ENGLISH_NUMBERS=6 # 中文英文数字混合
     OTHER=9 # 其他
     """
-    PURE_CHINESE=0 # 纯中文
-    PURE_ENGLISH=1 # 纯英文
-    PURE_NUMBERS=2 # 纯数字
-    CHINESE_ENGLISH=3 # 中英文混合
-    CHINESE_NUMBERS=4 # 中文数字混合
-    ENGLISH_NUMBERS=5 # 英文数字混合
-    CHINESE_ENGLISH_NUMBERS=6 # 中文英文数字混合
-    OTHER=9 # 其他
+    PURE_CHINESE = 0  # 纯中文
+    PURE_ENGLISH = 1  # 纯英文
+    PURE_NUMBERS = 2  # 纯数字
+    CHINESE_ENGLISH = 3  # 中英文混合
+    CHINESE_NUMBERS = 4  # 中文数字混合
+    ENGLISH_NUMBERS = 5  # 英文数字混合
+    CHINESE_ENGLISH_NUMBERS = 6  # 中文英文数字混合
+    OTHER = 9  # 其他
 
-StringTypeEnum=StringTypeEnum()
 
-Numbers = [0,1,2,3,4,5,6,7,8,9] # 阿拉伯数字
+StringTypeEnum = StringTypeEnum()
+
+Numbers = [StopMarkLevel.paragraph, 1, 2, 3, 4, 5, 6, 7, 8, 9]  # 阿拉伯数字
 
 # 罗马数字
 RomanNumbers = {
     # 个位数举例
-    'I':1,'II':2,'III':3,'IV':4,'V':5,'VI':6,'VII':7,'VIII':8,'IX':9,
+    'I': 1, 'II': 2, 'III': 3, 'IV': 4, 'V': 5, 'VI': 6, 'VII': 7, 'VIII': 8, 'IX': 9,
     # 十位数举例
-      'X':10,'XL':40,'L':50,'XC':90,
+    'X': 10, 'XL': 40, 'L': 50, 'XC': 90,
     # 百位数举例
-    'C':100,'CD':400,'D':500,'CM':900,'M':1000
+    'C': 100, 'CD': 400, 'D': 500, 'CM': 900, 'M': 1000
 }
 
 # 希腊字母
-GreekAlphabet={
-    u"Α":u"alpha",
-    u"Β":u"beta",
-    u"Γ":u"gamma",
-    u"Δ":u"delta",
-    u"Ε":u"epsilon",
-    u"Ζ":u"zeta",
-    u"Η":u"eta",
-    u"Θ":u"theta",
-    u"Ι":u"iota",
-    u"Κ":u"kappa",
-    u"Λ":u"lambda",
-    u"Μ":u"mu",
-    u"α":u"alpha",
-    u"β":u"beta",
-    u"γ":u"gamma",
-    u"δ":u"delta",
-    u"ε":u"epsilon",
-    u"ζ":u"zeta",
-    u"η":u"eta",
-    u"θ":u"theta",
-    u"ι ℩":u"iota",
-    u"κ":u"kappa",
-    u"λ":u"lambda",
-    u"μ":u"mu",
-    u"Ν":u"nu",
-    u"Ξ":u"xi",
-    u"Ο":u"omicron",
-    u"Π":u"pi",
-    u"Ρ":u"rho",
-    u"Σ":u"sigma",
-    u"Τ":u"tau",
-    u"Υ":u"upsilon",
-    u"Φ":u"phi",
-    u"Χ":u"chi",
-    u"Ψ":u"psi",
-    u"Ω":u"omega",
-    u"ν":u"nu",
-    u"ξ":u"xi",
-    u"ο":u"omicron",
-    u"π":u"pi",
-    u"ρ":u"rho",
-    u"σ":u"sigma",
-    u"τ":u"tau",
-    u"υ":u"upsilon",
-    u"φ":u"phi",
-    u"χ":u"chi",
-    u"ψ":u"psi",
-    u"ω":u"omega",
+GreekAlphabet = {
+    "Α": "alpha",
+    "Β": "beta",
+    "Γ": "gamma",
+    "Δ": "delta",
+    "Ε": "epsilon",
+    "Ζ": "zeta",
+    "Η": "eta",
+    "Θ": "theta",
+    "Ι": "iota",
+    "Κ": "kappa",
+    "Λ": "lambda",
+    "Μ": "m",
+    "α": "alpha",
+    "β": "beta",
+    "γ": "gamma",
+    "δ": "delta",
+    "ε": "epsilon",
+    "ζ": "zeta",
+    "η": "eta",
+    "θ": "theta",
+    "ι ℩": "iota",
+    "κ": "kappa",
+    "λ": "lambda",
+    "μ": "m",
+    "Ν": "n",
+    "Ξ": "xi",
+    "Ο": "omicron",
+    "Π": "pi",
+    "Ρ": "rho",
+    "Σ": "sigma",
+    "Τ": "ta",
+    "Υ": "upsilon",
+    "Φ": "phi",
+    "Χ": "chi",
+    "Ψ": "psi",
+    "Ω": "omega",
+    "ν": "n",
+    "ξ": "xi",
+    "ο": "omicron",
+    "π": "pi",
+    "ρ": "rho",
+    "σ": "sigma",
+    "τ": "ta",
+    "υ": "upsilon",
+    "φ": "phi",
+    "χ": "chi",
+    "ψ": "psi",
+    "ω": "omega",
 
 }
 
-def checkStringNullOrEmpty(content,raiseException=True):
+
+def checkStringNullOrEmpty(content, raiseException=True):
     if isStringNullOrEmpty(content):
         if raiseException:
-            raise StringNullOrEmptyException("输入的对象非字符串或字符串为空！请检查输入:" +str(content))
+            raise StringNullOrEmptyException("输入的对象非字符串或字符串为空！请检查输入:" + str(content))
     # else:
     #     # return False
     #     pass
@@ -200,7 +244,7 @@ def isStringNullOrEmpty(content):
     if content is None:
         return True
 
-    if isinstance(content, str) and content=="":
+    if isinstance(content, str) and content == "":
         return True
 
     else:
@@ -228,27 +272,29 @@ def isNotAStringOrStringEmpty(content):
     """
     return not isStringNullOrEmpty(content)
 
-    pass#def isNotAStringOrStringEmpty(content):
+    pass  # def isNotAStringOrStringEmpty(content):
+
 
 def converUnicodeToString(u):
     try:
-        u=u.encode("utf-8")
+        u = u.encode("utf-8")
     except:
         try:
-            u= u.encode('raw_unicode_escape')
+            u = u.encode('raw_unicode_escape')
         except:
-            u=None
+            u = None
 
     return u
 
+
 def converStringToUnicode(s):
     try:
-        s=s.decode("utf-8")
+        s = s.decode("utf-8")
     except:
         try:
-            s= s.decode('raw_unicode_escape')
+            s = s.decode('raw_unicode_escape')
         except:
-            s=None
+            s = None
 
     return s
 
@@ -259,6 +305,7 @@ def convert_hex_to_string(hex):
     except:
         return None
 
+
 def convertToNumber(s):
     """
     将一个全数字的字符串转化成数字（float、int类型）
@@ -267,7 +314,7 @@ def convertToNumber(s):
     """
     if isStringNullOrEmpty(s):
         return None
-    #试着进行float、int类型等数字类型的转换
+    # 试着进行float、int类型等数字类型的转换
     if s.isdigit():
         return int(s)
     elif is_float(s):
@@ -282,50 +329,50 @@ def convertToNumber(s):
 
     return None
 
+
 def is_float(str):
     """
     判断一个字符串是否是float
     :rawParam str:
     :return:
     """
-    pattern= "^[-+]?[0-9]+\\.[0-9]+$ " #'^([0-9]*.[0-9]+)?$'
+    pattern = "^[-+]?[0-9]+\\.[0-9]+$ "  # '^([0-9]*.[0-9]+)?$'
     # 将正则表达式编译成Pattern对象
     pattern = re.compile(pattern, re.S)
     # 使用Pattern匹配文本，获得匹配结果，无法匹配时将返回None
     _matched = pattern.findall(str)
-    if _matched is None or len(_matched )==0 :
+    if _matched is None or len(_matched) == 0:
         return False
 
-    if str==_matched[0]:
+    if str == _matched[0]:
         return True
 
     return False
 
-def is_chinese(ustr):
-    """
-    判断一个unicode是否是汉字
-    :param ustr:
-    :return:
-    """
-    for uchar in ustr:
-        if uchar >= u'\u4e00' and uchar<=u'\u9fa5':
-            continue
-        else:
-            return False # 只要有一个不是，就返回
-    return True
 
-def is_all_chinese(ustr):
+def is_chinese(ustr: str):
     """
     判断一个unicode是否是汉字（包含空格、标点等）
     :param ustr:
     :return:
     """
-    for uchar in ustr:
-        if (uchar >= u'\u4e00' and uchar<=u'\u9fa5') or uchar==u" " or uchar in StopMarks:
-            continue
-        else:
-            return False # 只要有一个不是，就返回
-    return True
+    if ustr is None:
+        return False
+    if len(ustr) == 1:
+        return _is_chinese(ustr)
+    else:
+        for uchar in ustr:
+            if _is_chinese(uchar):
+                continue
+            else:
+                return False  # 只要有一个不是，就返回
+        return True
+
+
+def _is_chinese(uchar):
+    if u'\u4e00' <= uchar <= u'\u9fa5':
+        return True
+    return False
 
 
 def is_stopmark(uchar):
@@ -335,6 +382,7 @@ def is_stopmark(uchar):
     :return:
     """
     return uchar in StopMarks
+
 
 def is_number(ustr):
     """
@@ -363,29 +411,30 @@ def is_alphabet(ustr):
     :param ustr:
     :return:
     """
-    for uchar in ustr:
-        if (uchar >= u'\u0041' and uchar<=u'\u005a') or (uchar >= u'\u0061' and uchar<=u'\u007a'):
+    for char in ustr:
+        if (char >= '\u0041' and char <= '\u005a') or \
+                (char >= '\u0061' and char <= '\u007a'):
             pass
         else:
-            return False # 只要有一个不是，就返回
+            return False  # 只要有一个不是，就返回
     return True
 
 
-
-def is_all_alphabet(ustr):
+def is_english(ustr):
     """
     判断一个unicode字符串是否是英文字母（可以包含空格、标点）
     :param ustr:
     :return:
     """
     for uchar in ustr:
-        if (uchar >= u'\u0041' and uchar<=u'\u005a') or \
-                (uchar >= u'\u0061' and uchar<=u'\u007a') or \
-                        uchar==u" " or is_stopmark(uchar):
+        if (uchar >= u'\u0041' and uchar <= u'\u005a') or \
+                (uchar >= u'\u0061' and uchar <= u'\u007a') or \
+                uchar == " " or is_stopmark(uchar):
             pass
         else:
-            return False # 只要有一个不是，就返回
+            return False  # 只要有一个不是，就返回
     return True
+
 
 def get_string_type(ustr):
     """
@@ -401,38 +450,38 @@ def get_string_type(ustr):
     :param ustr:
     :return:
     """
-    has_chinese=False
-    has_english=False
-    has_number=False
+    has_chinese = False
+    has_english = False
+    has_number = False
     for uchar in ustr:
-        if (uchar >= u'\u0041' and uchar<=u'\u005a') or (uchar >= u'\u0061' and uchar<=u'\u007a') or uchar==u" ":
-            has_english=True
-        if uchar >= u'\u4e00' and uchar<=u'\u9fa5':
-            has_chinese=True
+        if (uchar >= u'\u0041' and uchar <= u'\u005a') or (uchar >= u'\u0061' and uchar <= u'\u007a') or uchar == " ":
+            has_english = True
+        if uchar >= u'\u4e00' and uchar <= u'\u9fa5':
+            has_chinese = True
         if ustr.isdigit():
-            has_number=True
-        if has_english and has_chinese and has_number: # 已经全都有了，直接返回
+            has_number = True
+        if has_english and has_chinese and has_number:  # 已经全都有了，直接返回
             return StringTypeEnum.CHINESE_ENGLISH_NUMBERS
 
     if not has_english:
-        if has_chinese :
-            if has_number :
+        if has_chinese:
+            if has_number:
                 return StringTypeEnum.CHINESE_NUMBERS
             else:
                 return StringTypeEnum.PURE_CHINESE
         else:
-            if has_number :
+            if has_number:
                 return StringTypeEnum.PURE_NUMBERS
             else:
                 return StringTypeEnum.OTHER
     else:
         if has_chinese:
-            if has_number :
+            if has_number:
                 return StringTypeEnum.CHINESE_ENGLISH_NUMBERS
             else:
                 return StringTypeEnum.CHINESE_ENGLISH
         else:
-            if has_number :
+            if has_number:
                 return StringTypeEnum.ENGLISH_NUMBERS
             else:
                 return StringTypeEnum.PURE_ENGLISH
@@ -450,6 +499,7 @@ def encodeStringMD5(string=None):
         string = hashlib.md5(string.encode("gbk")).hexdigest()
     return string
 
+
 def mailValid(mail):
     """
     邮箱格式验证
@@ -457,6 +507,7 @@ def mailValid(mail):
     """
     isMatch = bool(re.match(r'^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$', mail, re.VERBOSE))
     return isMatch
+
 
 def phoneValid(phone):
     """
@@ -466,22 +517,25 @@ def phoneValid(phone):
     isMatch = bool(re.match(r'^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|145|147|)+\d{8})$', phone, re.VERBOSE))
     return isMatch
 
+
 import random, string
 
+
 def Genjhm(length):
-    #随机出数字的个数
-    numOfNum = random.randint(1,length-1)
+    # 随机出数字的个数
+    numOfNum = random.randint(1, length - 1)
     numOfLetter = length - numOfNum
-    #选中numOfNum个数字
+    # 选中numOfNum个数字
     slcNum = [random.choice(string.digits) for i in range(numOfNum)]
-    #选中numOfLetter个字母
+    # 选中numOfLetter个字母
     slcLetter = [random.choice(string.ascii_letters) for i in range(numOfLetter)]
-    #打乱这个组合
+    # 打乱这个组合
     slcChar = slcNum + slcLetter
     random.shuffle(slcChar)
-    #生成密码
+    # 生成密码
     genPwd = ''.join([i for i in slcChar])
     return genPwd
+
 
 def is_title(ustr):
     """
@@ -491,13 +545,15 @@ def is_title(ustr):
     """
     return ustr.istitle()
 
+
 def is_space(ustr):
     """
      str.isspace() 所有字符都是空白字符、\t、\n、\r
     :param ustr:
     :return:
     """
-    return  ustr.isspace() # 所有字符都是空白字符、\t、\n、\r
+    return ustr.isspace()  # 所有字符都是空白字符、\t、\n、\r
+
 
 def is_other(ustr):
     """
@@ -509,6 +565,7 @@ def is_other(ustr):
         return True
     else:
         return False
+
 
 def contain_upper(ustr):
     """
@@ -523,6 +580,7 @@ def contain_upper(ustr):
     else:
         return False
 
+
 def contain_num(ustr):
     """
     是否包含数字
@@ -536,6 +594,7 @@ def contain_num(ustr):
     else:
         return False
 
+
 def contain_zh_cn(ustr):
     """
     是否包含汉字
@@ -547,6 +606,7 @@ def contain_zh_cn(ustr):
             return True
     else:
         return False
+
 
 def contain_lower(ustr):
     """
@@ -561,9 +621,10 @@ def contain_lower(ustr):
     else:
         return False
 
+
 def contain_stopMark(value):
     try:
-        value=value.decode("utf-8")
+        value = value.decode("utf-8")
         for c in value:
             if c in StopMarks:
                 return True
@@ -572,24 +633,19 @@ def contain_stopMark(value):
         return False
 
 
+UNITS = ["", "十", "百", "千", "万", "十", "百", "千",
+         "亿", "十", "百", "千", "万", "十", "百", "千",
+         "兆", "十", "百", "千", "万", "十", "百", "千",
+         "京", "十", "百", "千", "万", "十", "百", "千"]
+NUMS = ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九"]
 
+UNITS_MONEY = ["", "拾", "佰", "仟", "萬", "拾", "佰", "仟",
+               "亿", "拾", "佰", "仟", "萬", "拾", "佰", "仟",
+               "兆", "拾", "佰", "仟", "萬", "拾", "佰", "仟",
+               "京", "拾", "佰", "仟", "萬", "拾", "佰", "仟", ]
+NUMS_MONEY = ["零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"]
 
-
-
-UNITS = [u"", u"十", u"百", u"千", u"万", u"十", u"百", u"千",
-         u"亿", u"十", u"百", u"千",u"万",u"十",u"百",u"千",
-         u"兆",u"十", u"百", u"千",u"万",u"十",u"百",u"千",
-         u"京",u"十", u"百", u"千",u"万",u"十",u"百",u"千"]
-NUMS = [u"零", u"一", u"二", u"三", u"四", u"五", u"六", u"七", u"八", u"九"]
-
-
-UNITS_MONEY = [u"", u"拾", u"佰", u"仟", u"萬", u"拾", u"佰", u"仟",
-             u"亿", u"拾", u"佰", u"仟", u"萬", u"拾", u"佰", u"仟",
-             u"兆",u"拾", u"佰", u"仟", u"萬", u"拾", u"佰", u"仟",
-             u"京",u"拾", u"佰", u"仟", u"萬", u"拾", u"佰", u"仟",]
-NUMS_MONEY = [u"零", u"壹", u"贰", u"叁", u"肆", u"伍", u"陆", u"柒", u"捌", u"玖"]
-
-CN_NUM = { # 汉字数字与阿拉伯数字对应的字典
+CN_NUM = {  # 汉字数字与阿拉伯数字对应的字典
     u'〇': 0,
     u'一': 1,
     u'二': 2,
@@ -617,19 +673,18 @@ CN_NUM = { # 汉字数字与阿拉伯数字对应的字典
     u'俩': 2,
 }
 
-NUM_CN = { # 阿拉伯数字与汉字数字对应的字典
-    0:u'〇' ,
-    1:u'一' ,
-    2:u'二' ,
-    3:u'三' ,
-    4:u'四' ,
-    5:u'五' ,
-    6:u'六' ,
-    7:u'七' ,
-    8:u'八' ,
-    9:u'九' ,
+NUM_CN = {  # 阿拉伯数字与汉字数字对应的字典
+    0: u'〇',
+    1: u'一',
+    2: u'二',
+    3: u'三',
+    4: u'四',
+    5: u'五',
+    6: u'六',
+    7: u'七',
+    8: u'八',
+    9: u'九',
 }
-
 
 CN_UNIT = {
     u'十': 10,
@@ -652,20 +707,19 @@ def arabicNumeral_to_chineseNumeral(num):
     :rawParam num:
     :return:
     """
-    num=str(num)
-    if not num =="0":
+    num = str(num)
+    if not num == "0":
         num = str(num.lstrip(u'0'))
     res = ''
 
-    num= num.split('.') # 分割小数点
-    lnum=None
-    rnum=None
-    if len(num)==2:
-        lnum=num[0]
-        rnum=num[1]
-    elif len(num)==1:
-        lnum=num[0]
-
+    num = num.split('.')  # 分割小数点
+    lnum = None
+    rnum = None
+    if len(num) == 2:
+        lnum = num[0]
+        rnum = num[1]
+    elif len(num) == 1:
+        lnum = num[0]
 
     # 处理小数点左侧
     if lnum:
@@ -673,7 +727,7 @@ def arabicNumeral_to_chineseNumeral(num):
             r = int(int(lnum) / math.pow(10, p))
             res += NUMS[r % 10] + UNITS[p]
 
-        for (i, j) in [(u'零十', u'零'), (u'零百', u'零'), (u'零千', u'零'),(u'十零', u'十')]:
+        for (i, j) in [(u'零十', u'零'), (u'零百', u'零'), (u'零千', u'零'), (u'十零', u'十')]:
             res = res.replace(i, j)
 
         while res.find(u'零零') != -1:
@@ -687,20 +741,19 @@ def arabicNumeral_to_chineseNumeral(num):
         if res.startswith(u'一十'):
             res = res[2:]
 
-        if res!=u'零' and res.endswith(u'零'):
+        if res != u'零' and res.endswith(u'零'):
             res = res[:-2]
 
-    if rnum and not rnum==u'零':
+    if rnum and not rnum == u'零':
         while rnum.endswith(u'零'):
-            rnum =rnum.strip(u'零')
-        res += u"点"
-        for p in range(0,len(rnum)):
-            cur_num=int(rnum[p])
-            cur_num_cn=NUM_CN.get(cur_num)
+            rnum = rnum.strip(u'零')
+        res += "点"
+        for p in range(0, len(rnum)):
+            cur_num = int(rnum[p])
+            cur_num_cn = NUM_CN.get(cur_num)
             if cur_num_cn:
                 res += cur_num_cn
     return res
-
 
 
 def arabicNumeral_to_chineseNumeral_Money(num):
@@ -709,19 +762,18 @@ def arabicNumeral_to_chineseNumeral_Money(num):
     :rawParam num:
     :return:
     """
-    num=str(num)
+    num = str(num)
 
     num = str(num.lstrip(u'0'))
     res = ''
 
-    num= num.split('.') # 分割小数点
+    num = num.split('.')  # 分割小数点
     lnum = None
-    if len(num)==2:
-        lnum=num[0]
-        rnum=num[1]
-    elif len(num)==1:
-        lnum=num[0]
-
+    if len(num) == 2:
+        lnum = num[0]
+        rnum = num[1]
+    elif len(num) == 1:
+        lnum = num[0]
 
     # 处理小数点左侧
     if lnum:
@@ -729,7 +781,7 @@ def arabicNumeral_to_chineseNumeral_Money(num):
             r = int(int(lnum) / math.pow(10, p))
             res += NUMS_MONEY[r % 10] + UNITS_MONEY[p]
 
-        for (i, j) in [(u'零拾', u'零'), (u'零佰', u'零'), (u'零仟', u'零'),(u'拾零', u'拾')]:
+        for (i, j) in [(u'零拾', u'零'), (u'零佰', u'零'), (u'零仟', u'零'), (u'拾零', u'拾')]:
             res = res.replace(i, j)
 
         while res.find(u'零零') != -1:
@@ -748,11 +800,11 @@ def arabicNumeral_to_chineseNumeral_Money(num):
 
     if rnum:
         while rnum.endswith(u'零'):
-            rnum =rnum.strip(u'零')
-        res += u"点"
-        for p in range(0,len(rnum)):
-            cur_num=int(rnum[p])
-            cur_num_cn=NUM_CN.get(cur_num)
+            rnum = rnum.strip(u'零')
+        res += "点"
+        for p in range(0, len(rnum)):
+            cur_num = int(rnum[p])
+            cur_num_cn = NUM_CN.get(cur_num)
             if cur_num_cn:
                 res += cur_num_cn
     return res
@@ -764,43 +816,42 @@ def chineseNumeral_to_arabicNumeral(cn):
     :rawParam cn:
     :return:
     """
-    cn= cn.split(u'点')
+    cn = cn.split(u'点')
 
     lcn = None
-    if len(cn)==2:
-        lcn=cn[0]
-        rcn=cn[1]
-    elif len(cn)==1:
-        lcn=cn[0]
+    if len(cn) == 2:
+        lcn = cn[0]
+        rcn = cn[1]
+    elif len(cn) == 1:
+        lcn = cn[0]
 
-    ret=0
+    ret = 0
     if lcn:
         lcn = list(lcn)
-        multi=1
+        multi = 1
 
         while lcn:
             cndig = lcn.pop()
             dig = CN_NUM.get(cndig)
-            if dig>0:
-                dig*=multi
-                ret+=dig
-                multi*=10
-            elif dig ==0:
-                ret *=10
-                multi*=100
+            if dig > 0:
+                dig *= multi
+                ret += dig
+                multi *= 10
+            elif dig == 0:
+                ret *= 10
+                multi *= 100
     if rcn:
         rcn = list(rcn)[::-1]
-        multi=0.1
+        multi = 0.1
         while rcn:
             cndig = rcn.pop()
             dig = CN_NUM.get(cndig)
-            if dig>0:
-                dig*=multi
-                ret+=dig
-                multi*=0.1
-            elif dig ==0:
-                multi*=0.1
-
+            if dig > 0:
+                dig *= multi
+                ret += dig
+                multi *= 0.1
+            elif dig == 0:
+                multi *= 0.1
 
     return ret
 
@@ -809,23 +860,24 @@ def strQ2B(ustring):
     """全角转半角"""
     rstring = ""
     for uchar in ustring:
-        inside_code=ord(uchar)
-        if inside_code == 12288:                              #全角空格直接转换
+        inside_code = ord(uchar)
+        if inside_code == 12288:  # 全角空格直接转换
             inside_code = 32
-        elif (inside_code >= 65281 and inside_code <= 65374): #全角字符（除空格）根据关系转化
+        elif (inside_code >= 65281 and inside_code <= 65374):  # 全角字符（除空格）根据关系转化
             inside_code -= 65248
 
         rstring += chr(inside_code)
     return rstring
 
+
 def strB2Q(ustring):
     """半角转全角"""
     rstring = ""
     for uchar in ustring:
-        inside_code=ord(uchar)
-        if inside_code == 32:                                 #半角空格直接转化
+        inside_code = ord(uchar)
+        if inside_code == 32:  # 半角空格直接转化
             inside_code = 12288
-        elif inside_code >= 32 and inside_code <= 126:        #半角字符（除空格）根据关系转化
+        elif inside_code >= 32 and inside_code <= 126:  # 半角字符（除空格）根据关系转化
             inside_code += 65248
 
         rstring += chr(inside_code)
@@ -864,50 +916,60 @@ def uniform(ustring):
     """格式化字符串，完成全角转半角，大写转小写的工作"""
     return strQ2B(ustring).lower()
 
+
 def string2List(ustring):
     """将ustring按照中文，字母，数字分开"""
-    retList=[]
-    utmp=[]
+    retList = []
+    utmp = []
     for uchar in ustring:
         if is_other(uchar):
-            if len(utmp)==0:
+            if len(utmp) == 0:
                 continue
             else:
                 retList.append("".join(utmp))
-                utmp=[]
+                utmp = []
         else:
             utmp.append(uchar)
-    if len(utmp)!=0:
+    if len(utmp) != 0:
         retList.append("".join(utmp))
     return retList
 
 
-def split(str,seprators):
+def split(str, seprators):
     """
     根据seprators（list）分割字符串
     :param str:
     :param seprators:
     :return:
     """
-    splits=[]
+    splits = []
     if not seprators:
-        seprators=[",","+","-","*","/","\\","(",")"]
+        seprators = [",", "+", "-", "*", "/", "\\", "(", ")"]
 
-    w=""
+    w = ""
     for c in str:
         if not c in seprators:
-            w+=c
+            w += c
         else:
-            if not w=="":
+            if not w == "":
                 splits.append(w)
-                w=""
+                w = ""
             splits.append(c)
-    if not w=="":
+    if not w == "":
         splits.append(w)
 
     return splits
 
-def splitsWithStopMarksAndNumbersAndEnglish(rawInput,stopMarks,stopMarkLevel = 3, keepStopMark = True,splitWithSpace=False):
+
+
+
+def splitWithStopMarksAndNumbersAndEnglish(rawInput: str,
+                                           stopMarks: list,
+                                           keepStopMark=True,
+                                           splitWhiteSpace=False,
+                                           keepWhiteSpace=True,
+                                           splitWholeAlphabet=True,
+                                           splitWholeNumber=True):
     """
     将输入字符串与标点符号、数字、英文分开
     :param rawInput:
@@ -915,150 +977,175 @@ def splitsWithStopMarksAndNumbersAndEnglish(rawInput,stopMarks,stopMarkLevel = 3
                       格式为：{标点符号:[标点符号类别,词频]}
     :param stopMarkLevel: 按标点符号的划分级别（0：段落级别，1：段落级别+句子级别，2：段落级别+句子级别+句内级别）。
     :param keepStopMark: 是否保留分割的标点（默认为True）
-    :param splitWithSpace:是否对空格进行分割
+    :param splitWhiteSpace:是否对空格进行分割
     :return:
     """
-    splits=[]
-    i=0
 
-    cur_chars=u""
-    length=len(rawInput)
+    if not stopMarks:
+        stopMarks = list(StopMarks.keys())
+
+    splits = []
+    i = 0
+    cur_chars = ""
+    length = len(rawInput)
     while i < length:
-        cur_char=rawInput[i]
+        cur_char = rawInput[i]
+        cur_char = strQ2B(cur_char)  # 转换成半角
 
-        if cur_char==u" ": # 如果是空格：
-            if splitWithSpace:
-                if not cur_chars==u"": # 添加已有的
-                    splits.append(cur_chars)
-                    cur_chars=u""
-                splits.append(cur_char)
-                i+=1
-                continue
-            else:
-                cur_chars+=cur_char
-                i+=1
-                continue
-
-        elif is_alphabet(cur_char): # 如果是英文
-            cur_char=strQ2B(cur_char) # 转换成半角
-            if not cur_chars==u"": # 添加已有的
+        if cur_char == " " and splitWhiteSpace:  # 如果是空格：
+            if not cur_chars == "":  # 添加已有的
                 splits.append(cur_chars)
-                cur_chars=u""
-            cur_chars+=cur_char
-            j=i+1
-            if j==length: # 如果已经是最后一个了，直接停机
-                break
-            while j <len(rawInput):
-                next_char=rawInput[j]
+                cur_chars = ""
+            if keepWhiteSpace:
+                splits.append(cur_char)
+            i += 1
+            continue
 
-                if next_char==u" ":
-                    if splitWithSpace:
+        elif is_alphabet(cur_char) and splitWholeAlphabet:  # 如果是英文
+
+            if not cur_chars == "":  # 添加已有的
+                splits.append(cur_chars)
+                cur_chars = ""
+            cur_chars += cur_char
+            j = i + 1
+            if j == length:  # 如果已经是最后一个了，直接停机
+                if cur_chars:
+                    if i==0 or not is_alphabet(splits[-1][-1]):
+                        # 这里需要考虑第一个和最后一个的处理。splits[-1][-1]，最后一个分解项的最后一个字符
                         splits.append(cur_chars)
-                        cur_chars=u""
-                        i=j
+                break
+            while j < len(rawInput):
+                next_char = rawInput[j]
+                next_char = strQ2B(next_char)  # 转换成半角
+                if next_char == " ":
+                    if splitWhiteSpace:
+                        splits.append(cur_chars)
+                        cur_chars = ""
+                        i = j
                         break
                     else:
-                        cur_chars+= next_char
-                        i=j
-                elif is_alphabet(next_char) or next_char==u'’': # 如果后续是英文字母、’，继续合并添加
-                   cur_chars+= next_char
-                   i=j
+                        cur_chars += next_char
+                        i = j
+                elif is_alphabet(next_char) or next_char == u'’':  # 如果后续是英文字母、’，继续合并添加
+                    cur_chars += next_char
+                    i = j
                 else:
                     splits.append(cur_chars)
-                    cur_chars=u""
-                    i=j
+                    cur_chars = ""
+                    i = j
                     break
-                j+=1
+                j += 1
 
-        elif is_stopmark(cur_char): # 如果是标点符号
-            cur_char=strQ2B(cur_char) # 转换成半角
-            if not cur_chars==u"": # 添加已有的
+        elif is_number(cur_char) and splitWholeNumber:  # 如果是数字
+            if not cur_chars == "":  # 添加已有的
                 splits.append(cur_chars)
-                cur_chars=u""
-            if cur_char==u'’': # 特殊处理英文中的'，例如：it's 需要连接在一起
-                before_char=None
-                next_char =None
-                if i>=1:
-                    before_char=rawInput[i-1]
-                if i<len(rawInput)-1:
-                    next_char=rawInput[i+1]
-                before_char_is_number=False
-                next_char_is_number=False
-                if before_char:
-                    if is_alphabet(before_char):
-                        before_char_is_number=True
-                else:
-                    before_char_is_number=True
-                if next_char :
-                    if is_alphabet(next_char):
-                        next_char_is_number=True
-                else:
-                    next_char_is_number =True
+                cur_chars = ""
+            cur_chars += cur_char
+            j = i + 1
+            if j == length:  # 如果已经是最后一个了，直接停机
+                if cur_chars:
+                    if i == 0 or (not is_number(splits[-1][-1])):
+                        # 这里需要考虑第一个和最后一个的处理。splits[-1][-1]，最后一个分解项的最后一个字符
+                        splits.append(cur_chars)
+                break
 
-                if before_char_is_number and next_char_is_number:
-                    cur_chars+=cur_char
-                    i+=1
-                    continue
-            elif cur_char==u'.': # 特殊处理数字中的.，例如：6.9 需要连接在一起
-                before_char=None
-                next_char =None
-                if i>=1:
-                    before_char=rawInput[i-1]
-                if i<len(rawInput)-1:
-                    next_char=rawInput[i+1]
-                before_char_is_number=False
-                next_char_is_number=False
+            while j < len(rawInput): # 如果后续是数字，继续合并添加
+                next_char = rawInput[j]
+                if is_number(next_char):
+                    cur_chars += next_char
+                    i = j
+                elif next_char == ".":
+                    next_next_char = rawInput[j + 1]
+                    if is_number(next_next_char):  # 如果后续是数字，继续合并添加
+                        cur_chars += next_char
+                        i = j
+                else:
+                    splits.append(cur_chars)
+                    cur_chars = ""
+                    i = j
+                    break
+                j += 1
+
+        elif cur_char in stopMarks:  # 如果是标点符号
+
+            if cur_char == u'’':  # 特殊处理英文中的'，例如：it's 需要连接在一起
+                before_char = None
+                next_char = None
+                if i >= 1:
+                    before_char = rawInput[i - 1]
+                if i < len(rawInput) - 1:
+                    next_char = rawInput[i + 1]
+
+                before_char_is_alphabet = False
+                next_char_is_alphabet = False
+                if before_char:
+                    before_char = strQ2B(before_char)  # 转换成半角
+                    if is_alphabet(before_char):
+                        before_char_is_alphabet = True
+                else:
+                    before_char_is_alphabet = True
+                if next_char:
+                    next_char = strQ2B(next_char)  # 转换成半角
+                    if is_alphabet(next_char):
+                        next_char_is_alphabet = True
+                else:
+                    next_char_is_alphabet = True
+
+                if before_char_is_alphabet and next_char_is_alphabet:
+                    cur_chars += cur_char
+                else:
+                    splits.append(cur_chars)
+                    cur_chars = ""
+                    if keepStopMark:
+                        splits.append(cur_char)
+                i += 1
+                continue
+            # 特殊处理小数、时间，数字中的.、：等，例如：6.9、11：30 需要连接在一起
+            elif cur_char in ['.', ':', '：']:
+                before_char = None
+                next_char = None
+                if i >= 1:
+                    before_char = rawInput[i - 1]
+                if i < len(rawInput) - 1:
+                    next_char = rawInput[i + 1]
+                before_char_is_num = False
+                next_char_is_num = False
                 if before_char:
                     if is_number(before_char):
-                        before_char_is_number=True
+                        before_char_is_num = True
                 else:
-                    before_char_is_number=True
-                if next_char :
+                    before_char_is_num = True
+                if next_char:
                     if is_number(next_char):
-                        next_char_is_number=True
+                        next_char_is_num = True
                 else:
-                    next_char_is_number =True
+                    next_char_is_num = True
 
-                if before_char_is_number and next_char_is_number:
-                    cur_chars+=cur_char
-                    i+=1
-                    continue
+                if before_char_is_num and next_char_is_num:
+                    cur_chars += cur_char
 
-            splits.append(cur_char)
-            i+=1
-            continue
-        elif is_number(cur_char): # 如果是数字
-            cur_char=strQ2B(cur_char) # 转换成半角
-            if not cur_chars==u"": # 添加已有的
-                splits.append(cur_chars)
-                cur_chars=u""
-            cur_chars+=cur_char
-            j=i+1
-            if j==length: # 如果已经是最后一个了，直接停机
-                break
-            while j <len(rawInput):
-                next_char=rawInput[j]
-                if is_number(next_char): # 如果后续是数字，继续合并添加
-                   cur_chars+= next_char
-                   i=j
-                elif next_char==u".":
-                    next_next_char=rawInput[j+1]
-                    if is_number(next_next_char): # 如果后续是数字，继续合并添加
-                       cur_chars+= next_char
-                       i=j
                 else:
                     splits.append(cur_chars)
-                    cur_chars=u""
-                    i=j
-                    break
-                j+=1
+                    cur_chars = ""
+                    if keepStopMark:
+                        splits.append(cur_char)
+                i += 1
+                continue
+            elif not cur_chars == "":  # 添加已有的
+                splits.append(cur_chars)
+                cur_chars = ""
+
+            if keepStopMark:
+                splits.append(cur_char)
+            i += 1
+            continue
 
         else:
-            cur_chars+=cur_char
-            if i==len(rawInput)-1: # 如果是最后一个
+            cur_chars += cur_char
+            if i == length - 1:  # 如果是最后一个
                 splits.append(cur_chars)
 
-            i+=1
+            i += 1
 
     return splits
 
@@ -1066,35 +1153,35 @@ def splitsWithStopMarksAndNumbersAndEnglish(rawInput,stopMarks,stopMarkLevel = 3
 # 现实情况下可能并不会把所以的字符统一进行转换，
 # 比如中文文章中我们期望将所有出现的字母和数字全部转化成半角，
 # 而常见标点符号统一使用全角，上面的转化就不适合了。
-FH_SPACE = FHS = ((u"　", u" "),)
+FH_SPACE = FHS = (("　", " "),)
 FH_NUM = FHN = (
- (u"０", u"0"), (u"１", u"1"), (u"２", u"2"), (u"３", u"3"), (u"４", u"4"),
- (u"５", u"5"), (u"６", u"6"), (u"７", u"7"), (u"８", u"8"), (u"９", u"9"),
+    ("０", "0"), ("１", "1"), ("２", "2"), ("３", "3"), ("４", "4"),
+    ("５", "5"), ("６", "6"), ("７", "7"), ("８", "8"), ("９", "9"),
 )
 FH_ALPHA = FHA = (
- (u"ａ", u"a"), (u"ｂ", u"b"), (u"ｃ", u"c"), (u"ｄ", u"d"), (u"ｅ", u"e"),
- (u"ｆ", u"f"), (u"ｇ", u"g"), (u"ｈ", u"h"), (u"ｉ", u"i"), (u"ｊ", u"j"),
- (u"ｋ", u"k"), (u"ｌ", u"l"), (u"ｍ", u"m"), (u"ｎ", u"n"), (u"ｏ", u"o"),
- (u"ｐ", u"p"), (u"ｑ", u"q"), (u"ｒ", u"r"), (u"ｓ", u"s"), (u"ｔ", u"t"),
- (u"ｕ", u"u"), (u"ｖ", u"v"), (u"ｗ", u"w"), (u"ｘ", u"x"), (u"ｙ", u"y"), (u"ｚ", u"z"),
- (u"Ａ", u"A"), (u"Ｂ", u"B"), (u"Ｃ", u"C"), (u"Ｄ", u"D"), (u"Ｅ", u"E"),
- (u"Ｆ", u"F"), (u"Ｇ", u"G"), (u"Ｈ", u"H"), (u"Ｉ", u"I"), (u"Ｊ", u"J"),
- (u"Ｋ", u"K"), (u"Ｌ", u"L"), (u"Ｍ", u"M"), (u"Ｎ", u"N"), (u"Ｏ", u"O"),
- (u"Ｐ", u"P"), (u"Ｑ", u"Q"), (u"Ｒ", u"R"), (u"Ｓ", u"S"), (u"Ｔ", u"T"),
- (u"Ｕ", u"U"), (u"Ｖ", u"V"), (u"Ｗ", u"W"), (u"Ｘ", u"X"), (u"Ｙ", u"Y"), (u"Ｚ", u"Z"),
+    ("ａ", "a"), ("ｂ", "b"), ("ｃ", "c"), ("ｄ", "d"), ("ｅ", "e"),
+    ("ｆ", "f"), ("ｇ", "g"), ("ｈ", "h"), ("ｉ", "i"), ("ｊ", "j"),
+    ("ｋ", "k"), ("ｌ", "l"), ("ｍ", "m"), ("ｎ", "n"), ("ｏ", "o"),
+    ("ｐ", "p"), ("ｑ", "q"), ("ｒ", "r"), ("ｓ", "s"), ("ｔ", "t"),
+    ("ｕ", ""), ("ｖ", "v"), ("ｗ", "w"), ("ｘ", "x"), ("ｙ", "y"), ("ｚ", "z"),
+    ("Ａ", "A"), ("Ｂ", "B"), ("Ｃ", "C"), ("Ｄ", "D"), ("Ｅ", "E"),
+    ("Ｆ", "F"), ("Ｇ", "G"), ("Ｈ", "H"), ("Ｉ", "I"), ("Ｊ", "J"),
+    ("Ｋ", "K"), ("Ｌ", "L"), ("Ｍ", "M"), ("Ｎ", "N"), ("Ｏ", "O"),
+    ("Ｐ", "P"), ("Ｑ", "Q"), ("Ｒ", "R"), ("Ｓ", "S"), ("Ｔ", "T"),
+    ("Ｕ", ""), ("Ｖ", "V"), ("Ｗ", "W"), ("Ｘ", "X"), ("Ｙ", "Y"), ("Ｚ", "Z"),
 )
 FH_PUNCTUATION = FHP = (
- (u"．", u"."), (u"，", u","), (u"！", u"!"), (u"？", u"?"), (u"”", u'"'),
- (u"'", u"'"), (u"‘", u"`"), (u"＠", u"@"), (u"＿", u"_"), (u"：", u":"),
- (u"；", u";"), (u"＃", u"#"), (u"＄", u"$"), (u"％", u"%"), (u"＆", u"&"),
- (u"（", u"("), (u"）", u")"), (u"‐", u"-"), (u"＝", u"="), (u"＊", u"*"),
- (u"＋", u"+"), (u"－", u"-"), (u"／", u"/"), (u"＜", u"<"), (u"＞", u">"),
- (u"［", u"["), (u"￥", u"\\"), (u"］", u"]"), (u"＾", u"^"), (u"｛", u"{"),
- (u"｜", u"|"), (u"｝", u"}"), (u"～", u"~"),
+    ("．", "."), ("，", ","), ("！", "!"), ("？", "?"), ("”", u'"'),
+    ("'", "'"), ("‘", "`"), ("＠", "@"), ("＿", "_"), ("：", ":"),
+    ("；", ";"), ("＃", "#"), ("＄", "$"), ("％", "%"), ("＆", "&"),
+    ("（", "("), ("）", ")"), ("‐", "-"), ("＝", "="), ("＊", "*"),
+    ("＋", "+"), ("－", "-"), ("／", "/"), ("＜", "<"), ("＞", ">"),
+    ("［", "["), ("￥", "\\"), ("］", "]"), ("＾", "^"), ("｛", "{"),
+    ("｜", "|"), ("｝", "}"), ("～", "~"),
 )
 FH_ASCII = HAC = lambda: ((fr, to) for m in (FH_ALPHA, FH_NUM, FH_PUNCTUATION) for fr, to in m)
 
-HF_SPACE = HFS = ((u" ", u"　"),)
+HF_SPACE = HFS = ((" ", "　"),)
 HF_NUM = HFN = lambda: ((h, z) for z, h in FH_NUM)
 HF_ALPHA = HFA = lambda: ((h, z) for z, h in FH_ALPHA)
 HF_PUNCTUATION = HFP = lambda: ((h, z) for z, h in FH_PUNCTUATION)
@@ -1131,30 +1218,31 @@ def convertHalfAndFull(text, *maps, **ops):
     return text
 
 
-def difference(str1,str2):
+def difference(str1, str2):
     """
     求两个字符串的差集
     :param str1:
     :param str2:
     :return:
     """
-    set1=set(str1)
+    set1 = set(str1)
     set2 = set(str2)
     return set1 - set2
 
 
-def intersection(str1,str2):
+def intersection(str1, str2):
     """
     求两个字符串的交集
     :param str1:
     :param str2:
     :return:
     """
-    set1=set(str1)
+    set1 = set(str1)
     set2 = set(str2)
     return set1 & set2
 
-def union(str1,str2):
+
+def union(str1, str2):
     """
     求两个字符串的并集
     :param str1:
@@ -1166,61 +1254,56 @@ def union(str1,str2):
     return set1 | set2
 
 
+if __name__ == "__main__":
+    # test Q2B and B2Q
+    for i in range(0x0020, 0x007F):
+        print(strQ2B(strB2Q(str(i))), strB2Q(str(i)))
 
-if __name__=="__main__":
-    #test Q2B and B2Q
-    for i in range(0x0020,0x007F):
-        print(strQ2B(strB2Q(str(i))),strB2Q(str(i)))
-
-    #test uniform
-    ustring=u'中国 人名ａ高频Ａ'
+    # test uniform
+    ustring = u'中国 人名ａ高频Ａ'
     print(ustring)
-    ustring=uniform(ustring)
+    ustring = uniform(ustring)
     print(ustring)
-    ret=string2List(ustring)
+    ret = string2List(ustring)
     print(ret)
 
-
-    print (convert_hex_to_string(" \xce\xde\xd0\xa7\xb5\xc4\xb4\xb0\xbf\xda\xbe\xe4\xb1\xfa\xa1\xa3"))#('\xce\xde\xd0\xa7\xb5\xc4\xb4\xb0\xbf\xda\xbe\xe4\xb1\xfa\xa1\xa3'))
+    print(convert_hex_to_string(
+        " \xce\xde\xd0\xa7\xb5\xc4\xb4\xb0\xbf\xda\xbe\xe4\xb1\xfa\xa1\xa3"))  # ('\xce\xde\xd0\xa7\xb5\xc4\xb4\xb0\xbf\xda\xbe\xe4\xb1\xfa\xa1\xa3'))
 
     print(convert_hex_to_string("%1 ������Ч�� Win32"))
     # print("�ܾ����ʡ�".encode("ascii").encode("utf-8"))
     print(converUnicodeToString("\u0af8\u0af8\u0af8"))
 
-    print (convert_hex_to_string(" \xce\xde\xd0\xa7\xb5\xc4\xb4\xb0\xbf\xda\xbe\xe4\xb1\xfa\xa1\xa3"))#('\xce\xde\xd0\xa7\xb5\xc4\xb4\xb0\xbf\xda\xbe\xe4\xb1\xfa\xa1\xa3'))
+    print(convert_hex_to_string(
+        " \xce\xde\xd0\xa7\xb5\xc4\xb4\xb0\xbf\xda\xbe\xe4\xb1\xfa\xa1\xa3"))  # ('\xce\xde\xd0\xa7\xb5\xc4\xb4\xb0\xbf\xda\xbe\xe4\xb1\xfa\xa1\xa3'))
 
-    print (converUnicodeToString(" \x00\x00\x00\x04\xff\xff\xff\xff\x00\x00\xed\x00\xe0\xfb\x0ew\xb0\x1d\xd7\x00\x00\x00\x00\x00\x00\x00\xd7\x00\xa0\xf9\x0ew\x00\x00\x00\x00\x00\x00\x00\x00\x05\x00\x00\x00\x00\x10\xf4s\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00y\x00\x00\x00\x00\x00\x80\xfb\x0ew\xff\xff\xff\xff\xff\xff\xff\xff\x00\x00\xec\xfe\x00\x00\x00\x000\x07\xec\xfe\x00\x00\xfc\xfe\x00\x00\xfc\xfe(\x00\xff\xfe\x04\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x80\x9b\x07m\xe8\xff\xff\x00\x00\x10\x00\x00"))#('\xce\xde\xd0\xa7\xb5\xc4\xb4\xb0\xbf\xda\xbe\xe4\xb1\xfa\xa1\xa3'))
+    print(converUnicodeToString(
+        " \x00\x00\x00\x04\xff\xff\xff\xff\x00\x00\xed\x00\xe0\xfb\x0ew\xb0\x1d\xd7\x00\x00\x00\x00\x00\x00\x00\xd7\x00\xa0\xf9\x0ew\x00\x00\x00\x00\x00\x00\x00\x00\x05\x00\x00\x00\x00\x10\xf4s\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00y\x00\x00\x00\x00\x00\x80\xfb\x0ew\xff\xff\xff\xff\xff\xff\xff\xff\x00\x00\xec\xfe\x00\x00\x00\x000\x07\xec\xfe\x00\x00\xfc\xfe\x00\x00\xfc\xfe(\x00\xff\xfe\x04\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x80\x9b\x07m\xe8\xff\xff\x00\x00\x10\x00\x00"))  # ('\xce\xde\xd0\xa7\xb5\xc4\xb4\xb0\xbf\xda\xbe\xe4\xb1\xfa\xa1\xa3'))
 
-    _str=arabicNumeral_to_chineseNumeral("805794852031746820.8906")
+    _str = arabicNumeral_to_chineseNumeral("805794852031746820.8906")
     print(_str)
-    _num=chineseNumeral_to_arabicNumeral(_str)
+    _num = chineseNumeral_to_arabicNumeral(_str)
     print(_num)
 
-    _str=arabicNumeral_to_chineseNumeral_Money("031046820.7089")
+    _str = arabicNumeral_to_chineseNumeral_Money("031046820.7089")
     print(_str)
-    _num=chineseNumeral_to_arabicNumeral(_str)
+    _num = chineseNumeral_to_arabicNumeral(_str)
     print(_num)
 
-    text = u"成田空港—【ＪＲ特急成田エクスプレス号・横浜行，2站】—東京—【ＪＲ新幹線はやぶさ号・新青森行,6站 】—新青森—【ＪＲ特急スーパー白鳥号・函館行，4站 】—函館"
-    print (convertHalfAndFull(text, FH_ASCII, {u"【": u"[", u"】": u"]", u",": u"，", u".": u"。", u"?": u"？", u"!": u"！"}, spit= "，。？！“”"))
-
+    text = "成田空港—【ＪＲ特急成田エクスプレス号・横浜行，2站】—東京—【ＪＲ新幹線はやぶさ号・新青森行,6站 】—新青森—【ＪＲ特急スーパー白鳥号・函館行，4站 】—函館"
+    print(convertHalfAndFull(text, FH_ASCII, {"【": "[", "】": "]", ",": "，", ".": "。", "?": "？", "!": "！"},
+                             spit="，。？！“”"))
 
     str1 = "spam"
     str2 = "ham"
-    result = intersection(str1,str2)
-    print (u"交集：%s" % result)
+    result = intersection(str1, str2)
+    print("交集：%s" % result)
 
     result = union(str1, str2)
-    print (u"并集：%s" %  result)
+    print("并集：%s" % result)
 
-    result =difference(str1, str2)
-    print (u"差集1：%s" %  result)
+    result = difference(str1, str2)
+    print("差集1：%s" % result)
 
-    result =difference(str2, str1)
-    print (u"差集2：%s" %  result)
-
-
-
-
-
-
+    result = difference(str2, str1)
+    print("差集2：%s" % result)

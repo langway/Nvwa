@@ -7,6 +7,7 @@ from unittest import TestCase
 import datetime
 from loongtian.nvwa.runtime.sequencedObjs import SequencedObjs
 
+
 class TestSequencedObj(TestCase):
     def setUp(self):
         print("----setUp----")
@@ -71,11 +72,12 @@ class TestSequencedObjs(TestCase):
 
     def testAddSequencedObjs(self):
         print("----testAddSequencedObjs----")
-
+        import time
         seq=SequencedObjs(objTypes=[str,int],typesNum=2)
 
         obj_niu=seq.add("牛")
         print(obj_niu)
+        time.sleep(0.1) # 需要休息一下，否则时间会相同
         self.assertEqual(obj_niu.containedObj, "牛")
         self.assertEqual(obj_niu.isContainer(),True)
         self.assertEqual(obj_niu.isHead(), True)
@@ -87,6 +89,7 @@ class TestSequencedObjs(TestCase):
 
         obj_ma=seq.add("马")
         print(obj_ma)
+        time.sleep(0.1)
 
         self.assertEqual(obj_ma.containedObj, "马")
         self.assertEqual(obj_ma.isContainer(),True)
@@ -101,6 +104,7 @@ class TestSequencedObjs(TestCase):
 
         obj_123=seq.add(123)
         print(obj_123)
+        time.sleep(0.1)
 
         self.assertEqual(obj_123.containedObj, 123)
         self.assertEqual(obj_123.isContainer(),True)
@@ -129,6 +133,7 @@ class TestSequencedObjs(TestCase):
 
         obj_niu1 = seq.add("牛") # 再次添加“牛”，以便进行时间、位置等的查询
         print(obj_niu1)
+        time.sleep(0.1)
 
         obj_by_id = seq.getById(obj_ma.id)
         self.assertEqual(obj_by_id, obj_ma)
@@ -140,18 +145,18 @@ class TestSequencedObjs(TestCase):
         self.assertEqual(times,[obj_niu.utc_time,obj_niu1.utc_time])
 
         obj_by_time = seq.getByTime(obj_123.utc_time)
-        self.assertEqual(obj_by_time,[obj_123])
+        self.assertTrue(obj_by_time,[obj_123])
 
-        print(seq._sequence_obj_list)
+        print(seq._sequencedObj_list)
         time=datetime.datetime.utcnow()
         print(time)
         obj_by_time = seq.getByTime(time)
         self.assertEqual(obj_by_time, None)
 
-        start_time=obj_niu.utc_time
-        end_time=obj_123.utc_time
+        start_time=obj_ma.utc_time
+        end_time=obj_niu1.utc_time
         seq_objs=seq.getByDuration(start_time,end_time)
-        self.assertEqual(seq_objs, [obj_niu,obj_ma,obj_123])
+        self.assertEqual(seq_objs, [obj_ma,obj_123,obj_niu1])
 
         obj_by_pos = seq.getByPos(1)
         self.assertEqual(obj_by_pos,obj_ma)
@@ -162,14 +167,18 @@ class TestSequencedObjs(TestCase):
         obj_by_poses = seq.getByPoses([0,3,5])
         self.assertEqual(obj_by_poses, {0:obj_niu,3:obj_niu1,5:None})
 
-        seq.flush(start_time,end_time)
-
         seq.add("羊")
+
         seq.add("猪")
         seq.add(789)
 
+        seq.flush(start_time,end_time)
+        self.assertEqual(seq.getAllContainedObj(),["牛","羊","猪",789])
+
         seq.flush()
 
+        print(seq.getAll())
+        self.assertEqual(seq.getAllContainedObj(),[])
 
 
 

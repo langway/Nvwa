@@ -20,8 +20,8 @@ def CheckSingleFile(path, timeout=500):
     if path in Ignored_File_List:
         return
 
-    command = u"python \"" + path + "\""
-    print(u"——正在检查文件：" + path)
+    command = "python \"" + path + "\""
+    print("——正在检查文件：" + path)
     # if path.endswith("vtClient.py"):
     #     # print(path in Ignored_File_List)
 
@@ -65,7 +65,7 @@ def CheckAllPyFiles(path):
             for fileItem in files:
                 ext = os.path.splitext(fileItem)
                 ext = ext[-1]  # get the postfix of the file
-                if (ext in [u".py"]):  # ["cpp", "c", "h", "java", "py", "xml", "properties", "php"]):
+                if (ext in [".py"]):  # ["cpp", "c", "h", "java", "py", "xml", "properties", "php"]):
 
                     subpath = os.path.join(root, fileItem)
 
@@ -75,9 +75,9 @@ def CheckAllPyFiles(path):
 
             # 检查下一个目录下文件的代码量
             for dir in dirs:
-                print(u"正在检查目录：" + path)
+                print("正在检查目录：" + path)
                 # print dir
-                if dir != u".idea" and dir != u".svn":  # 略过svn文件夹
+                if dir != ".idea" and dir != ".svn":  # 略过svn文件夹
 
                     temp_errors = CheckAllPyFiles(os.path.join(path, dir))
 
@@ -113,43 +113,43 @@ def CheckAllPythonFiles(path):
 Ignored_File_List = [
 
     # autotrade部分
-    u"E:\\0-nvwa\\trunk\\loongtian\\autotrade\\trader\\archive\\vtClient.py",
-    u"E:\\0-nvwa\\trunk\\loongtian\\autotrade\\trader\\archive\\vtServer.py",
+    "E:\\0-nvwa\\trunk\\loongtian\\autotrade\\trader\\archive\\vtClient.py",
+    "E:\\0-nvwa\\trunk\\loongtian\\autotrade\\trader\\archive\\vtServer.py",
 
     # autotrade部分-api
-    u"E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api\\cshshlp\\test\\cstest.py",
-    u"E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api\\ctp\\vnctpmd\\test\\mdtest.py",
-    u"E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api\\ctp\\vnctptd\\test\\tdtest.py",
-    u"E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api\\femas\\vnfemasmd\\test\\mdtest.py",
-    u"E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api\\femas\\vnfemastd\\test\\tdtest.py",
-    u"E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api\\ib\\test\\test.py",
-    u"E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api\\lhang\\test.py",
-    u"E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api\\lts\\vnltsmd\\test\\mdtest.py",
-    u"E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api\\lts\\vnltsqry\\test\\qrytest.py",
-    u"E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api\\lts\\vnltstd\\test\\tdtest.py",
-    u"E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api\\oanda\\test.py",
-    u"E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api\\qdp\\vnqdpmd\\test\\mdtest.py",
-    u"E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api\\qdp\\vnqdptd\\test\\tdtest.py",
-    u"E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api\\shzd\\test\\test.py",
-    u"E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api\\xspeed\\test\\xspeedmdtest.py",
-    u"E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api\\xspeed\\test\\xspeedtdtest.py",
+    "E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api\\cshshlp\\test\\cstest.py",
+    "E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api\\ctp\\vnctpmd\\test\\mdtest.py",
+    "E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api\\ctp\\vnctptd\\test\\tdtest.py",
+    "E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api\\femas\\vnfemasmd\\test\\mdtest.py",
+    "E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api\\femas\\vnfemastd\\test\\tdtest.py",
+    "E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api\\ib\\test\\test.py",
+    "E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api\\lhang\\test.py",
+    "E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api\\lts\\vnltsmd\\test\\mdtest.py",
+    "E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api\\lts\\vnltsqry\\test\\qrytest.py",
+    "E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api\\lts\\vnltstd\\test\\tdtest.py",
+    "E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api\\oanda\\test.py",
+    "E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api\\qdp\\vnqdpmd\\test\\mdtest.py",
+    "E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api\\qdp\\vnqdptd\\test\\tdtest.py",
+    "E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api\\shzd\\test\\test.py",
+    "E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api\\xspeed\\test\\xspeedmdtest.py",
+    "E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api\\xspeed\\test\\xspeedtdtest.py",
 
     # nvwa部分
-    u"E:\\0-nvwa\\trunk\\loongtian\\nvwa\\tools\\cidian\\BeautifulSoup.py",
-    u"E:\\0-nvwa\\trunk\\loongtian\\nvwa\\adminConsoleRunner.py",
-    u"E:\\0-nvwa\\trunk\\loongtian\\nvwa\\centralBrainRuner.py",
+    "E:\\0-nvwa\\trunk\\loongtian\\nvwa\\tools\\cidian\\BeautifulSoup.py",
+    "E:\\0-nvwa\\trunk\\loongtian\\nvwa\\adminConsoleRunner.py",
+    "E:\\0-nvwa\\trunk\\loongtian\\nvwa\\centralBrainRuner.py",
 
     # test部分
-    u"E:\\0-nvwa\\trunk\\test\\autotrade\\rpc\\testServer.py",
-    u"E:\\0-nvwa\\trunk\\test\\autotrade\\rpc\\testClient.py",
-    u"E:\\0-nvwa\\trunk\\test\\util\\tasks\\Example\\exceptRaisableThread.py",
+    "E:\\0-nvwa\\trunk\\test\\autotrade\\rpc\\testServer.py",
+    "E:\\0-nvwa\\trunk\\test\\autotrade\\rpc\\testClient.py",
+    "E:\\0-nvwa\\trunk\\test\\util\\tasks\\Example\\exceptRaisableThread.py",
 
-    u"E:\\0-nvwa\\trunk\\loongtian\\fuxi\\httpServerRunner.py",
-    u"E:\\0-nvwa\\trunk\\loongtian\\util\\codeCheck\\codeChecker.py",
+    "E:\\0-nvwa\\trunk\\loongtian\\fuxi\\httpServerRunner.py",
+    "E:\\0-nvwa\\trunk\\loongtian\\util\\codeCheck\\codeChecker.py",
 
 ]
 
-# Ignored_File_List=[f.replace(u"\\",u"\\\\") for f in Ignored_File_List]
+# Ignored_File_List=[f.replace("\\","\\\\") for f in Ignored_File_List]
 Ignored_File_List = [os.path.normpath(f) for f in Ignored_File_List]
 
 # 是否检查输入的目录，如否，则检查Directories_to_check给定的目录
@@ -157,13 +157,13 @@ Check_from_input = True
 
 # 需要自动化检查的目录列表
 Directories_to_check = [
-    # u"E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api",
-    # u"E:\\0-nvwa\\trunk\\loongtian\\autotrade\\data",
-    # u"E:\\0-nvwa\\trunk\\loongtian\\autotrade\\examples",
-    u"E:\\0-nvwa\\trunk\\loongtian\\nvwa",
-    # u"E:\\0-nvwa\\trunk\\loongtian\\autotrade\\trader",
+    # "E:\\0-nvwa\\trunk\\loongtian\\autotrade\\api",
+    # "E:\\0-nvwa\\trunk\\loongtian\\autotrade\\data",
+    # "E:\\0-nvwa\\trunk\\loongtian\\autotrade\\examples",
+    "E:\\0-nvwa\\trunk\\loongtian\\nvwa",
+    # "E:\\0-nvwa\\trunk\\loongtian\\autotrade\\trader",
 ]
-# CheckSingleFile(u"E:\\0-nvwa\\trunk\\loongtian\\autotrade\\trader\\archive\\vtClient.py")
+# CheckSingleFile("E:\\0-nvwa\\trunk\\loongtian\\autotrade\\trader\\archive\\vtClient.py")
 
 
 if Check_from_input:

@@ -74,7 +74,7 @@ class TestBaseEntity(TestCase):
         self.entity.colInt = 123
         self.entity.colString = timeHelper.getNow() #BaseEntity.Command("now()")
         self.entity.colBool = True
-        self.entity.colList=[1.2,"testString",u"test_unicode",set([2.3,("a",u"e",6)])]
+        self.entity.colList=[1.2,"testString","test_unicode",set([2.3,("a","e",6)])]
         created_entity = self.entity.create(checkExist=True,recordInDB=True) # 第一次写到记忆中枢及数据库
         self.assertIsNotNone(self.entity)
         self.assertIsNotNone(self.entity.pkId)
@@ -275,13 +275,13 @@ class TestBaseEntity(TestCase):
         self.entity.colInt = 258
         self.entity.colString = None
         self.entity.colNone = "I'm Tester."
-        self.entity = self.entity.updateAttributeValues(colInt=258,colString=None,colList=set([2.3,("a",u"e",6)]),colNone=self.entity.colNone)
+        self.entity = self.entity.updateAttributeValues(colInt=258,colString=None,colList=set([2.3,("a","e",6)]),colNone=self.entity.colNone)
         self.assertIsNotNone(self.entity)
         findOne = MyEntity.getOneInDB(pkId = self.entity.pkId, pkUuid = self.entity.pkUuid)
         self.assertEqual(258, findOne.colInt)
         self.assertEqual(None, findOne.colString)
         self.assertEqual("I'm Tester.", findOne.colNone)
-        self.assertEqual(set([2.3,("a",u"e",6)]), findOne.colList)
+        self.assertEqual(set([2.3,("a","e",6)]), findOne.colList)
         # print (Json.obj2json(findOne, False))
 
     def testDelete(self):

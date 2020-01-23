@@ -46,14 +46,14 @@ class EvaluateEngine(EngineBase):
             # 0、查看元数据级别的匹配结果
             if metaLevelResult.isSingle():  # 单元数据
                 if metaLevelResult.metaLevelThinkingRecords.curMetaLevelMatchInfo == ThinkingInfo.MetaLevelInfo.MatchInfo.SINGLE_META_UNMATCHED:
-                    msg = "我不记得“%s”这个字符，也不知道是什么！" % thinkResult.rawInput
+                    msg = "我不记得“%s”这个字符，也不知道是什么！" % thinkResult.strContent.containedObj
 
                 elif metaLevelResult.metaLevelThinkingRecords.curMetaLevelMatchInfo == ThinkingInfo.MetaLevelInfo.MatchInfo.SINGLE_META_RELATED_REALS_UNMATCHED:
-                    msg = "我记得“%s”这个字符，但不知道是什么！" % thinkResult.rawInput
+                    msg = "我记得“%s”这个字符，但不知道是什么！" % thinkResult.strContent.containedObj
 
                 elif metaLevelResult.metaLevelThinkingRecords.curMetaLevelMatchInfo == ThinkingInfo.MetaLevelInfo.MatchInfo.SINGLE_META_RELATED_REALS_MATCHED:
                     msg = "我记得“%s”这个字符，记得其对应的实际对象有：%s" % (
-                        thinkResult.rawInput,
+                        thinkResult.strContent.containedObj,
                         entityHelper.getNatureLanguage(
                             metaLevelResult.metaLevelThinkingRecords.curMetaLevelMatchRecord.thinkingObj))
             else:  # 多元数据
